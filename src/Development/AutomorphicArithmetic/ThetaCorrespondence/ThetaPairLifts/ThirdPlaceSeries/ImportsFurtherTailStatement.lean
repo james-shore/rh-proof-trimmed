@@ -288,7 +288,7 @@ theorem etaP_nonneg {D : D7} (L : SizeData₂ D) : 0 ≤ TwistedPlaces.eta₃ L 
   positivity
 
 theorem placeWeight_nonneg {D : D7} (L : SizeData₂ D) : 0 ≤ TwistedPlaces.wP L := by
-  apply GlobalTheory.RowsThick.placeWeight_nonneg <;> assumption
+  apply GlobalTheory.RowsThick.placeWeight_nonneg
 
 theorem coreE_nonneg {D : D7} (L : SizeData₂ D) (l : ℕ) : 0 ≤ coreE L l := by
   unfold coreE

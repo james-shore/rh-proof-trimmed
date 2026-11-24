@@ -479,7 +479,7 @@ private theorem exists_mem_support_mul_weight_eq_of_weight_zero (w : σ → ℕ)
   have hc0 : ∀ γ, AddMonoidAlgebra.coeff g0 γ = if Finsupp.weight w γ = b then AddMonoidAlgebra.coeff g γ else 0 := by
     intro γ
     by_cases hγ : AddMonoidAlgebra.coeff g γ = 0 <;>
-      simp [g0, coeff_sum, coeff_monomial, Finset.mem_filter, mem_support_iff, hγ]
+      simp [g0, coeff_monomial, Finset.mem_filter, mem_support_iff, hγ]
   have hg0 : g0 ≠ 0 := by
     intro h
     have h1 := hc0 γ0
@@ -500,7 +500,7 @@ private theorem exists_mem_support_mul_weight_eq_of_weight_zero (w : σ → ℕ)
     intro δ hδ
     have hsub : AddMonoidAlgebra.coeff (g - g0) δ =
         AddMonoidAlgebra.coeff g δ - AddMonoidAlgebra.coeff g0 δ := by
-      first | rw [eq_sub_iff_add_eq, ← MvPolynomial.coeff_add, sub_add_cancel] | simp
+      first | rw [eq_sub_iff_add_eq, ← MvPolynomial.coeff_add, sub_add_cancel]
     rw [mem_support_iff, hsub, hc0] at hδ
     by_cases hδb : Finsupp.weight w δ = b
     · rw [if_pos hδb, sub_self] at hδ

@@ -67,7 +67,7 @@ theorem _root_.GlobalTheory.T.exists_local_GL_embedding_unitary : ∀ (F E : Typ
     ∃ K : GL (Fin a') (Fv F v) →* UA σ G.V'.J, ∀ g, K g ∈ UAt σ G.V' (evFin F v) ∧
       (mat (K g)).map (piW t) = g.val ∧
       (mat (K g)).map (piW (t.comp σ)) = (G.V'.J.map t)⁻¹ * ((g⁻¹ : GL _ _).val)ᵀ * G.V'.J.map t := by
-  first | exact @GlobalTheory.LeviAtPlace.levi_at_place | exact GlobalTheory.LeviAtPlace.levi_at_place | (intros; apply GlobalTheory.LeviAtPlace.levi_at_place <;> assumption)
+  first | exact @GlobalTheory.LeviAtPlace.levi_at_place
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsLocalGLEmbeddingUnitaryStatement =====
@@ -90,7 +90,7 @@ theorem chrW_pow_not_real {F E : Type} [Field F] [NumberField F] [Field E] [Numb
   intro m hm r hr
   have hn : ‖((chrW χ t (unifAt v) : ℂˣ) : ℂ)‖ = 1 := by
     simp only [chrW, locChar, MonoidHom.coe_comp, Function.comp_apply]
-    first | exact Circle.norm_coe _ | exact Circle.abs_coe _ | simp
+    first | exact Circle.norm_coe _
   have hr1 : |r| = 1 := by
     have e := congrArg norm hr
     rw [norm_pow, hn, one_pow, Complex.norm_real, Real.norm_eq_abs] at e

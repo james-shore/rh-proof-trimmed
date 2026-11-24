@@ -280,7 +280,7 @@ private theorem cmb_add' (s : K) (a b a' b' : Etau K τ) :
 
 private theorem smul_cmb (r : O) (s : K) (a b : Etau K τ) :
     r • cmb Δ s a b = cmb Δ s (r • a) (r • b) := by
-  ext <;> simp [cmb] <;> simp only [Algebra.smul_def]
+  ext <;> simp [cmb]
 
 private theorem cmb_zero' (s : K) : cmb Δ s (0 : Etau K τ) 0 = 0 := by
   ext <;> simp [cmb]

@@ -907,7 +907,6 @@ theorem vol_mul_colCoef : Big fun {D} _ _ _ _ _ _ _ _ _ _ _ ch => ∀ (s : ℤˣ
         (GlobalTheory.RowWt.colCoef ch t β j : ℝ) = V₀ := by
   first
   | (exact @_root_.GlobalTheory.SymmetricJacobianSignature.cell_volume_mul_coef)
-  | (intros; exact _root_.GlobalTheory.SymmetricJacobianSignature.cell_volume_mul_coef ..)
 
 end GlobalTheory.CellIdx
 

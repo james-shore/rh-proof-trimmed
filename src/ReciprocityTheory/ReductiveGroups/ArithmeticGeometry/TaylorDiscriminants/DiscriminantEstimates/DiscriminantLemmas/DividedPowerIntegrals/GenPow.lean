@@ -58,7 +58,7 @@ variable {K I J : Type} [CommRing K] [Fintype I] [Fintype J]
 
 theorem pderiv_comm (a b : I ⊕ J) (p : MvPolynomial (I ⊕ J) K) :
     pderiv a (pderiv b p) = pderiv b (pderiv a p) := by
-  apply PI.WickFormula.Gen.pderiv_comm <;> assumption
+  apply PI.WickFormula.Gen.pderiv_comm
 
 noncomputable abbrev pd (a : I ⊕ J) : Module.End K (MvPolynomial (I ⊕ J) K) :=
   (pderiv a).toLinearMap
@@ -118,7 +118,7 @@ theorem gdelta_apply (κ : I → J → K) (R : MvPolynomial (I ⊕ J) K) :
 
 theorem gdelta_X_inl (κ : I → J → K) (i : I) (R : MvPolynomial (I ⊕ J) K) :
     gdelta κ (X (Sum.inl i) * R) = X (Sum.inl i) * gdelta κ R + dL κ i R := by
-  apply PI.WickFormula.Gen.gdelta_X_inl <;> assumption
+  apply PI.WickFormula.Gen.gdelta_X_inl
 
 theorem gdelta_X_inr (κ : I → J → K) (j : J) (R : MvPolynomial (I ⊕ J) K) :
     gdelta κ (X (Sum.inr j) * R) = X (Sum.inr j) * gdelta κ R + dR κ j R := by

@@ -752,7 +752,6 @@ theorem finite_lift_of_integral (R K : CommRingCat.{0}) (φ : R ⟶ K) (hinj : F
     ∃ ξ : Spec R ⟶ Z, Spec.map φ ≫ ξ = y ∧ ξ ≫ p = ξ₀ := by
   first
   | (apply _root_.GlobalTheory.FiniteSectionLift.lift_of_finite <;> assumption)
-  | (intros; exact _root_.GlobalTheory.FiniteSectionLift.lift_of_finite ..)
 
 theorem isDominant_of_generic {T S : Scheme.{0}} [IsIntegral S] (r : T ⟶ S) [IsOpenImmersion r]
     (K : CommRingCat.{0}) [IsLocalRing K] (w : Spec K ⟶ T)

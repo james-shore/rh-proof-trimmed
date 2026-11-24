@@ -173,7 +173,7 @@ theorem precomplete_of_finite (O : Type) [CommRing O] (I : Ideal O) [IsPrecomple
 
 theorem exists_pow_idem (M : Type) [Monoid M] [Finite M] (x : M) :
     ∃ n : ℕ, 0 < n ∧ x ^ n * x ^ n = x ^ n := by
-  apply PositivityTheory.ThKG.Loc.Cone.Vf.exists_pow_idem <;> assumption
+  apply PositivityTheory.ThKG.Loc.Cone.Vf.exists_pow_idem
 
 theorem isLocalRing_of_finite (O : Type) [CommRing O] [IsLocalRing O] [IsNoetherianRing O]
     [IsAdicComplete (IsLocalRing.maximalIdeal O) O] [Finite (IsLocalRing.ResidueField O)]

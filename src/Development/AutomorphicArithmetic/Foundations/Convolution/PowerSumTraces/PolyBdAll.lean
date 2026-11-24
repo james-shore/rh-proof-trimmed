@@ -107,7 +107,7 @@ private theorem lastRow {m : ℕ} {ω : Set (AdelicGLn.AdelicGL K (m + 1))} (hω
   exact mul_le_mul_of_nonneg_right h1 (pow_nonneg (hr _).le _)
 
 theorem siegelHeight : SiegelHeight := by
-  apply UpperTheory.siegelSet_height_bound <;> assumption
+  apply UpperTheory.siegelSet_height_bound
 
 end UpperTheory.V.Fb
 end -- clump:auto

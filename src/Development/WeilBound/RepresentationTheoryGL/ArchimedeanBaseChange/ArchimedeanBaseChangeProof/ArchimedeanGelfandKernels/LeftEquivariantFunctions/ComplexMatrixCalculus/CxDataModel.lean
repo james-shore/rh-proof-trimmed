@@ -1668,7 +1668,7 @@ end Norm
 attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
 
 theorem contDiffOn_inv : ∀ {n : ℕ}, ContDiffOn ℝ ∞ (fun x : Mat n => x⁻¹) (GLs n) := by
-  apply PositivityTheory.RgBcC.LfSt.Kchain.KcInv.inv_contDiffOn <;> assumption
+  apply PositivityTheory.RgBcC.LfSt.Kchain.KcInv.inv_contDiffOn
 
 end GlobalTheory.CompanionTheory.MatInv
 end -- clump:auto

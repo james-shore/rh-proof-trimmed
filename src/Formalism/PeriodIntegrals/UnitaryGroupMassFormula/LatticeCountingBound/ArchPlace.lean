@@ -272,7 +272,6 @@ theorem ap_ker (δ : Matrix (Fin I.n) (Fin I.n) I.E) (k : ℕ) (u b' : Fin k →
     have hrows' : LinearIndependent I.E (hM I b').row := by
       first
         | exact hrows
-        | simpa [Matrix.row] using hrows
     rw [finrank_span_eq_card hrows', Fintype.card_fin] at this
     simpa only [Matrix.finrank_range_mulVecLin] using this
   have hn1 := LinearMap.finrank_range_add_finrank_ker δ.mulVecLin

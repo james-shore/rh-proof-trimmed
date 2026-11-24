@@ -1670,7 +1670,7 @@ noncomputable section
 namespace GlobalTheory.AdmGThreeRest
 
 theorem litBurnside_host (D : D7) : LitBurnside (G D.host.E D.nd.Om) := by
-  apply _root_.GlobalTheory.SetPtOff.litBurnside_all <;> assumption
+  apply _root_.GlobalTheory.SetPtOff.litBurnside_all
 
 end GlobalTheory.AdmGThreeRest
 end -- clump:auto

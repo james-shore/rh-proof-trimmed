@@ -678,7 +678,7 @@ theorem _root_.GlobalTheory.T.discrete_projBundleModel_cohomology_equiv_prod_fib
                   ev (R := R) γ.1 k s hs V
                     (Sx.map (prod.map (disc.map (yonedaEquiv.symm x)) (𝟙 (fibQ q N))) y)) →
           e (CohomologyClass.mk β) = CohomologyClass.mk γ := by
-  apply _root_.GlobalTheory.EtC.DiscCoch.model <;> assumption
+  apply _root_.GlobalTheory.EtC.DiscCoch.model
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.DiscreteProjBundleModelCohomologyEquivProdFibreStatement =====

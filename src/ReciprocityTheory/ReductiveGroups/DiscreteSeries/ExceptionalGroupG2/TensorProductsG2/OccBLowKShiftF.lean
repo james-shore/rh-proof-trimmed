@@ -118,11 +118,11 @@ end Psi
 
 theorem norm_unitary_inv_entry {ε : Fin n → Bool} (g : Formalism.REAL.UJ ε) (c d : Fin n) :
     ‖(Formalism.MainNotions.S.umat g)⁻¹ d c‖ = ‖Formalism.MainNotions.S.umat g c d‖ := by
-  apply ReciprocityTheory.ChartRestriction.DS.norm_unitary_inv_entry <;> assumption
+  apply ReciprocityTheory.ChartRestriction.DS.norm_unitary_inv_entry
 
 theorem norm_unitary_entry_le_sqrt_hs {ε : Fin n → Bool} (g : Formalism.REAL.UJ ε) (c d : Fin n) :
     ‖Formalism.MainNotions.S.umat g c d‖ ≤ Real.sqrt (S7.hs (Formalism.MainNotions.S.umat g)) := by
-  apply ReciprocityTheory.ChartRestriction.DS.norm_unitary_entry_le_sqrt_hs <;> assumption
+  apply ReciprocityTheory.ChartRestriction.DS.norm_unitary_entry_le_sqrt_hs
 
 theorem norm_dual_entry_le_sqrt_hs (dual : Bool) {ε : Fin n → Bool} (g : Formalism.REAL.UJ ε) (c d : Fin n) :
     ‖cond dual ((Formalism.MainNotions.S.umat g)⁻¹ d c) (Formalism.MainNotions.S.umat g c d)‖ ≤ Real.sqrt (S7.hs (Formalism.MainNotions.S.umat g)) := by
@@ -132,7 +132,7 @@ theorem norm_dual_entry_le_sqrt_hs (dual : Bool) {ε : Fin n → Bool} (g : Form
 
 theorem continuous_dual_entry (dual : Bool) {ε : Fin n → Bool} (c d : Fin n) :
     Continuous (fun g : Formalism.REAL.UJ ε => cond dual ((Formalism.MainNotions.S.umat g)⁻¹ d c) (Formalism.MainNotions.S.umat g c d)) := by
-  apply ReciprocityTheory.ChartRestriction.DS.continuous_dual_entry <;> assumption
+  apply ReciprocityTheory.ChartRestriction.DS.continuous_dual_entry
 
 section Psi2
 
@@ -244,7 +244,7 @@ theorem onb_sum_inner_independent {E V : Type*} [NormedAddCommGroup E] [InnerPro
     [NormedAddCommGroup V] [InnerProductSpace ℂ V] {ι κ : Type*} [Fintype ι] [Fintype κ]
     (b : OrthonormalBasis ι ℂ E) (c : OrthonormalBasis κ ℂ E) (F G : E →ₗ[ℂ] V) :
     ∑ j, inner ℂ (F (b j)) (G (b j)) = ∑ i, inner ℂ (F (c i)) (G (c i)) := by
-  apply ReciprocityTheory.ChartRestriction.DS.onb_sum_inner_independent <;> assumption
+  apply ReciprocityTheory.ChartRestriction.DS.onb_sum_inner_independent
 
 theorem onb_sum_vector_inner_independent {E V : Type*} [NormedAddCommGroup E] [InnerProductSpace ℂ E]
     [NormedAddCommGroup V] [InnerProductSpace ℂ V] {ι κ : Type*} [Fintype ι] [Fintype κ]
@@ -284,7 +284,7 @@ theorem k_matrix_columns_orthonormal {ε : Fin n → Bool} (k : S7.KG ε) (e f :
 
 theorem k_twist_vector_inner_preserved (dual : Bool) {ε : Fin n → Bool} {Λ : Fin n → ℝ} (T : S7.KType ε Λ) (k : S7.KG ε)
     (ξ η : Fin n → T.V) : ob2SI (ob2TauF dual T k ξ) (ob2TauF dual T k η) = ob2SI ξ η := by
-  apply ReciprocityTheory.ChartRestriction.DS.k_twist_vector_inner_preserved <;> assumption
+  apply ReciprocityTheory.ChartRestriction.DS.k_twist_vector_inner_preserved
 
 def ob2B (dual : Bool) {V : Type*} [NormedAddCommGroup V] [InnerProductSpace ℂ V]
     (Ψ : Matrix (Fin n) (Fin n) ℂ → (V →L[ℂ] V)) (g : Matrix (Fin n) (Fin n) ℂ) :

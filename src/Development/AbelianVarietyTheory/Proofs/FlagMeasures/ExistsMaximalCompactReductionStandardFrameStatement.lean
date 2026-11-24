@@ -1164,7 +1164,6 @@ theorem exists_int_sub_mem_pow {E : Type} [Field E] [NumberField E] {p : ℕ} (h
     (a : 𝓞 E) : ∃ m : ℤ, a - m ∈ P ^ k := by
   first
   | (apply _root_.GlobalTheory.IntSubMemPow.exists_int_sub_mem_pow <;> assumption)
-  | (intros; exact _root_.GlobalTheory.IntSubMemPow.exists_int_sub_mem_pow ..)
 
 theorem not_isConj_self (I : AutInst) {p : ℕ} (hp : p.Prime) (v : HeightOneSpectrum (𝓞 I.E))
     (hm : (p : 𝓞 I.E) ∈ v.asIdeal) (hN : Ideal.absNorm v.asIdeal = p) (h2 : (p : 𝓞 I.E) ∉ v.asIdeal ^ 2) :

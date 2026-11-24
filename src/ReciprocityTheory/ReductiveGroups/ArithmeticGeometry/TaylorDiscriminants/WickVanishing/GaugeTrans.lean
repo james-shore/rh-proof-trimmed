@@ -65,7 +65,6 @@ theorem gt_coeff_X_pow (i : Fin 2) (n : ℕ) (e : Fin 2 →₀ ℕ) :
     coeff e ((X i : MvPowerSeries (Fin 2) A) ^ n) = if e = single i n then 1 else 0 := by
   first
     | exact MvPowerSeries.coeff_X_pow e i n
-    | (classical exact MvPowerSeries.coeff_X_pow e i n)
 
 theorem gt_coeff_expX (i : Fin 2) (e : Fin 2 →₀ ℕ) :
     coeff e (PowerSeries.subst (X i : MvPowerSeries (Fin 2) A) (PowerSeries.exp A)) =
@@ -264,7 +263,7 @@ theorem gp_addOf {n : ℕ} (F : Fin d → PS k 2 d) (hF : ∀ i, constantCoeff (
   show ∀ i, _
   intro i
   exact gt_const_ev ![a, b]
-    (fun j => by fin_cases j <;> first | assumption | simpa using ha) (F i) (hF i)
+    (fun j => by fin_cases j <;> first | assumption) (F i) (hF i)
 
 theorem gt_ev_expS [Algebra ℚ k] {m n : ℕ} (a : Fin m → Pt k n d) (ha : ∀ j, GP (a j)) (f : PS k m d)
     (hf : constantCoeff f = 0) : ev a (FB.expS k f) = FB.expS k (ev a f) := by

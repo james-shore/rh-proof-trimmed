@@ -88,7 +88,7 @@ theorem inner_dc {n : ℕ} {ε : Fin n → Bool} (μS μS' : Measure (Formalism.
   exact lintegral_mul_right_of_map μS s₁ h₁ (fun x => ∫⁻ s', φ (x * g * s'⁻¹) ∂μS')
 
 theorem measurableSet_goodLoc (r : ℕ) (T T' : ℝ) : MeasurableSet (GoodLoc (r := r) T T') := by
-  apply Formalism.L2.SG.RealObj.InfCut.ProductExactness.measurableSet_goodLoc <;> assumption
+  apply Formalism.L2.SG.RealObj.InfCut.ProductExactness.measurableSet_goodLoc
 
 end JL
 

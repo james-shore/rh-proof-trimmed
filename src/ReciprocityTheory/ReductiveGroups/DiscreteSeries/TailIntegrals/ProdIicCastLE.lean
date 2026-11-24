@@ -216,11 +216,11 @@ theorem qe_orth (hk : 1 ≤ k) : Orthonormal ℂ (fun a => (WithLp.toLp 2 (phiV 
   · rw [if_pos ha, inner_bvec, phiV_apply]
     split_ifs <;> first
       | rfl
-      | (exfalso; (try simp only [Fin.val_mk, Fin.ext_iff] at *) <;> omega)
+      | (exfalso; (try simp only [Fin.ext_iff] at *) <;> omega)
       | simp
   · rw [if_neg ha, inner_smul_left, inner_add_left, inner_bvec, inner_bvec, phiV_apply, phiV_apply]
     split_ifs <;> first
-      | (exfalso; (try simp only [Fin.val_mk, Fin.ext_iff] at *) <;> omega)
+      | (exfalso; (try simp only [Fin.ext_iff] at *) <;> omega)
       | (exfalso; exact ‹¬a = b› (Fin.ext (by omega)))
       | (exfalso; simp_all; done)
       | (exfalso; simp_all <;> omega)

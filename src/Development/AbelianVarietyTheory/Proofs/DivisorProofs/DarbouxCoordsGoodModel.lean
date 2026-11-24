@@ -514,8 +514,8 @@ theorem GlobalTheory.WeylFour.weyl_hasOp : ∀ (F : Type) [Field F] [NumberField
       spAct (weylM (F := F) (κ := κ)) w = (w.2, -w.1) := by
     intro R _ _ w
     ext k
-    · simp [spAct, weylM, Matrix.fromBlocks_map, Matrix.mulVec, dotProduct, Matrix.fromBlocks, Matrix.one_apply]
-    · simp [spAct, weylM, Matrix.fromBlocks_map, Matrix.mulVec, dotProduct, Matrix.fromBlocks, Matrix.one_apply]
+    · simp [spAct, weylM, Matrix.mulVec, dotProduct, Matrix.fromBlocks, Matrix.one_apply]
+    · simp [spAct, weylM, Matrix.mulVec, dotProduct, Matrix.fromBlocks, Matrix.one_apply]
 
   have hSB := fun v => _root_.GlobalTheory.WeylFour.fourV_sb F ψ hψ v (hnt v) κ
   have hInv := fun v => _root_.GlobalTheory.WeylFour.LocInv.fourV_fourV F ψ hψ v (hnt v) κ

@@ -162,7 +162,6 @@ theorem heckeVec_dosetInd (hx : x ∈ fixed ρ K) {a : G} {R : Finset G}
     heckeVec ρ K (dosetInd ℂ K a) x = ∑ γ ∈ R, ρ γ x := by
   first
   | (apply _root_.GlobalTheory.DoubleCosetIndicatorSum.main <;> assumption)
-  | (intros; exact _root_.GlobalTheory.DoubleCosetIndicatorSum.main ..)
 
 theorem heckeVec_rightReg (hK : IsCommensurated K) (hh : h ∈ Hecke ℂ K) (φ : G → W) :
     heckeVec (rightReg ℂ G W) K h φ = hAct K h φ := by

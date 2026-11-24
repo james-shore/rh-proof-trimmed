@@ -107,7 +107,7 @@ theorem rel_definite {m r s : ℕ} (M : Matrix (Fin m) (Fin m) ℂ) (h : HasSig 
     simp at hz
   have hst : star (A *ᵥ w) = A.map star *ᵥ star w := by
     ext i
-    simp [Matrix.mulVec, dotProduct, star_sum, mul_comm]
+    simp [Matrix.mulVec, dotProduct, star_sum]
   have key : (A *ᵥ w) ⬝ᵥ M *ᵥ star (A *ᵥ w) = w ⬝ᵥ S *ᵥ star w := by
     rw [hst, Matrix.mulVec_mulVec, Matrix.dotProduct_mulVec, ← Matrix.vecMul_transpose, Matrix.vecMul_vecMul,
       ← Matrix.dotProduct_mulVec, ← Matrix.mul_assoc, hA]

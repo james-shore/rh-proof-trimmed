@@ -67,7 +67,7 @@ theorem frob_teich (x : PreTilt O p) :
   rw [WittVector.frobenius_eq_map_frobenius, WittVector.map_teichmuller, frobenius_def, map_pow]
 
 theorem sigma_tau : F.σ F.τ = p * F.τ := by
-  apply GlobalTheory.WindowIso.σ_τ <;> assumption
+  apply GlobalTheory.WindowIso.σ_τ
 
 theorem theta_tau [IsDomain O] : F.θ F.τ = 0 :=
   mul_self_eq_zero.1 (by rw [← map_mul, F.τ_sq, map_zero])

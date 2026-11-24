@@ -435,7 +435,7 @@ theorem _root_.GlobalTheory.T.snc_chart_regular_at_cone_point : ∀ (K : Type) [
           rw [map_sub, map_one] at h2
           simpa [bind₁_X_right, h1] using Ideal.Quotient.eq.2 h2
         · have h1 : SncRes.lift p ⟨k, i⟩ = X (Fintype.equivFin (Σ k, ι k) ⟨k, i⟩) := by
-            simp [SncRes.lift, h, bind₁_X_right]
+            simp [SncRes.lift, h]
           simp [bind₁_X_right, h1, renameEquiv_apply]
     exact Ideal.Quotient.eq.1 (RingHom.congr_fun key f)
 

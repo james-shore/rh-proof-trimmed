@@ -1356,7 +1356,7 @@ theorem crd_wirt (a : Fin m) (j : Fin n) (k : Fin m × Fin n × Bool) :
   rw [crd_apply, crd_apply]
   by_cases h : a' = a ∧ i' = j
   · obtain ⟨rfl, rfl⟩ := h
-    cases bb <;> simp <;> ring_nf <;> simp [Complex.I_sq]
+    cases bb <;> simp <;> ring_nf
   · have h' : ¬ ((a', i', bb) = (a, j, false)) := by intro e; simp at e; exact h ⟨e.1, e.2.1⟩
     simp [h, h']
 

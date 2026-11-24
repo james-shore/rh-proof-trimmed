@@ -98,7 +98,7 @@ theorem Xsp_eq_of_flag {T T' : E} {F : LFlag S r T} {G : LFlag S r T'} (h : ∀ 
   simpa only [← Xflag_r] using h r
 
 theorem Xsp_le_orth {T : E} (F : LFlag S r T) : Xsp F ≤ orth S (Xsp F) := by
-  apply PI.UnitaryGroupMassFormula.BetaModX.xsp_le_orth <;> assumption
+  apply PI.UnitaryGroupMassFormula.BetaModX.xsp_le_orth
 
 theorem map_mem_Xflag {Λ : Submodule (𝓞 E) S.V} {T : E} {F : LFlag S r T} {n : S.V ≃ₗ[E] S.V}
     (hn : n ∈ NLam Λ F) (j : ℕ) {v : S.V} (hv : v ∈ Xflag F j) : n v ∈ Xflag F j := by

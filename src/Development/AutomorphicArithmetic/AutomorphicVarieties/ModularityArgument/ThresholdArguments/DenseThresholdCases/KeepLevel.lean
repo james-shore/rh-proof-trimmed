@@ -356,7 +356,7 @@ private theorem flag_mult (K L : FinExt l) (n : ℕ) : ∀ (ρ : Representation 
     have hπ : ∀ g x, π (ρ g x) = (M' g).mulVec (π x) := fun g x => by
       funext i
       simp only [π, M', hρ, LinearMap.funLeft_apply, Matrix.mulVec, dotProduct, Fin.sum_univ_succ,
-        Matrix.submatrix_apply, Function.comp_apply, hM g i.succ 0 (Fin.succ_pos i), zero_mul, zero_add]
+        Matrix.submatrix_apply, hM g i.succ 0 (Fin.succ_pos i), zero_mul, zero_add]
     have hs : Function.Surjective π := LinearMap.funLeft_surjective_of_injective _ _ _ (Fin.succ_injective n)
     let ρ' : Representation ↥L.1 ↥(GK K) (Fin n → ↥L.1) :=
       { toFun := fun g => Matrix.toLin' (M' g)

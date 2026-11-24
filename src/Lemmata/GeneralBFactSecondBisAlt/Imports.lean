@@ -54,6 +54,6 @@ theorem goal1 :
   Membership.mem.{0, 0} (Submodule.span.{0, 0} K (SetLike.coe.{0, 0} M)) x →
     Exists.{1} fun (d : NumberField.RingOfIntegers.{0} K) ↦
       And (Ne.{1} d 0) (Membership.mem.{0, 0} M (HSMul.hSMul.{0, 0, 0} d x)) := by
-  apply Formalism.IndefR.LatticeTransfer.Lat.exists_smul_mem <;> assumption
+  apply Formalism.IndefR.LatticeTransfer.Lat.exists_smul_mem
 
 end Bl.general_b_fact_second''''''''

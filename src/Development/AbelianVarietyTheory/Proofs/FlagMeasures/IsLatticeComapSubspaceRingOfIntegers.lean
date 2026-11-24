@@ -68,7 +68,6 @@ theorem exists_ne_zero_smul_mem_of_span_eq_top {K V : Type} [Field K] [NumberFie
     ∃ d : 𝓞 K, d ≠ 0 ∧ d • v ∈ Λ := by
   first
   | (apply _root_.GlobalTheory.TargetStatementBis.target <;> assumption)
-  | (intros; exact _root_.GlobalTheory.TargetStatementBis.target ..)
 
 theorem isLattice_comap_subtype_ringOfIntegers {K V : Type} [Field K] [NumberField K] [AddCommGroup V]
     [Module K V] [FiniteDimensional K V] [Module (𝓞 K) V] [IsScalarTower (𝓞 K) K V]

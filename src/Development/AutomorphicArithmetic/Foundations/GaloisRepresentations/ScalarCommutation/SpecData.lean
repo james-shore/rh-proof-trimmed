@@ -255,7 +255,7 @@ theorem isCuspidal_comp_invT {N : ℕ} {ρ : Representation ℂ (GL (Fin N) k) V
   refine Submodule.span_le.2 ?_
   rintro _ ⟨n, v, rfl⟩
   refine Submodule.subset_span ⟨⟨GlobalTheory.CuspRep.invT N k n, invT_mem_unipRad e' e he' n.2⟩, v, ?_⟩
-  simp [invT_invT']
+  simp
 
 end Tilde
 

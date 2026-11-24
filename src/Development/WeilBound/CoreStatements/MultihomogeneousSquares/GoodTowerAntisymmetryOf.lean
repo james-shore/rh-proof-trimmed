@@ -1371,7 +1371,7 @@ namespace PositivityTheory.Xgp.tsg_smul
 
 theorem toWt_inj (Ψ : Type) (N : ℕ) :
     Function.Injective (toWt : MvPolynomial (Ψ × Fin N) ℝ → MvPolynomial (Ψ × Fin N) ℝ) := by
-  apply GlobalTheory.CompanionTheory.Ar.Top.FlDeg.toWt_leftInverse_injective <;> assumption
+  apply GlobalTheory.CompanionTheory.Ar.Top.FlDeg.toWt_leftInverse_injective
 
 end PositivityTheory.Xgp.tsg_smul
 

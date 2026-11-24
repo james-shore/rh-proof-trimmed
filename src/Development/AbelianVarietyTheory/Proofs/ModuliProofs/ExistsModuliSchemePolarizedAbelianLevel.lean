@@ -1223,7 +1223,7 @@ namespace GlobalTheory.LevelQuotUnram
 open GlobalTheory.TangentCrit (dualPt dualBase dualPt_dualBase dualPt_dualBase_assoc)
 
 lemma subsingleton_sp_dual (k : Type) [Field k] : Subsingleton (Sp (DualNumber k)) := by
-  apply GlobalTheory.ConstTheta.subsingleton_sp <;> assumption
+  apply GlobalTheory.ConstTheta.subsingleton_sp
 
 lemma dualMap_cancel {k K : Type} [Field k] [Field K] (f : k →+* K) {X : Scheme.{0}}
     {g g' : Sp (DualNumber k) ⟶ X} (h : spMap (Chart.dualMapR f) ≫ g = spMap (Chart.dualMapR f) ≫ g') : g = g' := by

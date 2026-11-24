@@ -361,7 +361,7 @@ private lemma Jm_mul_conjTranspose_mul_Jm_mul_eq_one_of_inUJ {n : ℕ} {ε : Fin
   rw [Matrix.mul_assoc, Matrix.mul_assoc, ← Matrix.mul_assoc gᴴ, hg', _root_.Formalism.REAL.Jm_mul_self]
 
 lemma isCompact_frobenius_sublevel {n : ℕ} (ε : Fin n → Bool) (r : ℝ) : IsCompact {g : UJ ε | hsG g ≤ r} := by
-  apply Formalism.REAL.isCompact_frobenius_ball_group <;> assumption
+  apply Formalism.REAL.isCompact_frobenius_ball_group
 
 theorem integral_right_derivative_zero : IntRdZero := by
   intro n ε φ X R hφ hX hsupp

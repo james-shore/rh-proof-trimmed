@@ -516,7 +516,7 @@ alias tan_iff := _root_.GlobalTheory.ArcQ.NormalForm.ExFr.tan_iff
 theorem eig_iff (w : epsR S ⟶ t'.G) (a : 𝓞 E) (s : S) :
     (w.left ≫ m.φ) ≫ (Xo.univ.t.act.act a).left = spMap (epsMul s) ≫ w.left ≫ m.φ ↔
       (w ≫ t'.act.act a).left = spMap (epsScaleR s) ≫ w.left := by
-  apply GlobalTheory.ArcQ.ExFr.eig_iff <;> assumption
+  apply GlobalTheory.ArcQ.ExFr.eig_iff
 
 alias comb_iff := _root_.GlobalTheory.ArcQ.NormalForm.ExFr.comb_iff
 

@@ -132,8 +132,8 @@ theorem lat_translate : ∀ (D : D7) (ρ : Setup D.ntw), ρ.Good → ∀ (i : D.
   refine ⟨hP.1, ?_⟩
   obtain ⟨c, h1, h2⟩ := GlobalTheory.T.splitPlaces_translation_lattice_bounded_norm D ρ hρ i j b Q h hQ hS hsupp
   have hN0 : normProd Q ^ c ≠ 0 := pow_ne_zero _ (normProd_ne_zero Q)
-  obtain ⟨a, ha⟩ := _root_.GlobalTheory.NabScale.nabAtr_smul_pow_mem _ _ _ _ (labLL0 D) (ρ.B i j b).w.lam _ _ (normProd Q ^ c) hN0 (by first | exact GlobalTheory.LatFull.latAt_isFullLattice D ρ hρ i j b h | exact (GlobalTheory.LatFull.latAt_isFullLattice D ρ hρ i j b h).toIsLattice)
-    (by first | exact GlobalTheory.LatFull.latAt_isFullLattice D ρ hρ i j b (h * hQ) | exact (GlobalTheory.LatFull.latAt_isFullLattice D ρ hρ i j b (h * hQ)).toIsLattice) h1 h2
+  obtain ⟨a, ha⟩ := _root_.GlobalTheory.NabScale.nabAtr_smul_pow_mem _ _ _ _ (labLL0 D) (ρ.B i j b).w.lam _ _ (normProd Q ^ c) hN0 (by first | exact GlobalTheory.LatFull.latAt_isFullLattice D ρ hρ i j b h)
+    (by first | exact GlobalTheory.LatFull.latAt_isFullLattice D ρ hρ i j b (h * hQ)) h1 h2
   have hu : ((normProd Q : ℕ) : ℂ)⁻¹ ∈ (ρ.eOk i b k).range := hρ.range_le i b k (GlobalTheory.T.inv_place_norm_product_mem_coefficient_ring D ρ i b Q hD)
   have hinv : (((normProd Q ^ c) ^ a : ℕ) : ℂ)⁻¹ ∈ (ρ.eOk i b k).range := by
     rw [Nat.cast_pow, Nat.cast_pow, ← inv_pow, ← inv_pow]

@@ -61,7 +61,7 @@ open Formalism.FourierDecayAlt.B2 Formalism.FourierDecayAlt.B Formalism.QuantumD
 namespace Formalism.FourierDecayAlt.P.B2x2
 
 theorem hpk_unit (k r : ℕ) : IsUnit (Hpk k r).det := by
-  apply Formalism.FourierDecayAlt.P.B2x3.hpk_unit <;> assumption
+  apply Formalism.FourierDecayAlt.P.B2x3.hpk_unit
 
 theorem closedG : ClosedG := by
   intro k r
@@ -475,7 +475,7 @@ theorem haar_right_of_compact {G : Type*} [Group G] [TopologicalSpace G] [IsTopo
   rw [h, h3, one_smul]
 
 theorem compactHaarExists : CompactHaarExists := by
-  apply Formalism.FourierDecayAlt.P.B2x3.compactHaar <;> assumption
+  apply Formalism.FourierDecayAlt.P.B2x3.compactHaar
 
 theorem mulM_cont {k r : ℕ} : Continuous (mulM : Mt k r × Mt k r → Mt k r) := by
   have h1 : Continuous (fun p : Mt k r × Mt k r => (Matrix.of p.1 : Mat k r)) := continuous_fst

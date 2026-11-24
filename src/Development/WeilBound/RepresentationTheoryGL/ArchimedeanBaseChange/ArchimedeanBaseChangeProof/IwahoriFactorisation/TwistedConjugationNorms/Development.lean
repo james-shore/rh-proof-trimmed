@@ -355,7 +355,7 @@ theorem le_and_half_le_prod_one_sub_exp_neg_of_bounds (hU : Unr E) (w : Pl E) (h
       have := hη i
       simp only [hk]
       linarith
-    simp only [Pi.mul_apply, map_zpow, hϖc, ← _root_.zpow_neg, hki, mul_comm]
+    simp only [Pi.mul_apply, map_zpow, ← _root_.zpow_neg, hki, mul_comm]
     rw [show cjU w ϖ = ϖ from hϖc]
   · refine ⟨fun i j hij => by rw [diagT_val_apply, if_neg hij], fun i => ?_⟩
     rw [diagT_val_apply, if_pos rfl]

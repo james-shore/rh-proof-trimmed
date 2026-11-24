@@ -126,7 +126,7 @@ theorem lemG_units (hcase : Formalism.MainNotions.LiftingTheory.CaseA W) (hP9 : 
   have hvp : v (PD.p : LL) = 1 := W.v_l
   have hv1 : v (-1 : LL) = 0 := by rw [AddValuation.map_neg, AddValuation.map_one]
   have h01 : (0 : WithTop ℚ) < 1 := by
-    first | exact zero_lt_one | exact WithTop.coe_lt_coe.mpr zero_lt_one | norm_num
+    first | exact zero_lt_one
   have hge : 0 ≤ v ((PD.p : LL) - 1) := by
     rw [sub_eq_add_neg]
     exact le_trans (le_min (by rw [hvp]; exact h01.le) (le_of_eq hv1.symm)) (AddValuation.map_add v _ _)
@@ -208,8 +208,6 @@ theorem inImg_smulO {T₁ T₂ : LocLat G Qp LL O} (F : LatHom T₁.L T₂.L) (i
   refine (lemGB_inImg_iff W).mpr ⟨c • x, inNΔi_smulO W T₁ i c hx, ?_⟩
   first
     | exact LinearMap.map_smul_of_tower _ _ _
-    | rw [← algebraMap_smul (LetA O n) c x, ← algebraMap_smul W.EE (algebraMap O (LetA O n) c) x, map_smul,
-        algebraMap_smul, algebraMap_smul]
 
 def imgSub {T₁ T₂ : LocLat G Qp LL O} (F : LatHom T₁.L T₂.L) (i : ZMod n) : Submodule O (W.DD T₂) where
   carrier := {z | InImg W F i z}

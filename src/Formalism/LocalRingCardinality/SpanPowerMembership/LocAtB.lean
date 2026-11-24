@@ -84,7 +84,6 @@ theorem resChar_prime : (resChar v).Prime := by
   haveI : Finite (𝓞 F ⧸ v.asIdeal) := by
     first
     | exact Ideal.finiteQuotientOfFreeOfNeBot v.asIdeal v.ne_bot
-    | infer_instance
   exact (CharP.char_is_prime_or_zero (𝓞 F ⧸ v.asIdeal) (ringChar (𝓞 F ⧸ v.asIdeal))).resolve_right
     (CharP.char_ne_zero_of_finite (𝓞 F ⧸ v.asIdeal) _)
 
@@ -233,7 +232,6 @@ theorem exists_emb {K : Type} [Field K] [Algebra F K]
   have hmonic : (Polynomial.X ^ 2 + Polynomial.C (d : F) : Polynomial F).Monic := by
     first
     | exact Polynomial.monic_X_pow_add_C _ two_ne_zero
-    | monicity!
   have haeval : Polynomial.aeval b (Polynomial.X ^ 2 + Polynomial.C (d : F) : Polynomial F) = 0 := by
     simp [hb2]
   have hirr : Irreducible (Polynomial.X ^ 2 + Polynomial.C (d : F) : Polynomial F) := by
@@ -263,14 +261,12 @@ theorem exists_emb {K : Type} [Field K] [Algebra F K]
       rw [map_div₀, map_sub, map_mul, hsig, map_ofNat, hb]
       first
       | (field_simp; ring)
-      | field_simp
     obtain ⟨a1, ha1⟩ := hfix _ hA
     obtain ⟨a2, ha2⟩ := hfix _ hB
     have hx : x = algebraMap F E a1 + algebraMap F E a2 * b := by
       rw [ha1, ha2]
       first
       | (field_simp; ring)
-      | field_simp
     rw [hx]
     exact add_mem (IntermediateField.algebraMap_mem _ a1)
       (mul_mem (IntermediateField.algebraMap_mem _ a2) (IntermediateField.mem_adjoin_simple_self F b))
@@ -349,7 +345,6 @@ theorem conjF_conjF (x : H.E) : conjF H (conjF H x) = x := by
   have hcc : R.toFrame.cc * R.toFrame.cc = 1 := by
     refine Prod.ext ?_ ?_
     · first
-      | decide
       | rfl
     · first
       | exact mul_one _
@@ -390,7 +385,6 @@ theorem finrank_FE : Module.finrank H.F H.E = 2 := by
   have hmonic : (Polynomial.X ^ 2 + Polynomial.C (H.d : H.F) : Polynomial H.F).Monic := by
     first
     | exact Polynomial.monic_X_pow_add_C _ two_ne_zero
-    | monicity!
   have haeval : Polynomial.aeval H.sqd (Polynomial.X ^ 2 + Polynomial.C (H.d : H.F) : Polynomial H.F) = 0 := by
     simp [H.sqd_sq]
   have hirr : Irreducible (Polynomial.X ^ 2 + Polynomial.C (H.d : H.F) : Polynomial H.F) := by
@@ -420,14 +414,12 @@ theorem finrank_FE : Module.finrank H.F H.E = 2 := by
       rw [map_div₀, map_sub, map_mul, hcc, map_ofNat, hb]
       first
       | (field_simp; ring)
-      | field_simp
     obtain ⟨a1, ha1⟩ := hfix _ hA
     obtain ⟨a2, ha2⟩ := hfix _ hB
     have hx : x = algebraMap H.F H.E a1 + algebraMap H.F H.E a2 * H.sqd := by
       rw [ha1, ha2]
       first
       | (field_simp; ring)
-      | field_simp
     rw [hx]
     exact add_mem (IntermediateField.algebraMap_mem _ a1)
       (mul_mem (IntermediateField.algebraMap_mem _ a2) (IntermediateField.mem_adjoin_simple_self H.F H.sqd))

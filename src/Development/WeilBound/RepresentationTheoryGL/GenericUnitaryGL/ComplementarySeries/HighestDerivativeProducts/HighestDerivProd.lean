@@ -1582,7 +1582,7 @@ theorem det_levi (n : ℕ) (g : GL (Fin n) k) :
   exact GlobalTheory.CompanionTheory.MirPsiPair.det_glEmbMat n _
 
 theorem det_unip (n : ℕ) (v : Multiplicative (Fin n → k)) : GeneralLinearGroup.det (unip k n v) = 1 := by
-  apply GlobalTheory.CompanionTheory.BZPsiPG.Norm.det_unip' <;> assumption
+  apply GlobalTheory.CompanionTheory.BZPsiPG.Norm.det_unip'
 
 theorem dpowM_levi (n : ℕ) (s : ℝ) (g : GL (Fin n) k) :
     dpowM n s (levi k n g) = dpow n s g := by

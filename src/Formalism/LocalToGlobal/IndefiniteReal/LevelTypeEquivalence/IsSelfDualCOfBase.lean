@@ -116,7 +116,7 @@ theorem self_dual_lattice_is_self_dual (V : HSp D) : Datum.IsSelfDualC V (l0s V)
     simpa only [LinearIndepOn, Function.comp_def, id_eq, LinearEquiv.coe_coe, LinearEquiv.apply_symm_apply] using
       hk.map' f.toLinearMap (LinearMap.ker_eq_bot.mpr f.injective)
   · have key : ∀ b : 𝓞 D.host.E, LinearMap.toSpanSingleton (𝓞 D.host.E) D.host.E 1 b = (b : D.host.E) := fun b => by
-      simp [LinearMap.toSpanSingleton_apply, Algebra.smul_def]
+      simp
     have hU := V.baseLattice_isUnimodular
     unfold Formalism.HermitianLatticesTheory.IsUnimodular Formalism.HermitianLatticesTheory.dual at hU
     constructor

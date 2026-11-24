@@ -60,7 +60,7 @@ namespace FinPf
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} {Dw : Datum H}
 
 theorem arcDet_ne_zero (Dw : Datum H) (K₁ : Type) [Field K₁] : arcDet Dw K₁ ≠ 0 := by
-  apply Formalism.L2.Pj.QAt.LinOfPoly.arcDet_ne_zero <;> assumption
+  apply Formalism.L2.Pj.QAt.LinOfPoly.arcDet_ne_zero
 
 theorem algebraMap_arcS_injective (Dw : Datum H) (K₁ : Type) [Field K₁] :
     Function.Injective (algebraMap (MvPolynomial (ArcLt Dw) (LaurentSeries K₁)) (ArcS Dw K₁)) :=

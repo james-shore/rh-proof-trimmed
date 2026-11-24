@@ -933,7 +933,6 @@ theorem eq_of_evA {a b : Af F} (h : ∀ v, evA v a = evA v b) : a = b := by
   first
     | (ext v; exact h v)
     | exact Subtype.ext (funext h)
-    | exact RestrictedProduct.ext h
 
 def mkA (c : ∀ v : HeightOneSpectrum (𝓞 F), v.adicCompletion F) (hc : ∀ v, Valued.v (c v) ≤ 1) :
     Af F :=

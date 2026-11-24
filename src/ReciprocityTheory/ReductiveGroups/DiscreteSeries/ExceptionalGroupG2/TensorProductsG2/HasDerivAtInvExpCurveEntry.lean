@@ -152,7 +152,7 @@ theorem tensor_dphi_complex_comb (dual : Bool) (g : Matrix (Fin n) (Fin n) ℂ) 
     oa1DPhi dual g (Formalism.REAL.cpart1 ε (Matrix.single a b 1)) c d +
         Complex.I * oa1DPhi dual g (Formalism.REAL.cpart2 ε (Matrix.single a b 1)) c d =
       cond dual (-(if d = a then (g⁻¹) b c else 0)) (if d = b then g c a else 0) := by
-  apply ReciprocityTheory.ChartRestriction.DS.tensor_dphi_complex_comb <;> assumption
+  apply ReciprocityTheory.ChartRestriction.DS.tensor_dphi_complex_comb
 
 theorem tensor_coef_Eab_action (dual : Bool) (hσ : IsURepOn (UJset ε) σ) (hD : IsDerivedOn ε σ D E) (η : Fin n → H)
     (f : Fin n → D) (a b : Fin n) {g : Matrix (Fin n) (Fin n) ℂ} (hg : Formalism.REAL.inUJ ε g) :

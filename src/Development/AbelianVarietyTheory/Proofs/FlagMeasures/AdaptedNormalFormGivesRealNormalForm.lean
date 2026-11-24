@@ -449,8 +449,7 @@ theorem gram (e f : Fin r → V) (z : V)
   have hzf : ∀ a, H.B z (f a) = 0 := fun a => herm0 H (hfz a)
 
   simp only [map_add (f := _), map_sum, map_smul, map_smulₛₗ, LinearMap.add_apply, LinearMap.sum_apply,
-  LinearMap.smul_apply, smul_eq_mul, mul_zero, Finset.sum_const_zero, add_zero, zero_add, mul_ite, mul_one, one_mul,
-  Finset.sum_ite_eq, Finset.sum_ite_eq', Finset.mem_univ, if_true, starRingEnd_apply, hee, hff, hef, hfe, hez, hfz, hze, hzf]
+  LinearMap.smul_apply, smul_eq_mul, mul_zero, Finset.sum_const_zero, add_zero, zero_add, mul_ite, mul_one, Finset.sum_ite_eq', Finset.mem_univ, if_true, starRingEnd_apply, hee, hff, hef, hfe, hez, hfz, hze, hzf]
   simp only [mul_comm (star _)]; ring
 
 theorem rem_perp (e f : Fin r → V) (z : V)
@@ -509,8 +508,7 @@ theorem nil_isom (e f : Fin r → V) (hee : ∀ a b, H.B (e a) (e b) = 0) (w w' 
   have hw'' : ∀ a, H.B (e a) w' = 0 := fun a => herm0 H (hw' a)
 
   simp only [nil_apply, map_sub, map_sum, map_smul, map_smulₛₗ, LinearMap.sub_apply, LinearMap.sum_apply,
-  LinearMap.smul_apply, smul_eq_mul, mul_zero, Finset.sum_const_zero, sub_zero, mul_ite, ite_mul, mul_one, one_mul,
-  Finset.sum_ite_eq, Finset.sum_ite_eq', Finset.mem_univ, if_true, starRingEnd_apply, hee, hw, hw'', sub_self]
+  LinearMap.smul_apply, smul_eq_mul, mul_zero, Finset.sum_const_zero, sub_zero, starRingEnd_apply, hee, hw, hw'', sub_self]
 
 theorem rem_all (e f e' f' : Fin r → V) (z z' : V) (he'e : ∀ a b, H.B (e' a) (e' b) = 0) (hf'f : ∀ a b, H.B (f' a) (f' b) = 0)
     (he'f : ∀ a b, H.B (e' a) (f' b) = if a = b then 1 else 0)

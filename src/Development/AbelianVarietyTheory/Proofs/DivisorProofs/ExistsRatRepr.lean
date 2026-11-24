@@ -98,7 +98,7 @@ theorem exists_rat_repr (D : D7) {w : D.host.E} (hw : w ^ 2 = -(D.host.d : D.hos
   rw [Fin.sum_univ_two, hB, hB] at e
   have e2 := congrArg (fun z : D.host.K => (z : D.host.E)) e
   simp only [IntermediateField.coe_add, Matrix.cons_val_zero, Matrix.cons_val_one,
-    IntermediateField.coe_one, Rat.smul_def, mul_one] at e2
+    Rat.smul_def, mul_one] at e2
   rw [← e2]
   rfl
 

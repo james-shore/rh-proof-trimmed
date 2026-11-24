@@ -259,7 +259,7 @@ theorem emS_cM (h : Hyp L nb uM nb' w₁ cM δ) (c : (Fin L.n → AE F E) × AF 
   ext r r'
   rcases r with k | k <;> rcases r' with k' | k' <;>
     simp [cM_frame h, emS, uA, aB, Matrix.one_apply, Matrix.sum_apply, L.inj.eq_iff,
-      Ne.symm (C4.em_ne L _)] <;> split_ifs
+      Ne.symm (C4.em_ne L _)]
 
 end PositivityTheory.SiegelWeilFormula.Act.C6
 

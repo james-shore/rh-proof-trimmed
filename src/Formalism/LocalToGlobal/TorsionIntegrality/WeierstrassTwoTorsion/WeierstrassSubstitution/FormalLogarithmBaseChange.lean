@@ -226,7 +226,7 @@ theorem fw_subst {s : MvPowerSeries (Fin 2) R} (hs : MvPowerSeries.constantCoeff
     rw [← PowerSeries.coe_substAlgHom hs']
     exact (PowerSeries.substAlgHom hs').commutes a
   rw [← PowerSeries.coe_substAlgHom hs']
-  simp only [fw, fu, fwAt, fuAt, map_sub, map_mul, map_add (f := _), map_pow, map_ofNat, map_one]
+  simp only [fw, fwAt, map_sub, map_mul, map_pow, map_ofNat, map_one]
   rw [PowerSeries.coe_substAlgHom hs']
   simp only [hC, PowerSeries.subst_X hs', WeierstrassCurve.map_a₁, WeierstrassCurve.map_a₂,
     WeierstrassCurve.map_a₃, WeierstrassCurve.map_a₄, WeierstrassCurve.map_a₆]

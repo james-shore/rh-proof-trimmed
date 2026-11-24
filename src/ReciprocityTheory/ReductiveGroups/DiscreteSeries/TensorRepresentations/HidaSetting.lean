@@ -327,8 +327,7 @@ theorem isGKEndo_eeF {ε : Fin n → Bool} {σ : Matrix (Fin n) (Fin n) ℂ → 
         · rw [if_pos h, if_pos h, h]
         · rw [if_neg h, if_neg h, map_zero]
 
-      simp only [e2, Finset.sum_add_distrib, Finset.sum_sub_distrib, hirr, Finset.sum_ite_eq,
-      Finset.sum_ite_eq', Finset.mem_univ, reduceIte, map_sum, map_neg]
+      simp only [e2, Finset.sum_add_distrib, Finset.sum_sub_distrib, hirr, Finset.sum_ite_eq', Finset.mem_univ, reduceIte, map_sum, map_neg]
       by_cases hbc : b = c
       · rw [if_pos hbc, if_pos hbc.symm]; abel
       · rw [if_neg hbc, if_neg (Ne.symm hbc)]; abel

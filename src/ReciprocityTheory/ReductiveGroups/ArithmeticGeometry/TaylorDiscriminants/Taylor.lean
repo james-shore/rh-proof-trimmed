@@ -163,10 +163,8 @@ variable {R}
 
 theorem ev_zero' {m n d : ℕ} (a : Fin m → Pt R n d) : ev a (0 : PS R m d) = 0 := by
   first
-  | exact map_zero _
   | (simp only [ev]; exact MvPowerSeries.subst_zero _)
   | simp [ev, MvPowerSeries.subst, MvPowerSeries.eval₂]
-  | simp [ev, MvPowerSeries.subst]
 
 theorem dof_addF {g : ℕ} (v : Fin g → R) (f : PS R 1 g) :
     Dof (addF R g) v f = ∑ j, C (v j) * MvPowerSeries.pderiv ((0 : Fin 1), j) f := by

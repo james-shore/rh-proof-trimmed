@@ -673,7 +673,7 @@ theorem multiplier_symm : ∀ (V : Type) [NormedAddCommGroup V] [NormedSpace ℝ
     rw [hΛ1]
     refine hT (A ξ) f (Φf ξ) (Φg ξ) g (hΦf ξ) (fun x => ?_)
     rw [hΦg, ← mul_assoc, ← Complex.exp_add]
-    simp [ContinuousLinearMap.neg_apply]
+    simp
   have lhs : ∫ x, T f' x * starRingEnd ℂ (T g x) ∂μ = ∫ ξ, h ξ * ∫ x, T f x * starRingEnd ℂ (T (Φg ξ) x) ∂μ := by
     rw [← hΛ1]
     have := _root_.GlobalTheory.schwartz_clm_integral_comm V (EuclideanSpace ℝ (Fin d)) volume Φf cΦf h h.continuous.aestronglyMeasurable

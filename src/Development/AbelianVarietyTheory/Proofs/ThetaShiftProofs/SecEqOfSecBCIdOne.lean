@@ -80,7 +80,7 @@ theorem mem_of_eq_mul_inv_pow (W : ValuationSubring ℂ) {x a : ℂ} (ha : a ∈
 
 theorem exists_root_and_zeta (l : Level H) (c : Coeff l) (W : ValuationSubring ℂ) :
     ∃ r z : c.V W, (((c.V W).subtype r : c.F) : ℂ) = H.rt0 ∧ (((c.V W).subtype z : c.F) : ℂ) = zeta l.A := by
-  apply GlobalTheory.MatchRigid.exists_rt_zeta <;> assumption
+  apply GlobalTheory.MatchRigid.exists_rt_zeta
 
 end GlobalTheory.JointModelGuards
 end -- clump:auto

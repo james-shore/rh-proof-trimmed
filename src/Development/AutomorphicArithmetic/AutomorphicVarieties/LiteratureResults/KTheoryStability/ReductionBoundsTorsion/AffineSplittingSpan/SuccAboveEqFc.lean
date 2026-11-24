@@ -81,7 +81,7 @@ private theorem fc_fc_eq_fc_fc_pred_of_lt {n : ℕ} (i j : ℕ) (hji : j < i) (l
   split_ifs <;> omega
 
 theorem dc_dc {m : ℕ} (F : (Fin (m + 1) → Y) → ℝ) : dc (dc F) = 0 := by
-  apply PositivityTheory.KB.SplitAffineSpectral.PrismSpan.dc_dc <;> assumption
+  apply PositivityTheory.KB.SplitAffineSpectral.PrismSpan.dc_dc
 
 end PositivityTheory.KB.SplitAffineSpectral.NormTraceLemmas
 

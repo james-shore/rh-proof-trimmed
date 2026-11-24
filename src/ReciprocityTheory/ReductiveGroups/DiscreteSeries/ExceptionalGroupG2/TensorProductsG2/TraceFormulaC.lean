@@ -73,7 +73,7 @@ theorem vectorL2_ext {ε : Fin n → Bool} {v w : tfL2n ε} (h : ∀ c, v c = w 
   exact h c
 
 theorem tfRdiag_isURepOn (ε : Fin n → Bool) : IsURepOn (UJset ε) (tfRdiag ε) := by
-  apply ReciprocityTheory.ChartRestriction.DS.tfRdiag_isURepOn <;> assumption
+  apply ReciprocityTheory.ChartRestriction.DS.tfRdiag_isURepOn
 
 theorem tfRdiag_smooth {ε : Fin n → Bool} {v : tfL2n ε} (hv : ∀ c, v c ∈ smD ε (rreg ε)) :
     v ∈ smD ε (tfRdiag ε) := by

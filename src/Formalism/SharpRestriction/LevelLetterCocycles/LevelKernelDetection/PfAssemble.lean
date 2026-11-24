@@ -612,7 +612,7 @@ theorem grdB_one' (τ : Ks ≃ₐ[LL] Ks) (a : LLˣ) : grdB τ a 1 = 1 := by
 
 theorem grdB_mul' (τ : Ks ≃ₐ[LL] Ks) (a : LLˣ) (x y : HahnSeries ℤ Ks) :
     grdB τ a (x * y) = grdB τ a x * grdB τ a y := by
-  apply Formalism.MainNotions.N.Ln03.Pf.Pf_LvEquiv_grdB_mul <;> assumption
+  apply Formalism.MainNotions.N.Ln03.Pf.Pf_LvEquiv_grdB_mul
 
 theorem grdB_ringInverse (τ : Ks ≃ₐ[LL] Ks) (a : LLˣ) {X : HahnSeries ℤ Ks} (hX : grdB τ a X = X) :
     grdB τ a (Ring.inverse X) = Ring.inverse X := by

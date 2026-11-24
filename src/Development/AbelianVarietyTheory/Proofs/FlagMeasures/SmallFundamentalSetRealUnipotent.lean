@@ -963,7 +963,7 @@ theorem hs_eq_trace (M : Matrix (Fin n) (Fin n) ℂ) : hs M = (trace (Mᴴ * M))
 
 theorem exists_proj (W : Submodule ℂ (Fin n → ℂ)) :
     ∃ P : Matrix (Fin n) (Fin n) ℂ, Pᴴ = P ∧ (∀ u, P *ᵥ u ∈ W) ∧ ∀ u ∈ W, P *ᵥ u = u := by
-  apply GlobalTheory.RealIwasawa.exists_proj <;> assumption
+  apply GlobalTheory.RealIwasawa.exists_proj
 
 theorem hs_mul_le (D Q : Matrix (Fin n) (Fin n) ℂ) (h1 : Qᴴ = Q) (h2 : Q * Q = Q) :
     hs (D * (1 - Q)) ≤ hs D := by

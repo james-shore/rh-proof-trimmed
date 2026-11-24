@@ -398,7 +398,7 @@ theorem sig_fromBlocks (A B C D : Matrix (Fin n) (Fin n) ℂ) :
 theorem sig_low (R : Matrix (Fin n) (Fin n) ℂ) : sig (lowQ R) = raiseR Rᴴ := by
   rw [low_blocks, raise_blocks, sig_fromBlocks]
   simp only [Matrix.conjTranspose_smul]
-  congr 1 <;> ext i j <;> simp [Matrix.smul_apply] <;> ring_nf <;> simp [Complex.conj_I]
+  congr 1 <;> ext i j <;> simp [Matrix.smul_apply] <;> ring_nf
 
 theorem raiseR_smul (c : ℂ) (S : Matrix (Fin n) (Fin n) ℂ) : raiseR (c • S) = c • raiseR S := by
   rw [raise_blocks, raise_blocks, Matrix.fromBlocks_smul]

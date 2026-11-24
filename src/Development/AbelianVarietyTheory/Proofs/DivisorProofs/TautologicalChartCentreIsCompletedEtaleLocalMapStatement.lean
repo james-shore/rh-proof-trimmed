@@ -1473,7 +1473,7 @@ namespace GlobalTheory.RegularAscent
 
 theorem height_add_ringKrullDim_quotient_le {R : Type} [CommRing R] (p : Ideal R) [hp : p.IsPrime] :
     ((p.height : ℕ∞) : WithBot ℕ∞) + ringKrullDim (R ⧸ p) ≤ ringKrullDim R := by
-  apply _root_.GlobalTheory.IntersectionSymm.height_add_dim_quotient_le <;> assumption
+  apply _root_.GlobalTheory.IntersectionSymm.height_add_dim_quotient_le
 
 end GlobalTheory.RegularAscent
 end -- clump:auto

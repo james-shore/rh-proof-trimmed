@@ -326,7 +326,7 @@ theorem exists_closure {T Z : Scheme.{0}} [IsReduced T] (h : T ⟶ Z) :
   exact subset_rfl
 
 theorem exists_sabPull (f : S' ⟶ S) (t : SAB H S) : ∃ t' : SAB H S', Nonempty (SABMap t' t f) := by
-  apply RootFieldNumerics.RF.IntFr.exists_sab <;> assumption
+  apply RootFieldNumerics.RF.IntFr.exists_sab
 
 theorem exists_cancel {S'' : Scheme.{0}} {t : SAB H S} {t' : SAB H S'} {t'' : SAB H S''} {f : S' ⟶ S} {g : S'' ⟶ S'}
     {u : S'' ⟶ S} (e : g ≫ f = u) (m : SABMap t' t f) (n : SABMap t'' t u) :

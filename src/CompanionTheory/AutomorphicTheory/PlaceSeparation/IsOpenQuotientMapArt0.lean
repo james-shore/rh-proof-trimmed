@@ -72,17 +72,17 @@ namespace CompanionTheory.FamInh
 theorem isOpen_connInf (E : Type) [Field E] [NumberField E] :
     IsOpen ((Subgroup.connectedComponentOfOne (InfiniteAdeleRing E)ˣ : Subgroup (InfiniteAdeleRing E)ˣ) :
       Set (InfiniteAdeleRing E)ˣ) := by
-  apply PositivityTheory.FamInh.isOpen_connInf <;> assumption
+  apply PositivityTheory.FamInh.isOpen_connInf
 
 theorem ofInfinite_eq_map (E : Type) [Field E] [NumberField E] (y : (InfiniteAdeleRing E)ˣ) :
     (ofInfinite y : IdeleGroup E) =
       Units.map (MonoidHom.inl (InfiniteAdeleRing E) (FiniteAdeleRing (𝓞 E) E)) y := by
-  apply PositivityTheory.FamInh.ofInfinite_eq_map <;> assumption
+  apply PositivityTheory.FamInh.ofInfinite_eq_map
 
 theorem comap_connectedComponent (E : Type) [Field E] [NumberField E] :
     (Subgroup.connectedComponentOfOne (GroundTheory.Global.IdeleClassGroup E)).comap (GroundTheory.Global.IdeleClassGroup.mk E) =
       ((Neutral.B1.diagUnits E).range ⊔ GlobalTheory.HeckeGal.infConn E).topologicalClosure := by
-  apply PositivityTheory.FamInh.comap_connectedComponent <;> assumption
+  apply PositivityTheory.FamInh.comap_connectedComponent
 
 end CompanionTheory.FamInh
 

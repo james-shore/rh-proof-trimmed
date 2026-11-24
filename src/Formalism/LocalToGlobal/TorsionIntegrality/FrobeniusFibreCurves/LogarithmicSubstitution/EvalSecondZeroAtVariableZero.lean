@@ -132,7 +132,7 @@ private theorem coeff_ev0_eq_coeff_single_zero (h : MvPowerSeries (Fin 2) K) (k 
     simp only [Matrix.cons_val_zero, hc, if_true, smul_eq_mul, mul_one]
   · intro d hd
     rw [Finsupp.prod_fintype _ _ (by simp), Fin.prod_univ_two]
-    simp only [Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.head_cons]
+    simp only [Matrix.cons_val_zero, Matrix.cons_val_one]
     by_cases h1 : d 1 = 0
     · have hd0 : k ≠ d 0 := by
         intro hk

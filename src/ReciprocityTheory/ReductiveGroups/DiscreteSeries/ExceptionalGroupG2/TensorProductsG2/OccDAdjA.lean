@@ -76,7 +76,7 @@ theorem adjA_high {D : Type*} [AddCommGroup D] [Module ℂ D] {W : Type*} [AddCo
 theorem adjA_tensF_single {M : Type*} [AddCommGroup M] [Module ℂ M] (dual : Bool)
     (E : Fin n → Fin n → Module.End ℂ M) (a b c : Fin n) (y : M) :
     ∃ c' : Fin n, ∃ r : ℂ, tensF dual E a b (Pi.single c y) = Pi.single c (E a b y) + r • (Pi.single c' y : Fin n → M) := by
-  apply ReciprocityTheory.ChartRestriction.DS.adjA_tensF_single <;> assumption
+  apply ReciprocityTheory.ChartRestriction.DS.adjA_tensF_single
 
 theorem adjA_single_mem {M : Type*} [AddCommGroup M] [Module ℂ M] {S : Submodule ℂ M} (c : Fin n) {y : M}
     (hy : y ∈ S) : (Pi.single c y : Fin n → M) ∈ tensSub S := by

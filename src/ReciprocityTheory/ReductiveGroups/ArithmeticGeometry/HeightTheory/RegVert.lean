@@ -112,7 +112,6 @@ theorem regVert_valuationRing {A : Type*} [CommRing A] [IsDomain A] [IsNoetheria
     | infer_instance
   haveI hic : IsIntegrallyClosed (Localization.AtPrime P) := by
     first
-    | exact isIntegrallyClosed_of_isLocalization P.primeCompl P.primeCompl_le_nonZeroDivisors
     | exact isIntegrallyClosed_of_isLocalization (S := Localization.AtPrime P) P.primeCompl
         P.primeCompl_le_nonZeroDivisors
   have huniq : ∃! Q' : Ideal (Localization.AtPrime P), Q' ≠ ⊥ ∧ Q'.IsPrime := by
@@ -128,15 +127,6 @@ theorem regVert_valuationRing {A : Type*} [CommRing A] [IsDomain A] [IsNoetheria
     have heq := regVert_eq_of_le_height_one hcne hc hP
     rw [← IsLocalization.map_under P.primeCompl (Localization.AtPrime P) Q', heq, hmax]
   first
-  | exact ((IsDiscreteValuationRing.TFAE (Localization.AtPrime P) hnf).out 1 3).mpr (And.intro hic huniq)
-  | exact ((IsDiscreteValuationRing.TFAE (Localization.AtPrime P) hnf).out 1 4).mpr (And.intro hic huniq)
-  | exact ((IsDiscreteValuationRing.TFAE (Localization.AtPrime P) hnf).out 1 2).mpr (And.intro hic huniq)
-  | exact ((IsDiscreteValuationRing.TFAE (Localization.AtPrime P) hnf).out 1 5).mpr (And.intro hic huniq)
-  | exact @ValuationRing.of_isDiscreteValuationRing _ _ _ (((IsDiscreteValuationRing.TFAE (Localization.AtPrime P) hnf).out 1 4).mpr (And.intro hic huniq))
-  | exact @ValuationRing.of_isDiscreteValuationRing _ _ _ (((IsDiscreteValuationRing.TFAE (Localization.AtPrime P) hnf).out 1 5).mpr (And.intro hic huniq))
-  | exact @ValuationRing.of_isDiscreteValuationRing _ _ _ (((IsDiscreteValuationRing.TFAE (Localization.AtPrime P) hnf).out 1 3).mpr (And.intro hic huniq))
-  | exact @ValuationRing.of_isDiscreteValuationRing _ _ _ (((IsDiscreteValuationRing.TFAE (Localization.AtPrime P) hnf).out 1 6).mpr (And.intro hic huniq))
-  | exact ((IsDiscreteValuationRing.TFAE (Localization.AtPrime P) hnf).out 2 3).mpr (And.intro hic huniq)
   | exact ((IsDiscreteValuationRing.TFAE (Localization.AtPrime P) hnf).out 2 4).mpr (And.intro hic huniq)
 
 end ReciprocityTheory.ChartRestriction.G.T0

@@ -268,7 +268,7 @@ theorem isJacobsonRing_int : IsJacobsonRing ℤ := by
 
 theorem exists_prime_mem_of_isMaximal (A : Type*) [CommRing A] [Algebra.FiniteType ℤ A]
     (𝔪 : Ideal A) [𝔪.IsMaximal] : ∃ p : ℕ, p.Prime ∧ (p : A) ∈ 𝔪 := by
-  apply GlobalTheory.exists_prime_natCast_mem_of_finiteType_int <;> assumption
+  apply GlobalTheory.exists_prime_natCast_mem_of_finiteType_int
 
 theorem exists_pow_smul_mem_of_isMaximal
     (A : Type*) [CommRing A] [IsDomain A] [CharZero A] [Algebra.FiniteType ℤ A]

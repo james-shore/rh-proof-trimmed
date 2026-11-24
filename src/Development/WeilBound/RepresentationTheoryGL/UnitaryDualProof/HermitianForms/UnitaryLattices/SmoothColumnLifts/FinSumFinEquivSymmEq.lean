@@ -315,7 +315,7 @@ theorem derUnip_succ_le (N n : ℕ) : derUnip k N (n + 1) ≤ derUnip k N n := b
   exact (mem_derUnip_iff N n u).2 ⟨h1, h2, fun i j hj => h3 i j (by omega)⟩
 
 theorem colEl_mem (m N : ℕ) (h : m + 2 ≤ N) (x : Fin (m + 1) → k) : colEl k m N h x ∈ derUnip k N (m + 1) := by
-  apply PositivityTheory.RgUd.Form.ColumnElementGluing.Glue.colEl_mem_derUnip' <;> assumption
+  apply PositivityTheory.RgUd.Form.ColumnElementGluing.Glue.colEl_mem_derUnip'
 
 theorem lvlChar_apply (ψ : AddChar k Circle) (N n : ℕ) (u : derUnip k N n) :
     lvlChar k ψ N n u = Circle.toUnits (ψ (∑ p : Fin N × Fin N with (p.2 : ℕ) = p.1 + 1 ∧ n - 1 ≤ (p.1 : ℕ),

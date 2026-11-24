@@ -355,8 +355,7 @@ lemma secOfIsoF_compat (hu : u.IsGen) (hA : A.IsLB) (hB : B.IsLB) (a a' : A.ι) 
       (rs (inf_le_left : A.U a ⊓ A.U a' ≤ A.U a) (secOfIsoF t hu hA hB a)))
     (fun b b' => by
       first
-        | (simp only [rs_rs']; done)
-        | rfl)
+        | (simp only [rs_rs']; done))
   exact (huniq (rs (inf_le_left : A.U a ⊓ A.U a' ≤ A.U a) (secOfIsoF t hu hA hB a)) (fun b => rfl)).trans
     (huniq (((A.g a a' : Γ(Y, A.U a ⊓ A.U a')ˣ) : Γ(Y, A.U a ⊓ A.U a')) *
       rs (inf_le_right : A.U a ⊓ A.U a' ≤ A.U a') (secOfIsoF t hu hA hB a')) key).symm

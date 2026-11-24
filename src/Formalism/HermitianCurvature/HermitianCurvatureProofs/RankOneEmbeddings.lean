@@ -762,16 +762,14 @@ private lemma hpk_sq_lemma : Hpk k r * Hpk k r = 1 := by
   · rw [Finset.sum_eq_single i]
     · simp only [Hpk]
       split_ifs <;> (first
-          | (exfalso; (try simp only [Fin.ext_iff, Fin.val_mk, ne_eq, and_true, true_and] at *); omega)
-          | (norm_num; done)
-          | rfl)
+          | (exfalso; (try simp only [Fin.ext_iff, and_true] at *); omega)
+          | (norm_num; done))
     · intro l _ hl
       have : Hpk k r i l = 0 := by
         simp only [Hpk]
         split_ifs <;> (first
-          | (exfalso; (try simp only [Fin.ext_iff, Fin.val_mk, ne_eq, and_true, true_and] at *); omega)
-          | (norm_num; done)
-          | rfl)
+          | (exfalso; (try simp only [Fin.ext_iff, ne_eq] at *); omega)
+          | (norm_num; done))
       rw [this, zero_mul]
     · intro h
       exact absurd (Finset.mem_univ i) h
@@ -779,16 +777,14 @@ private lemma hpk_sq_lemma : Hpk k r * Hpk k r = 1 := by
     rw [Finset.sum_eq_single ⟨2 * r + k - i.val, hp⟩]
     · simp only [Hpk]
       split_ifs <;> (first
-          | (exfalso; (try simp only [Fin.ext_iff, Fin.val_mk, ne_eq, and_true, true_and] at *); omega)
-          | (norm_num; done)
-          | rfl)
+          | (exfalso; (try simp only [Fin.ext_iff] at *); omega)
+          | (norm_num; done))
     · intro l _ hl
       have : Hpk k r i l = 0 := by
         simp only [Hpk]
         split_ifs <;> (first
-          | (exfalso; (try simp only [Fin.ext_iff, Fin.val_mk, ne_eq, and_true, true_and] at *); omega)
-          | (norm_num; done)
-          | rfl)
+          | (exfalso; (try simp only [Fin.ext_iff, ne_eq] at *); omega)
+          | (norm_num; done))
       rw [this, zero_mul]
     · intro h
       exact absurd (Finset.mem_univ _) h

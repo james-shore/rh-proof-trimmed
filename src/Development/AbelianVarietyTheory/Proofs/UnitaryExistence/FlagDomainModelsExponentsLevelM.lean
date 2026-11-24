@@ -95,7 +95,7 @@ theorem trace_conj {E : Type} [Field E] [NumberField E] [IsCMField E] (a : E) :
 
 theorem conj_rt {E : Type} [Field E] [NumberField E] [IsCMField E]
     (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) : cc (H.rt : E) = -(H.rt : E) := by
-  apply GlobalTheory.OneSpace.cc_rt <;> assumption
+  apply GlobalTheory.OneSpace.cc_rt
 
 theorem cmField_host_element_add_conj_eq_one {E : Type} [Field E] [NumberField E] [IsCMField E]
     (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) : (H.w0 : E) + cc (H.w0 : E) = 1 := by
@@ -488,11 +488,11 @@ variable {E : Type} [Field E] [NumberField E] [IsCMField E] {r ρ : ℕ}
 
 theorem map_cc_mul (A B : Matrix (Fin ρ) (Fin ρ) E) : (A * B).map cc = A.map cc * B.map cc := by
   ext a b
-  simp [Matrix.mul_apply, cc_sum', cc_mul']
+  simp [Matrix.mul_apply, cc_sum']
 
 theorem map_cc_cc (A : Matrix (Fin ρ) (Fin ρ) E) : (A.map cc).map cc = A := by
   ext a b
-  simp [cc_cc']
+  simp
 
 theorem map_cc_one : (1 : Matrix (Fin ρ) (Fin ρ) E).map cc = 1 := by
   ext a b
@@ -604,7 +604,7 @@ theorem form_change (P χ : Matrix (Fin ρ) (Fin ρ) E) (u m : Fin ρ → E) :
       ∑ i, ∑ k, (u ᵥ* P) i * χ i k * cc ((m ᵥ* P) k) := by
   have h1 : (fun k => cc ((m ᵥ* P) k)) = (P.map cc)ᵀ *ᵥ fun k => cc (m k) := by
     funext k
-    simp [Matrix.vecMul, Matrix.mulVec, dotProduct, cc_sum', cc_mul', mul_comm]
+    simp [Matrix.vecMul, Matrix.mulVec, dotProduct, cc_sum', mul_comm]
   rw [form_eq, form_eq, h1, ← Matrix.dotProduct_mulVec, Matrix.mulVec_mulVec, Matrix.mulVec_mulVec]
 
 theorem phase_change (h : ∀ a, cu₀.e a = ∑ b, P a b • cu.e b) {χ : Matrix (Fin ρ) (Fin ρ) E}

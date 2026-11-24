@@ -354,7 +354,7 @@ end det2
 section pt
 
 theorem hpk_mulVec_eI (a : Fin r) (w : Fin (2 * r + k + 1) → ℂ) : (Hpk k r *ᵥ w) (eI k r a) = w (esI k r a) := by
-  apply Formalism.FourierDecayAlt.Q.TInvW.H_eI <;> assumption
+  apply Formalism.FourierDecayAlt.Q.TInvW.H_eI
 
 variable {c : Fin r → ℂ} {g : Q.Mx k r}
 

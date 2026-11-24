@@ -94,7 +94,7 @@ def cutC {α : Type*} {h : ℕ} (x : Fin h → α) (j : ℕ) : Fin (h - (j + 2))
 omit [ValuativeRel k] [IsNonarchimedeanLocalField k] in
 theorem sum_append {q c : ℕ} (Q : Fin q → IrrGL (k := k)) (C : Fin c → IrrGL (k := k)) :
     ∑ a, (Fin.append Q C a).1 = ∑ a, (Q a).1 + ∑ a, (C a).1 := by
-  apply PositivityTheory.PfEss.Zc2.sum_append <;> assumption
+  apply PositivityTheory.PfEss.Zc2.sum_append
 
 
 omit [ValuativeRel k] [IsNonarchimedeanLocalField k] in
@@ -129,7 +129,7 @@ theorem split_alt_alt {h j : ℕ} (hj : j + 1 < h) (e : j + (2 + (h - (j + 2))) 
     x (Fin.cast e m) = Fin.append (cutA x j hj)
       (Fin.append ![x ⟨j, Nat.lt_of_succ_lt hj⟩, x ⟨j + 1, hj⟩]
         (cutC x j)) m := by
-  apply PositivityTheory.PfEss.Zc2.split_alt_alt <;> assumption
+  apply PositivityTheory.PfEss.Zc2.split_alt_alt
 
 
 omit [ValuativeRel k] [IsNonarchimedeanLocalField k] in
@@ -139,7 +139,7 @@ theorem split_swap {h j : ℕ} (hj : j + 1 < h) (e : j + (2 + (h - (j + 2))) = h
       Fin.append (cutA x j hj)
       (Fin.append ![x ⟨j + 1, hj⟩, x ⟨j, Nat.lt_of_succ_lt hj⟩]
         (cutC x j)) m := by
-  apply PositivityTheory.PfEss.Zc2.split_swap <;> assumption
+  apply PositivityTheory.PfEss.Zc2.split_swap
 
 
 

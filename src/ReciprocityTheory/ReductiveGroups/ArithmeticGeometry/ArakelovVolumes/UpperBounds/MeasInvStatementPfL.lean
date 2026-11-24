@@ -589,7 +589,6 @@ lemma norm_dmin_last {x0 : Frame X.Ψ r} (hx0 : X.IsOrtho x0) (x : LoI X.Ψ r �
     unfold lminor
     first
     | rfl
-    | (congr 1)
   have hdm : (mat (rmul x0 (NF X x)) τ).det = (mat x0 τ).det := by
     show (mat x0 τ * Nmat x τ).det = _
     rw [Matrix.det_mul, det_Nmat, mul_one]
@@ -616,7 +615,7 @@ lemma uf_lu_eS (x : LoI X.Ψ r → ℂ) (y : UpI X.Ψ r → ℂ) :
     by_cases h : b < a
     · have hab : a ≠ b := ne_of_gt h
       first
-      | simp [sl, Nmat, Matrix.one_apply, eS, h, hab, MeasurableEquiv.piEquivPiSubtypeProd_symm_apply]
+      | simp [sl, Nmat, eS, h, hab, MeasurableEquiv.piEquivPiSubtypeProd_symm_apply]
     · first
       | simp [sl, Nmat, Matrix.one_apply, eS, h, MeasurableEquiv.piEquivPiSubtypeProd_symm_apply]
   have h2 : ∀ τ : X.Ψ, up ((eS X.Ψ r).symm (x, y)) τ = Umat y τ := by

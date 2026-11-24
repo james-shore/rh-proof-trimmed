@@ -804,7 +804,7 @@ lemma phi_star (I : Formalism.MainNotions.S.AutInst) (v : InfinitePlace I.F) (a 
 
 lemma hJ_rv (I : Formalism.MainNotions.S.AutInst) (v : InfinitePlace I.F) (x y : Fin I.n → I.E) :
     hJ (I.ε v) (rv I v x) (rv I v y) = I.φ v (Formalism.UG.hform (starRingEnd I.E) I.J x y) := by
-  apply PI.ScPiFrameW.hJ_rv <;> assumption
+  apply PI.ScPiFrameW.hJ_rv
 
 lemma phi_ite (I : Formalism.MainNotions.S.AutInst) (v : InfinitePlace I.F) {r : ℕ} (a b : Fin r) :
     I.φ v (if a = b then (1 : I.E) else 0) = if a = b then 1 else 0 := by

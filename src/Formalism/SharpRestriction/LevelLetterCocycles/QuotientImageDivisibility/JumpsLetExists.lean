@@ -163,7 +163,7 @@ theorem exists_le_filV (D : Submodule LL (V ⊗[Qp] BdR)) [FiniteDimensional LL 
 
 theorem exists_inf_filV_eq_bot (D : Submodule LL (V ⊗[Qp] BdR)) [FiniteDimensional LL D] :
     ∃ a : ℤ, D ⊓ FilV PD (LL := LL) (V := V) a = ⊥ := by
-  apply Formalism.MainNotions.N.Ln34.CrystallineExponents.exists_inf_filV_eq_bot <;> assumption
+  apply Formalism.MainNotions.N.Ln34.CrystallineExponents.exists_inf_filV_eq_bot
 
 end Fil
 

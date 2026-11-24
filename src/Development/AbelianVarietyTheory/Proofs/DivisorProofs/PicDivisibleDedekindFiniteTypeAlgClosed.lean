@@ -323,13 +323,11 @@ theorem pow_le_span_sup {Q : Ideal A} [Q.IsPrime] (hQ : Q ≠ ⊥) {π : A} (hπ
     (hπ2 : π ∉ Q ^ 2) : ∀ m : ℕ, Q ^ m ≤ Ideal.span {π ^ m} ⊔ Q ^ (m + 1) := by
   first
   | (apply _root_.GlobalTheory.SpanPowerSupremum.pow_le_span_pow_sup <;> assumption)
-  | (intros; exact _root_.GlobalTheory.SpanPowerSupremum.pow_le_span_pow_sup ..)
 
 theorem pow_not_mem {Q : Ideal A} [Q.IsPrime] (hQ : Q ≠ ⊥) {π : A} (hπ : π ∈ Q)
     (hπ2 : π ∉ Q ^ 2) (m : ℕ) : π ^ m ∉ Q ^ (m + 1) := by
   first
   | (apply _root_.GlobalTheory.AlgebraicIntegerNormBound.main <;> assumption)
-  | (intros; exact _root_.GlobalTheory.AlgebraicIntegerNormBound.main ..)
 
 end Dedekind
 
@@ -607,7 +605,7 @@ namespace GlobalTheory.PicDiv.SquarefreeFibre
 theorem algebraMap_norm_mem_span {R S : Type} [CommRing R] [CommRing S] [Algebra R S]
     [Module.Free R S] [Module.Finite R S] (g : S) :
     algebraMap R S (Algebra.norm R g) ∈ Ideal.span {g} := by
-  apply _root_.GlobalTheory.SquarefreeFibre.algebraMap_norm_mem_span <;> assumption
+  apply _root_.GlobalTheory.SquarefreeFibre.algebraMap_norm_mem_span
 
 theorem main : ∀ (k A : Type) [Field k] [IsAlgClosed k] [CommRing A] [IsDedekindDomain A] [Algebra k A] [Algebra k[X] A] [IsScalarTower k k[X] A] [Module.Finite k[X] A] [Module.Free k[X] A], (∃ δ : k[X], δ ≠ 0 ∧ ∀ α : k, δ.eval α ≠ 0 → ∀ Q : Ideal A, Q.IsMaximal → algebraMap k[X] A (X - C α) ∉ Q ^ 2) → ∀ (g : A) (s : ℕ), g ≠ 0 → ∃ (q : k[X]) (r : ℕ) (Q : Fin r → Ideal A), q.Monic ∧ q.natDegree = s ∧ (∀ i, (Q i).IsMaximal) ∧ Function.Injective Q ∧ (∀ i, g ∉ Q i) ∧ Ideal.span {algebraMap k[X] A q} = ∏ i, Q i := by
   intro k A _ _ _ _ _ _ _ _ _ hred g s hg
@@ -824,7 +822,7 @@ def coeffMap {n : ℕ} (b : Module.Basis (Fin n) k[X] A) (D : Ideal A) (d : ℕ)
 
 theorem coeffMap_injective {n : ℕ} (b : Module.Basis (Fin n) k[X] A) (D : Ideal A) (d : ℕ) :
     Function.Injective (coeffMap b D d) := by
-  apply _root_.GlobalTheory.LinSys.coeffMap_injective <;> assumption
+  apply _root_.GlobalTheory.LinSys.coeffMap_injective
 
 instance finiteDimensional_boundedIn {n : ℕ} (b : Module.Basis (Fin n) k[X] A) (D : Ideal A)
     (d : ℕ) : FiniteDimensional k (boundedIn b D d) :=

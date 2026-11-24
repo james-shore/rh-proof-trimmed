@@ -565,7 +565,7 @@ variable {n : ℕ} {ε : Fin n → Bool}
 
 lemma smooth_on_group_sum {ι : Type*} (s : Finset ι) (f : ι → Matrix (Fin n) (Fin n) ℂ → ℂ)
     (h : ∀ i ∈ s, SmoothOnG ε (f i)) : SmoothOnG ε (fun x => ∑ i ∈ s, f i x) := by
-  first | (apply UpperTheory.Reformulated.B.Qh27.smooth_on_group_sum <;> assumption) | exact @UpperTheory.Reformulated.B.Qh27.smooth_on_group_sum n ε ι s f h | exact @UpperTheory.Reformulated.B.Qh27.smooth_on_group_sum n ε ι s f | exact @UpperTheory.Reformulated.B.Qh27.smooth_on_group_sum n ε ι s | exact @UpperTheory.Reformulated.B.Qh27.smooth_on_group_sum n ε ι | exact @UpperTheory.Reformulated.B.Qh27.smooth_on_group_sum n ε | exact @UpperTheory.Reformulated.B.Qh27.smooth_on_group_sum n
+  first | (apply UpperTheory.Reformulated.B.Qh27.smooth_on_group_sum <;> assumption)
 
 def signedCasimirDifference (ε : Fin n → Bool) (u : Matrix (Fin n) (Fin n) ℂ → ℂ) :
     Matrix (Fin n) (Fin n) ℂ → ℂ :=

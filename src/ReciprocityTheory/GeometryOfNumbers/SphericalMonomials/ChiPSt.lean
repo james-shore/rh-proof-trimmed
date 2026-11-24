@@ -460,7 +460,6 @@ theorem exists_chiP_succ_sub_le (D : ℕ) :
       rw [hL]
       first
         | exact (div_mul_cancel₀ c₀ hl2.ne').symm
-        | field_simp
     rw [e]
     exact mul_le_mul_of_nonneg_left ht hL0
   refine ⟨(1 / 2) * (2 ^ D + 3 ^ D * (2 + (D : ℝ))) * (1 + L), fun n hn => ?_⟩

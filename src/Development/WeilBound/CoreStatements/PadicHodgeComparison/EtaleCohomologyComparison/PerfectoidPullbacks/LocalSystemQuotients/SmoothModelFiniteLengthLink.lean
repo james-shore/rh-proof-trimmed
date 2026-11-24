@@ -153,7 +153,7 @@ theorem sq_inj (hba : ∀ T, b.S T ≤ a.S T) (T : C) :
 theorem sq_exact (hba : ∀ T, b.S T ≤ a.S T) (hcb : ∀ T, c.S T ≤ b.S T) (T : C) :
     Function.Exact ((sqLe (a := b) (b := c) (a' := a) (b' := c) hba fun _ => le_rfl).τ T)
       ((sqLe (a := a) (b := c) (a' := a) (b' := b) (fun _ => le_rfl) hcb).τ T) := by
-  apply GlobalTheory.CompanionTheory.KFin.sq_exact <;> assumption
+  apply GlobalTheory.CompanionTheory.KFin.sq_exact
 
 theorem sq_surj (hcb : ∀ T, c.S T ≤ b.S T) (T : C) :
     Function.Surjective ((sqLe (a := a) (b := c) (a' := a) (b' := b) (fun _ => le_rfl) hcb).τ T) := by
@@ -164,7 +164,7 @@ theorem sq_surj (hcb : ∀ T, c.S T ≤ b.S T) (T : C) :
 theorem sq_les (hba : ∀ T, b.S T ≤ a.S T) (hcb : ∀ T, c.S T ≤ b.S T) (n : ℕ) :
     Function.Exact ((sqLe (a := b) (b := c) (a' := a) (b' := c) hba fun _ => le_rfl).pull n)
       ((sqLe (a := a) (b := c) (a' := a) (b' := b) (fun _ => le_rfl) hcb).pull n) := by
-  apply GlobalTheory.CompanionTheory.KFin.sq_les <;> assumption
+  apply GlobalTheory.CompanionTheory.KFin.sq_les
 
 theorem finite_dev [IsNoetherianRing R] (a : ℕ → IdF A) (hanti : ∀ k l, k ≤ l → ∀ T, (a l).S T ≤ (a k).S T) (s n : ℕ)
     (hgr : ∀ r, r < s → Module.Finite R (CH.H (sq (a r) (a (r + 1))) n)) :

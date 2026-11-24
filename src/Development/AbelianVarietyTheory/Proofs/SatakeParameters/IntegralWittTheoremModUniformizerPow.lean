@@ -1512,8 +1512,7 @@ theorem skew_lift : ∀ (L : Type) [Field L] [Valued L (WithZero (Multiplicative
       intro k i
       show ∑ r, σ (B r k) * z i r = _
 
-      simp only [B, Formalism.UG.hform, Matrix.transpose_apply, Matrix.map_apply,
-      Matrix.mulVec, dotProduct, map_sum, map_mul, herm, Finset.sum_mul]
+      simp only [B, Formalism.UG.hform, Matrix.mulVec, dotProduct, map_sum, map_mul, herm, Finset.sum_mul]
       rw [Finset.sum_comm]
       refine Finset.sum_congr rfl fun s _ => Finset.sum_congr rfl fun t _ => by ring
     have hσh : ∀ x y : Fin n' → L, σ (Formalism.UG.hform σ J x y) = Formalism.UG.hform σ J y x := by

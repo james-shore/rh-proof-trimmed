@@ -116,7 +116,7 @@ theorem sum_block (F : Fin (2 * r + k + 1) → ℂ) (hF : ∀ l, ¬ inB k r l �
 
 theorem blockW_mul (h₁ h₂ : Matrix (Fin k) (Fin k) ℂ) :
     blockW k r (h₁ * h₂) = blockW k r h₁ * blockW k r h₂ := by
-  apply ReciprocityTheory.ChartRestriction.DS.Lap.Base.StandardBasisEmbedding.blockW_mul <;> assumption
+  apply ReciprocityTheory.ChartRestriction.DS.Lap.Base.StandardBasisEmbedding.blockW_mul
 
 theorem hpk_in_col {i m : Fin (2 * r + k + 1)} (hm : inB k r m) : Hpk k r i m = if i = m then 1 else 0 := by
   unfold inB at hm

@@ -806,7 +806,6 @@ theorem totalDegree_aeval_le {σ : Type*} (f : σ → MvPolynomial σ ℂ) (hf :
     (P : MvPolynomial σ ℂ) : (aeval f P).totalDegree ≤ P.totalDegree := by
   first
   | (apply _root_.GlobalTheory.AevalTotalDegreeBound.main <;> assumption)
-  | (intros; exact _root_.GlobalTheory.AevalTotalDegreeBound.main ..)
 
 variable {ι : Type} {m n : ℕ}
 

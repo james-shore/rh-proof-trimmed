@@ -59,7 +59,7 @@ open Formalism.FourierDecayAlt.M Formalism.FourierDecayAlt Finset
 namespace Formalism.FourierDecayAlt.P.Mx2
 
 theorem eulerLeibniz : EulerLeibniz := by
-  apply Formalism.FourierDecayAlt.P.Mx4.eulerLeibniz <;> assumption
+  apply Formalism.FourierDecayAlt.P.Mx4.eulerLeibniz
 
 theorem eulerCoord : EulerCoord := by
   intro r v w z
@@ -122,7 +122,7 @@ theorem multiplierPair_comm (f fb g gb : Fn r) : fnP f fb * fnP g gb = fnP g gb 
 theorem der_fn (a b : Fn r) (v w : Var r) (f fb : Fn r) :
     mk (mulOp a * euler v) (-(mulOp b * euler w)) * fnP f fb =
       fnP f fb * mk (mulOp a * euler v) (-(mulOp b * euler w)) + fnP (a * euler v f) (b * euler w fb) := by
-  apply Formalism.FourierDecayAlt.P.Mx4.der_fn <;> assumption
+  apply Formalism.FourierDecayAlt.P.Mx4.der_fn
 
 theorem euler_one (v : Var r) : euler v (1 : Fn r) = 0 := by
   have := (eulerCoord r v v 1).2

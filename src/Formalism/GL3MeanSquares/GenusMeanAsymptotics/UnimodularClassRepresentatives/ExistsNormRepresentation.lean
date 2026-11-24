@@ -99,7 +99,7 @@ theorem Dv.mem (hπ : IsUnif S π) {a : K} (ha : Dv S π a) : a ∈ S := by
   exact S.mul_mem ha hπ.mem
 
 theorem Dv.add {a b : K} (ha : Dv S π a) (hb : Dv S π b) : Dv S π (a + b) := by
-  first | (apply GlobalTheory.AddMulInvMembership.add_mul_inv_mem <;> assumption) | exact @GlobalTheory.AddMulInvMembership.add_mul_inv_mem K ‹_› ‹_› S π a b ha hb | exact @GlobalTheory.AddMulInvMembership.add_mul_inv_mem K ‹_› ‹_› S π a b ha | exact @GlobalTheory.AddMulInvMembership.add_mul_inv_mem K ‹_› ‹_› S π a b | exact @GlobalTheory.AddMulInvMembership.add_mul_inv_mem K ‹_› ‹_› S π a | exact @GlobalTheory.AddMulInvMembership.add_mul_inv_mem K ‹_› ‹_› S π | exact @GlobalTheory.AddMulInvMembership.add_mul_inv_mem K ‹_› ‹_› S | exact @GlobalTheory.AddMulInvMembership.add_mul_inv_mem K ‹_› ‹_› | exact @GlobalTheory.AddMulInvMembership.add_mul_inv_mem K ‹_› | exact @GlobalTheory.AddMulInvMembership.add_mul_inv_mem K
+  first | (apply GlobalTheory.AddMulInvMembership.add_mul_inv_mem <;> assumption)
 
 theorem Dv.neg {a : K} (ha : Dv S π a) : Dv S π (-a) := by
   simpa only [Dv, neg_mul] using S.neg_mem ha

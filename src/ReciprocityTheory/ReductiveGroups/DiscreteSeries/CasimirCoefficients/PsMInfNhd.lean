@@ -581,7 +581,6 @@ lemma continuousOn_phiM (μ : Fin n → ℤ) : ContinuousOn (PhiM μ) (OmegaSet 
 lemma continuous_toMK' : Continuous fun k : KG ε => toMK k := by
   first
     | fun_prop
-    | continuity
 
 lemma continuous_toMK_inv : Continuous fun k : KG ε => toMK k⁻¹ := by
   exact continuous_toMK'.comp continuous_inv
@@ -690,8 +689,6 @@ lemma integrable_of_cont [CompactSpace (KG ε)] {E : Type*} [NormedAddCommGroup 
     (hf : Continuous f) : Integrable f (muK ε) := by
   first
     | exact hf.integrable_of_hasCompactSupport (HasCompactSupport.of_compactSpace f)
-    | (unfold muK; exact integrableOn_univ.1 (hf.continuousOn.integrableOn_compact isCompact_univ))
-    | (unfold muK; exact hf.integrable_of_hasCompactSupport (HasCompactSupport.of_compactSpace f))
 
 lemma integral_Ek_inK [CompactSpace (KG ε)] (T : KType ε Λ) (μ : Fin n → ℤ) {x : Matrix (Fin n) (Fin n) ℂ}
     (hx : x.PosDef) (φ : Matrix (Fin n) (Fin n) ℂ →L[ℂ] ℂ) (A : Matrix (Fin n) (Fin n) ℂ)
@@ -761,13 +758,11 @@ lemma integral_Ek_block [CompactSpace (KG ε)] (T : KType ε Λ) (μ : Fin n →
     · ext a b
       first
       | (simp [Matrix.conjTranspose_apply]; ring)
-      | (simp [Matrix.conjTranspose_apply, Complex.star_def]; ring)
     · intro a b h
       first
       | simp only [Matrix.smul_apply, Matrix.add_apply, hM a b h, hMh a b h, add_zero, smul_zero]
     · ext a b
       first
-      | (simp [Matrix.conjTranspose_apply, Complex.star_def]; ring)
       | (simp [Matrix.conjTranspose_apply]; ring)
     · ext a b
       simp only [Matrix.add_apply, Matrix.smul_apply, Matrix.sub_apply, smul_eq_mul]
@@ -1271,18 +1266,12 @@ lemma scal (μ : Fin n → ℤ) (hμ : IsMu lam μ) (B : Matrix (Fin n) (Fin n) 
     have hgt1 : (univ.filter (fun b => a < b ∧ ε b = ε a)).card +
         (univ.filter (fun b => a < b ∧ ε b ≠ ε a)).card = (univ.filter (fun b => a < b)).card := by
       first
-      | (have h1 := Finset.filter_card_add_filter_neg_card_eq_card
-            (s := univ.filter (fun b => a < b)) (fun b => ε b = ε a)
-         simpa only [Finset.filter_filter, ne_eq] using h1)
       | (have h1 := Finset.card_filter_add_card_filter_not
             (s := univ.filter (fun b => a < b)) (fun b => ε b = ε a)
          simpa only [Finset.filter_filter, ne_eq] using h1)
     have hlt1 : (univ.filter (fun b => b < a ∧ ε b = ε a)).card +
         (univ.filter (fun b => b < a ∧ ε b ≠ ε a)).card = (univ.filter (fun b => b < a)).card := by
       first
-      | (have h1 := Finset.filter_card_add_filter_neg_card_eq_card
-            (s := univ.filter (fun b => b < a)) (fun b => ε b = ε a)
-         simpa only [Finset.filter_filter, ne_eq] using h1)
       | (have h1 := Finset.card_filter_add_card_filter_not
             (s := univ.filter (fun b => b < a)) (fun b => ε b = ε a)
          simpa only [Finset.filter_filter, ne_eq] using h1)

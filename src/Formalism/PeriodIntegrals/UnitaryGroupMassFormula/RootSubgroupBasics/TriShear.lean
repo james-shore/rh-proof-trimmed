@@ -96,7 +96,7 @@ theorem measurePreserving_of_card (n : ℕ) : ∀ (ι : Type) [Fintype ι] [Deci
     ∀ (r : ι → ℕ) (g : ι → (ι → ℂ) → ℂ), (∀ i, Measurable (g i)) →
     (∀ i (x y : ι → ℂ), (∀ j, r j < r i → x j = y j) → g i x = g i y) →
     MeasurePreserving (fun x : ι → ℂ => fun i => x i + g i x) volume volume := by
-  apply PI.LowSplitHaarW.measurePreserving_of_card <;> assumption
+  apply PI.LowSplitHaarW.measurePreserving_of_card
 
 theorem triShear : TriShear :=
   fun ι _ _ r g hg hdep => measurePreserving_of_card (Fintype.card ι) ι rfl r g hg hdep

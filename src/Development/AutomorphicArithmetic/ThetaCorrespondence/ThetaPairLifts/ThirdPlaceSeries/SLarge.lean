@@ -1426,7 +1426,7 @@ noncomputable section
 namespace GlobalTheory.LatStab
 
 theorem jMt_injective (D : D7) (μ : D.what₂.Tup) (j : ℕ) : Function.Injective (D.what₂.jMt μ j) := by
-  apply Formalism.L2.jMt_injective <;> assumption
+  apply Formalism.L2.jMt_injective
 
 theorem latStable_of_latInt : ∀ (D : D7) (M : MtFam D) (B : NLocBase D M) (j : ℕ) (h1 : 1 ≤ j) (h2 : j ≤ D.R.m)
     (w : D.what₂.places.Pl), LatInt D M (B.Qc j w) j h1 h2 w → LatStable B j w := by

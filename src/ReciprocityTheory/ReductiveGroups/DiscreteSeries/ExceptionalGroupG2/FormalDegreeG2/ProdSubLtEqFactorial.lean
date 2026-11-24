@@ -111,7 +111,7 @@ theorem ratioV_eq_vand {μ : Fin n → ℝ} (hμ : StrictAnti μ) (s : Fin n) :
 
 theorem prod_sub_lt_eq_factorial (b : Fin n) :
     ∏ a ∈ univ.filter (fun a : Fin n => a < b), (((b : ℕ) : ℝ) - ((a : ℕ) : ℝ)) = ((b : ℕ).factorial : ℝ) := by
-  apply ReciprocityTheory.ChartRestriction.DS.prod_sub_lt_eq_factorial <;> assumption
+  apply ReciprocityTheory.ChartRestriction.DS.prod_sub_lt_eq_factorial
 
 theorem prod_pairs_eq_factorial (n : ℕ) :
     ∏ a : Fin n, ∏ b ∈ univ.filter (fun b : Fin n => a < b), (((b : ℕ) : ℝ) - ((a : ℕ) : ℝ)) =

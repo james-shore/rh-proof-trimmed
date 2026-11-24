@@ -126,6 +126,6 @@ private theorem intValuation_lt_of_mem_pow_of_not_mem_pow {F : Type} [Field F] [
     (not_le.1 fun h => hDn ((w.intValuation_le_pow_iff_mem D n).1 h))
 
 theorem csGlob_intAdApprox : Formalism.UG.CS.IntAdApprox := by
-  apply Formalism.UG.P.integral_adele_approximation_holds <;> assumption
+  apply Formalism.UG.P.integral_adele_approximation_holds
 
 end Formalism.UG.P

@@ -73,7 +73,7 @@ namespace PI.RhsWLim.W.RI
 
 theorem polish_of_lcsc (Y : Type) [TopologicalSpace Y] [LocallyCompactSpace Y] [T2Space Y]
     [SecondCountableTopology Y] : PolishSpace Y := by
-  apply PI.AprimeInfA.polish_of_lcsc <;> assumption
+  apply PI.AprimeInfA.polish_of_lcsc
 
 section Abstract
 

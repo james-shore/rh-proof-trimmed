@@ -1347,7 +1347,7 @@ section Ball
 open scoped ComplexOrder in
 theorem isPreconnected_ballDom {Ψ : Type} [Fintype Ψ] {j j' n : ℕ} (q : Ψ × Fin j × Fin j' ≃ Fin n) :
     IsPreconnected (ballDom q) := by
-  apply SheetDecomposition.ballDom_preconnected <;> assumption
+  apply SheetDecomposition.ballDom_preconnected
 
 alias measurable_ballDens := _root_.GlobalTheory.CompanionTheory.Ar.Cusp.DictMeas.measurable_ballDens
 

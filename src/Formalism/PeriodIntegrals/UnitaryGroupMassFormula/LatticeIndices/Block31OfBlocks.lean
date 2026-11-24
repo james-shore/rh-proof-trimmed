@@ -60,7 +60,7 @@ open Formalism.FourierDecayAlt.S3
 section Count
 
 theorem card_lt_pairs (n : ℕ) : Nat.card {p : Fin n × Fin n // p.1 < p.2} = n * (n - 1) / 2 := by
-  apply Formalism.LogVandermondeBounds.StandardLattice.card_lt_pairs <;> assumption
+  apply Formalism.LogVandermondeBounds.StandardLattice.card_lt_pairs
 
 theorem card_matrix (m n K : Type) [Finite m] [Finite n] :
     Nat.card (Matrix m n K) = Nat.card K ^ (Nat.card m * Nat.card n) := by

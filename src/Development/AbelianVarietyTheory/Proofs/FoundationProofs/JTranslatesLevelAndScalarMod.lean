@@ -79,7 +79,7 @@ namespace GlobalTheory.KZ.ES.JStab
 
 theorem eps_eOm_of_alg {Ω : Type} [Field Ω] [Algebra ℚ Ω] [IsAlgClosure ℚ Ω] (ε : Ω →+* ℂ)
     (x : ℚ) : ε (eOm ε x) = Complex.exp (2 * Real.pi * Complex.I * (x : ℂ)) := by
-  apply GlobalTheory.Glue.KTExp.map_eOm <;> assumption
+  apply GlobalTheory.Glue.KTExp.map_eOm
 
 theorem eOm_ne_zero' {Ω : Type} [Field Ω] [Algebra ℚ Ω] [IsAlgClosure ℚ Ω] (ε : Ω →+* ℂ) (x : ℚ) :
     eOm ε x ≠ 0 := by

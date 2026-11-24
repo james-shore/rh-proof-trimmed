@@ -87,7 +87,7 @@ lemma Hpk_eq (k r : ℕ) (i j : Fin (2 * r + k + 1)) :
   split_ifs <;> first | rfl | (exfalso; omega)
 
 lemma Hpk_sq (k r : ℕ) : Hpk k r * Hpk k r = 1 := by
-  apply GlobalTheory.Amp.RConj.H_sq <;> assumption
+  apply GlobalTheory.Amp.RConj.H_sq
 
 lemma sig_eI (k r : ℕ) (a : Fin r) : sig k r (eI k r a) = esI k r a := by
   have ha := a.isLt

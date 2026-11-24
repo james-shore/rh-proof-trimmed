@@ -127,7 +127,6 @@ theorem lb_part (a : ℕ) (D : ℝ) (m n j : ℕ) (T : ℝ) (hmj : m ≤ j)
       Real.exp_nat_mul]
     rw [one_div (2 : ℝ)]
     first
-    | ring1
     | (field_simp; done)
     | (field_simp; ring1)
     | (field_simp; rw [← mul_pow]; norm_num)

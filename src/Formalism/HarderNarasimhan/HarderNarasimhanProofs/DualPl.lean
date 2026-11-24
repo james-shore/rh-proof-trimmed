@@ -396,7 +396,7 @@ open Formalism.HN
 
 theorem ident_trace_eq {K : Type} [Field K] [NumberField K] [_root_.NumberField.IsTotallyComplex K] (a : K) :
     ((Algebra.trace ℚ K a : ℚ) : ℝ) = ∑ v : InfinitePlace K, 2 * (v.embedding a).re := by
-  apply Bl.FiberEquations.goal1 <;> assumption
+  apply Bl.FiberEquations.goal1
 
 section Assumptions
 

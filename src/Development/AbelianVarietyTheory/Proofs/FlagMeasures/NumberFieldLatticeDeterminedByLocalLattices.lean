@@ -73,7 +73,7 @@ namespace GlobalTheory.SaturatedSublattice
 open NumberField
 
 theorem main : ∀ {E : Type} [inst : Field E] [NumberField E] {n : ℕ} (Λ : Submodule (NumberField.RingOfIntegers E) (Fin n → E)), Submodule.span E (↑Λ : Set (Fin n → E)) = ⊤ → ∀ (v : Fin n → E), ∃ (D : NumberField.RingOfIntegers E), D ≠ (0 : NumberField.RingOfIntegers E) ∧ D • v ∈ Λ := by
-  apply ReciprocityTheory.MultiplicativeHeights.sc_scale <;> assumption
+  apply ReciprocityTheory.MultiplicativeHeights.sc_scale
 
 end GlobalTheory.SaturatedSublattice
 end -- clump:auto

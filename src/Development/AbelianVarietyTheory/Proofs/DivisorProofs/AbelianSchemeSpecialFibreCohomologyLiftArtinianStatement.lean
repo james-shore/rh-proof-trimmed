@@ -1414,7 +1414,6 @@ theorem pullHO2_surjective_of_wedge : ∀ (R R' : Type) [CommRing R] [CommRing R
     Function.Surjective (pullHO1 h) → WedgeO (OAff s') → Function.Surjective (pullHO2 h) := by
   first
   | exact @_root_.GlobalTheory.PullbackCupProduct.main
-  | (intros; exact _root_.GlobalTheory.PullbackCupProduct.main ..)
 
 end GlobalTheory.AbCoh
 end -- clump:auto

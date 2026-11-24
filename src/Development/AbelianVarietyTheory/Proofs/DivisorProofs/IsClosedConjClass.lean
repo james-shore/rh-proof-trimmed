@@ -803,7 +803,6 @@ theorem isNilpotent_of_trace_pow_eq_zero {K : Type} [Field K] [CharZero K] {V : 
     (h : ∀ k, 1 ≤ k → LinearMap.trace K V (f ^ k) = 0) : IsNilpotent f := by
   first
   | (apply _root_.GlobalTheory.NilpotentOfTracePowers.isNilpotent_of_trace_pow <;> assumption)
-  | (intros; exact _root_.GlobalTheory.NilpotentOfTracePowers.isNilpotent_of_trace_pow ..)
 
 end GlobalTheory.UnipNormalTrace
 end -- clump:auto

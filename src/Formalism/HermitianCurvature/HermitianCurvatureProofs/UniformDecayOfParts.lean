@@ -446,7 +446,6 @@ theorem norm_le_integral_fsv (φ : ℂ → ℂ) (hφ : Continuous φ) (hi : Meas
       | exact (integrable_comp_smul_iff volume (𝓕 φ) hc).mp hint1
   have hinv : 𝓕⁻ (𝓕 φ) t = φ t := by
     first
-      | exact hi.fourier_inversion hint hφ.continuousAt
       | exact hi.fourierInv_fourier_eq hint hφ.continuousAt
   have hb : ‖φ t‖ ≤ ∫ w : ℂ, ‖𝓕 φ w‖ := by
     rw [← hinv]

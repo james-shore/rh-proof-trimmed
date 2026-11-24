@@ -61,7 +61,7 @@ open NumberField
 
 theorem exists_nat_mul_integral {E : Type} [Field E] [NumberField E] (c : E) :
     ∃ (n : ℕ) (a : 𝓞 E), 0 < n ∧ (a : E) = (n : E) * c := by
-  apply GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.exists_nat_mul_integer <;> assumption
+  apply GlobalTheory.CompanionTheory.Hypotheses₂.Shintani.exists_nat_mul_integer
 
 theorem exists_nat_smul_mem {E W : Type} [Field E] [NumberField E] [AddCommGroup W] [Module E W]
     [Module (𝓞 E) W] [IsScalarTower (𝓞 E) E W] (L : Submodule (𝓞 E) W)

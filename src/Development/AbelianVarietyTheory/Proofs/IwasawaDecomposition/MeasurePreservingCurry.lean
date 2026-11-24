@@ -180,7 +180,7 @@ namespace GlobalTheory.FlagFibre
 
 theorem measurePreserving_curry (ι κ : Type) [Fintype ι] [Fintype κ] :
     MeasurePreserving (MeasurableEquiv.curry ι κ ℂ) volume volume := by
-  apply _root_.GlobalTheory.IntBall.measurePreserving_curry_lowCoord <;> assumption
+  apply _root_.GlobalTheory.IntBall.measurePreserving_curry_lowCoord
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {r j : ℕ} (X : Data E r) (hj : j ≤ r) {Tau : Type}
   [Fintype Tau] (κ : Tau ≃ X.Ψ)

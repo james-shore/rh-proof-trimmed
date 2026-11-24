@@ -507,7 +507,6 @@ theorem loc_finset {ι : Type*} (s : Finset ι) {P : ι → ∀ V : Scheme.{0}, 
     (h : ∀ i ∈ s, Loc U (P i)) : Loc U fun V g => ∀ i ∈ s, P i V g := by
   first
   | (apply _root_.GlobalTheory.LocalizedFinsetForAll.loc_forall_finset <;> assumption)
-  | (intros; exact _root_.GlobalTheory.LocalizedFinsetForAll.loc_forall_finset ..)
 
 end Loc
 

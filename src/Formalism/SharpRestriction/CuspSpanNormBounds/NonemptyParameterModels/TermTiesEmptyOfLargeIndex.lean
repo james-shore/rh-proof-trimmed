@@ -154,7 +154,7 @@ open Formalism.MainNotions.S.LocalSplitGroups
 
 theorem tie_gram_det_ne {E : Type} [Field E] [NumberField E] [StarRing E] (S : Formalism.BasicNotions.HSpace E) :
     S.gram.det ≠ 0 := by
-  apply GlobalTheory.RecDict.det_gram_ne_zero <;> assumption
+  apply GlobalTheory.RecDict.det_gram_ne_zero
 
 variable (D : D7) (p : PlF D)
 

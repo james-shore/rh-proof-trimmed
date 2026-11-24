@@ -83,7 +83,7 @@ theorem sval_scal {X Y Y' Z : Scheme.{0}} {L : LB X} {K K' : Type} [Fintype K] [
     intro k₁ k₂ he
     rw [hψ, hψ, he]
   have key := H (fun k => J (r ≫ φ₁ k)) (fun k => J ((r ≫ h) ≫ φ₂ k)) hcoh
-  simp only [resTop, map_one, one_mul] at key
+  simp only [resTop, map_one] at key
   have hz1 : r z ∈ LB.wchart L φ₁ (fun k => J (r ≫ φ₁ k)) := by
     show r z ∈ (⋂ k, _ : Set _)
     simp only [Set.mem_iInter, Set.mem_preimage]
@@ -118,20 +118,16 @@ theorem sval_scal {X Y Y' Z : Scheme.{0}} {L : LB X} {K K' : Type} [Fintype K] [
     rw [← e1]
     erw [← e2]
     first
-      | exact (congrArg (fun t => Y'.presheaf.germ _ (r z) ⟨hz1, hz2⟩ t) key).symm
       | (rw [key]; done)
       | (erw [key]; done)
       | (simp only [key]; done)
       | (rw [key]; erw [map_one, one_mul])
       | (rw [key]; simp)
-      | (rw [key]; rw [RingHom.map_one, one_mul])
   erw [gs_eq_stalkMap_germ r z _ hz1, gs_eq_stalkMap_germ (r ≫ h) z _ hz3, hg]
   first
     | rw [Scheme.Hom.stalkMap_comp]
-    | erw [Scheme.Hom.stalkMap_comp]
   first
     | rfl
-    | erw [CommRingCat.comp_apply]
 
 theorem cst_mul {V : Type} [CommRing V] {Z : Scheme.{0}} (q : Z ⟶ Sp V) (z : Z) (a b : V) :
     cst q z (a * b) = cst q z a * cst q z b := by
@@ -154,8 +150,6 @@ theorem cst_stalkMap {V : Type} [CommRing V] {X Z : Scheme.{0}} (r : Z ⟶ X) (p
   all_goals first
     | (rw [Scheme.Hom.germ_stalkMap_apply]; rfl)
     | (erw [Scheme.Hom.germ_stalkMap_apply]; rfl)
-    | (rw [Scheme.stalkMap_germ_apply]; rfl)
-    | (simp [Scheme.Hom.germ_stalkMap_apply, Scheme.comp_app])
 
 alias gs_sum := _root_.ReciprocityTheory.ChartRestriction.G.DVR.SectionScalarValuation.gs_sum
 
@@ -166,7 +160,6 @@ theorem gs_spec {A C : Type} [CommRing A] [CommRing C] (φ : A →+* C) (z : Sp 
     have := congrArg (fun g => g.hom a) (Scheme.ΓSpecIso_inv_naturality (CommRingCat.ofHom φ))
     first
       | exact this.symm
-      | (simp only [CommRingCat.comp_apply] at this; exact this.symm)
   have h1 : (spMap φ) z ∈ (⊤ : (Sp A).Opens) := trivial
   have h2 : (𝟙 (Sp C) : Sp C ⟶ Sp C) z ∈ (⊤ : (Sp C).Opens) := trivial
   simp only [cst, gs, dif_pos h1, dif_pos h2]
@@ -195,19 +188,15 @@ theorem gs_fromSpec {X Z : Scheme.{0}} {U W : X.Opens} (hU : IsAffineOpen U) (le
   erw [← Scheme.Hom.germ_stalkMap_apply, ← Scheme.Hom.germ_stalkMap_apply]
   first
     | rw [Scheme.Hom.stalkMap_comp]
-    | erw [Scheme.Hom.stalkMap_comp]
   first
     | erw [CommRingCat.comp_apply]
-    | erw [ConcreteCategory.comp_apply]
   congr 1
   erw [Scheme.Hom.germ_stalkMap_apply]
   rw [hU.fromSpec_app_of_le W le]
   first
     | erw [CommRingCat.comp_apply]
-    | erw [ConcreteCategory.comp_apply]
   try (first
-      | erw [CommRingCat.comp_apply]
-      | erw [ConcreteCategory.comp_apply])
+      | erw [CommRingCat.comp_apply])
   erw [TopCat.Presheaf.germ_res_apply]
   rfl
 

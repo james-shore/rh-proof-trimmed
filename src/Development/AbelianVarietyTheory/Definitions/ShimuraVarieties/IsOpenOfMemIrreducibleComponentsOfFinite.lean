@@ -214,7 +214,6 @@ theorem eq_of_mem_irreducibleComponents_of_isDomain {X : Scheme.{u}} {x : X}
     (hW : W ∈ irreducibleComponents X) (hxZ : x ∈ Z) (hxW : x ∈ W) : Z = W := by
   first
   | (rename_i h_2; revert X x h_2 Z W hZ hW hxZ hxW; exact @_root_.GlobalTheory.IrreducibleGeneralizations.main)
-  | (intros; exact _root_.GlobalTheory.IrreducibleGeneralizations.main ..)
 
 theorem eq_of_mem_irreducibleComponents {X : Scheme.{u}} [IsNormalScheme X] {x : X}
     {Z W : Set X} (hZ : Z ∈ irreducibleComponents X) (hW : W ∈ irreducibleComponents X)

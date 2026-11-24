@@ -94,7 +94,7 @@ theorem one_eq : η[t'.G].left ≫ m.φ = (1 : Over.mk x ⟶ Xo.univ.t.G).left :
   exact this
 
 theorem tan_iff (w : epsR S ⟶ t'.G) : IsTanAt x (w.left ≫ m.φ) ↔ IsTangent w := by
-  apply GlobalTheory.ArcQ.ExFr.tan_iff <;> assumption
+  apply GlobalTheory.ArcQ.ExFr.tan_iff
 
 theorem scale_over (s : S) : spMap (epsScaleR s) ≫ spMap (algebraMap S (DualNumber S)) =
     spMap (algebraMap S (DualNumber S)) := by
@@ -114,7 +114,7 @@ theorem push_prod {n : ℕ} (u : Fin n → (epsR S ⟶ t'.G)) :
 
 theorem comb_iff {n : ℕ} (v : Fin n → (epsR S ⟶ t'.G)) (cf : Fin n → S) (w : epsR S ⟶ t'.G) :
     IsCombAt x (fun i => (v i).left ≫ m.φ) cf (w.left ≫ m.φ) ↔ IsLieComb cf v w := by
-  apply GlobalTheory.ArcQ.ExFr.comb_iff <;> assumption
+  apply GlobalTheory.ArcQ.ExFr.comb_iff
 
 end ExFr
 

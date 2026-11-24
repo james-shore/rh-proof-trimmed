@@ -98,14 +98,12 @@ lemma algebraMap_mem_intAd (x : 𝓞 F) : algebraMap F (Af F) (algebraMap (𝓞 
       | rw [IsDedekindDomain.HeightOneSpectrum.valuedAdicCompletion_eq_valuation']
         first
           | exact v.valuation_le_one x
-          | exact v.valuation_le_one F x
       | rw [IsDedekindDomain.HeightOneSpectrum.valuedAdicCompletion_eq_valuation]
         first
           | exact v.valuation_le_one x
           | exact v.valuation_le_one F x
   first
     | exact h1
-    | exact (IsDedekindDomain.HeightOneSpectrum.mem_adicCompletionIntegers _ _ _).mpr h1
 
 lemma of_algebraMap_mem_intAd (f : F) (h : algebraMap F (Af F) f ∈ Formalism.UG.intAd F) :
     f ∈ (algebraMap (𝓞 F) F).range := by

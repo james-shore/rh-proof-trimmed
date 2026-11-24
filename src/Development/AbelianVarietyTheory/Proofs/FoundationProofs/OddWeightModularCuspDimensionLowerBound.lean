@@ -1160,7 +1160,7 @@ theorem qParam_pow_bigO {h : ℝ} (hh : 0 < h) {m M : ℕ} (hm : (M : ℝ) * h �
 
 theorem norm_bigO {F : Type*} [FunLike F ℍ ℂ] {Γ : Subgroup (GL (Fin 2) ℝ)} {k : ℤ} [ModularFormClass F Γ k]
     [Γ.IsArithmetic] (f : F) : (ModularForm.norm 𝒮ℒ f : ℍ → ℂ) =O[atImInfty] (f : ℍ → ℂ) := by
-  apply GlobalTheory.EisM.modularFormNorm_isBigO_self_atImInfty <;> assumption
+  apply GlobalTheory.EisM.modularFormNorm_isBigO_self_atImInfty
 
 theorem sturm {Γ : Subgroup (GL (Fin 2) ℝ)} [Γ.IsArithmetic] {h : ℝ} (hh : 0 < h)
     (hΓ : h ∈ Γ.strictPeriods) (k : ℤ) :

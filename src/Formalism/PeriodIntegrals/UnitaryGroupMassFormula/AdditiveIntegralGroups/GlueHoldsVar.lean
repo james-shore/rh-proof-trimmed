@@ -81,22 +81,13 @@ theorem coeff_one_flog {W : WeierstrassCurve ℂ_[p]} {wq : PowerSeries ℂ_[p]}
   have h2 : (2 : ℂ_[p]) ≠ 0 := by
     first
     | exact two_ne_zero
-    | (intro h2z
-       have hinj := (algebraMap ℚ_[p] ℂ_[p]).injective
-       have h22 : algebraMap ℚ_[p] ℂ_[p] 2 = algebraMap ℚ_[p] ℂ_[p] 0 := by
-         rw [map_ofNat, map_zero]; exact h2z
-       exact two_ne_zero (hinj h22))
   have hinv : PowerSeries.constantCoeff (PI.AddIntG.omegaW W wq) = 1 := by
     have hc2 : PowerSeries.constantCoeff (2 : PowerSeries ℂ_[p]) = 2 := map_ofNat _ 2
     simp [PI.AddIntG.omegaW, hw, PowerSeries.constantCoeff_inv, h2, hc2]
-    first
-    | done
-    | field_simp
   have e : PowerSeries.coeff 1 (PI.AddIntG.flog W wq) = PowerSeries.coeff 0 (PI.AddIntG.omegaW W wq) := by
     simp [PI.AddIntG.flog]
   first
   | (rw [e, PowerSeries.coeff_zero_eq_constantCoeff_apply, hinv])
-  | (rw [e]; simpa using hinv)
 
 private theorem hasSubst_of_constantCoeff_eq_zero_additive_integral_groups {K : Type*} [Field K] {a : PowerSeries K}
     (ha : PowerSeries.constantCoeff a = 0) : PowerSeries.HasSubst a := by

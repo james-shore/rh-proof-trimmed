@@ -171,13 +171,11 @@ theorem pairM_chart {K : Type} [Field K] {n d : ℕ} (A : Matrix (Fin n) (Fin n)
       -∑ i : Fin n, ∑ j : Fin d, ∑ k : Fin n, ∑ l : Fin d, P i j * A i k * B j l * Q k l := by
   first
   | (apply _root_.GlobalTheory.PairingTraceExpansion.main <;> assumption)
-  | (intros; exact _root_.GlobalTheory.PairingTraceExpansion.main ..)
 
 theorem sum_four_swap_pairs_alt {R α β : Type} [AddCommMonoid R] [Fintype α] [Fintype β] (f : α → β → α → β → R) :
     ∑ a, ∑ b, ∑ c, ∑ e, f a b c e = ∑ c, ∑ e, ∑ a, ∑ b, f a b c e := by
   first
   | (apply _root_.GlobalTheory.FourTermSumSwap.sum_four_swap <;> assumption)
-  | (intros; exact _root_.GlobalTheory.FourTermSumSwap.sum_four_swap ..)
 
 theorem piW_cA {σ : E →ₐ[F] E} {v : GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.Pl (F := F)} (τ : E →ₐ[F] Fv F v) (w : AE F E) :
     piW τ (cA σ w) = piW (τ.comp σ) w := by

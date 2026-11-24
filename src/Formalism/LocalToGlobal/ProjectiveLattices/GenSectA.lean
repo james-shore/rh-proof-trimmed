@@ -154,7 +154,6 @@ theorem psi_sec (x : Fin m → Ω) (j₀ : Fin m) (hx₀ : x j₀ ≠ 0) (i : Fi
     congr 2
     first
     | exact div_mul_cancel₀ (x k) hx₀
-    | field_simp
   have hI : ∑ j : Fin m, (if j = j₀ then -∑ k, xv (Ω := Ω) j₀ (i.succ, k) * C (rr x j₀ k) else 0) * C (x j) =
       -(∑ k, xv (Ω := Ω) j₀ (i.succ, k) * C (rr x j₀ k)) * C (x j₀) := by
     rw [Finset.sum_eq_single j₀]
@@ -171,7 +170,6 @@ theorem psi_sec (x : Fin m → Ω) (j₀ : Fin m) (hx₀ : x j₀ ≠ 0) (i : Fi
   rw [Finset.sum_add_distrib, hI, neg_mul, hS]
   first
   | exact add_neg_cancel _
-  | abel
 
 theorem incl_xv_succ (j₀ : Fin m) (i : Fin D) (k : Fin m) :
     incl (Ω := Ω) j₀ (xv j₀ (i.succ, k)) = if k = j₀ then 0 else X (i.succ, k) := by

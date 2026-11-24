@@ -193,8 +193,7 @@ theorem frame_inv_poly' (hinj : Function.Injective (algebraMap O LL)) {d : ℕ}
   refine ⟨ρ, ?_⟩
   have h := congrArg (Polynomial.aeval Y) hρ
 
-  simp only [hQdef, map_sub, map_sum, map_mul, Polynomial.aeval_C, Polynomial.aeval_X_pow, GP, HP,
-  Polynomial.aeval_X] at h
+  simp only [hQdef, map_sub, map_sum, map_mul, Polynomial.aeval_C, Polynomial.aeval_X_pow, GP, HP] at h
   rw [← h]
   ring
 

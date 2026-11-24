@@ -730,7 +730,7 @@ theorem hRow_eqS (o : Orb) : (Y.rawSelf (p o)).hRow = (Y.k : C) • ∑ col : Fi
   congr 1
   funext q
   rcases q with ⟨g, i⟩
-  fin_cases g <;> first | rfl | simp [VP.P2]
+  fin_cases g <;> first | rfl
 
 theorem toAllS_hRow (o : Orb) : toAllS (I := IS I0) o (mvExp (Y.rawSelf (p o)).hRow) =
     mvExp ((Y.k : C) • ∑ col, HK Y p (lamG Y p o col 0 * ind (o, 0)) (lamG Y p o col 1 * ind (o, 1))) := by

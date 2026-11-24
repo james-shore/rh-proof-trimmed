@@ -1017,7 +1017,7 @@ theorem continuous_coeff_pp {Ω : Type*} [TopologicalSpace Ω] (u v : Ω → Fin
     funext r
 
     fin_cases r <;> simp [w, dp, mapAlgHom_apply] <;>
-      apply Finset.sum_congr rfl <;> intro i hi <;> congr 2 <;> funext q
+      apply Finset.sum_congr rfl <;> intro i hi <;> congr 2
   rw [pp, hw, ← comp_aeval, AlgHom.comp_apply, mapAlgHom_apply, coeff_map]
   exact (AddMonoidAlgebra.coeff (aeval w Q) m).continuous
 

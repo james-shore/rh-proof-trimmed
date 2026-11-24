@@ -141,7 +141,7 @@ theorem sum_diag_of {p q r s : ℕ} (M : Matrix (Ln p q r s) (Ln p q r s) ℂ)
 
 theorem fockAct1_diag (p q r s : ℕ) (a : Ix p q) :
     fockAct1 p q r s (Eab a a) = ∑ c : Ix r s, omE ((a, c) : Ln p q r s) (a, c) := by
-  apply PI.FockOneDegW.Diag.fockAct1_diag <;> assumption
+  apply PI.FockOneDegW.Diag.fockAct1_diag
 
 theorem fockAct2_diag (p q r s : ℕ) (c : Ix r s) :
     fockAct2 p q r s (Eab c c) = ∑ a : Ix p q, omE ((a, c) : Ln p q r s) (a, c) := by
@@ -222,8 +222,6 @@ theorem exists_monomial_weight {σ ι : Type*} [Fintype σ]
     first
       | (rw [← key]; exact h2)
       | (rw [← key]; simpa [Finsupp.weight_apply, Finsupp.sum] using h2)
-      | (rw [← key]; simpa [Finsupp.degree_eq_weight_one.symm, Finsupp.degree] using h2)
-      | (rw [← key]; simpa [Finsupp.degree, Finsupp.weight, Finsupp.sum] using h2)
   · have h1 := coeff_of_diag (T a) (fun β => ((f a β : ℚ) : ℂ)) (hT a) P α
     have h2 : T a P = ((μ a : ℚ) : ℂ) • P := by
       have h3 := hw a

@@ -99,7 +99,7 @@ lemma esI_val (a : Fin r) : (esI k r a).val = 2 * r + k - a.val := rfl
 
 lemma sum_split {M : Type*} [AddCommMonoid M] (f : Fin (2 * r + k + 1) → M) :
     ∑ i, f i = ∑ a : Fin r, f (eI k r a) + ∑ j : Fin (k + 1), f (wI k r j) + ∑ a : Fin r, f (esI k r a) := by
-  apply WlocSk.NB.sum_split <;> assumption
+  apply WlocSk.NB.sum_split
 
 lemma cases3 {P : Fin (2 * r + k + 1) → Prop} (h1 : ∀ a, P (eI k r a)) (h2 : ∀ j, P (wI k r j))
     (h3 : ∀ a, P (esI k r a)) (i : Fin (2 * r + k + 1)) : P i := by

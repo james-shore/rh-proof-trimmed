@@ -158,7 +158,7 @@ theorem dop_apply (a : V) (L : V →L[ℝ] ℝ) (f : 𝓢(V, ℂ)) (x : V) :
 
 theorem hasDerivAt_hl (a : V) (L : V →L[ℝ] ℝ) (f : 𝓢(V, ℂ)) (x : V) :
     HasDerivAt (fun t : ℝ => hl a L t f x) (dop a L f x) 0 := by
-  apply GlobalTheory.ThK.Dbl.Dense.hasDerivAt_hl <;> assumption
+  apply GlobalTheory.ThK.Dbl.Dense.hasDerivAt_hl
 end Line
 
 
@@ -201,7 +201,7 @@ theorem hl_schwartz (a : V) (L : V →L[ℝ] ℝ) (f : 𝓢(V, ℂ)) (t : ℝ) :
 theorem hl_line_deriv (a : V) (L : V →L[ℝ] ℝ) (f : 𝓢(V, ℂ)) :
     ∃ G : ℝ → 𝓢(V, ℂ), (∀ t x, G t x = hl a L t f x) ∧
       (a ≠ 0 → ∀ T : 𝓢(V, ℂ) →L[ℂ] ℂ, HasDerivAt (fun t => T (G t)) (T (dop a L f)) 0) := by
-  apply GlobalTheory.ThK.Dbl.Dense.hl_line_deriv <;> assumption
+  apply GlobalTheory.ThK.Dbl.Dense.hl_line_deriv
 
 theorem exists_bump : ∃ φ : 𝓢(ℝ, ℂ), ∀ᶠ t in 𝓝 (0 : ℝ), φ t = 1 := by
   let b : ContDiffBump (0 : ℝ) := default

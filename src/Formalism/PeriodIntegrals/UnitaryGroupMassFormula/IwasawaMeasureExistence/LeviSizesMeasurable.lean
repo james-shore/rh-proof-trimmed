@@ -138,7 +138,7 @@ theorem isUnit_integer_iff (v : HeightOneSpectrum (𝓞 F)) (x : Valued.integer 
 
 theorem finite_residue (v : HeightOneSpectrum (𝓞 F)) :
     Finite (IsLocalRing.ResidueField (Valued.integer (v.adicCompletion F))) := by
-  apply PI.WAU.finite_residue <;> assumption
+  apply PI.WAU.finite_residue
 
 theorem compactSpace_integer (v : HeightOneSpectrum (𝓞 F)) :
     CompactSpace (Valued.integer (v.adicCompletion F)) := by

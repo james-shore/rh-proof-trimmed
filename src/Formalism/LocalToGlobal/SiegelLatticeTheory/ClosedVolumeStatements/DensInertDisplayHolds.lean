@@ -274,11 +274,9 @@ theorem gamma_form (r : ℕ) (T T' : ℝ) (s : ℂ) (c : Fin r ⊕ Fin 2 → ℂ
     | (rw [gamma, Matrix.fromBlocks_mulVec]
        simp [Matrix.smul_mulVec_assoc, Matrix.one_mulVec] <;> ring1)
     | (rw [gamma, Matrix.fromBlocks_mulVec]
-       simp [Matrix.smul_mulVec, Matrix.one_mulVec] <;> ring1)
+       simp <;> ring1)
     | (simp [gamma, Matrix.mulVec, dotProduct, Fintype.sum_sum_type, Matrix.one_apply,
         mul_ite, ite_mul, Finset.sum_ite_eq] <;> ring1)
-    | (simp [gamma, Matrix.mulVec, Matrix.dotProduct, Fintype.sum_sum_type,
-        Matrix.one_apply, mul_ite, ite_mul, Finset.sum_ite_eq] <;> ring1)
   have hinr0 : (gamma r T T' s *ᵥ c) (Sum.inr 0) =
       -(T : ℂ) * c (Sum.inr 0) + s * c (Sum.inr 1) := by
     rw [gamma, Matrix.fromBlocks_mulVec]

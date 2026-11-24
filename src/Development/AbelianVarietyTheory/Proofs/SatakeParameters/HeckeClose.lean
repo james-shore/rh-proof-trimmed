@@ -693,7 +693,6 @@ theorem eigSum_mul_proj_eq {E I C : Type} [AddCommGroup E] [Module ℂ E] [Finit
       eigSum (fun i => h i * e) Q = ⨆ (c : C) (_ : Q (lab c)), Ec c := by
   first
   | (apply _root_.GlobalTheory.IndependentInfimum.main <;> assumption)
-  | (intros; exact _root_.GlobalTheory.IndependentInfimum.main ..)
 
 end GlobalTheory.Hk3
 end -- clump:auto

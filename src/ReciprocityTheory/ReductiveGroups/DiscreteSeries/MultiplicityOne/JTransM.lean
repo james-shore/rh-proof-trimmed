@@ -104,7 +104,6 @@ private theorem unitary_exists_unit_scalar_isUnit_det_one_add (m : Matrix S S �
     have hsm : (ζ • m) *ᵥ v = ζ • (m *ᵥ v) := by
       first
         | exact Matrix.smul_mulVec ζ m v
-        | (funext k; simp [Matrix.mulVec, dotProduct, Finset.mul_sum, mul_assoc])
     simp only [Matrix.add_mulVec, Matrix.one_mulVec, hsm, Pi.add_apply,
       Pi.smul_apply, smul_eq_mul, Pi.zero_apply] at h1
     simp only [Pi.smul_apply, smul_eq_mul]
@@ -222,7 +221,7 @@ private theorem unitary_exists_diagonalization (m : Matrix S S ℂ) (hm : mᴴ *
     · linear_combination (-Complex.I) * h8 + (Wᴴ * X * W) i j * Complex.I_sq
     · linear_combination (-Complex.I) * h8 + (Wᴴ * X * W) i j * Complex.I_sq
   have eL : Wᴴ * (u * (1 + X)) * W = (Wᴴ * u * W) * (1 + Wᴴ * X * W) := by
-    simp only [Matrix.mul_add, Matrix.add_mul, Matrix.mul_one, Matrix.one_mul, Matrix.mul_assoc]
+    simp only [Matrix.mul_add, Matrix.add_mul, Matrix.mul_one, Matrix.mul_assoc]
     rw [← Matrix.mul_assoc W Wᴴ, hW2, Matrix.one_mul]
   have eR : Wᴴ * (1 - X) * W = 1 - Wᴴ * X * W := by
     simp only [Matrix.mul_sub, Matrix.sub_mul, Matrix.mul_one, Matrix.mul_assoc]
@@ -252,7 +251,7 @@ private theorem unitary_exists_diagonalization (m : Matrix S S ℂ) (hm : mᴴ *
   · have ha : starRingEnd ℂ (1 + Complex.I * (ev i : ℂ)) = 1 - Complex.I * (ev i : ℂ) := by
       simp [Complex.conj_ofReal] <;> ring
     have hb : starRingEnd ℂ (1 - Complex.I * (ev i : ℂ)) = 1 + Complex.I * (ev i : ℂ) := by
-      simp [Complex.conj_ofReal] <;> ring
+      simp [Complex.conj_ofReal]
     simp only [map_div₀, map_mul, ha, hb]
     rw [div_mul_div_comm, div_eq_one_iff_eq (mul_ne_zero (mul_ne_zero hζ0' (hc' i)) (mul_ne_zero hζ0 (hc i)))]
     linear_combination (-((1 - Complex.I * (ev i : ℂ)) * (1 + Complex.I * (ev i : ℂ)))) * hζ1

@@ -173,7 +173,7 @@ namespace GlobalTheory.PDiv
 
 theorem isHopfIdeal_kerIdeal {R A C : Type} [CommRing R] [CommRing A] [CommRing C]
     [HopfAlgebra R A] [HopfAlgebra R C] (f : C →ₐc[R] A) : (kerIdeal f).IsHopfIdeal R := by
-  apply GlobalTheory.PDiv.isHopfIdeal_kerIdeal_of_bialgHom <;> assumption
+  apply GlobalTheory.PDiv.isHopfIdeal_kerIdeal_of_bialgHom
 
 theorem isCocomm_of_surjective {R A B : Type} [CommRing R] [CommRing A] [CommRing B]
     [Bialgebra R A] [Bialgebra R B] [IsCocomm R A] (f : A →ₐc[R] B)

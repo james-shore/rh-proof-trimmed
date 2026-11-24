@@ -362,7 +362,7 @@ instance compactSpace_unitaryGroup (N : ℕ) : CompactSpace (Matrix.unitaryGroup
 theorem isMulRightInvariant_of_compact {G : Type*} [Group G] [TopologicalSpace G]
     [IsTopologicalGroup G] [CompactSpace G] [MeasurableSpace G] [BorelSpace G]
     (μ : Measure G) [IsHaarMeasure μ] : IsMulRightInvariant μ := by
-  apply GlobalTheory.isMulRightInvariant_of_compactSpace <;> assumption
+  apply GlobalTheory.isMulRightInvariant_of_compactSpace
 
 theorem unitary_haar_measure : HaarU := by
   intro N

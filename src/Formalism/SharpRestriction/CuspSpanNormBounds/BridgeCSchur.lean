@@ -82,7 +82,6 @@ theorem schur_selfAdjoint (𝒰 : Set (H →L[ℂ] H))
     have hmem : φ u ∈ spectrum ℝ (cfc φ A) := by
       first
       | (rw [cfc_map_spectrum φ A hA hφ.continuousOn]; exact ⟨u, hu, rfl⟩)
-      | (rw [cfc_map_spectrum φ A]; exact ⟨u, hu, rfl⟩)
     rw [h0, spectrum.zero_eq, Set.mem_singleton_iff] at hmem
     exact hφu hmem
   have hsub : (spectrum ℝ A).Subsingleton := by
@@ -358,7 +357,6 @@ theorem schur_orth [μ.IsMulLeftInvariant] [μ.IsInvInvariant] [μ.IsOpenPosMeas
   have hfc : Continuous fun g => ‖⟪e, ρ g e⟫_ℂ‖ ^ 2 := by
     first
     | exact (continuous_const.inner hc0).norm.pow 2
-    | fun_prop
   have hfi : Integrable (fun g => ‖⟪e, ρ g e⟫_ℂ‖ ^ 2) μ := by
     have hi := (Iint_integrable h e e e e).norm
     refine hi.congr (ae_of_all _ fun g => ?_)
@@ -372,13 +370,11 @@ theorem schur_orth [μ.IsMulLeftInvariant] [μ.IsInvInvariant] [μ.IsOpenPosMeas
   have hIe : Iint μ ρ e e e e = ((∫ g, ‖⟪e, ρ g e⟫_ℂ‖ ^ 2 ∂μ : ℝ) : ℂ) := by
     unfold Iint
     first
-    | rw [← integral_ofReal]
     | rw [← integral_complex_ofReal]
     refine integral_congr_ae (ae_of_all _ fun g => ?_)
     show ⟪e, ρ g e⟫_ℂ * star ⟪e, ρ g e⟫_ℂ = ((‖⟪e, ρ g e⟫_ℂ‖ ^ 2 : ℝ) : ℂ)
     first
     | rw [Complex.star_def, Complex.mul_conj, Complex.normSq_eq_norm_sq]
-    | (rw [Complex.star_def, Complex.mul_conj, Complex.normSq_eq_abs]; push_cast; ring)
   have hee : ⟪e, e⟫_ℂ = ((‖e‖ ^ 2 : ℝ) : ℂ) := by
     first
     | (rw [inner_self_eq_norm_sq_to_K]; norm_cast)
@@ -519,7 +515,6 @@ theorem equiv_of_intertwiner (h : SqRep μ ρ) (h' : SqRep μ ρ')
     have hS : (S : Set H) = Set.range V := by
       first
       | exact LinearMap.coe_range _
-      | (ext x; exact LinearMap.mem_range)
     have hinv : ∀ g, ∀ x ∈ S, ρ g x ∈ S := by
       intro g x hx
       obtain ⟨w, rfl⟩ := LinearMap.mem_range.1 hx
@@ -593,13 +588,6 @@ private theorem umat_surj_lemma {n : ℕ} {ε : Fin n → Bool} (g : Matrix (Fin
        congr 1
        funext a
        split_ifs <;> norm_num)
-    | (unfold Formalism.REAL.Jm
-       ext i j
-       by_cases hij : i = j
-       · subst hij
-         simp only [Matrix.diagonal_mul_diagonal, Matrix.diagonal_apply_eq, Matrix.one_apply_eq]
-         split_ifs <;> norm_num
-       · simp [Matrix.diagonal_mul_diagonal, Matrix.diagonal_apply_ne _ hij, Matrix.one_apply_ne hij])
   have hg' : gᴴ * Formalism.REAL.Jm ε * g = Formalism.REAL.Jm ε := hg
   have hl : (Formalism.REAL.Jm ε * gᴴ * Formalism.REAL.Jm ε) * g = 1 := by
     calc (Formalism.REAL.Jm ε * gᴴ * Formalism.REAL.Jm ε) * g
@@ -609,8 +597,6 @@ private theorem umat_surj_lemma {n : ℕ} {ε : Fin n → Bool} (g : Matrix (Fin
   have hr : g * (Formalism.REAL.Jm ε * gᴴ * Formalism.REAL.Jm ε) = 1 := by
     first
     | exact mul_eq_one_comm.1 hl
-    | (have h3 := Matrix.mul_nonsing_inv g (Matrix.isUnit_det_of_left_inverse hl)
-       rwa [Matrix.inv_eq_left_inv hl] at h3)
   first
   | exact ⟨⟨⟨g, _, hr, hl⟩, hg⟩, rfl⟩
 

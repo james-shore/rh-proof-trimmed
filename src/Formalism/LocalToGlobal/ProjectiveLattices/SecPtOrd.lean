@@ -66,10 +66,7 @@ private theorem valV_unit_lemma (u : Vˣ) :
   have hu : (u : V) ∉ (IsDiscreteValuationRing.maximalIdeal V).asIdeal := fun h =>
     (IsLocalRing.mem_maximalIdeal _).mp h u.isUnit
   first
-  | exact (IsDedekindDomain.HeightOneSpectrum.intValuation_eq_one_iff _).mpr hu
   | exact IsDedekindDomain.HeightOneSpectrum.intValuation_eq_one_iff.mpr hu
-  | exact le_antisymm (IsDedekindDomain.HeightOneSpectrum.intValuation_le_one _ _)
-      (not_lt.mp fun h => hu ((IsDedekindDomain.HeightOneSpectrum.intValuation_lt_one_iff_mem _ _).mp h))
 
 private theorem valV_unif_lemma_2 {ϖ : V} (hϖ : Irreducible ϖ) :
     IsDedekindDomain.HeightOneSpectrum.valuation F (IsDiscreteValuationRing.maximalIdeal V)

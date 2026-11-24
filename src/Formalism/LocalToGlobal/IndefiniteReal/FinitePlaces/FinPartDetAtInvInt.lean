@@ -120,7 +120,6 @@ theorem resM_orth {s t : R} (hst : s * t = 0) (A B : Matrix n n R) :
     resM s A * resM t B = 1 + s • (A - 1) + t • (B - 1) := by
   have hts : t * s = 0 := by rw [mul_comm, hst]
   simp only [resM, hts, add_mul, mul_add, one_mul, mul_one, smul_mul_assoc, mul_smul_comm, smul_add, smul_smul, zero_smul, add_zero]
-  try abel
 
 theorem resM_add {s t : R} (hst : s * t = 0) (A : Matrix n n R) : resM s A * resM t A = resM (s + t) A := by
   rw [resM_orth hst]

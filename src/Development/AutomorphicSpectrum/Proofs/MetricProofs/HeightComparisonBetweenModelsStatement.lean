@@ -418,7 +418,7 @@ namespace GlobalTheory.CompanionTheory.Ar.Cusp
 
 theorem tendstoUniformlyOn_regWeight_of_isTied :
     ∀ (K : Type) [Fintype K] (J : K → Type) [∀ k, Fintype (J k)] (P : Ideal (ReciprocityTheory.ChartRestriction.G.Geo.MRing J)) (n : ℕ) (M : CxModel P n) (Xo : Set ((Σ k, J k) → ℂ)) (A : HermLine J) (S : LogLogRegularisationSetting M Xo A), S.IsTied → ∀ K' ⊆ S.R.Yo, IsCompact K' → TendstoUniformlyOn S.regWeight S.R.ph (𝓝[>] 0) K' := by
-  apply GlobalTheory.CompanionTheory.Ar.Giv.Mix.tendstoUniformlyOn_regWeight_of_isCompact_subset_Yo <;> assumption
+  apply GlobalTheory.CompanionTheory.Ar.Giv.Mix.tendstoUniformlyOn_regWeight_of_isCompact_subset_Yo
 
 end GlobalTheory.CompanionTheory.Ar.Cusp
 end -- clump:auto

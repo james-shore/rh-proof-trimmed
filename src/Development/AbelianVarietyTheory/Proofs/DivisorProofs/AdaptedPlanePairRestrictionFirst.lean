@@ -59,7 +59,7 @@ open NumberField IsDedekindDomain MeasureTheory Filter Topology Formalism.MainNo
 open GlobalTheory.WeilM GlobalTheory.AdelicU GlobalTheory.LFun GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels GlobalTheory.ThK GlobalTheory.DblEval
 
 theorem _root_.GlobalTheory.T.conj_local_operator : ∀ {F : Type} [Field F] [NumberField F] {κ κ₁ : Type} [Fintype κ] [Fintype κ₁] (e : ((κ → AF F) → ℂ) →ₗ[ℂ] (κ₁ → AF F) → ℂ), IsLocOp e → IsLocOp (conjLin e) := by
-  first | exact @GlobalTheory.DblEval.ConjLoc.isLocOp_conjLin | exact GlobalTheory.DblEval.ConjLoc.isLocOp_conjLin | (intros; apply GlobalTheory.DblEval.ConjLoc.isLocOp_conjLin <;> assumption)
+  first | exact @GlobalTheory.DblEval.ConjLoc.isLocOp_conjLin
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ConjLocalOperatorStatement =====
@@ -255,7 +255,7 @@ theorem conj_schr (w : (κ → R) × (κ → R)) (φ : (κ → R) → ℂ) (x : 
 
 theorem conj_schr_inv (w : (κ → R) × (κ → R)) (φ : (κ → R) → ℂ) (x : κ → R) :
     starRingEnd ℂ (schr ψ⁻¹ w φ x) = schr ψ w (fun x => starRingEnd ℂ (φ x)) x := by
-  simp only [schr, map_mul, AddChar.inv_apply, conj_psi ψ hψ, inv_inv, neg_neg]
+  simp only [schr, map_mul, AddChar.inv_apply, conj_psi ψ hψ, neg_neg]
 
 end Heis
 

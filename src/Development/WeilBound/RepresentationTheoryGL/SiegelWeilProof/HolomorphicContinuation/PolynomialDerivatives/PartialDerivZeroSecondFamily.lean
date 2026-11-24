@@ -161,7 +161,7 @@ theorem contr_smul (c : ℝ) (r : ℂ) (p : PX m n) : contr c (r • p) = r * co
   classical
   rw [contr_eqS c p.support MvPolynomial.support_smul, contr_eqS c p.support le_rfl, Finset.mul_sum]
   refine Finset.sum_congr rfl fun s _ => ?_
-  split_ifs <;> simp [MvPolynomial.coeff_smul, mul_assoc]
+  split_ifs <;> simp [mul_assoc]
 
 theorem contr_sum (c : ℝ) {ι : Type} (I : Finset ι) (f : ι → PX m n) : contr c (∑ i ∈ I, f i) = ∑ i ∈ I, contr c (f i) := by
   classical

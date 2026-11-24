@@ -140,7 +140,7 @@ theorem adl_eq_zero_of_mem_nbhd (a : F) (ha : algebraMap F (AdeleRing (𝓞 F) F
 
 theorem adl_inf_cocompact : ∃ C : Set (InfiniteAdeleRing F), IsCompact C ∧
     ∀ y, ∃ r : 𝓞 F, y - algebraMap F _ (r : F) ∈ C := by
-  apply GlobalTheory.AdeleCocompact.exists_compact_infinite <;> assumption
+  apply GlobalTheory.AdeleCocompact.exists_compact_infinite
 
 theorem adl_cocompact : ∃ K : Set (AdeleRing (𝓞 F) F), IsCompact K ∧
     ∀ x, ∃ a : F, x - algebraMap F _ a ∈ K := by

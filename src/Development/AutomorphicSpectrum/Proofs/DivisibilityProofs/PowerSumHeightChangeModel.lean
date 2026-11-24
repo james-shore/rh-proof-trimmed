@@ -578,7 +578,7 @@ variable {Ψ : Type} [Fintype Ψ] [DecidableEq Ψ] {N : ℕ}
 
 theorem bracket_isHomogeneous (j : ℕ) (φ : Equiv.Perm (Ψ ⊕ Ψ)) (p k : ℕ) (τ : Ψ) :
     (bracket (N := N) j φ p k τ).IsHomogeneous (k - 1) := by
-  apply GlobalTheory.CompanionTheory.Ar.Num.ModelDescentAlt.isHomogeneous_bracket <;> assumption
+  apply GlobalTheory.CompanionTheory.Ar.Num.ModelDescentAlt.isHomogeneous_bracket
 
 end Numbers
 

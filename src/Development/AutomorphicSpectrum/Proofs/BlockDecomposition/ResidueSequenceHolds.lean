@@ -727,7 +727,7 @@ namespace GlobalTheory.CompanionTheory.BZRes.MirClosed
 theorem isClosed_mirabolic :
     ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] (n : ℕ),
       IsClosed (Mir k n : Set (GL (Fin (n + 1)) k)) := by
-  apply GlobalTheory.CompanionTheory.BZMirOnto.isClosed_Mir <;> assumption
+  apply GlobalTheory.CompanionTheory.BZMirOnto.isClosed_Mir
 
 end GlobalTheory.CompanionTheory.BZRes.MirClosed
 end -- clump:auto

@@ -315,7 +315,6 @@ theorem hs_smul [FiniteDimensional ℂ Wq] (c : ℂ) (hc : ‖c‖ = 1) (X : Wq 
 theorem hSsgs_holds : HSsgs := by
   intro k r Wp Wq _ _ _ _ _ _ D F p hp g
   have hj := Formalism.FourierDecayAlt.P.OrbitalIntegralIdentities.jf_equiv D F p hp g
-  unfold rho at hj
   have hh : Matrix.of p.1.1 ∈ UWset k r D.z := hp.1
   have hh' : (Matrix.of p.2.1)⁻¹ ∈ UWset k r D.z' := Formalism.FourierDecayAlt.P.BigCellInversePair.uw_inv hp.2.2.1
   calc ‖hsVec (JF D F (sgs p g))‖

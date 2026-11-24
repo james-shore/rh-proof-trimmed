@@ -126,13 +126,8 @@ theorem simple_transp (e : ι ≃ κ) {τ : FDRep ℂ (GL ι K)} (h : Simple τ)
     refine Fintype.sum_equiv (glEquiv K e).toEquiv _ _ (fun g => ?_)
     first
       | simp
-      | simp [map_inv]
-      | rfl
   rw [hs]
   first
-    | (rw [hc]; exact h)
-    | (simp only [hc]; exact h)
-    | (simp only [invOf_eq_inv] at h ⊢; rw [hc]; exact h)
     | (convert h using 3; simp [hc])
     | (convert h using 2; simp [hc])
 

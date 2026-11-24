@@ -61,7 +61,7 @@ namespace PI.ScPsiExists.UnitaryGroupMassFormula
 
 theorem sum_embedding_eq_trace (F : Type) [Field F] [NumberField F] [IsTotallyReal F] (y : F) :
     ∑ v : InfinitePlace F, v.embedding y = algebraMap ℚ ℂ (Algebra.trace ℚ F y) := by
-  apply PI.StdCharTRWork.sum_embedding_eq_trace <;> assumption
+  apply PI.StdCharTRWork.sum_embedding_eq_trace
 
 theorem sum_embedding_int (F : Type) [Field F] [NumberField F] [IsTotallyReal F] (c : 𝓞 F) :
     ∃ n : ℤ, ∑ v : InfinitePlace F, v.embedding (algebraMap (𝓞 F) F c) = (n : ℂ) := by

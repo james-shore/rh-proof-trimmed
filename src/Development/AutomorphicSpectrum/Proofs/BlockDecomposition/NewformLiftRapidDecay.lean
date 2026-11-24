@@ -469,7 +469,7 @@ theorem selfDualLattice_projection_mem_of_unit_length (x : 𝔸[ℚ]) (a : Jd) (
     rw [← mul_assoc, e1, mul_assoc]
   simp only [mul_assoc, e2]
   rw [hx]
-  simp only [map_mul, mul_assoc, c1, c2]
+  simp only [map_mul, mul_assoc, c2]
 
 theorem full_split (x : 𝔸[ℚ]) (a : Jd) (κ : KA) :
     ∃ (γ₀ : GL (Fin 2) ℚ) (z : UpperHalfPlane) (r : GL (Fin 2) ℝ), r.val * r.valᵀ = 1 ∧ r.det.val = 1 ∧ z.im = md a ∧

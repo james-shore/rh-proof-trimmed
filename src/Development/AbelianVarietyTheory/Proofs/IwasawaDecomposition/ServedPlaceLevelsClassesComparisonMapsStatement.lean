@@ -245,7 +245,7 @@ theorem splitting_fst_mem_integers : ∀ {F E : Type} [Field F] [NumberField F] 
     (v : HeightOneSpectrum (𝓞 F)) (spl : E ⊗[F] v.adicCompletion F ≃+* v.adicCompletion F × v.adicCompletion F),
     (∀ a : v.adicCompletion F, spl ((1 : E) ⊗ₜ[F] a) = (a, a)) →
     ∀ z ∈ Formalism.BasicNotions.intV E v, (spl z).1 ∈ v.adicCompletionIntegers F := by
-  apply Formalism.MainNotions.Gaps.Loc.fst_int <;> assumption
+  apply Formalism.MainNotions.Gaps.Loc.fst_int
 
 end GlobalTheory
 end -- clump:auto

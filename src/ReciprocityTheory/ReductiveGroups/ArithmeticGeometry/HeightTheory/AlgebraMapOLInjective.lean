@@ -138,7 +138,7 @@ theorem addv_nonneg (s : S) : 0 ≤ addv L v (algebraMap S L s) := by
   exact_mod_cast h2
 
 theorem addv_pos_iff (s : S) : 0 < addv L v (algebraMap S L s) ↔ s ∈ v.asIdeal := by
-  apply PI.HtPlacesSumWork.addv_pos_iff <;> assumption
+  apply PI.HtPlacesSumWork.addv_pos_iff
 
 theorem eq_addv (w : AddValuation L (WithTop ℤ)) (hw : IsNormDiscrete w)
     (h0 : ∀ s : S, 0 ≤ w (algebraMap S L s))

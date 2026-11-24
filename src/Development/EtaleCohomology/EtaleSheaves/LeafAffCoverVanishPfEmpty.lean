@@ -78,7 +78,7 @@ namespace LateralTheory.E.E8
 
 theorem etaleFreeSheafOfRepresentable_isZero_of_isEmpty_scheme (R : Type) [CommRing R] (E : Scheme.{0}) [IsEmpty E] :
     IsZero ((free R).obj (yoneda.obj E)) := by
-  apply LateralTheory.E.LeafVanVPf.free_empty <;> assumption
+  apply LateralTheory.E.LeafVanVPf.free_empty
 
 theorem leafEmptyVanish : LeafEmptyVanish := by
   intro R _ X F n

@@ -159,7 +159,7 @@ theorem exists_ginv {K : Type} [Field K] {r m : ℕ} (A : Matrix (Fin r) (Fin m)
 
 theorem exists_left (v : InfinitePlace E) (W : Submodule E (Fin n → E)) :
     ∃ L : Matrix (Fin (Module.finrank E W)) (Fin n) ℂ, L * (basisMat W).map v.embedding = 1 := by
-  apply _root_.GlobalTheory.CompanionTheory.LocFlagPf.exists_left <;> assumption
+  apply _root_.GlobalTheory.CompanionTheory.LocFlagPf.exists_left
 
 theorem gram_re_pos {r : ℕ} (B : Matrix (Fin n) (Fin r) ℂ) (L : Matrix (Fin r) (Fin n) ℂ) (hL : L * B = 1) :
     0 < (Bᴴ * B).det.re := by

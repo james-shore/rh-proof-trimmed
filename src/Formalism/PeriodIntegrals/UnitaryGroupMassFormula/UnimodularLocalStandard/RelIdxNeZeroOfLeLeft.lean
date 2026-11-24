@@ -178,7 +178,7 @@ lemma stdLat_smul_idx (L : PeriodPair) (m : Type*) [Fintype m] {N : ℕ} (hN : N
     refine ⟨fun j => (⟨p j % N, Set.mem_Ico.mpr ⟨Int.emod_nonneg _ hN1, Int.emod_lt_of_pos _ hN0⟩⟩,
       ⟨q j % N, Set.mem_Ico.mpr ⟨Int.emod_nonneg _ hN1, Int.emod_lt_of_pos _ hN0⟩⟩), ?_⟩
     refine ⟨fun j => ((p j / N : ℤ) : ℂ) * L.ω₁ + ((q j / N : ℤ) : ℂ) * L.ω₂, ?_, ?_⟩
-    · simp only [PI.ULS.stdLat, AddSubgroup.mem_pi]
+    · simp only [PI.ULS.stdLat]
       intro j _
       exact (mem_lattice_iff_exists_int_comb L _).mpr ⟨_, _, rfl⟩
     · funext j
@@ -186,11 +186,9 @@ lemma stdLat_smul_idx (L : PeriodPair) (m : Type*) [Fintype m] {N : ℕ} (hN : N
       rw [← hpq j]
       have d1 : (N : ℤ) * (p j / N) + p j % N = p j := by
         first
-        | exact Int.ediv_add_emod _ _
         | exact EuclideanDomain.div_add_mod _ _
       have d2 : (N : ℤ) * (q j / N) + q j % N = q j := by
         first
-        | exact Int.ediv_add_emod _ _
         | exact EuclideanDomain.div_add_mod _ _
       have c1 : (N : ℂ) * ((p j / N : ℤ) : ℂ) + ((p j % N : ℤ) : ℂ) = (p j : ℂ) := by
         exact_mod_cast d1

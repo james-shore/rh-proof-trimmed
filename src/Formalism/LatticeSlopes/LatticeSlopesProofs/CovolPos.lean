@@ -58,7 +58,7 @@ namespace Formalism.F
 theorem linearIndependent_coe_basis {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
     [FiniteDimensional ℝ E] (L : Submodule ℤ E) [hL : DiscreteTopology L] {ι : Type*} [Fintype ι]
     (b : Basis ι ℤ L) : LinearIndependent ℝ (fun i => (b i : E)) := by
-  apply Formalism.F.linearIndependent_coe_basis' <;> assumption
+  apply Formalism.F.linearIndependent_coe_basis'
 
 theorem covol_pos' : CovolPos := by
   intro E _ _ _ L hL

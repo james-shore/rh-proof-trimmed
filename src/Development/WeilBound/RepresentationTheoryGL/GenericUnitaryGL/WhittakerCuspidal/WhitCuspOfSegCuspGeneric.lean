@@ -69,13 +69,13 @@ namespace PositivityTheory.rg.gu.whit
 
 theorem rank_le_one_iff_dual (W : Type) [AddCommGroup W] [Module ℂ W] :
     Module.rank ℂ W ≤ 1 ↔ Module.rank ℂ (Module.Dual ℂ W) ≤ 1 := by
-  apply CompanionTheory.rg.gu.whit.rank_le_one_iff_dual <;> assumption
+  apply CompanionTheory.rg.gu.whit.rank_le_one_iff_dual
 
 theorem rank_twJacquet_le_one_iff {G V : Type} [Group G] [AddCommGroup V] [Module ℂ V]
     (ρ : Representation ℂ G V) (N : Subgroup G) (θ : N →* ℂˣ) :
     Module.rank ℂ (TwJacquet ρ N θ) ≤ 1 ↔
       Module.rank ℂ (GroundTheory.Automorphic.Whittaker.equivariantFunctionals ρ (fun u : N => ((θ u : ℂˣ) : ℂ))) ≤ 1 := by
-  apply CompanionTheory.rg.gu.whit.rank_twJacquet_le_one_iff <;> assumption
+  apply CompanionTheory.rg.gu.whit.rank_twJacquet_le_one_iff
 
 end PositivityTheory.rg.gu.whit
 end -- clump:auto

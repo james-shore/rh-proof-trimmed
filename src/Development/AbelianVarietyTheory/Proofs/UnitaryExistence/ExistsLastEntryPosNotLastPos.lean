@@ -292,7 +292,7 @@ end Minors
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} {Dw : Datum H} {l : Level H}
 
 theorem rt0_conj_neg_ne_zero (H : Host E) : starRingEnd ℂ H.rt0 = -H.rt0 ∧ H.rt0 ≠ 0 := by
-  apply LevelTowerAlt.rt0_conj_neg_ne_zero <;> assumption
+  apply LevelTowerAlt.rt0_conj_neg_ne_zero
 
 theorem not_inPsi_conjugate {τ : E →+* ℂ} (h : InPsi H τ) : ¬ InPsi H (ComplexEmbedding.conjugate τ) := by
   intro h'

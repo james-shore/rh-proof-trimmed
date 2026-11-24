@@ -609,7 +609,7 @@ end Pure
 
 theorem isExtOver_mk (Ω G V : Type) [Field Ω] [Field G] [Algebra Ω G] [AddCommGroup V] [Module Ω V] :
     IsExtOver (algebraMap Ω G) (TensorProduct.mk Ω G V 1).toAddMonoidHom := by
-  apply GlobalTheory.CompanionTheory.Ar.FlagBun.Flags.isExtOver_mk <;> assumption
+  apply GlobalTheory.CompanionTheory.Ar.FlagBun.Flags.isExtOver_mk
 
 end PositivityTheory.Xgp.c_fm_exists_flags_dualflag
 

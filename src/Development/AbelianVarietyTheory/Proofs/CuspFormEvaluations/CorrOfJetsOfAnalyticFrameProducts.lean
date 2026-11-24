@@ -391,7 +391,7 @@ namespace GlobalTheory.AnVal.JetCorr
 
 theorem jet_point_eq {K : Type} [Field K] {J : Type} {m : ℕ} (p : PrimeSpectrum (Jet K J m)) :
     p = IsLocalRing.closedPoint (Jet K J m) := by
-  apply GlobalTheory.JetVal.jet_pt_eq <;> assumption
+  apply GlobalTheory.JetVal.jet_pt_eq
 
 section JetOf
 

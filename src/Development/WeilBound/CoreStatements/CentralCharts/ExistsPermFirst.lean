@@ -92,7 +92,7 @@ def NChart (A : FinHolAtlas n X) (U : Set X) (L : LocPot X) (s : X → X → ℂ
 
 theorem exists_perm_first (S : Finset (Fin n)) :
     ∃ σ : Equiv.Perm (Fin n), ∀ i, i ∈ S ↔ ((σ i : Fin n) : ℕ) < S.card := by
-  apply Formalism.UG.P.satake_exists_perm <;> assumption
+  apply Formalism.UG.P.satake_exists_perm
 
 def scalePerm (δ : ℝ) (hδ : 0 < δ) (σ : Equiv.Perm (Fin n)) : (Fin n → ℂ) ≃L[ℂ] (Fin n → ℂ) :=
   LinearEquiv.toContinuousLinearEquiv

@@ -404,7 +404,7 @@ lemma levi_three_block (g₁ : Mat k r') (a b : ℂ) (y : Fin (2 * r' + k + 1) �
   · rw [tk_mulVec]
     simp only [ιLev_apply_tkF]
     simp only [tkF, tkL, levPos, Fin.val_mk]
-    simp [hN0]
+    simp
   · intro j
     rw [tk_mulVec, ιLev_levPos_tkF_eq_zero, ιLev_levPos_tkL_eq_zero]
     simp only [ιLev_levPos_levPos, zero_mul, zero_add, add_zero]
@@ -451,7 +451,7 @@ lemma long_weyl_three_block (c a b : ℂ) (y : Fin (2 * r' + k + 1) → ℂ) :
   · rw [tk_mulVec]
     simp only [w0_tkF_apply_eq_ite_star_inv]
     simp only [tkF, tkL, levPos, Fin.val_mk]
-    simp [hN0', hN] <;> rfl
+    simp [hN0', hN]
   · intro j
     rw [tk_mulVec]
     simp only [w0_levPos_apply_eq_ite_succ]
@@ -460,7 +460,7 @@ lemma long_weyl_three_block (c a b : ℂ) (y : Fin (2 * r' + k + 1) → ℂ) :
   · rw [tk_mulVec]
     simp only [w0_tkL_apply_eq_ite]
     simp only [tkF, tkL, levPos, Fin.val_mk]
-    simp [hN0]
+    simp
 
 lemma tk_herm_sum {m : ℕ} (H : Matrix (Fin m) (Fin m) ℂ) (u v : Fin m → ℂ) :
     ∑ j, herm H (bvec j) v * u j = herm H u v := by

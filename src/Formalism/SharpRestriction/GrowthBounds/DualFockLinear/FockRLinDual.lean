@@ -83,8 +83,7 @@ theorem Lin_chain (N : S → Matrix (Fin k) (Fin k) R) (s : S) (b : Fin k) (h : 
     rintro ⟨t, c⟩
     rw [Lin_X]
 
-    simp only [map_sum, Derivation.leibniz, MvPolynomial.pderiv_X, MvPolynomial.pderiv_C, smul_zero, add_zero,
-    Pi.single_apply, Prod.mk.injEq, smul_eq_mul]
+    simp only [map_sum, Derivation.leibniz, MvPolynomial.pderiv_X, MvPolynomial.pderiv_C, Pi.single_apply, Prod.mk.injEq, smul_eq_mul]
     by_cases ht : t = s
     · subst ht
       simp [Finset.sum_ite_eq', Finset.sum_ite_eq, MvPolynomial.smul_eq_C_mul]

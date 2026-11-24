@@ -70,7 +70,7 @@ theorem step (w : ℂ) (h : ‖w - 1‖ < 1/2) : (3/2 : ℝ) * ‖w - 1‖ ≤ �
   nlinarith [norm_nonneg (w - 1)]
 
 theorem main : ∀ {z : ℂ}, (∀ (n : ℕ), ‖z ^ (2 : ℕ) ^ n - (1 : ℂ)‖ < (1 / 2 : ℝ)) → z = (1 : ℂ) := by
-  apply GlobalTheory.IterativeScalingBound.main <;> assumption
+  apply GlobalTheory.IterativeScalingBound.main
 
 end GlobalTheory.PositiveFormRecursion
 end -- clump:auto
@@ -91,7 +91,6 @@ namespace GlobalTheory.CompanionTheory.SchrSB
 theorem eq_one_of_pow_two_pow_near {z : ℂ} (h : ∀ n : ℕ, ‖z ^ (2 ^ n) - 1‖ < 1 / 2) : z = 1 := by
   first
   | (apply _root_.GlobalTheory.PositiveFormRecursion.main <;> assumption)
-  | (intros; exact _root_.GlobalTheory.PositiveFormRecursion.main ..)
 
 variable {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
 

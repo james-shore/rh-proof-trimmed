@@ -447,7 +447,7 @@ theorem form_sum_right {n k : ℕ} (Hm : Matrix (Fin n) (Fin n) E) (c : Fin k �
 
 theorem mem_hermLat {m : ℕ} (X : Matrix (Fin m) (Fin m) E) :
     X ∈ hermLat L m ↔ IsHerm L X ∧ IsIntM L X := by
-  apply GlobalTheory.CongGrp.mem_hermLat <;> assumption
+  apply GlobalTheory.CongGrp.mem_hermLat
 
 theorem mem_mul_herm {m : ℕ} {p : E} (hp : IsUnit p) (hc : L.cj p = p) (X : Matrix (Fin m) (Fin m) E) :
     X ∈ (hermLat L m).map (DistribSMul.toAddMonoidHom _ p) ↔

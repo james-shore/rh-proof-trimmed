@@ -80,7 +80,6 @@ private lemma pmat_eq_eigenvectorUnitary_mul_diagonal_mul_star {ε : Fin n → B
   conv_lhs => rw [(pmat_isHermitian z).spectral_theorem]
   first
   | rfl
-  | (congr 2; ext i j; simp [pev, Matrix.diagonal_apply])
 
 theorem pmat_mul_evU {ε : Fin n → Bool} (z : PCoord ε → ℂ) :
     pmat z * ((pmat_isHermitian z).eigenvectorUnitary : Matrix (Fin n) (Fin n) ℂ) =
@@ -98,11 +97,10 @@ theorem neg_pmat_eq {ε : Fin n → Bool} (z : PCoord ε → ℂ) :
   rw [h]
   have hd : diagonal (fun a => ((-pev z a : ℝ) : ℂ)) = -diagonal (fun a => (pev z a : ℂ)) := by
     ext i j
-    by_cases hij : i = j <;> simp [diagonal_apply, hij]
+    by_cases hij : i = j <;> simp [hij]
   rw [hd]
   first
   | rw [Matrix.mul_neg, Matrix.neg_mul]
-  | noncomm_ring
 
 theorem jm_conj_pmat {ε : Fin n → Bool} (z : PCoord ε → ℂ) : Jm ε * (pmat z * Jm ε) = -pmat z := by
   ext a b
@@ -126,9 +124,9 @@ private lemma charpoly_roots_diagonal (d : Fin n → ℂ) :
       by_cases hij : i = j
       · subst hij
         first
-        | simp [Matrix.charmatrix_apply]
+        | simp
       · first
-        | simp [Matrix.charmatrix_apply, hij]
+        | simp [hij]
     rw [hc, det_diagonal]
   rw [h1, Finset.prod_eq_multiset_prod]
   have hm : (univ.val.map fun i => Polynomial.X - Polynomial.C (d i)) =

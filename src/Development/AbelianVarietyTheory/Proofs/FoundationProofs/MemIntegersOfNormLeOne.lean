@@ -71,7 +71,7 @@ theorem coeff_norm_le_one (l : ℕ) [Fact (Nat.Prime l)] (a : ℤ_[l]) :
 
 theorem norm_le_one_of_isIntegral :
     ∀ (l : ℕ) [inst : Fact (Nat.Prime l)] (x : PadicAlgCl l), IsIntegral ℤ_[l] x → ‖x‖ ≤ (1 : ℝ) := by
-  apply GlobalTheory.PadicNormCastBounds.norm_le_one_of_isIntegral <;> assumption
+  apply GlobalTheory.PadicNormCastBounds.norm_le_one_of_isIntegral
 
 end GlobalTheory.IntegralCoefficientNormBound
 end -- clump:auto

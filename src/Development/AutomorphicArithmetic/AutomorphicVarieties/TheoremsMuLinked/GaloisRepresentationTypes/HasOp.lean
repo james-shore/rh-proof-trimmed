@@ -381,7 +381,7 @@ private theorem symOf_chi {n : ℕ} {A G : Type} [CommRing A] [Group G] (ρ : G 
   rw [map_sub, MonoidAlgebra.mapRingHom_single, Matrix.charpoly]
   congr 1
   ext i j : 2
-  by_cases h : i = j <;> simp [GDet.repAlg, Matrix.charmatrix, h, Matrix.one_apply, Matrix.diagonal_apply]
+  by_cases h : i = j <;> simp [GDet.repAlg, Matrix.charmatrix, h]
 
 private theorem symOf_vieta {n : ℕ} {A K K' G : Type} [CommRing A] [CommRing K] [CommRing K'] [Group G] (D : GDet n A G)
     (f : A →+* K) (ρ : G →* Matrix (Fin n) (Fin n) K) (hD : D.map f = GDet.ofRep ρ) (e : K →+* K') (g : G) (α : Fin n → K')
@@ -732,7 +732,7 @@ private theorem representation_partial_charpoly_vanishes {n : ℕ} {K G : Type} 
   · congr 3
     funext k
     by_cases hk : k = i <;> simp [hk, representation_algebra_single]
-  · simp [representation_algebra_single, sub_smul]
+  · simp [representation_algebra_single]
 
 private theorem charpoly_relation_under_variable_rename {n q : ℕ} {R G E : Type} [CommRing R] [Group G] [Ring E] [Algebra R E] (D : GDet n R G)
     (act : PUY R q n →ₐ[R] E) (Nq : Fin q → ℕ) (j : Fin q) (k : ℕ) (z : MonoidAlgebra (MvPolynomial (Fin n ⊕ Fin n) R) G)

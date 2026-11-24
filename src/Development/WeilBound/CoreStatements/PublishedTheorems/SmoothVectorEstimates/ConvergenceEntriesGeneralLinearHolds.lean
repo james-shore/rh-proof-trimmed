@@ -1284,7 +1284,7 @@ variable {R : Type} [CommRing R] {a : ℕ}
 theorem posM_col (m : ℕ) (y : UnipotentBlockColumnIndex a m m → R) (i k : Fin a) :
     posM (Subtype.val : UnipotentBlockColumnIndex a m m → Fin a × Fin a) y i k =
       if hik : (i : ℕ) < m ∧ (k : ℕ) = m then y ⟨(i, k), hik.1, hik.2.ge, hik.2.le⟩ else 0 := by
-  apply _root_.PositivityTheory.AdelicQuotientData.ColumnBlockEquiv.pm_col <;> assumption
+  apply _root_.PositivityTheory.AdelicQuotientData.ColumnBlockEquiv.pm_col
 
 theorem posM_mul_apply {ι : Type} [Fintype ι] (p : ι → Fin a × Fin a) (y : ι → R)
     (M : Matrix (Fin a) (Fin a) R) (i k : Fin a) :

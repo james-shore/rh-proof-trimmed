@@ -693,7 +693,6 @@ theorem jacquet_mk_ne_zero (hp : GlobalTheory.Published.DepthZeroJacquetInjectiv
     (Submodule.Quotient.mk v : Jacquet π.π (unipB k (Fin n))) ≠ 0 := by
   first
   | (apply _root_.GlobalTheory.PointStabilizer.mk_ne_zero <;> assumption)
-  | (intros; exact _root_.GlobalTheory.PointStabilizer.mk_ne_zero ..)
 
 end GlobalTheory.TameIwahori.JacquetNonzero
 end -- clump:auto

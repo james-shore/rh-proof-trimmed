@@ -59,7 +59,7 @@ namespace GlobalTheory.FlagSecProbe
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {r : ℕ}
 
 theorem dom_nonempty (X : Data E r) : X.dom.Nonempty := by
-  apply GlobalTheory.SW.DblZero.dom_nonempty <;> assumption
+  apply GlobalTheory.SW.DblZero.dom_nonempty
 
 end GlobalTheory.FlagSecProbe
 end -- clump:auto

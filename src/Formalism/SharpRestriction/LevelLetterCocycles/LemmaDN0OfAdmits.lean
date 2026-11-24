@@ -271,10 +271,6 @@ private theorem q0_dvd_of_X_dvd_levC_primitive_roots [IsLocalRing O] [IsAdicComp
     first
     | (obtain ⟨q, r, hr⟩ := PowerSeries.exists_isWeierstrassDivision (f := a) hne
        exact ⟨q, r, hr.degree_lt, hr.eq_mul_add⟩)
-    | (obtain ⟨q, r, hr⟩ := PowerSeries.exists_isWeierstrassDivision a hne
-       exact ⟨q, r, hr.degree_lt, hr.eq_mul_add⟩)
-    | exact ⟨_, _, (PowerSeries.isWeierstrassDivision_weierstrassDiv_weierstrassMod a hne).degree_lt,
-        (PowerSeries.isWeierstrassDivision_weierstrassDiv_weierstrassMod a hne).eq_mul_add⟩
   rw [hres, PowerSeries.order_X_pow] at hdeg0
   have hdeg : r.degree < ((PD.p - 1 : ℕ) : WithBot ℕ) := by
     first

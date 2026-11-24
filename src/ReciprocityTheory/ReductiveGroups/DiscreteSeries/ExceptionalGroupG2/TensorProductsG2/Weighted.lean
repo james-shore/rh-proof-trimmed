@@ -71,10 +71,10 @@ variable {n : ℕ} {ε : Fin n → Bool}
 
 theorem wd_rreg_adj (g : Formalism.REAL.UJ ε) (a b : L2 ε) :
     inner ℂ (rreg ε (Formalism.MainNotions.S.umat g) a) b = inner ℂ a (rreg ε (Formalism.MainNotions.S.umat g⁻¹) b) := by
-  apply ReciprocityTheory.ChartRestriction.DS.wd_rreg_adj <;> assumption
+  apply ReciprocityTheory.ChartRestriction.DS.wd_rreg_adj
 
 theorem wd_hs_inv (g : Formalism.REAL.UJ ε) : S7.hs (Formalism.MainNotions.S.umat g⁻¹) = S7.hs (Formalism.MainNotions.S.umat g) := by
-  apply ReciprocityTheory.ChartRestriction.DS.wd_hs_inv <;> assumption
+  apply ReciprocityTheory.ChartRestriction.DS.wd_hs_inv
 
 theorem wdF_add (f f' : Matrix (Fin n) (Fin n) ℂ → ℂ) : wdF ε (f + f') = wdF ε f + wdF ε f' := by
   funext g; simp [wdF, mul_add]

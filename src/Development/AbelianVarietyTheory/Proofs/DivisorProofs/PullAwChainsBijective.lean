@@ -689,7 +689,7 @@ noncomputable section
 namespace GlobalTheory.EZ
 
 theorem fc_eq_δ (n : ℕ) (i : Fin (n + 2)) : fc (n + 1) n i = SimplexCategory.δ i := by
-  apply GlobalTheory.EZ.fc_succ_eq_delta <;> assumption
+  apply GlobalTheory.EZ.fc_succ_eq_delta
 
 theorem idc_self (n : ℕ) : idc n n = 𝟙 _ := by
   ext j
@@ -1459,7 +1459,7 @@ theorem alt_double_sum {M : Type*} [AddCommGroup M] (n : ℕ)
     (F : (SimplexCategory.mk n ⟶ SimplexCategory.mk (n + 2)) → M) :
     ∑ i ∈ Finset.range (n + 3), ∑ j ∈ Finset.range (n + 2),
       ((-1 : ℤ) ^ i * (-1) ^ j) • F (fc (n + 1) n j ≫ fc (n + 2) (n + 1) i) = 0 := by
-  apply GlobalTheory.EZ.TotSq.alt_double_sum <;> assumption
+  apply GlobalTheory.EZ.TotSq.alt_double_sum
 
 theorem dH_comp_dH (a b x y c d : ℕ) : dH a b x y ≫ dH x y c d = 0 := by
   unfold dH

@@ -81,11 +81,9 @@ lemma isPreconnected_dom (L : PeriodPair) (α : ℂ) (hα : α ≠ 0) : IsPrecon
     first
       | (rw [Complex.rank_real_complex]; exact one_lt_two)
       | (rw [Complex.rank_real_complex]; norm_num)
-      | simp [Complex.rank_real_complex]
   have hconn : IsConnected ((fun z => α * z) ⁻¹' (L.lattice : Set ℂ))ᶜ := by
     first
       | exact Set.Countable.isConnected_compl_of_one_lt_rank hrank hc'
-      | exact (Set.Countable.isPathConnected_compl_of_one_lt_rank hrank hc').isConnected
   exact hconn.isPreconnected
 
 lemma notMem_of_dom {L : PeriodPair} {α z : ℂ} (hst : MulStable L α) (hz : α * z ∉ L.lattice) :

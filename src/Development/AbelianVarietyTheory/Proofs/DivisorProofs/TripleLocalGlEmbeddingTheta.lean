@@ -446,7 +446,7 @@ theorem GlobalTheory.SwapSchur.sliceT_swap_eq_smul : ∀ (F E : Type) [Field F] 
     intro π x; ext i j; simp
   have coXneg : ∀ x : Matrix (Fin a') (Fin (a + a')) (AE F E),
       GlobalTheory.FlipMatch.coX t 1 1 (-x) = -GlobalTheory.FlipMatch.coX t 1 1 x := by
-    intro x; simp only [GlobalTheory.FlipMatch.coX, mapNeg]; simp [Matrix.mul_neg, Matrix.neg_mul]
+    intro x; simp only [GlobalTheory.FlipMatch.coX, mapNeg]; simp [Matrix.mul_neg]
   have coYneg : ∀ x : Matrix (Fin a') (Fin (a + a')) (AE F E),
       GlobalTheory.FlipMatch.coY σ G.V' G.W t 1 1 (-x) = -GlobalTheory.FlipMatch.coY σ G.V' G.W t 1 1 x := by
     intro x; simp only [GlobalTheory.FlipMatch.coY, mapNeg]; simp [Matrix.mul_neg, Matrix.neg_mul]
@@ -525,23 +525,19 @@ theorem GlobalTheory.SwapSchur.sliceT_swap_eq_smul : ∀ (F E : Type) [Field F] 
     (fun l x => schr (GlobalTheory.LatVac.psiAt B.ψ v) (GlobalTheory.LatVac.locCo dd v
       (Matrix.fromCols (xX (formR l))ᵀ (xX (formL l))ᵀ)) x)
     (fun C x hx => ⟨GlobalTheory.SchrSB.schr_mem_SB B.ψ hψc v _ x hx, funext fun Y => by
-        beta_reduce
         rw [hι₁, tr1 _ _ (hxYat _) (hxYat _) (hxY0 _) (hxY0 _) x hx, hxY, hxY, hι₁]
         simp only [GlobalTheory.SwapSlice.swapNeg, splitC_add, Prod.fst_add, Prod.snd_add, neg_add],
       funext fun Y => by
-        beta_reduce
         show GlobalTheory.SwapSlice.sliceT ι (S _) (splitC Y) = GlobalTheory.SwapSlice.sliceT ι (S x) (splitC (Y + C))
         rw [tr2 _ _ (hxYat _) (hxYat _) (hxY0 _) (hxY0 _) x hx, hxY, hxY]
         simp only [splitC_add, sub_neg_eq_add]
         rfl⟩)
     (fun l x hx => ⟨GlobalTheory.SchrSB.schr_mem_SB B.ψ hψc v _ x hx, funext fun Y => by
-        beta_reduce
         rw [hι₁, mu1 _ _ (hxXat _) (hxXat _) (hxX0 _) (hxX0 _) x hx, hxX, hxX, hι₁, linForm_eq l Y]
         congr 2
         simp only [GlobalTheory.SwapSlice.swapNeg, pairM_neg_left]
         ring,
       funext fun Y => by
-        beta_reduce
         show GlobalTheory.SwapSlice.sliceT ι (S _) (splitC Y) = _ * GlobalTheory.SwapSlice.sliceT ι (S x) (splitC Y)
         rw [mu2 _ _ (hxXat _) (hxXat _) (hxX0 _) (hxX0 _) x hx, hxX, hxX, linForm_eq l Y]
         congr 2
@@ -592,7 +588,7 @@ theorem _root_.GlobalTheory.T.linear_bar_model_local_triple : ∀ (F E : Type) [
         schr (GlobalTheory.LatVac.psiAt B.ψ v) (GlobalTheory.LatVac.locCo dd v (actB (cA σ) w u)) (S Φ)) →
     ∃ c : ℂ, ∀ Φ ∈ SB ((Fin a' × Fin (a + a')) ⊕ (Fin a' × Fin (a + a')) → Fv F v),
       GlobalTheory.SwapSlice.sliceT ι (S Φ) = c • (GlobalTheory.SwapSlice.sliceT ι Φ ∘ GlobalTheory.SwapSlice.swapNeg) := by
-  first | exact @GlobalTheory.SwapSchur.sliceT_swap_eq_smul | exact GlobalTheory.SwapSchur.sliceT_swap_eq_smul | (intros; apply GlobalTheory.SwapSchur.sliceT_swap_eq_smul <;> assumption)
+  first | exact @GlobalTheory.SwapSchur.sliceT_swap_eq_smul
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LinearBarModelLocalTripleStatement =====
@@ -621,7 +617,7 @@ theorem _root_.GlobalTheory.T.local_idempotent_character_value : ∀ {F E : Type
         actB (cA σ) w (Matrix.fromCols u₁ u₂) = Matrix.fromCols (-u₂) (-u₁)) ∧
       (u₁.map (piW (t.comp σ)) = 0 → u₂.map (piW (t.comp σ)) = 0 →
         actB (cA σ) w (Matrix.fromCols u₁ u₂) = Matrix.fromCols u₂ u₁) := by
-  first | exact @GlobalTheory.SwapAtPlace.swap_at_acts | exact GlobalTheory.SwapAtPlace.swap_at_acts | (intros; apply GlobalTheory.SwapAtPlace.swap_at_acts <;> assumption)
+  first | exact @GlobalTheory.SwapAtPlace.swap_at_acts
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LocalIdempotentCharacterValueStatement =====
@@ -641,7 +637,7 @@ theorem _root_.GlobalTheory.T.slice_transform_schwartz_bijective : ∀ {k : Type
     Set.BijOn ι (SB (κ → k) : Set ((κ → k) → ℂ)) (SB (Matrix (Fin n) (Fin d) k) : Set _) →
     Set.BijOn (GlobalTheory.SwapSlice.sliceT ι) (SB (κ ⊕ κ → k) : Set ((κ ⊕ κ → k) → ℂ))
       (SB (Matrix (Fin n) (Fin d) k × Matrix (Fin n) (Fin d) k) : Set _) := by
-  first | exact @GlobalTheory.SwapSliceBij.sliceT_bijOn | exact GlobalTheory.SwapSliceBij.sliceT_bijOn | (intros; apply GlobalTheory.SwapSliceBij.sliceT_bijOn <;> assumption)
+  first | exact @GlobalTheory.SwapSliceBij.sliceT_bijOn
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SliceTransformSchwartzBijectiveStatement =====
@@ -711,7 +707,7 @@ theorem _root_.GlobalTheory.T.splitting_preserves_local_schwartz : ∀ {F : Type
       ∀ u, At (evFin F v) u → ∀ Φ ∈ SB (κ → Fv F v),
         S (schr (GlobalTheory.LatVac.psiAt ψ v) (GlobalTheory.LatVac.locCo dd v u) Φ) =
           schr (GlobalTheory.LatVac.psiAt ψ v) (GlobalTheory.LatVac.locCo dd v (act p u)) (S Φ) := by
-  first | exact @GlobalTheory.LocSplitOp.exists_locOp | exact GlobalTheory.LocSplitOp.exists_locOp | (intros; apply GlobalTheory.LocSplitOp.exists_locOp <;> assumption)
+  first | exact @GlobalTheory.LocSplitOp.exists_locOp
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SplittingPreservesLocalSchwartzStatement =====
@@ -819,7 +815,7 @@ theorem _root_.GlobalTheory.T.linear_model_local_good_place : ∀ (F E : Type) [
       ι ψ₁ = (fun Y => starRingEnd ℂ (ι (fun y => starRingEnd ℂ (φ₂ y)) (-Y))) →
       ι (fun y => starRingEnd ℂ (ψ₂ y)) = (fun Y => starRingEnd ℂ (ι φ₁ (-Y))) →
       Acts (evFin F v) (omd w) (boxFun φ₁ φ₂) (c • boxFun ψ₁ ψ₂) := by
-  first | exact @GlobalTheory.SwapActs.swap_acts_box | exact GlobalTheory.SwapActs.swap_acts_box | (intros; apply GlobalTheory.SwapActs.swap_acts_box <;> assumption)
+  first | exact @GlobalTheory.SwapActs.swap_acts_box
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LinearModelLocalGoodPlaceStatement =====
@@ -887,7 +883,7 @@ theorem _root_.GlobalTheory.T.local_idempotent_conjugation_sign : ∀ {F E : Typ
     IsCMExt F E σ → ∀ (v : Pl (F := F)) (t : E →ₐ[F] Fv F v), ∃ f : _root_.GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.AE (F := F) (E := E),
       GlobalTheory.LatVac.liftV v (1 : Fv F v) • f = f ∧ f * f = algebraMap (AF F) (_root_.GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.AE (F := F) (E := E)) (GlobalTheory.LatVac.liftV v 1) ∧
       f * cA σ f = -algebraMap (AF F) (_root_.GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.AE (F := F) (E := E)) (GlobalTheory.LatVac.liftV v 1) ∧ piW t f = 1 ∧ piW (t.comp σ) f = -1 := by
-  first | exact @GlobalTheory.SwapAtSplit.exists_swap_elt | exact GlobalTheory.SwapAtSplit.exists_swap_elt | (intros; apply GlobalTheory.SwapAtSplit.exists_swap_elt <;> assumption)
+  first | exact @GlobalTheory.SwapAtSplit.exists_swap_elt
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LocalIdempotentConjugationSignStatement =====
@@ -961,8 +957,8 @@ theorem swap_at_place : ∀ {F E : Type} [Field F] [NumberField F] [Field E] [Nu
     rw [hM, dbl, Matrix.fromBlocks_transpose, Matrix.fromBlocks_map, Matrix.fromBlocks_multiply,
       Matrix.fromBlocks_multiply]
     simp only [Matrix.transpose_smul, Matrix.transpose_one, hmap, hcp, Matrix.smul_mul, Matrix.mul_smul,
-      Matrix.one_mul, Matrix.mul_one, Matrix.zero_mul, Matrix.mul_zero, add_zero, zero_add, Matrix.mul_neg,
-      Matrix.neg_mul, smul_smul, smul_neg]
+      Matrix.one_mul, Matrix.mul_one, Matrix.mul_zero, add_zero, zero_add, Matrix.mul_neg,
+      smul_smul, smul_neg]
     congr 1 <;> ext i j <;>
       simp only [Matrix.add_apply, Matrix.smul_apply, smul_eq_mul, Matrix.zero_apply, Matrix.neg_apply]
     all_goals
@@ -971,8 +967,6 @@ theorem swap_at_place : ∀ {F E : Type} [Field F] [NumberField F] [Field E] [Nu
         | linear_combination incM F J i j * (hfc - hpp - hp)
         | linear_combination incM F J i j * (hpcf - hpf)
         | linear_combination incM F J i j * (hpf - hpcf)
-        | linear_combination incM F J i j * (hpcf + hpf)
-        | linear_combination incM F J i j * (-hpcf - hpf)
 
   refine ⟨⟨⟨M, M, hMM, hMM⟩, hU⟩, rfl, ?_, Subtype.ext (Units.ext hMM), ?_⟩
   · intro u hu
@@ -990,10 +984,6 @@ theorem swap_at_place : ∀ {F E : Type} [Field F] [NumberField F] [Field E] [Nu
       first
           | linear_combination 1 * ((ua * (1 : Matrix (Fin n) (Fin n) (AE F E)) i j) * hp - (1 : Matrix (Fin n) (Fin n) (AE F E)) i j * huq)
           | linear_combination 1 * ((1 : Matrix (Fin n) (Fin n) (AE F E)) i j * huf)
-          | linear_combination 1 * (-((1 : Matrix (Fin n) (Fin n) (AE F E)) i j * huf))
-          | linear_combination 1 * (- (ua * (1 : Matrix (Fin n) (Fin n) (AE F E)) i j) * hp + (1 : Matrix (Fin n) (Fin n) (AE F E)) i j * huq)
-          | linear_combination 1 * ((ua * (1 : Matrix (Fin n) (Fin n) (AE F E)) i j) * hp + (1 : Matrix (Fin n) (Fin n) (AE F E)) i j * huq)
-          | linear_combination 1 * (-(ua * (1 : Matrix (Fin n) (Fin n) (AE F E)) i j) * hp - (1 : Matrix (Fin n) (Fin n) (AE F E)) i j * huq)
   · intro k hk gd gd' hgd hgd'
     apply Subtype.ext
     apply Units.ext
@@ -1008,8 +998,8 @@ theorem swap_at_place : ∀ {F E : Type} [Field F] [NumberField F] [Field E] [Nu
       simp only [Matrix.smul_apply, Matrix.sub_apply, Matrix.zero_apply, smul_eq_mul] at h
       linear_combination h
     rw [hgd, hgd', hM, Matrix.fromBlocks_multiply, Matrix.fromBlocks_multiply]
-    simp only [Matrix.smul_mul, Matrix.mul_smul, Matrix.one_mul, Matrix.mul_one, Matrix.zero_mul, Matrix.mul_zero,
-      add_zero, zero_add, smul_smul, smul_zero]
+    simp only [Matrix.smul_mul, Matrix.mul_smul, Matrix.one_mul, Matrix.mul_one, Matrix.mul_zero,
+      add_zero, zero_add, smul_smul]
     congr 1 <;> ext i j <;>
       simp only [Matrix.add_apply, Matrix.smul_apply, smul_eq_mul, Matrix.zero_apply]
     all_goals
@@ -1047,7 +1037,7 @@ theorem _root_.GlobalTheory.T.local_weyl_element_doubled : ∀ {F E : Type} [Fie
         ((gd : GL (Fin n ⊕ Fin n) (_root_.GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.AE (F := F) (E := E))) : Matrix (Fin n ⊕ Fin n) (Fin n ⊕ Fin n) (_root_.GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.AE (F := F) (E := E))) = Matrix.fromBlocks (mat k) 0 0 1 →
         ((gd' : GL (Fin n ⊕ Fin n) (_root_.GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.AE (F := F) (E := E))) : Matrix (Fin n ⊕ Fin n) (Fin n ⊕ Fin n) (_root_.GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.AE (F := F) (E := E))) = Matrix.fromBlocks 1 0 0 (mat k) →
         w * gd * w = gd' := by
-  first | exact @GlobalTheory.DblDiag.swap_at_place | exact GlobalTheory.DblDiag.swap_at_place | (intros; apply GlobalTheory.DblDiag.swap_at_place <;> assumption)
+  first | exact @GlobalTheory.DblDiag.swap_at_place
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LocalWeylElementDoubledStatement =====

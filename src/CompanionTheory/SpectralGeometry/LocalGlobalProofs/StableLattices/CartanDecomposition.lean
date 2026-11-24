@@ -284,7 +284,7 @@ theorem Hq_inner (k r : ℕ) (j : Fin (2 * r + k + 1)) (hj : ¬ outer k r j) :
   split_ifs <;> (try simp) <;> omega
 
 theorem Hq_sq (k r : ℕ) : Hq k r * Hq k r = 1 := by
-  apply GlobalTheory.CompanionTheory.BesselLevi.Hq_sq <;> assumption
+  apply GlobalTheory.CompanionTheory.BesselLevi.Hq_sq
 
 def tor (k r : ℕ) (u : ℝ) : Fin (2 * r + k + 1) → ℝ := fun i =>
   if i.val = r then u else if i.val = r + k then u⁻¹ else 1

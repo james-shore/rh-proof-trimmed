@@ -985,7 +985,7 @@ theorem inj_sub (P : Type) [CommRing P] [IsDomain P] :
 
 theorem aic_integralClosure (P : Type) [CommRing P] [IsDomain P] :
     AIC (integralClosure P (AlgebraicClosure (FractionRing P))) := by
-  apply GlobalTheory.aic_integralClosure_algebraicClosure <;> assumption
+  apply GlobalTheory.aic_integralClosure_algebraicClosure
 
 theorem inj_P (P : Type) [CommRing P] [IsDomain P] :
     Function.Injective (algebraMap P (integralClosure P (AlgebraicClosure (FractionRing P)))) := by

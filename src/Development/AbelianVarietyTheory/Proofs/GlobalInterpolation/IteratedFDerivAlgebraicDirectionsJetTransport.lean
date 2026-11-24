@@ -133,7 +133,7 @@ theorem perm_of_cnt {k : ℕ} (f l : Fin k → σ) (h : ∀ i, cnt f i = cnt l i
 
 theorem cnt_toList (α : σ →₀ ℕ) (i : σ) :
     cnt (fun j : Fin (Multiset.card α.toMultiset) => α.toMultiset.toList.get ⟨j, by simpa using j.2⟩) i = α i := by
-  apply _root_.Formalism.L2.KerInert.AlgP.cnt_toList <;> assumption
+  apply _root_.Formalism.L2.KerInert.AlgP.cnt_toList
 
 def cntF {m : ℕ} (f : Fin m → σ) : σ →₀ ℕ := ∑ j, Finsupp.single (f j) 1
 

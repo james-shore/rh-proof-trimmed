@@ -148,7 +148,7 @@ theorem ker_eq_span_homogeneous {F E : Type} [Field F] [Field E] [Algebra F E]
   have hρX : ∀ p, ρ (MvPolynomial.X p) = ∑ i, MvPolynomial.C (c p i) * MvPolynomial.X (a i) := by
     intro p
 
-    simp [ρ, ρ', map_sum, aeval_X, rename_C, rename_X]
+    simp [ρ, ρ', map_sum, aeval_X, rename_X]
   have hxp : ∀ p, x p = ∑ i, algebraMap F E (c p i) * x (a i) := by
     intro p
     simp only [hx, Finset.mul_sum]

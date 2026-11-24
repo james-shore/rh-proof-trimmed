@@ -251,7 +251,7 @@ theorem hermFramePairNormalForm_baseLattice_fg (N : NF H r) : N.P0.FG := by
     (Submodule.fg_iSup _ fun _ => Submodule.fg_iSup _ fun _ => (ipow_fg _ _).map _)
 
 theorem span_hermFramePair_lattice_eq_sup (N : NF H r) : Submodule.span K (N.P0 : Set V) = V0 N.F N.F' ⊔ N.Ist := by
-  apply GlobalTheory.DegCnt.DualPos.span_hermFramePair_lattice_eq_sup <;> assumption
+  apply GlobalTheory.DegCnt.DualPos.span_hermFramePair_lattice_eq_sup
 
 
 omit [StarRing K] in

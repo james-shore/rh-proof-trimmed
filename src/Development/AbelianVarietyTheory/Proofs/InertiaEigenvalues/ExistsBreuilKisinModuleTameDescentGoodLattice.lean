@@ -730,7 +730,7 @@ namespace GlobalTheory.BKGal.PrismTwist
 variable {l : ℕ} [hl : Fact l.Prime] (a : ℕ) [NeZero a] {e : ℕ} [NeZero e] (ϖ : GlobalTheory.BKReal.PiSys l e)
 
 theorem ev_injective : Function.Injective (ϖ.ev a) := by
-  apply GlobalTheory.BKCoord.ev_injective <;> assumption
+  apply GlobalTheory.BKCoord.ev_injective
 
 theorem σA_frobenius (g : GQ l) (x : Ainf l) :
     Per.σA g (WittVector.frobenius x) = WittVector.frobenius (Per.σA g x) := by

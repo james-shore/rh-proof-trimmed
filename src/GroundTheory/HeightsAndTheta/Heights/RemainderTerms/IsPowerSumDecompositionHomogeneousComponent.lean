@@ -127,8 +127,7 @@ theorem rootRingToReal_smallPowerSum_last (f r a m : ℕ) (τ : Fin f) :
     rootRingToReal f (r + a) a r (Nat.add_comm r a) (smallPowerSum f r a .last m τ) =
       IndefiniteRowSideFullHecke.RestTerms.smallPsum f a r true m τ := by
 
-  simp only [smallPowerSum, yRoot, SmallBlock.sign, yIndex, map_sum, map_pow, map_mul,
-  rootRingToReal_C, rootRingToReal_X, IndefiniteRowSideFullHecke.RestTerms.smallPsum, if_true, C_1, one_mul]
+  simp only [smallPowerSum, yRoot, SmallBlock.sign, yIndex, map_sum, map_pow, rootRingToReal_X, IndefiniteRowSideFullHecke.RestTerms.smallPsum, if_true, C_1, one_mul]
   refine sum_congr rfl fun i _ => ?_
   rfl
 
@@ -136,8 +135,7 @@ theorem rootRingToReal_smallPowerSum_first (f r a m : ℕ) (τ : Fin f) :
     rootRingToReal f (r + a) r a rfl (smallPowerSum f r a .first m τ) =
       IndefiniteRowSideFullHecke.RestTerms.smallPsum f r a false m τ := by
 
-  simp only [smallPowerSum, yRoot, SmallBlock.sign, yIndex, map_sum, map_pow, map_mul,
-  rootRingToReal_C, rootRingToReal_X, IndefiniteRowSideFullHecke.RestTerms.smallPsum, Bool.false_eq_true, if_false,
+  simp only [smallPowerSum, yRoot, SmallBlock.sign, yIndex, map_sum, map_pow, rootRingToReal_X, IndefiniteRowSideFullHecke.RestTerms.smallPsum, Bool.false_eq_true, if_false,
   C_1, neg_one_mul, map_neg]
   refine sum_congr rfl fun i _ => ?_
   rfl

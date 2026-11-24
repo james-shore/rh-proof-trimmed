@@ -125,7 +125,7 @@ theorem E_val_zero {n : ℕ} (g : GL (Fin n) k) (i l : Fin (n + 1)) :
     (((E k 0 g : Mir k n) : GL (Fin (n + 1)) k) : Matrix (Fin (n + 1)) (Fin (n + 1)) k) i l =
       if h : (i : ℕ) < n ∧ (l : ℕ) < n then (g : Matrix (Fin n) (Fin n) k) ⟨i, h.1⟩ ⟨l, h.2⟩
       else (1 : Matrix (Fin (n + 1)) (Fin (n + 1)) k) i l := by
-  apply CompanionTheory.RgGu.NR.DerEq.E_val_zero <;> assumption
+  apply CompanionTheory.RgGu.NR.DerEq.E_val_zero
 
 theorem E_val_succ {n j : ℕ} (g : GL (Fin n) k)
     (ih : ∀ i l : Fin (n + j + 1), (((E k j g : Mir k (n + j)) : GL (Fin (n + j + 1)) k) :
@@ -233,7 +233,7 @@ theorem derChar_val (ψ : AddChar k Circle) {N n : ℕ} (x : derUnip k N n) :
 theorem ker_Q' (ψ : AddChar k Circle) {n t N : ℕ} (h : n + t = N) {V : Type} [AddCommGroup V] [Module ℂ V]
     (π : Representation ℂ (GL (Fin N) k) V) :
     LinearMap.ker (Q' k ψ h π) = twKer π (derUnip k N n) (derChar k ψ N n) := by
-  apply CompanionTheory.RgGu.NR.DerEq.ker_Q' <;> assumption
+  apply CompanionTheory.RgGu.NR.DerEq.ker_Q'
 
 end PositivityTheory.RgGu.NR.DerEq
 
@@ -243,6 +243,6 @@ open DerEq in
 
 theorem derEquiv (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] :
     DerEquiv k := by
-  apply CompanionTheory.RgGu.NR.derEquiv <;> assumption
+  apply CompanionTheory.RgGu.NR.derEquiv
 
 end PositivityTheory.RgGu.NR

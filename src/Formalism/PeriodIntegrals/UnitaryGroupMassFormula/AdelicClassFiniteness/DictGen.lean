@@ -71,7 +71,6 @@ theorem natSmul_mem (k : ℕ) {w : Fin I.n → I.E ⊗[I.F] Af I.F} (hw : w ∈ 
       exact nsmul_mem hw k
     | rw [Nat.cast_smul_eq_nsmul]
       exact nsmul_mem hw k
-    | exact I.Lf.smul_mem (k : IntAf I.F I.E) hw
 
 theorem iv_nsmul (N : ℕ) (v : Fin I.n → I.E) :
     iv I (N • v) = (N : I.E ⊗[I.F] Af I.F) • iv I v := by

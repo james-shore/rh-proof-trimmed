@@ -71,7 +71,7 @@ theorem re_embedding_mk {F : Type} [Field F] (φ : F →+* ℂ) (x : F) :
 theorem trace_eq_sum_mult_mul_re {F : Type} [Field F] [NumberField F] (x : F) :
     ((Algebra.trace ℚ F x : ℚ) : ℝ) =
       ∑ w : InfinitePlace F, (w.mult : ℝ) * (w.embedding x).re := by
-  apply GlobalTheory.CompanionTheory.AdeleCharLocal.trace_eq_sum <;> assumption
+  apply GlobalTheory.CompanionTheory.AdeleCharLocal.trace_eq_sum
 
 end GlobalTheory.TraceRealEmbeddingSum
 end -- clump:auto

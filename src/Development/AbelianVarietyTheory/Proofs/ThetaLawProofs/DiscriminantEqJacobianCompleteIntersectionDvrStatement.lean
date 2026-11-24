@@ -586,7 +586,6 @@ theorem _root_.GlobalTheory.KeyKa.KoszulTors.koszul_tors : ∀ (O : Type) [CommR
         | (simp [wf]; done)
         | (simp [wf]; rfl)
         | rfl
-        | (simp only [wf, ↓reduceDIte, ↓reduceIte]; rfl)
     · intro I _ hI
       refine Finset.sum_eq_zero fun l _ => ?_
       show IsLocalRing.residue O (if I = ∅ then ev₀ I.card a l else 0) * _ = 0

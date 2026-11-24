@@ -142,7 +142,6 @@ theorem esum_sub_le (M N : Matrix m k ℂ) : esum (M - N) ≤ esum M + esum N :=
 theorem esum_mul_le (M : Matrix m k ℂ) (N : Matrix k p ℂ) : esum (M * N) ≤ esum M * esum N := by
   first
   | (apply _root_.GlobalTheory.SpectralLemmaSecond.main <;> assumption)
-  | (intros; exact _root_.GlobalTheory.SpectralLemmaSecond.main ..)
 
 theorem esum_le_of_entry (M : Matrix m k ℂ) {c : ℝ} (h : ∀ i j, ‖M i j‖ ≤ c) :
     esum M ≤ Fintype.card m * (Fintype.card k * c) := by

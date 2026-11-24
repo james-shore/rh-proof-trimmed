@@ -240,9 +240,6 @@ private lemma dp_inner_P (T : KType ε Λ) (k : KG ε) (v : T.V) :
   first
   | (rw [RCLike.mul_conj]; rfl)
   | (rw [RCLike.mul_conj]; norm_cast)
-  | (rw [RCLike.mul_conj]; push_cast; ring)
-  | (rw [Complex.mul_conj, Complex.normSq_eq_norm_sq]; push_cast; ring)
-  | simp [RCLike.mul_conj]
 
 private lemma dp_cont_P (T : KType ε Λ) : Continuous (dpP T) := by
   have hop : Continuous fun k : KG ε => T.op k := continuous_subtype_val.comp T.cont

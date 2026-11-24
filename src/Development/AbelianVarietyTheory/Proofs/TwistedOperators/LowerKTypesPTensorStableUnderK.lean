@@ -272,8 +272,7 @@ theorem familyArrayLinearMap_matrixUnitFamilyActionGenerator (E : Fin n → Fin 
   obtain ⟨⟨a, b⟩, rfl⟩ : ∃ p, α = fun _ => p := ⟨α 0, funext fun i => by rw [Subsingleton.elim i 0]⟩
 
   simp [isometryArrayLinearMap, arr1, arrE, factorAction, ptE, arrTo, arrOf, actM, vmGen_apply, ha, Finset.sum_add_distrib,
-  smul_add, smul_sub, Finset.sum_sub_distrib, hYe', hite, smul_ite, hs1, hs2,
-  LinearMap.sum_apply, map_sum, map_smul, neg_smul, Finset.sum_neg_distrib]
+  smul_add, smul_sub, Finset.sum_sub_distrib, hYe', hite, smul_ite, LinearMap.sum_apply, map_sum, map_smul, neg_smul, Finset.sum_neg_distrib]
   abel
 
 private theorem kStable_isoPart' {X : Type*} [AddCommGroup X] [Module ℂ X] (ε : Fin n → Bool)

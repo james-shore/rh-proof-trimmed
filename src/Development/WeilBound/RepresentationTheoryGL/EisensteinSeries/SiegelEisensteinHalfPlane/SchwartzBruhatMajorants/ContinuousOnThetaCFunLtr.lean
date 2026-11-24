@@ -374,7 +374,7 @@ namespace GlobalTheory.CompanionTheory.EpsteinThetaC
 variable {k : Type} [Field k] [NumberField k] {ι : Type} [Fintype ι] [DecidableEq ι]
 
 theorem continuous_scalC : Continuous (scalC : IdeleGroup k → GL ι 𝔸[k]) := by
-  apply GlobalTheory.CompanionTheory.EpsteinUnfold.Hd.continuous_scalC <;> assumption
+  apply GlobalTheory.CompanionTheory.EpsteinUnfold.Hd.continuous_scalC
 
 theorem thetaC_ltr (A h : GL ι 𝔸[k]) (F : (ι → 𝔸[k]) → ℂ) :
     thetaC (ltr A F) h = thetaC F (A * h) := by

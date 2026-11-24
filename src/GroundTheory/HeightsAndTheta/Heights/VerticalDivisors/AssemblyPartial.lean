@@ -675,7 +675,7 @@ theorem map_linForm {R S : Type*} [CommRing R] [CommRing S] {n : ℕ} (f : R →
 
 theorem map_integralModel {n : ℕ} (I : Ideal (MvPolynomial (Fin n) K)) :
     (integralModel I).map (MvPolynomial.map (algebraMap (𝓞 K) K)) = I := by
-  apply GroundTheory.Heights₂.Heights.Vertical.SecBFinite.map_integralModel <;> assumption
+  apply GroundTheory.Heights₂.Heights.Vertical.SecBFinite.map_integralModel
 
 theorem map_secIdeal {n : ℕ} (e : ℕ) (I : Ideal (MvPolynomial (Fin n) K)) (v : HeightOneSpectrum (𝓞 K)) :
     (secIdeal (modelR e I v) (parY e n v)).map (MvPolynomial.map (parToFrac e n v)) =

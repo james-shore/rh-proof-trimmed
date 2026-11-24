@@ -80,13 +80,11 @@ theorem pow_le_span_sup {Q : Ideal A} [Q.IsPrime] (hQ : Q ≠ ⊥) {π : A} (hπ
     (hπ2 : π ∉ Q ^ 2) : ∀ m : ℕ, Q ^ m ≤ Ideal.span {π ^ m} ⊔ Q ^ (m + 1) := by
   first
   | (apply _root_.GlobalTheory.SpanPowerSupremum.pow_le_span_pow_sup <;> assumption)
-  | (intros; exact _root_.GlobalTheory.SpanPowerSupremum.pow_le_span_pow_sup ..)
 
 theorem pow_not_mem {Q : Ideal A} [Q.IsPrime] (hQ : Q ≠ ⊥) {π : A} (hπ : π ∈ Q)
     (hπ2 : π ∉ Q ^ 2) (m : ℕ) : π ^ m ∉ Q ^ (m + 1) := by
   first
   | (apply _root_.GlobalTheory.AlgebraicIntegerNormBound.main <;> assumption)
-  | (intros; exact _root_.GlobalTheory.AlgebraicIntegerNormBound.main ..)
 
 end Dedekind
 

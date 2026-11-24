@@ -155,9 +155,6 @@ theorem hAt_zero_left {c : Fin dd → MvPowerSeries τ C} (hc : ∀ i, MvPowerSe
     hAt Y (fun _ => 0) c = 0 := by
   have hA : MvPowerSeries.HasSubst (fun q : Fin 1 × Fin dd => c q.2) := by
     first
-      | exact MvPowerSeries.HasSubst.of_constantCoeff_zero' (fun q => hc q.2)
-      | exact MvPowerSeries.HasSubst.of_constantCoeff_nilpotent
-          (fun q => by rw [hc q.2]; exact IsNilpotent.zero)
       | exact ⟨fun q => by rw [hc q.2]; exact IsNilpotent.zero,
           by first
             | exact fun d => Set.toFinite _
@@ -176,7 +173,6 @@ theorem hAt_zero_left {c : Fin dd → MvPowerSeries τ C} (hc : ∀ i, MvPowerSe
         first
           | simp [pt, MvPowerSeries.subst_X hA]
     all_goals first
-      | exact hA
       | (intro i; simp [pt])
       | (intro i; rfl)
       | simp_all
@@ -186,9 +182,6 @@ theorem hAt_zero_right {c : Fin dd → MvPowerSeries τ C} (hc : ∀ i, MvPowerS
     hAt Y c (fun _ => 0) = 0 := by
   have hA : MvPowerSeries.HasSubst (fun q : Fin 1 × Fin dd => c q.2) := by
     first
-      | exact MvPowerSeries.HasSubst.of_constantCoeff_zero' (fun q => hc q.2)
-      | exact MvPowerSeries.HasSubst.of_constantCoeff_nilpotent
-          (fun q => by rw [hc q.2]; exact IsNilpotent.zero)
       | exact ⟨fun q => by rw [hc q.2]; exact IsNilpotent.zero,
           by first
             | exact fun d => Set.toFinite _
@@ -207,7 +200,6 @@ theorem hAt_zero_right {c : Fin dd → MvPowerSeries τ C} (hc : ∀ i, MvPowerS
       · funext i
         rw [Pi.zero_apply, ← MvPowerSeries.coe_substAlgHom hA, map_zero]
     all_goals first
-      | exact hA
       | (intro i; simp [pt])
       | (intro i; rfl)
       | simp_all

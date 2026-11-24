@@ -79,7 +79,7 @@ variable {E : Type} [Field E] [NumberField E]
 
 theorem isOpen_le_exp (w : Pl E) (m : ℤ) :
     IsOpen {y : w.adicCompletion E | Valued.v y ≤ WithZero.exp m} := by
-  apply _root_.GlobalTheory.PowBdd.isOpen_le_exp <;> assumption
+  apply _root_.GlobalTheory.PowBdd.isOpen_le_exp
 
 theorem exists_bound_of_isCompact (w : Pl E) {S : Set (w.adicCompletion E)} (hS : IsCompact S) :
     ∃ γ : WithZero (Multiplicative ℤ), ∀ x ∈ S, Valued.v x ≤ γ := by

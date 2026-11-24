@@ -105,7 +105,7 @@ theorem lift_vector_zero_block {z : Fin (2 * ρ + k + 1) → ℂ} (hz : inWb k �
   split_ifs with h
   · congr 1
     ext
-    simp only [Fin.val_mk]
+    simp only
     omega
   · exact (hz p (by omega)).symm
 

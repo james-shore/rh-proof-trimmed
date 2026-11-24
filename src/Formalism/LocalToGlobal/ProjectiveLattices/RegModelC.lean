@@ -92,7 +92,6 @@ theorem reg_vertical_e {O A : Type} [CommRing O] [IsDomain O] [IsDiscreteValuati
   classical
   haveI hAN : IsNoetherianRing A := by
     first
-    | infer_instance
     | exact Algebra.FiniteType.isNoetherianRing O A
   obtain ⟨ϖ, hϖ⟩ := IsDiscreteValuationRing.exists_irreducible O
   have hϖm : ϖ ∈ maximalIdeal O := by
@@ -228,7 +227,6 @@ theorem reg_vertical_e {O A : Type} [CommRing O] [IsDomain O] [IsDiscreteValuati
     powers_le_nonZeroDivisors_of_noZeroDivisors hs0
   haveI hBdom : IsDomain (Localization.Away s) := by
     first
-    | infer_instance
     | exact IsLocalization.isDomain_localization hpow
   haveI hBft : Algebra.FiniteType O (Localization.Away s) := by
     have h1 : Algebra.FiniteType A (Localization.Away s) := by
@@ -236,14 +234,12 @@ theorem reg_vertical_e {O A : Type} [CommRing O] [IsDomain O] [IsDiscreteValuati
       infer_instance
     first
     | exact Algebra.FiniteType.trans (inferInstance : Algebra.FiniteType O A) h1
-    | infer_instance
   haveI hBfl : Module.Flat O (Localization.Away s) := by
     haveI : Module.Flat A (Localization.Away s) := by
       first
       | infer_instance
     first
     | exact Module.Flat.trans O A (Localization.Away s)
-    | infer_instance
   have hdisj : Disjoint (Submonoid.powers s : Set A) (P : Set A) := by
     rw [Set.disjoint_left]
     rintro x ⟨k, rfl⟩ hk
@@ -252,8 +248,6 @@ theorem reg_vertical_e {O A : Type} [CommRing O] [IsDomain O] [IsDiscreteValuati
     first
     | exact IsLocalization.isPrime_of_isPrime_disjoint (Submonoid.powers s)
         (Localization.Away s) P inferInstance hdisj
-    | exact IsLocalization.isPrime_of_isPrime_disjoint (M := Submonoid.powers s)
-        (S := Localization.Away s) P inferInstance hdisj
   have hsp : Ideal.map (algebraMap O (Localization.Away s)) (maximalIdeal O) ≠ ⊤ := by
     rw [IsScalarTower.algebraMap_eq O A (Localization.Away s), ← Ideal.map_map]
     exact ne_top_of_le_ne_top hPB.ne_top (Ideal.map_mono hv)
@@ -315,7 +309,6 @@ theorem reg_vertical_e {O A : Type} [CommRing O] [IsDomain O] [IsDiscreteValuati
     haveI hmx : ((maximalIdeal V).comap (algebraMap O V)).IsMaximal := by
       first
       | exact Ideal.isMaximal_comap_of_isIntegral_of_isMaximal (algebraMap _ _) (RingHom.Finite.to_isIntegral (RingHom.finite_algebraMap.mpr inferInstance)) (maximalIdeal V)
-      | infer_instance
     exact IsLocalRing.eq_maximalIdeal hmx
   have hmem : ϖ ∈ (maximalIdeal V).comap (algebraMap O V) := by
     rw [hmaxV]

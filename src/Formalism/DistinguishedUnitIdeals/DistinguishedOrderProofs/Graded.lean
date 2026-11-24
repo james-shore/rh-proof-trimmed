@@ -170,8 +170,7 @@ lemma fixed_const (T : Set (Ks ≃ₐ[LL] Ks))
        split_ifs with hj
        all_goals first
          | exact (ha j).symm
-         | (rw [map_zero]; simpa using hj)
-         | (rw [map_zero]; exact (not_not.mp hj).symm))
+         | (rw [map_zero]; simpa using hj))
 
 lemma one_tmul_eq_zero [Nontrivial Ks] (w : D) (h : (1 : Ks) ⊗ₜ[LL] w = 0) : w = 0 := by
   classical

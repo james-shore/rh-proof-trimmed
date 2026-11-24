@@ -533,7 +533,7 @@ theorem meas_iterDeriv {Ω : Type} [MeasurableSpace Ω] (F : ℝ → Ω → ℂ)
   apply Formalism.FourierDecayAlt.P.LEx2.A3.meas_iterDeriv <;> assumption
 
 theorem dsMeas : DsMeas := by
-  apply Formalism.FourierDecayAlt.P.LEx2.A3.dsMeas <;> assumption
+  apply Formalism.FourierDecayAlt.P.LEx2.A3.dsMeas
 
 theorem stepClaimFromSteps (hDs : DsMeas) : StepClaimFromSteps := by
   intro hCauchy hMarkovV hTF hTR hTS hTB hTL hCT hLeib hTZ hCI hAdj hEF hCS hSh hMk hTermB hGeom hES hAbs hUB hFat hDom

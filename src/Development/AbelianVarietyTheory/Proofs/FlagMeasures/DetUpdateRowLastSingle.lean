@@ -107,6 +107,6 @@ theorem det_gram_two_frames {K : Type} [CommRing K] (r : ℕ)
       (Matrix.diagonal fun i => if i = Fin.last r then -T' else 0)).det
       = (-1) ^ (r + 1) * (Z.det * W.det - T * T' * ((Z.submatrix Fin.castSucc Fin.castSucc).det
           * (W.submatrix Fin.castSucc Fin.castSucc).det)) := by
-  apply GlobalTheory.SA.TransvG.det_fromBlocks_last <;> assumption
+  apply GlobalTheory.SA.TransvG.det_fromBlocks_last
 
 end GlobalTheory

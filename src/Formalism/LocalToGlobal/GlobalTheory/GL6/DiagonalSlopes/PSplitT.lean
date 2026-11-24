@@ -71,7 +71,6 @@ theorem valuation_le_of_pow_dvd {ϖ x : v.adicCompletionIntegers K} {n : ℕ} (h
       (ϖ : v.adicCompletion K) ^ n * (y : v.adicCompletion K) := by
     first
       | rfl
-      | (push_cast; rfl)
   rw [hc, map_mul, map_pow]
   exact mul_le_of_le_one_right' hy
 
@@ -167,7 +166,6 @@ theorem mem_maximal_ideal_completion_iff (r : R) :
     have h1 : Valued.v (x : v.adicCompletion K) = 1 := by
       rw [hval]
       first
-        | exact (IsDedekindDomain.HeightOneSpectrum.intValuation_eq_one_iff v).2 hr
         | exact (v.intValuation_eq_one_iff).2 hr
     have hx0 : (x : v.adicCompletion K) ≠ 0 := by
       intro h0

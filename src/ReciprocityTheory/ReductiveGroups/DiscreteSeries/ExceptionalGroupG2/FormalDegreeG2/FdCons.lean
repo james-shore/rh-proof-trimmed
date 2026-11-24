@@ -333,12 +333,12 @@ theorem trace_dMat_pmat {ε : Fin n → Bool} (y : PCoord ε → ℂ) : trace (L
 
 theorem pmat_herm_apply {ε : Fin n → Bool} (y : PCoord ε → ℂ) (a b : Fin n) :
     pmat y b a = star (pmat y a b) := by
-  apply ReciprocityTheory.ChartRestriction.DS.pmat_herm_apply <;> assumption
+  apply ReciprocityTheory.ChartRestriction.DS.pmat_herm_apply
 
 theorem sum_pairs_pmat_fp {ε : Fin n → Bool} (w : Fin n → Fin n → ℝ) (z : PCoord ε → ℂ) :
     ∑ x : Fin n × Fin n, (if x.2 < x.1 then w x.1 x.2 * ‖pmat z x.1 x.2‖ ^ 2 else 0) =
       ∑ ab : PCoord ε, w ab.1.1 ab.1.2 * ‖z ab‖ ^ 2 := by
-  apply ReciprocityTheory.ChartRestriction.DS.sum_pairs_pmat_fp <;> assumption
+  apply ReciprocityTheory.ChartRestriction.DS.sum_pairs_pmat_fp
 
 private theorem pmat_apply_eq_zero_of_sign_eq {ε : Fin n → Bool} (y : PCoord ε → ℂ) {a b : Fin n} (he : ε a = ε b) :
     pmat y a b = 0 := by
@@ -348,11 +348,11 @@ private theorem pmat_apply_eq_zero_of_sign_eq {ε : Fin n → Bool} (y : PCoord 
 theorem qForm_term {ε : Fin n → Bool} (y : PCoord ε → ℂ) (a b : Fin n) :
     -((((Dvec n a : ℝ) : ℂ) - ((Dvec n b : ℝ) : ℂ)) * (pmat y a b * Lap.Base.partNM ε (Dvec n) (pmat y) b a)) =
       (((if b < a then (((a : ℕ) : ℝ) - ((b : ℕ) : ℝ)) * ‖pmat y a b‖ ^ 2 else 0 : ℝ)) : ℂ) := by
-  apply ReciprocityTheory.ChartRestriction.DS.qForm_term <;> assumption
+  apply ReciprocityTheory.ChartRestriction.DS.qForm_term
 
 theorem qForm_pmat {ε : Fin n → Bool} (y : PCoord ε → ℂ) :
     Lap.Base.qForm ε (Dvec n) (pmat y) = ((Qf (0 : Fin n → ℝ) y : ℝ) : ℂ) := by
-  apply ReciprocityTheory.ChartRestriction.DS.qForm_pmat <;> assumption
+  apply ReciprocityTheory.ChartRestriction.DS.qForm_pmat
 
 theorem matrix_coefficient_pointwise_limit (hB3 : Lap.Base.TangentPairingStatement) {ε : Fin n → Bool} {lam : Fin n → ℝ} (H : ℕ → Type)
     [∀ t, NormedAddCommGroup (H t)] [∀ t, InnerProductSpace ℂ (H t)] [∀ t, CompleteSpace (H t)]

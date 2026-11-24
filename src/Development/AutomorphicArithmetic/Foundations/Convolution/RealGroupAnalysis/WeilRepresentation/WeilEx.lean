@@ -1130,7 +1130,7 @@ theorem UpperTheory.ConvolutionTheory.R2.C.opsRel :
     exact (ftBasic F δ hδ φ.1 φ.2).2.1 v
   refine ⟨?_, ?_, ?_, ?_, ?_, ?_, ?_⟩
   · ext φ v
-    simp [O.N_apply, psi_zero]
+    simp [O.N_apply]
   · intro b c
     ext φ v
     simp only [Module.End.mul_apply, O.N_apply, add_mul, psi_add]

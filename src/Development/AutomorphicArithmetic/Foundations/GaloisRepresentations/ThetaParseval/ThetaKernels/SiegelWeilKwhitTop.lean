@@ -695,7 +695,7 @@ theorem relH_eq_k (d : _root_.PositivityTheory.SiegelWeilFormula.SD_k σ) (η : 
   have h1 : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.inclR (F := F) (E := E) (AF F) η * Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.inclR (F := F) (AF F) η⁻¹ = 1 := by
     rw [← map_mul, mul_inv_cancel₀ hη, map_one]
   ext i j
-  simp [_root_.PositivityTheory.SiegelWeilFormula.KWhit.relH_k, incM, Matrix.mul_apply, Matrix.scalar_apply, Matrix.diagonal_apply, ← mul_assoc, h1]
+  simp [_root_.PositivityTheory.SiegelWeilFormula.KWhit.relH_k, incM, Matrix.mul_apply, Matrix.scalar_apply, Matrix.diagonal_apply, ← mul_assoc]
   rw [mul_comm (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.inclR (F := F) (E := E) (AF F) η⁻¹), h1, one_mul]
 theorem rel_Td_k (d : _root_.PositivityTheory.SiegelWeilFormula.SD_k σ) (ε : ℤˣ)
     (hε : d.b.1ᵀ * dbl d.Y.J * d.b.1.map σ = Matrix.fromBlocks 0 1 (((ε : ℤ) : E) • 1) 0) (η : E) (hη : η ≠ 0)
@@ -1094,7 +1094,7 @@ theorem par_topleft_k (d : _root_.PositivityTheory.SiegelWeilFormula.SD_k σ) (p
     rw [incM_mul']
     congr 1
     ext i j
-    cases i <;> simp [DC, diagCols, incM, Matrix.one_apply, apply_ite] <;> split_ifs <;> simp_all
+    cases i <;> simp [DC, diagCols, incM, Matrix.one_apply, apply_ite] <;> split_ifs
   have hb : incM F d.b.1 * E1 = DC * incM F tb.1 := h1.trans ((congrArg (incM F) htb').trans h2)
   have hTb : incM F tb.1 * incM F (tb⁻¹).1 = 1 := by
     rw [← incM_mul', Units.mul_inv]

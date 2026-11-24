@@ -323,7 +323,6 @@ theorem diag_decomp : ∀ (R A : Type) [CommRing R] [CommRing A] [Algebra R A] (
       (p₂.1.1 : Matrix (β ⊕ β) (β ⊕ β) A) * diagCols β = diagCols β * t₂.val ∧ gd = kd * p₁ * kd⁻¹ * p₂ := by
   first
   | exact @_root_.GlobalTheory.UnipotentCongruenceInverse.decomposition
-  | (intros; exact _root_.GlobalTheory.UnipotentCongruenceInverse.decomposition ..)
 
 end GlobalTheory.SiegelDiagDecomp
 end -- clump:auto

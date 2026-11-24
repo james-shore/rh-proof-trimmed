@@ -1057,7 +1057,7 @@ theorem chiQ_norm (P : LocPrime l) (h : GQ l) : ‖(P.χQ h : ℚ_[l])‖ = 1 :=
   rw [h3, Padic.add_eq_max_of_ne (ne_of_gt hlt), max_eq_left hlt.le, hA]
 
 theorem chiQ_cont (P : LocPrime l) : Continuous (fun h : GQ l => (P.χQ h : ℚ_[l])) := by
-  apply GlobalTheory.FundCont.continuous_chi <;> assumption
+  apply GlobalTheory.FundCont.continuous_chi
 
 theorem norm_of_v_one (P : LocPrime l) (LL : FinExt l) (x : ℚ_[l])
     (hv : P.v LL (algebraMap ℚ_[l] ↥LL.1 x) = 1) : ‖x‖ = (l : ℝ)⁻¹ := by

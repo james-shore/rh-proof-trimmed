@@ -141,7 +141,7 @@ end Frame
 
 theorem unitB_adj {m : ℕ} (Bs : Fin m → Fin (2 * r + k + 1) → ℂ) (a b : Fin m) :
     (Hpk k r)⁻¹ * (unitB (Hpk k r) Bs a b)ᴴ * Hpk k r = unitB (Hpk k r) Bs b a := by
-  apply Formalism.FourierDecayAlt.P.Qx8.unitB_adj <;> assumption
+  apply Formalism.FourierDecayAlt.P.Qx8.unitB_adj
 
 theorem hpart1_self {m : ℕ} (Bs : Fin m → Fin (2 * r + k + 1) → ℂ) (a : Fin m) :
     hpart1 (Hpk k r) (unitB (Hpk k r) Bs a a) = 0 := by

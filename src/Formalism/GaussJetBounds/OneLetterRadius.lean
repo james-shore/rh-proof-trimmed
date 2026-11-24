@@ -256,7 +256,7 @@ theorem homW_pow {c : ℤ} {f : MvPowerSeries ι K} (hf : HomW w c f) (k : ℕ) 
 
 theorem homW_prod {α : Type w} (s : Finset α) (c : α → ℤ) (F : α → MvPowerSeries ι K)
     (h : ∀ i ∈ s, HomW w (c i) (F i)) : HomW w (∑ i ∈ s, c i) (∏ i ∈ s, F i) := by
-  first | (apply UpperTheory.Reformulated.B.Qi22.homW_prod <;> assumption) | exact @UpperTheory.Reformulated.B.Qi22.homW_prod K ‹_› ι w α s c F h | exact @UpperTheory.Reformulated.B.Qi22.homW_prod K ‹_› ι w α s c F | exact @UpperTheory.Reformulated.B.Qi22.homW_prod K ‹_› ι w α s c | exact @UpperTheory.Reformulated.B.Qi22.homW_prod K ‹_› ι w α s | exact @UpperTheory.Reformulated.B.Qi22.homW_prod K ‹_› ι w α | exact @UpperTheory.Reformulated.B.Qi22.homW_prod K ‹_› ι w | exact @UpperTheory.Reformulated.B.Qi22.homW_prod K ‹_› ι | exact @UpperTheory.Reformulated.B.Qi22.homW_prod K ‹_› | exact @UpperTheory.Reformulated.B.Qi22.homW_prod K
+  first | (apply UpperTheory.Reformulated.B.Qi22.homW_prod <;> assumption)
 
 variable {N : ℤ}
 
@@ -956,7 +956,7 @@ theorem bnx_prod_choose (n : ZMod d →₀ ℕ) (s : ZMod d) (j : ℕ) (hj : j <
     | (rw [Function.update_apply, if_pos rfl, he, one_pow, one_pow, one_mul, one_mul,
         Nat.add_sub_cancel' hj.le])
   · intro t _ hts
-    simp [Function.update_apply, hts]
+    simp [hts]
   · intro h
     exact absurd (Finset.mem_univ s) h
 
@@ -1255,9 +1255,9 @@ theorem bnx_torus_cong {K : Type u} [Field K] (l d : ℕ) [NeZero d] (hl : l.Pri
     (fun t _ ht => by simp [Finsupp.single_apply, Ne.symm ht.1, Ne.symm ht.2])
     (fun h => absurd (Finset.mem_univ s) h) (fun h => absurd (Finset.mem_univ s') h)] at hprod
   have hv1 : (Finsupp.single s (l ^ α) + Finsupp.single s' (l ^ β)) s = l ^ α := by
-    simp [Finsupp.single_apply, Ne.symm hss]
+    simp [Ne.symm hss]
   have hv2 : (Finsupp.single s (l ^ α) + Finsupp.single s' (l ^ β)) s' = l ^ β := by
-    simp [Finsupp.single_apply, hss]
+    simp [hss]
   rw [hv1, hv2] at hprod
   have hζ0 : ζ ≠ 0 := hζ.ne_zero hk0.ne'
   rw [← zpow_natCast, ← zpow_natCast, ← zpow_mul, ← zpow_mul, ← zpow_add₀ hζ0,
@@ -1278,7 +1278,6 @@ theorem bnx_torus_cong {K : Type u} [Field K] (l d : ℕ) [NeZero d] (hl : l.Pri
   have h2 := congrArg (fun x : ℕ => (x : ZMod d)) key
   first
   | (simp only [ZMod.natCast_mod, Nat.cast_add, ZMod.natCast_zmod_val] at h2; exact h2)
-  | (simp at h2; exact h2)
 
 theorem bnx_dot_const {ι : Type*} (n : ι →₀ ℕ) (c : ℝ) :
     dot n (fun _ => c) = (n.degree : ℝ) * c := by
@@ -1287,7 +1286,6 @@ theorem bnx_dot_const {ι : Type*} (n : ι →₀ ℕ) (c : ℝ) :
   congr 1
   first
   | simp [Finsupp.degree_apply]
-  | (rw [Finsupp.degree_apply]; push_cast; rfl)
 
 section Sides
 

@@ -67,7 +67,7 @@ lemma isClosed_UH : IsClosed (UH (Hpk k r)) := by
   exact isClosed_eq hc continuous_const
 
 lemma isClosed_N : IsClosed (Nset k r) := by
-  apply GlobalTheory.ProdHaar.isClosed_Nset <;> assumption
+  apply GlobalTheory.ProdHaar.isClosed_Nset
 
 lemma S_sub_UH {g : Matrix (Fin (2 * r + k + 1)) (Fin (2 * r + k + 1)) ℂ} (hg : g ∈ Sset k r z) :
     g ∈ UH (Hpk k r) := by

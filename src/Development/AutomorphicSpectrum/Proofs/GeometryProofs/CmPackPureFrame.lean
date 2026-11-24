@@ -235,7 +235,7 @@ theorem type_part_linear_independent (H : Host E) (D : Datum H) {g : ℕ} (ty : 
   rw [hSV, finrank_typeSupportedVectors, hcount]
 
 theorem Host_rt0_conj_eq_neg (H : Host E) : starRingEnd ℂ H.rt0 = -H.rt0 := by
-  apply Formalism.MainNotions.ModuliIntegralCharts.H1.rt0_conj_neg_ne_zero <;> assumption
+  apply Formalism.MainNotions.ModuliIntegralCharts.H1.rt0_conj_neg_ne_zero
 
 theorem Host_rt0_ne_zero (H : Host E) : H.rt0 ≠ 0 := by
   intro h

@@ -156,7 +156,6 @@ theorem finite_lift_fractionField (R : Type) [CommRing R] [IsDomain R] [IsIntegr
     ∃ ξ : Sp R ⟶ Z, jK R ≫ ξ = y ∧ ξ ≫ p = ξ₀ := by
   first
   | (apply _root_.GlobalTheory.RetractionLiftSection.lift_finite <;> assumption)
-  | (intros; exact _root_.GlobalTheory.RetractionLiftSection.lift_finite ..)
 
 end GlobalTheory
 end -- clump:auto

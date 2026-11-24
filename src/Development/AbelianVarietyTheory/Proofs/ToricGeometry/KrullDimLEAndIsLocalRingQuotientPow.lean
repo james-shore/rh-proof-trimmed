@@ -112,7 +112,7 @@ alias eq_zero_of_forall_mem_pow := _root_.GlobalTheory.EqZeroOfMemMaximalPow.eq_
 theorem krullDimLE_and_isLocalRing_quotient_pow {R : Type} [CommRing R] (m : Ideal R)
     [hm : m.IsMaximal] (n : ℕ) :
     Ring.KrullDimLE 0 (R ⧸ m ^ (n + 1)) ∧ IsLocalRing (R ⧸ m ^ (n + 1)) := by
-  apply GlobalTheory.AbCoh.LowBaseChange.krullDimLE_isLocalRing_quot_pow <;> assumption
+  apply GlobalTheory.AbCoh.LowBaseChange.krullDimLE_isLocalRing_quot_pow
 
 theorem exists_isGen_translDiff_comp {S : Scheme.{0}} (A : Over S) [GrpObj A] (L : LB A.left)
     {T T' : Over S} (q : T' ⟶ T) (x : T ⟶ A)

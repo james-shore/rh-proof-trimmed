@@ -85,7 +85,7 @@ theorem ord_ringEquiv (e : R ≃+* S) (x : R) : Ring.ord R x = Ring.ord S (e x) 
     { q.toAddEquiv with
       map_smul' := fun r m => by
         obtain ⟨m', rfl⟩ := Ideal.Quotient.mk_surjective m
-        simp only [AddEquiv.toFun_eq_coe, RingEquiv.toAddEquiv_eq_coe, RingEquiv.coe_toAddEquiv]
+        simp only
         rw [Algebra.smul_def, Algebra.smul_def, Ideal.Quotient.algebraMap_eq, Ideal.Quotient.algebraMap_eq,
           ← map_mul]
         show q (Ideal.Quotient.mk _ (r * m')) = Ideal.Quotient.mk _ (e r) * q (Ideal.Quotient.mk _ m')

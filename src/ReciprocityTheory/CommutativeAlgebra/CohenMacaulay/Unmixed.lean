@@ -191,7 +191,6 @@ private theorem unm_isCMMod_congr {N : Type*} [AddCommGroup N] [Module R N]
   rw [← hdim]
   first
   | (unfold Module.supportDim; rw [hs])
-  | (simp only [Module.supportDim, hs])
 
 theorem IsCMMod.ringKrullDim_quotient_eq_supportDim (h : IsCMMod R M) {p : Ideal R}
     (hp : p ∈ associatedPrimes R M) : ringKrullDim (R ⧸ p) = Module.supportDim R M := by
@@ -205,7 +204,6 @@ theorem IsCMMod.ringKrullDim_quotient_eq_supportDim (h : IsCMMod R M) {p : Ideal
   have hsupp : Module.supportDim R M = ringKrullDim (R ⧸ Module.annihilator R M) := by
     first
     | exact Module.supportDim_eq_ringKrullDim_quotient_annihilator R M
-    | (rw [ringKrullDim_quotient]; unfold Module.supportDim; rw [Module.support_eq_zeroLocus])
   apply le_antisymm
   · rw [hsupp]
     exact unm_dim_le_of_le hann
@@ -227,7 +225,6 @@ theorem IsCMMod.associatedPrimes_eq_minimalPrimes (h : IsCMMod R M) :
     have hsupp : Module.supportDim R M = ringKrullDim (R ⧸ Module.annihilator R M) := by
       first
       | exact Module.supportDim_eq_ringKrullDim_quotient_annihilator R M
-      | (rw [ringKrullDim_quotient]; unfold Module.supportDim; rw [Module.support_eq_zeroLocus])
     have hp' : ringKrullDim (R ⧸ p) = (n : WithBot ℕ∞) :=
       (h.ringKrullDim_quotient_eq_supportDim hp).trans hdim
     refine ⟨⟨hpp, hann⟩, fun q hq hqp => ?_⟩
@@ -273,7 +270,6 @@ theorem IsCMMod.of_quotSMulTop [IsNoetherianRing R] [Module.Finite R M] {x : R}
   first
   | (rw [← hsd, hdim]; done)
   | (rw [← hsd, hdim]; norm_cast)
-  | (rw [← hsd, hdim]; simp)
 
 theorem IsCMMod.isSMulRegular_of_supportDim_quotSMulTop_lt (h : IsCMMod R M) {x : R}
     (hd : Module.supportDim R (QuotSMulTop x M) < Module.supportDim R M) :
@@ -304,7 +300,6 @@ theorem IsCMMod.isSMulRegular_of_supportDim_quotSMulTop_lt (h : IsCMMod R M) {x 
       ringKrullDim (R ⧸ Module.annihilator R (QuotSMulTop x M)) := by
     first
     | exact Module.supportDim_eq_ringKrullDim_quotient_annihilator R (QuotSMulTop x M)
-    | (rw [ringKrullDim_quotient]; unfold Module.supportDim; rw [Module.support_eq_zeroLocus])
   have hle := unm_dim_le_of_le hannQ
   rw [h.ringKrullDim_quotient_eq_supportDim hp, ← hsQ] at hle
   exact absurd hd (not_lt.mpr hle)
@@ -386,13 +381,11 @@ theorem IsCMMod.isRegular_of_supportDim_quotient_le_zero (h : IsCMMod R M) (xs :
       have h3 := unm_supportDim_le_quotient_add xs (QuotSMulTop x M) hxs'
       calc Module.supportDim R (QuotSMulTop x M) ≤ _ := h3
         _ ≤ 0 + (xs.length : WithBot ℕ∞) := by
-          first | gcongr | exact add_le_add_right hdQ _
+          first | gcongr
         _ = (xs.length : WithBot ℕ∞) := zero_add _
     have hlen' : Module.supportDim R M = (xs.length : WithBot ℕ∞) + 1 := by
       first
       | (rw [← hlen]; simp)
-      | (rw [← hlen, List.length_cons, Nat.cast_succ])
-      | (rw [← hlen]; push_cast; rfl)
     have hlt : Module.supportDim R (QuotSMulTop x M) < Module.supportDim R M := by
       have hl : ((xs.length : ℕ) : WithBot ℕ∞) < ((xs.length + 1 : ℕ) : WithBot ℕ∞) := by
         exact_mod_cast Nat.lt_succ_self _

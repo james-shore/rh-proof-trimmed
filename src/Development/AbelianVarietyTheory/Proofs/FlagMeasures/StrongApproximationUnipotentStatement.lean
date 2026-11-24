@@ -1228,7 +1228,6 @@ theorem hf_sm {N : ℕ} {a b c : K} {Hm : Matrix (Fin N) (Fin N) R} {x y : Fin N
 theorem exists_bound {ι : Type} [Fintype ι] (f : ι → R) : ∃ e ∈ 𝒪[K], e ≠ 0 ∧ ∀ i, Sm L e⁻¹ (f i) := by
   first
   | (apply _root_.GlobalTheory.SmulIntegralDenominator.main <;> assumption)
-  | (intros; exact _root_.GlobalTheory.SmulIntegralDenominator.main ..)
 
 def piL {N r : ℕ} (Hm : Matrix (Fin N) (Fin N) R) (X Y : Fin r → Fin N → R) (T : Finset (Fin r))
     (v : Fin N → R) : Fin N → R :=

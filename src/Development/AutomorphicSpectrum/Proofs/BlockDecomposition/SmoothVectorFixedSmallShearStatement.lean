@@ -69,7 +69,7 @@ namespace GlobalTheory.CompanionTheory.MirPair
 variable {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
 
 theorem continuous_leviMir (m : ℕ) : Continuous (levi k m) := by
-  apply _root_.GlobalTheory.CompanionTheory.MirPair.ShearOrbit.continuous_levi <;> assumption
+  apply _root_.GlobalTheory.CompanionTheory.MirPair.ShearOrbit.continuous_levi
 
 theorem tendsto_shearGL_zero (n : ℕ) :
     Filter.Tendsto (shearGL (k := k) n) (𝓝 0) (𝓝 1) := by

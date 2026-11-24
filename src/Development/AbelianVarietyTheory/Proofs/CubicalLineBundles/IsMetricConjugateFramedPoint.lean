@@ -180,6 +180,5 @@ theorem isMetric_conj : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (
   have h4 := h3 i h
   first
   | exact (congrArg _ (scal_one_mul_sec (S := ℂ) y.x y.s i)).trans h4
-  | (erw [scal_one_mul_sec]; exact h4)
 
 end GlobalTheory.LamT

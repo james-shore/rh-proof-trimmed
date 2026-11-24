@@ -66,7 +66,6 @@ theorem low_pderiv {N : ℕ} {g : MvPowerSeries τ k} (hg : Low (N + 1) g) (t : 
   have e : Finsupp.degree (d + Finsupp.single t 1) = Finsupp.degree d + 1 := by
     first
     | rw [map_add (f := _), Finsupp.degree_single]
-    | (unfold Finsupp.degree; rw [Finsupp.sum_add_index' (by simp) (by simp)]; simp)
   omega
 
 private theorem low_mul_lemma {m n : ℕ} {f g : MvPowerSeries τ k} (hf : Low m f) (hg : Low n g) :

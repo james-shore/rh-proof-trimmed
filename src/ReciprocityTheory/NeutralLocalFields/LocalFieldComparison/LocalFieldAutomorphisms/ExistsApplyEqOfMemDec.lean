@@ -60,8 +60,6 @@ variable {F Ω : Type} [Field F] [NumberField F] [Field Ω] [Algebra F Ω] [IsAl
 theorem norm_natCast_padicAlgCl : ‖((p : ℕ) : PadicAlgCl p)‖ = (p : ℝ)⁻¹ := by
   first
   | (rw [← map_natCast (algebraMap ℚ_[p] (PadicAlgCl p)) p, norm_algebraMap', Padic.norm_p])
-  | (rw [← map_natCast (algebraMap ℚ_[p] (PadicAlgCl p)) p, PadicAlgCl.norm_extends, Padic.norm_p])
-  | (have h1 := PadicAlgCl.norm_extends p (p : ℚ_[p]); rw [map_natCast] at h1; rw [h1, Padic.norm_p])
 
 theorem norm_apply_le_of_mem_dec {A : ValuationSubring Ω} {ι : Ω →+* PadicAlgCl p} (h : Compat p A ι) {τ : Ω ≃ₐ[F] Ω}
     (hτ : τ ∈ Dec (F := F) A) (x : Ω) : ‖ι (τ x)‖ ≤ ‖ι x‖ := by
@@ -72,8 +70,6 @@ theorem norm_apply_le_of_mem_dec {A : ValuationSubring Ω} {ι : Ω →+* PadicA
     have hsA := MulAction.mem_stabilizer_iff.mp hτ
     first
     | (rw [hsA] at h2; exact h2)
-    | (simp only [hsA] at h2; exact h2)
-    | (erw [hsA] at h2; exact h2)
   have key : ∀ y, ‖ι y‖ ≤ 1 → ‖ι (τ y)‖ ≤ 1 := fun y hy => (h (τ y)).1 (hs y ((h y).2 hy))
   by_contra hlt
   push_neg at hlt
@@ -119,7 +115,6 @@ theorem norm_apply_of_mem_dec {A : ValuationSubring Ω} {ι : Ω →+* PadicAlgC
   have e : τ⁻¹ (τ x) = x := by
     first
     | exact τ.symm_apply_apply x
-    | (rw [← AlgEquiv.mul_apply, inv_mul_cancel, AlgEquiv.one_apply])
   rwa [e] at h1
 
 theorem norm_sum_mul_pow_le (n : ℕ) (u : ℕ → PadicAlgCl p) (z : PadicAlgCl p) {δ : ℝ} (hu : ∀ i, ‖u i‖ ≤ δ) :
@@ -153,7 +148,6 @@ theorem minpoly_aeval_of_mem_dec {A : ValuationSubring Ω} {ι : Ω →+* PadicA
         ← map_sub]
       first
       | (rw [norm_algebraMap']; exact hr)
-      | (rw [PadicAlgCl.norm_extends]; exact hr)
     let C : Subalgebra ℚ_[p] (PadicAlgCl p) :=
       { R.topologicalClosure with algebraMap_mem' := hQ }
     have hKC : (Kloc F ι).toSubalgebra ≤ C := by
@@ -163,13 +157,6 @@ theorem minpoly_aeval_of_mem_dec {A : ValuationSubring Ω} {ι : Ω →+* PadicA
       first
       | (rw [IntermediateField.adjoin_toSubalgebra_of_isAlgebraic halg]
          exact Algebra.adjoin_le fun y hy => R.le_topologicalClosure hy)
-      | (rw [IntermediateField.adjoin_algebraic_toSubalgebra halg]
-         exact Algebra.adjoin_le fun y hy => R.le_topologicalClosure hy)
-      | (rw [IntermediateField.adjoin_eq_algebra_adjoin]
-         · exact Algebra.adjoin_le fun y hy => R.le_topologicalClosure hy
-         · intro y hy
-           exact (Algebra.adjoin ℚ_[p] (Set.range (ι.comp (algebraMap F Ω)))).inv_mem_of_algebraic
-             (Algebra.IsAlgebraic.isAlgebraic _) hy)
     have hcC : c ∈ closure (R : Set (PadicAlgCl p)) := hKC hc
     rw [Metric.mem_closure_iff] at hcC
     obtain ⟨b, ⟨f, rfl⟩, hb⟩ := hcC δ hδ
@@ -181,7 +168,6 @@ theorem minpoly_aeval_of_mem_dec {A : ValuationSubring Ω} {ι : Ω →+* PadicA
     rw [Polynomial.aeval_eq_sum_range]
     first
     | rfl
-    | (refine Finset.sum_congr rfl fun i _ => ?_; rw [Algebra.smul_def]; rfl)
   obtain ⟨N, hN⟩ : ∃ N : ℕ, N = (minpoly (Kloc F ι) (ι x)).natDegree + 1 := ⟨_, rfl⟩
   rw [← hN] at hsum
   obtain ⟨c, hc⟩ : ∃ c : ℕ → PadicAlgCl p,
@@ -245,7 +231,6 @@ theorem exists_apply_eq_of_mem_dec {A : ValuationSubring Ω} {ι : Ω →+* Padi
     isConjRoot_of_aeval_eq_zero hint (minpoly_aeval_of_mem_dec h hτ x)
   obtain ⟨σ, hσ⟩ := isConjRoot_iff_exists_algEquiv.mp hc
   first
-  | exact ⟨σ, hσ⟩
   | exact ⟨σ.symm, by rw [← hσ]; simp⟩
 
 theorem exists_res_eqOn_of_mem_dec {A : ValuationSubring Ω} {ι : Ω →+* PadicAlgCl p} (h : Compat p A ι) {τ : Ω ≃ₐ[F] Ω}
@@ -295,7 +280,6 @@ theorem exists_res_eq {A : ValuationSubring Ω} {ι : Ω →+* PadicAlgCl p} (h 
       have e : σ ((σ⁻¹ * ρ) a) = ρ a := by
         first
         | (rw [← AlgEquiv.mul_apply, ← mul_assoc, mul_inv_cancel, one_mul])
-        | (rw [← AlgEquiv.mul_apply, ← mul_assoc, mul_right_inv, one_mul])
       rw [← hρb, ← e, hfix]
     · show σ⁻¹ * σ ∈ (IntermediateField.adjoin (Kloc F ι) {a}).fixingSubgroup
       rw [inv_mul_cancel]

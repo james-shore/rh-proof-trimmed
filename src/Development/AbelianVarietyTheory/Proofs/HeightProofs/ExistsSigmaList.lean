@@ -248,7 +248,6 @@ theorem exists_finiteDimensional_stable (M : Type) [AddCommGroup M] [Module ℂ 
     ∃ W : Submodule ℂ M, FiniteDimensional ℂ W ∧ m ∈ W ∧ ∀ i, ∀ a ∈ A i, ∀ x ∈ W, a x ∈ W := by
   first
   | (apply _root_.GlobalTheory.OrbitGrowth.main <;> assumption)
-  | (intros; exact _root_.GlobalTheory.OrbitGrowth.main ..)
 
 end GlobalTheory.FiniteOrbit
 end -- clump:auto

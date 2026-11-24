@@ -88,7 +88,7 @@ theorem bC_rowGen_X {r n : ℕ} (a : Fin r) (v : Fin r × Fin n) :
 theorem bC_rowGen_C {r n : ℕ} (a : Fin r) (c : ℂ) :
     rowGen ℂ a a (C c : MvPolynomial (Fin r × Fin n) ℂ) = Polynomial.C (C c) := by
   first
-    | simp [rowGen, MvPolynomial.aeval_C]
+    | simp [rowGen]
 
 theorem bC_rowGen_monomial {r n : ℕ} (a : Fin r) (m : Fin r × Fin n →₀ ℕ) (c : ℂ) :
     rowGen ℂ a a (monomial m c) =
@@ -308,7 +308,7 @@ private theorem isWeightedHomogeneous_coeff_rowGen_monomial {r n : ℕ} (a b : F
         Polynomial.C (MvPolynomial.C c0) := by
       rw [MvPolynomial.monomial_zero']
       first
-        | simp [rowGen, MvPolynomial.aeval_C]
+        | simp [rowGen]
     rw [hC, Polynomial.coeff_C]
     by_cases hk : k = 0
     · subst hk
@@ -320,7 +320,7 @@ private theorem isWeightedHomogeneous_coeff_rowGen_monomial {r n : ℕ} (a b : F
     rw [MvPolynomial.monomial_single_add, map_mul, map_pow]
     have hw : Finsupp.weight (fun v : Fin r × Fin n => ((v.1 : ℕ) : ℤ)) (Finsupp.single v e + m) =
         (e : ℤ) * ((v.1 : ℕ) : ℤ) + Finsupp.weight (fun v : Fin r × Fin n => ((v.1 : ℕ) : ℤ)) m := by
-      simp [map_add (f := _), Finsupp.weight_apply, Finsupp.sum_single_index, nsmul_eq_mul]
+      simp [map_add (f := _), Finsupp.weight_apply, Finsupp.sum_single_index]
     rw [hw]
     have hpow : ∀ j : ℕ, ∀ k : ℕ, IsWeightedHomogeneous (fun v : Fin r × Fin n => ((v.1 : ℕ) : ℤ))
         (((rowGen ℂ a b (X v)) ^ j).coeff k) ((j : ℤ) * ((v.1 : ℕ) : ℤ) + (k : ℤ) * (((a : ℕ) : ℤ) - ((b : ℕ) : ℤ))) := by

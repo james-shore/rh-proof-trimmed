@@ -350,7 +350,7 @@ theorem colEl_mul_apply {m N : ℕ} (h : m + 2 ≤ N) (x : Fin (m + 1) → k) (M
 theorem conj_colEl (ψ : AddChar k Circle) {m N : ℕ} (h : m + 2 ≤ N) (x : Fin (m + 1) → k) (u : derUnip k N (m + 2)) :
     ∃ hu : colEl k m N h x * (u : GL (Fin N) k) * (colEl k m N h x)⁻¹ ∈ derUnip k N (m + 2),
       lvlChar k ψ N (m + 2) ⟨_, hu⟩ = lvlChar k ψ N (m + 2) u := by
-  apply PositivityTheory.RgUd.Form.ColumnElementGluing.Glue.colEl_conj_derUnip' <;> assumption
+  apply PositivityTheory.RgUd.Form.ColumnElementGluing.Glue.colEl_conj_derUnip'
 
 theorem colEl_twKer (ψ : AddChar k Circle) {m N : ℕ} (h : m + 2 ≤ N) {V : Type} [AddCommGroup V] [Module ℂ V]
     (π : Representation ℂ (GL (Fin N) k) V) (x : Fin (m + 1) → k) {v : V}

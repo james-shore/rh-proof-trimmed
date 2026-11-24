@@ -96,6 +96,6 @@ theorem halfDiffNorm : HalfDiffNormSt := by
   exact Real.log_le_log (by positivity) hsq
 
 theorem finrank_E (D : D7) : Module.finrank ℚ D.host.E = 2 * D.R.f := by
-  apply ReciprocityTheory.ChartRestriction.G.PullbackSections.PfTorusFrame.finrank_eq <;> assumption
+  apply ReciprocityTheory.ChartRestriction.G.PullbackSections.PfTorusFrame.finrank_eq
 
 end ReciprocityTheory.ChartRestriction.G.PullbackSections.MLI

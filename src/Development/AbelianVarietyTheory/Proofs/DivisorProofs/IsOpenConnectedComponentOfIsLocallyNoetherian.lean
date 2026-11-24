@@ -56,7 +56,7 @@ namespace GlobalTheory.ConnOpen
 
 theorem isOpen_connectedComponent_noetherian {Y : Type*} [TopologicalSpace Y] [NoetherianSpace Y] (y : Y) :
     IsOpen (connectedComponent y) := by
-  apply CrystallineSemistableComparison.isOpen_connectedComponent_of_noetherianSpace <;> assumption
+  apply CrystallineSemistableComparison.isOpen_connectedComponent_of_noetherianSpace
 
 end GlobalTheory.ConnOpen
 

@@ -896,7 +896,7 @@ namespace GlobalTheory.KeyOriginNoeth
 
 theorem mem_originIdeal_iff {T : Type} [CommRing T] [IsLocalRing T] (f : Polynomial T) :
     f ∈ GlobalTheory.KeyOriginCut.originIdeal T ↔ f.coeff 0 ∈ maximalIdeal T := by
-  apply GlobalTheory.VertUnitsNoeth.mem_originIdeal_iff' <;> assumption
+  apply GlobalTheory.VertUnitsNoeth.mem_originIdeal_iff'
 
 theorem comap_originIdeal (A T : Type) [CommRing A] [IsLocalRing A] [CommRing T] [IsLocalRing T]
     (i : A →+* T) [IsLocalHom i] :

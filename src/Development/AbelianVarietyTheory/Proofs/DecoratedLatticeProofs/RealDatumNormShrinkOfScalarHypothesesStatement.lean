@@ -119,7 +119,7 @@ theorem unit_at_split_place : ∀ (D : D7) (PP : Pl D.host.E), ((D.host.QS * D.h
     have hle : D.host.AA ≤ D.host.AA0 := by
       unfold Host.AA
       calc (D.host.ccE : FractionalIdeal (nonZeroDivisors (𝓞 D.host.E)) D.host.E) * D.host.AA0
-          ≤ 1 * D.host.AA0 := by first | exact mul_le_mul_left FractionalIdeal.coeIdeal_le_one _ | gcongr
+          ≤ 1 * D.host.AA0 := by first | exact mul_le_mul_left FractionalIdeal.coeIdeal_le_one _
         _ = D.host.AA0 := one_mul _
     exact fun a ha => hAA0 a (hle ha)
 

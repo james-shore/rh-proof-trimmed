@@ -452,8 +452,7 @@ theorem hermForm_HwMat (w : ℂ) {g : ℕ} (h : A.V ≃ₗ[ℂ] (Fin g → ℂ))
   conv_rhs => rw [e v, e v']
 
   simp only [hermForm, HwMat, dotProduct, mulVec, map_sum, map_smul, LinearMap.map_smulₛₗ, LinearMap.sum_apply,
-  LinearMap.smul_apply, smul_eq_mul, Finset.mul_sum, Matrix.of_apply, Pi.star_apply, RCLike.star_def,
-  RingHom.id_apply]
+  LinearMap.smul_apply, smul_eq_mul, Finset.mul_sum, Matrix.of_apply, Pi.star_apply, RCLike.star_def]
   rw [Finset.sum_comm]
   exact Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => by ring
 

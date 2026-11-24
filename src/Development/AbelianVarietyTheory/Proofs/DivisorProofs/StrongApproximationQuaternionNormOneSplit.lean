@@ -1335,7 +1335,6 @@ theorem quaternion_split_of_isotropic : ∀ (F : Type) [Field F] [NumberField F]
     ∃ φ : ℍ[F, a, b] ≃ₐ[F] Matrix (Fin 2) (Fin 2) F, ∀ x, (φ x).det = nrm x := by
   first
   | exact @_root_.GlobalTheory.MatrixHomBijective.split_of_isotropic
-  | (intros; exact _root_.GlobalTheory.MatrixHomBijective.split_of_isotropic ..)
 
 end GlobalTheory
 end -- clump:auto

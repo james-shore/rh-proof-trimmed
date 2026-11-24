@@ -711,7 +711,7 @@ theorem exists_realPlace_record_tied :
       exact ⟨R, fun h' => absurd h' h⟩
   choose ds hds using key
   exact ⟨⟨grp, fun p q r s => Classical.choice (_root_.GlobalTheory.nonempty_fockData_pair p q r s _ _ _), ds⟩,
-    ⟨hgrp, fun p q lam h => by first | exact hds p q lam h | exact fun _ => hds p q lam h⟩⟩
+    ⟨hgrp, fun p q lam h => by first | exact fun _ => hds p q lam h⟩⟩
 
 end GlobalTheory
 end -- clump:auto

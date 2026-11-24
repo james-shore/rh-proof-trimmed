@@ -67,7 +67,6 @@ attribute [local instance] tns_isModuleTopology
 theorem tns_isTopologicalAddGroup : IsTopologicalAddGroup (AF F ⊗[F] E) := by
   first
     | exact IsModuleTopology.topologicalAddGroup (AF F) (AF F ⊗[F] E)
-    | infer_instance
 
 section Basis
 

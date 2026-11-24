@@ -221,7 +221,7 @@ theorem dzb_of_eventually_zero (h : f =ᶠ[𝓝 z] fun _ => 0) : dzb j f z = 0 :
 
 theorem differentiableAt_dzb (hf : ContDiffAt ℝ 2 f z) : DifferentiableAt ℝ (dzb j f) z := by
   have hd : DifferentiableAt ℝ (fderiv ℝ f) z :=
-    (hf.fderiv_right (m := 1) (by first | norm_num | simp | rfl)).differentiableAt (by first | norm_num | simp | exact one_ne_zero)
+    (hf.fderiv_right (m := 1) (by first | norm_num)).differentiableAt (by first | norm_num)
   have h1 : DifferentiableAt ℝ (fun y => fderiv ℝ f y (Pi.single j 1)) z :=
     hd.clm_apply (differentiableAt_const _)
   have h2 : DifferentiableAt ℝ (fun y => fderiv ℝ f y (Complex.I • Pi.single j 1)) z :=
@@ -233,7 +233,6 @@ theorem differentiableAt_dzb (hf : ContDiffAt ℝ 2 f z) : DifferentiableAt ℝ 
   have h5 : DifferentiableAt ℝ (fun y => (fderiv ℝ f y (Pi.single j 1) +
       Complex.I * fderiv ℝ f y (Complex.I • Pi.single j 1)) / 2) z := by
     first
-      | (exact h4.div_const (2 : ℂ))
       | (simpa only [div_eq_mul_inv] using h4.mul_const (2⁻¹ : ℂ))
   exact h5
 
@@ -378,7 +377,7 @@ theorem monge_ampere_density_cofactor : MaDensCofStatement := by
     intro j k
     have hv2 : ContDiffAt ℝ 2 v z := hv.contDiffAt (hU.mem_nhds hz)
     have hDv : DifferentiableAt ℝ (fderiv ℝ v) z :=
-      (hv2.fderiv_right (m := 1) (by first | norm_num | simp | rfl)).differentiableAt (by first | norm_num | simp | exact one_ne_zero)
+      (hv2.fderiv_right (m := 1) (by first | norm_num)).differentiableAt (by first | norm_num)
     have hw : ∀ w : Fin (n + 1) → ℂ, HasFDerivAt (fun y => ((fderiv ℝ v y w : ℝ) : ℂ))
         (Complex.ofRealCLM.comp
           ((ContinuousLinearMap.apply ℝ ℝ w).comp (fderiv ℝ (fderiv ℝ v) z))) z :=
@@ -398,7 +397,7 @@ theorem monge_ampere_density_cofactor : MaDensCofStatement := by
           Complex.I * ((fderiv ℝ v y (Complex.I • Pi.single k 1) : ℝ) : ℂ)) := by
       filter_upwards [hU.mem_nhds hz] with y hy
       have hdy : DifferentiableAt ℝ v y :=
-        (hv.contDiffAt (hU.mem_nhds hy)).differentiableAt (by first | norm_num | simp | exact one_ne_zero)
+        (hv.contDiffAt (hU.mem_nhds hy)).differentiableAt (by first | norm_num)
       have hf : fderiv ℝ (cplx v) y = Complex.ofRealCLM.comp (fderiv ℝ v y) :=
         (Complex.ofRealCLM.hasFDerivAt.comp y hdy.hasFDerivAt).fderiv
       unfold dzb

@@ -63,10 +63,6 @@ theorem psTrunc_eq {ι : Type} [Fintype ι] [DecidableEq ι] (m : ℕ) (f : MvPo
   have hle : ∀ i, e i ≤ e.degree := fun i => by
     first
     | exact Finsupp.le_degree i e
-    | (by_cases hi : e i = 0
-       · omega
-       · exact Finset.single_le_sum (f := fun j => e j) (fun _ _ => Nat.zero_le _)
-           (Finsupp.mem_support_iff.2 hi))
   have hdeg : (e.sum fun _ k => k) = e.degree := by
     first
     | rfl
@@ -93,10 +89,7 @@ theorem psTrunc_eq {ι : Type} [Fintype ι] [DecidableEq ι] (m : ℕ) (f : MvPo
     exact h
   · rw [if_neg (fun h' => h (hmem.1 h'))]
     first
-    | exact (MvPowerSeries.coeff_truncTotal_eq_zero (by omega)).symm
     | exact (MvPowerSeries.coeff_truncTotal_eq_zero _ (by omega)).symm
-    | (rw [MvPowerSeries.coeff_truncTotal_eq_zero]; omega)
-    | (simp [MvPowerSeries.truncTotal, h]; done)
 
 private lemma mem_orig_pow_lemma_6 {ι : Type} (m : ℕ) (Q : MvPolynomial ι R)
     (hQ : ∀ e : ι →₀ ℕ, e.degree < m + 1 → AddMonoidAlgebra.coeff Q e = 0) :
@@ -143,13 +136,11 @@ private lemma low_mul_lemma {τ : Type} {F G : MvPowerSeries τ R} {p q : ℕ}
   refine Finset.sum_eq_zero fun x hx => ?_
   replace hx : x.1 + x.2 = e := by
     first
-    | exact Finset.mem_antidiagonal.1 hx
     | simpa using hx
   have hd : x.1.degree + x.2.degree = e.degree := by
     rw [← hx]
     first
     | exact (map_add Finsupp.degree x.1 x.2).symm
-    | (simp only [Finsupp.degree_eq_weight_one, map_add (f := _)])
   by_cases h1 : x.1.degree < p
   · rw [hF _ h1, zero_mul]
   · rw [hG _ (by omega), mul_zero]
@@ -196,7 +187,6 @@ theorem psTrunc_mem_orig {τ : Type} [Fintype τ] [DecidableEq τ] (m : ℕ) (g 
   · subst he
     first
     | simp [hg]
-    | (rw [MvPowerSeries.coeff_zero_eq_constantCoeff_apply, hg, map_zero]; exact Ideal.zero_mem _)
   · obtain ⟨i, hi⟩ : ∃ i, e i ≠ 0 := by
       by_contra h
       push_neg at h
@@ -211,16 +201,14 @@ theorem psTrunc_mem_orig {τ : Type} [Fintype τ] [DecidableEq τ] (m : ℕ) (g 
           first
           | (simp only [Finsupp.coe_add, Finsupp.coe_tsub, Pi.add_apply, Pi.sub_apply,
               Finsupp.single_eq_same]; omega)
-          | (simp [Finsupp.single_apply]; omega)
         · first
           | (simp only [Finsupp.coe_add, Finsupp.coe_tsub, Pi.add_apply, Pi.sub_apply,
-              Finsupp.single_eq_of_ne h, Finsupp.single_eq_of_ne (Ne.symm h)]; omega)
+              Finsupp.single_eq_of_ne h]; omega)
       rw [MvPolynomial.X, MvPolynomial.monomial_mul, mul_one, hs]
     rw [key]
     refine Ideal.mul_mem_left _ _ ?_
     first
     | exact Ideal.subset_span ⟨i, rfl⟩
-    | (unfold orig; exact Ideal.subset_span ⟨i, rfl⟩)
 
 theorem aeval_coe_comp {σ τ : Type} (A : σ → MvPolynomial τ R) (P : MvPolynomial σ R) :
     MvPolynomial.aeval (fun i => (A i : MvPowerSeries τ R)) P =
@@ -229,9 +217,6 @@ theorem aeval_coe_comp {σ τ : Type} (A : σ → MvPolynomial τ R) (P : MvPoly
   next c =>
     first
     | simp [MvPowerSeries.algebraMap_apply, MvPolynomial.algebraMap_eq]
-    | (rw [MvPolynomial.aeval_C, MvPolynomial.aeval_C, MvPolynomial.algebraMap_eq,
-        MvPolynomial.coe_C]; rfl)
-    | (ext n; simp [MvPowerSeries.coeff_C, MvPolynomial.coeff_C, MvPolynomial.algebraMap_eq])
   next p q hp hq => simp only [map_add (f := _), MvPolynomial.coe_add, hp, hq]
   next p i hp => simp only [map_mul, MvPolynomial.aeval_X, MvPolynomial.coe_mul, hp]
 
@@ -292,7 +277,6 @@ theorem psJet_subst {σ τ : Type} [Fintype σ] [DecidableEq σ] [Fintype τ] [D
       jetMap (fun i => psTrunc m (a i)) (fun i => psTrunc_mem_orig m (a i) (ha i)) (psJet m f) := by
   have hS : MvPowerSeries.HasSubst a := by
     first
-    | exact MvPowerSeries.HasSubst.of_constantCoeff_zero' ha
     | exact MvPowerSeries.hasSubst_of_constantCoeff_zero ha
   have ha1 : ∀ i, ∀ e : τ →₀ ℕ, e.degree < 1 → MvPowerSeries.coeff e (a i) = 0 := by
     intro i e he
@@ -302,7 +286,6 @@ theorem psJet_subst {σ τ : Type} [Fintype σ] [DecidableEq σ] [Fintype τ] [D
     subst he0
     first
     | simpa using ha i
-    | (rw [MvPowerSeries.coeff_zero_eq_constantCoeff_apply]; exact ha i)
   have hprod : ∀ d : σ →₀ ℕ, ∀ e : τ →₀ ℕ, e.degree < d.degree →
       MvPowerSeries.coeff e (d.prod fun s n => a s ^ n) = 0 := by
     intro d e he
@@ -326,12 +309,6 @@ theorem psJet_subst {σ τ : Type} [Fintype σ] [DecidableEq σ] [Fintype τ] [D
       MvPowerSeries.subst a (f - (psTrunc m f : MvPowerSeries σ R)) := by
     first
     | (rw [← MvPowerSeries.subst_coe, ← MvPowerSeries.subst_add hS]
-       congr 1
-       ring)
-    | (have h := MvPowerSeries.subst_add hS (psTrunc m f : MvPowerSeries σ R)
-         (f - (psTrunc m f : MvPowerSeries σ R))
-       rw [MvPowerSeries.subst_coe] at h
-       rw [← h]
        congr 1
        ring)
   unfold psJet

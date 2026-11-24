@@ -1374,7 +1374,7 @@ lemma nonzeroCount_add_zeroCount (L : List (ℕ × Fin N1)) : nzc L + z0c L = L.
 lemma dRow_apply (t : H) (r : ℕ) (b : Fin N1) (P : PolyXZ H N0 N1) :
     dRow (N0 := N0) t r b P =
       ∑ a : Fin N0, X (Sum.inl ((false, t), r, a)) * pderiv (Sum.inr ((true, t), a, b)) P := by
-  simp [dRow, der_sum_apply, Derivation.smul_apply, smul_eq_mul]
+  simp [dRow, smul_eq_mul]
 
 lemma lap_apply (t : H) (P : PolyXZ H N0 N1) :
     lapT N0 N1 t P = ∑ a : Fin N0, ∑ b : Fin N1,
@@ -1594,7 +1594,7 @@ def MS (t : H) (a b : ℕ) : Submodule ℤ (PolyXZ H N0 N1) :=
 
 lemma ms_mul (t : H) {a b a' b' : ℕ} {P Q : PolyXZ H N0 N1} (hP : P ∈ MS t a b) (hQ : Q ∈ MS t a' b') :
     P * Q ∈ MS t (a + a') (b + b') := by
-  first | (apply UpperTheory.Reformulated.B.Qj21.ms_mul <;> assumption) | exact @UpperTheory.Reformulated.B.Qj21.ms_mul H N0 N1 t a b a' b' P Q hP hQ | exact @UpperTheory.Reformulated.B.Qj21.ms_mul H N0 N1 t a b a' b' P Q hP | exact @UpperTheory.Reformulated.B.Qj21.ms_mul H N0 N1 t a b a' b' P Q | exact @UpperTheory.Reformulated.B.Qj21.ms_mul H N0 N1 t a b a' b' P | exact @UpperTheory.Reformulated.B.Qj21.ms_mul H N0 N1 t a b a' b' | exact @UpperTheory.Reformulated.B.Qj21.ms_mul H N0 N1 t a b a' | exact @UpperTheory.Reformulated.B.Qj21.ms_mul H N0 N1 t a b | exact @UpperTheory.Reformulated.B.Qj21.ms_mul H N0 N1 t a | exact @UpperTheory.Reformulated.B.Qj21.ms_mul H N0 N1 t | exact @UpperTheory.Reformulated.B.Qj21.ms_mul H N0 N1 | exact @UpperTheory.Reformulated.B.Qj21.ms_mul H N0 | exact @UpperTheory.Reformulated.B.Qj21.ms_mul H
+  first | (apply UpperTheory.Reformulated.B.Qj21.ms_mul <;> assumption)
 
 lemma ms_prod (t : H) {ι : Type} (s : Finset ι) (f : ι → PolyXZ H N0 N1) (a b : ι → ℕ)
     (h : ∀ i ∈ s, f i ∈ MS t (a i) (b i)) :

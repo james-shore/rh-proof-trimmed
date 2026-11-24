@@ -71,7 +71,7 @@ theorem step (w : ℂ) (h : ‖w - 1‖ < 1/2) : (3/2 : ℝ) * ‖w - 1‖ ≤ �
   nlinarith
 
 theorem main : ∀ {z : ℂ}, (∀ (n : ℕ), ‖z ^ n - (1 : ℂ)‖ < (1 / 2 : ℝ)) → z = (1 : ℂ) := by
-  apply Bl.SecondBlockLemmaN.goal1 <;> assumption
+  apply Bl.SecondBlockLemmaN.goal1
 
 end GlobalTheory.InductiveNormBound
 end -- clump:auto

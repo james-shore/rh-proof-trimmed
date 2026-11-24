@@ -269,7 +269,7 @@ open Pointwise
 namespace GlobalTheory
 
 theorem length_quot_smul_range_finite_free : ∀ (O M : Type) [CommRing O] [Nontrivial O] [AddCommGroup M] [Module O M] [Module.Free O M] [Module.Finite O M] (a : O), Module.length O (M ⧸ LinearMap.range (a • (LinearMap.id : M →ₗ[O] M))) = (Module.finrank O M : ℕ∞) * Module.length O (O ⧸ Ideal.span {a}) := by
-  apply GlobalTheory.Dieu.ColengthLemmas.length_quot_smul_range_free <;> assumption
+  apply GlobalTheory.Dieu.ColengthLemmas.length_quot_smul_range_free
 
 end GlobalTheory
 end -- clump:auto

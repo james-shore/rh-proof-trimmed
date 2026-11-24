@@ -97,7 +97,6 @@ private theorem gram_continuous_comp {α : Type*} [TopologicalSpace α] (τ : E 
   refine ((hf.matrix_elem k a).mul continuous_const).mul ?_
   first
     | exact Complex.continuous_conj.comp (hf.matrix_elem l b)
-    | fun_prop
 
 theorem isOpen_Bset (X : Data E r) (x : Frame X.Ψ r) (ρ : ℝ) : IsOpen (Bset X x ρ) := by
   have hdom : IsOpen X.dom := by
@@ -249,7 +248,6 @@ theorem key_int (X : Data E r) (la : Wt X.Ψ r) (W : Frame X.Ψ r → ℝ≥0∞
         _ ≤ supR X la W ρ x ^ 2 := by
           first
             | exact pow_le_pow_left' h1 2
-            | gcongr
     have he : e ≤ supR X la W ρ x ^ 2 * W (cpt X x w) := by
       calc e = e / W (cpt X x w) * W (cpt X x w) := (ENNReal.div_mul_cancel hW0 hWT).symm
         _ ≤ supR X la W ρ x ^ 2 * W (cpt X x w) := by gcongr

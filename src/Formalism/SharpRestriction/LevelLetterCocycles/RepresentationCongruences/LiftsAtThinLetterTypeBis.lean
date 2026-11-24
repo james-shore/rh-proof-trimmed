@@ -588,8 +588,7 @@ theorem exists_horizontal_lift_of_len_three_of_up [NeZero n] [Fintype (K →ₐ[
           (algebraMap (LetA O n) W.EE (qA W)) ^ (2 * G₀)) * hq
     · rw [if_neg hk] at h2 ⊢
 
-      simp only [map_mul, map_sub, map_sum, map_pow, map_natCast, lA, lE, mul_one,
-      sub_zero] at h3 h2 ⊢
+      simp only [map_mul, map_sub, map_sum, map_pow, map_natCast, lA, lE, sub_zero] at h3 h2 ⊢
       linear_combination (algebraMap (LetA O n) W.EE (qA W)) ^ G₀ * h3 - ((PD.p : ℕ) : W.EE) ^ Kc * hsum +
         (algebraMap (LetA O n) W.EE E * ((PD.p : ℕ) : W.EE) ^ Kc * ((PD.p : ℕ) : W.EE) ^ σ *
           (algebraMap (LetA O n) W.EE W.π₀) ^ AI * ((PD.p : ℕ) : W.EE) ^ σ) * h2 -

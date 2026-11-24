@@ -548,7 +548,7 @@ variable {F E : Type} [NontriviallyNormedField F] [NontriviallyNormedField E] [N
   [Unram F E]
 
 theorem algebraMap_norm_eq_mul_star (z : E) : algebraMap F E (Algebra.norm F z) = z * star z := by
-  apply GlobalTheory.JR.EtFacts.normE <;> assumption
+  apply GlobalTheory.JR.EtFacts.normE
 
 def piCoord {ι : Type} [Fintype ι] (b : Module.Basis ι F E) (r : ℕ) :
     (Fin r → E) ≃ₗ[Fin r → F] (ι → (Fin r → F)) where
@@ -1153,7 +1153,7 @@ theorem diag_coe {ϖ : F} (hϖ : ϖ ≠ 0) :
       Matrix (Fin 2) (Fin 2) F) = !![ϖ, 0; 0, ϖ⁻¹] := by
   simp only [Matrix.SpecialLinearGroup.coe_mul, nS_coe, wS_coe, wS_inv_coe]
   ext i j
-  fin_cases i <;> fin_cases j <;> simp [Matrix.mul_apply, Fin.sum_univ_two, hϖ] <;> field_simp
+  fin_cases i <;> fin_cases j <;> simp [Matrix.mul_apply, Fin.sum_univ_two, hϖ]
 
 theorem conj_step {ϖ : F} (hϖ : ϖ ≠ 0) (t : F) :
     (nS ϖ * ((wS F)⁻¹ * nS ϖ⁻¹ * wS F) * nS ϖ * (wS F)⁻¹)⁻¹ * nS t *

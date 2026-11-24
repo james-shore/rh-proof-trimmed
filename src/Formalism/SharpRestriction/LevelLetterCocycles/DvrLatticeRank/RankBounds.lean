@@ -185,10 +185,7 @@ theorem step (γ : V →ₗ[O] V) (K' : Submodule O V) (hK : ∀ x ∈ K', γ x 
           Module.rank O (InvQ γ K' F1) :=
         add_le_add hquot (by
           first
-          | exact LinearMap.rank_le_of_surjective f.rangeRestrict f.surjective_rangeRestrict
-          | exact LinearMap.rank_le_of_surjective f.rangeRestrict (fun y => by
-              obtain ⟨x, hx⟩ := LinearMap.mem_range.mp y.2
-              exact ⟨x, Subtype.ext hx⟩))
+          | exact LinearMap.rank_le_of_surjective f.rangeRestrict f.surjective_rangeRestrict)
     _ = _ := add_comm _ _
 
 end Formalism.MainNotions.N.Ln34.RankInverseBounds

@@ -459,7 +459,7 @@ namespace GlobalTheory.KeyOriginBC
 
 theorem mem_originIdeal_iff {R : Type} [CommRing R] [IsLocalRing R] (p : R[X]) :
     p ∈ GlobalTheory.KeyOriginCut.originIdeal R ↔ p.coeff 0 ∈ maximalIdeal R := by
-  apply GlobalTheory.VertUnitsNoeth.mem_originIdeal_iff' <;> assumption
+  apply GlobalTheory.VertUnitsNoeth.mem_originIdeal_iff'
 
 theorem comap_ideal₁_eq_origin {T O : Type} [CommRing T] [IsLocalRing T] [CommRing O] [IsLocalRing O] [Algebra T O] [Algebra T[X] O]
   [IsScalarTower T T[X] O]

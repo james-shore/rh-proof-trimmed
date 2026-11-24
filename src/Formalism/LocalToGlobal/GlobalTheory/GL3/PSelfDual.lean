@@ -516,7 +516,7 @@ theorem embedding_sqrt_neg_d : D.host.φ₀ (D.host.sqd) = Complex.I * (Real.sqr
   D.host.φ₀_mem
 
 theorem finrank_K : Module.finrank ℚ D.host.K = 2 := by
-  apply Formalism.L2.Pj.LPb.finrank_K <;> assumption
+  apply Formalism.L2.Pj.LPb.finrank_K
 
 theorem cc_basis (cc : Ideal (𝓞 D.host.K)) (hcc : cc ≠ ⊥) :
     ∃ c1 ∈ cc, ∃ c2 ∈ cc, (∀ c ∈ cc, ∃ m n : ℤ, c = (m : 𝓞 D.host.K) * c1 + (n : 𝓞 D.host.K) * c2) ∧

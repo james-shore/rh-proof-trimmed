@@ -203,7 +203,7 @@ namespace CompanionTheory.D.Inhab
 
 theorem exp_entry (N : ℕ) (X : Matrix (Fin N) (Fin N) ℂ) (i j : Fin N) :
     HasDerivAt (fun t : ℝ => (NormedSpace.exp ((t : ℂ) • X)) i j) (X i j) 0 := by
-  apply Formalism.MainNotions.S.Gauge.exp_entry <;> assumption
+  apply Formalism.MainNotions.S.Gauge.exp_entry
 
 end CompanionTheory.D.Inhab
 end -- clump:auto

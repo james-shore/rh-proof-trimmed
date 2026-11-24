@@ -423,7 +423,7 @@ def putE (D : D7) (N N' : ℕ) (i : Fin N') (j : Fin N) : (D.what₂.Tau → ℂ
 
 theorem Lat0 (cc : Ideal (𝓞 D.host.K)) (δ : ℂ) :
     TaylorLogMetric.La D (TaylorLogMetric.tor0 D cc δ) (StandardLatticesGL3.stdL D N) (StandardLatticesGL3.stdL D N') = powLat (lamMM D (TaylorLogMetric.lamOf D cc δ)) N N' := by
-  apply GlobalTheory.FourthRootStd.Lat0 <;> assumption
+  apply GlobalTheory.FourthRootStd.Lat0
 
 end Lat0
 
@@ -659,12 +659,12 @@ variable {D : D7}
 def emb4 (D : D7) (x : Fin 4 → D.host.E) : Fin 4 × D.what₂.Tau → ℂ := fun w => TaylorLogMetric.embT D w.2 (x w.1)
 
 theorem span_range_emb4_eq_top (D : D7) : Submodule.span ℂ (Set.range (emb4 D)) = ⊤ := by
-  apply GlobalTheory.FourthRootStd.span_range_emb4_eq_top <;> assumption
+  apply GlobalTheory.FourthRootStd.span_range_emb4_eq_top
 
 theorem isoK_hermitian_sum_eq_emb4_hermitian_sum (γ : IsoK D) (x y : Fin 4 → D.host.E) :
     ∑ w, D.host.φ₀ ((γ.g x w : D.host.K) : D.host.E) * conj (D.host.φ₀ ((γ.g y w : D.host.K) : D.host.E))
       = ∑ w, emb4 D x w * conj (emb4 D y w) := by
-  apply GlobalTheory.FourthRootStd.isoK_hermitian_sum_eq_emb4_hermitian_sum <;> assumption
+  apply GlobalTheory.FourthRootStd.isoK_hermitian_sum_eq_emb4_hermitian_sum
 
 theorem blockFourfold_hOne_eq_hOne (L : PeriodPair) (n : Type) [Fintype n] [DecidableEq n] :
     blk4 (hOne L n) = hOne L (Fin 4 × n) := by

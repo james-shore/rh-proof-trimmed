@@ -64,7 +64,7 @@ section Grp
 variable {k r : ℕ}
 
 theorem hpk_sq (k r : ℕ) : Hpk k r * Hpk k r = 1 := by
-  apply ReciprocityTheory.ChartRestriction.DS.Mult1.InvChr.Hpk_sq <;> assumption
+  apply ReciprocityTheory.ChartRestriction.DS.Mult1.InvChr.Hpk_sq
 
 theorem uh_mul {a b : Mx k r} (ha : a ∈ UH (Hpk k r)) (hb : b ∈ UH (Hpk k r)) : a * b ∈ UH (Hpk k r) := by
   have ha' : aᴴ * Hpk k r * a = Hpk k r := ha

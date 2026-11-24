@@ -266,7 +266,6 @@ theorem const_of_euclidean : (∀ (n : ℕ) (B : GlobalTheory.RealWeil.Sch (Fin 
       rw [e0]
       first
         | exact integral_complex_ofReal
-        | exact integral_ofReal
     rw [e, Complex.ofReal_re]
     exact integral_nonneg fun x => Complex.normSq_nonneg _
   have hinv : ∀ (w : Fin n ⊕ Fin n → ℝ) (h h' g g' : Sch (Fin n)), ⇑g = rhoFun w ⇑h →
@@ -415,7 +414,7 @@ theorem moyal_pointwise : ∀ (n : ℕ) (f g g' : Sch (Fin n)) (x : EuclideanSpa
       rw [Real.rpow_neg hpos.le, Real.rpow_natCast, ← div_eq_mul_inv, le_div_iff₀ (pow_pos hpos _)]
       exact hC w
     have e2 : ‖f (x + pPart w)‖ ≤ SchwartzMap.seminorm ℂ 0 0 f := SchwartzMap.norm_le_seminorm ℂ f _
-    simp only [Function.comp_apply, norm_mul, RCLike.norm_conj, rhoFun, norm_phase, one_mul]
+    simp only [norm_mul, RCLike.norm_conj, rhoFun, norm_phase, one_mul]
     calc _ ≤ C * (1 + ‖w‖) ^ (-((2 * n + 1 : ℕ) : ℝ)) * SchwartzMap.seminorm ℂ 0 0 f :=
           mul_le_mul e1 e2 (norm_nonneg _) (le_trans (norm_nonneg _) e1)
       _ = _ := by ring

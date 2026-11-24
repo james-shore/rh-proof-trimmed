@@ -373,7 +373,7 @@ theorem PositivityTheory.Xgp.t_sq_diag : ∀ (K : Type) [Fintype K] (ι : K → 
     exact PositivityTheory.Xgp.sq_diag.pull_norm Q A hc hk
   rcases le_or_gt 0 (A.a k₀) with hm | hm
   · obtain ⟨n, hn⟩ := Int.eq_ofNat_of_zero_le hm
-    refine PositivityTheory.Xgp.sq_diag.key Q n i hi0 hi1 A₀ A₁ (fun k => by rw [hdeg k, hn] <;> split_ifs) fun z hz => ?_
+    refine PositivityTheory.Xgp.sq_diag.key Q n i hi0 hi1 A₀ A₁ (fun k => by rw [hdeg k, hn]) fun z hz => ?_
     obtain ⟨c, hc, hzc, hh⟩ := hnorm z hz
     rw [hh, hzc, hn, zpow_natCast, norm_mul, mul_pow]
     ring

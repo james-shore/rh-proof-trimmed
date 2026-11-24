@@ -180,6 +180,6 @@ end UpperTheory
 open UpperTheory in
 theorem UpperTheory.exists_unit_eq_multiplicativeGroup_section :
     ∀ (X : Scheme.{0}) (b : Sec Gm X), ∃ u : (Γ(X, ⊤))ˣ, unitSec u = b := by
-  apply GlobalTheory.EtC.KumZero.unitSec_surjective <;> assumption
+  apply GlobalTheory.EtC.KumZero.unitSec_surjective
 
 end

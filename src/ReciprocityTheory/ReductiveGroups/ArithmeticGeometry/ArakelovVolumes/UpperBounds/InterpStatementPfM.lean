@@ -138,8 +138,8 @@ private theorem leviV_add {n : ℕ} (g1 g2 : V n → ℂ) (y : V n)
   have hev : ∀ k, wdb n k (fun w => g1 w + g2 w) =ᶠ[nhds y] fun w => wdb n k g1 w + wdb n k g2 w := by
     intro k
     filter_upwards [h1, h2] with w hw1 hw2
-    have d1 : DifferentiableAt ℝ g1 w := hw1.differentiableAt (by first | norm_num | simp)
-    have d2 : DifferentiableAt ℝ g2 w := hw2.differentiableAt (by first | norm_num | simp)
+    have d1 : DifferentiableAt ℝ g1 w := hw1.differentiableAt (by first | norm_num)
+    have d2 : DifferentiableAt ℝ g2 w := hw2.differentiableAt (by first | norm_num)
     unfold wdb
     first
       | rw [fderiv_fun_add d1 d2]
@@ -149,17 +149,14 @@ private theorem leviV_add {n : ℕ} (g1 g2 : V n → ℂ) (y : V n)
     intro g hg k
     have hf : ContDiffAt ℝ 1 (fderiv ℝ g) y := hg.fderiv_right (by
       first
-        | exact WithTop.coe_le_coe.mpr le_top
-        | (simp; done))
-    have hfd : DifferentiableAt ℝ (fderiv ℝ g) y := hf.differentiableAt (by first | exact one_ne_zero | exact le_rfl | simp)
+        | exact WithTop.coe_le_coe.mpr le_top)
+    have hfd : DifferentiableAt ℝ (fderiv ℝ g) y := hf.differentiableAt (by first | exact one_ne_zero)
     have ha : DifferentiableAt ℝ (fun w => fderiv ℝ g w (bas n k)) y :=
       hfd.clm_apply (differentiableAt_const _)
     have hb : DifferentiableAt ℝ (fun w => fderiv ℝ g w (Complex.I • bas n k)) y :=
       hfd.clm_apply (differentiableAt_const _)
     unfold wdb
     first
-      | exact (ha.fun_add (hb.const_mul Complex.I)).div_const 2
-      | exact (ha.add (hb.const_mul Complex.I)).div_const 2
       | fun_prop
   unfold leviV
   rw [← Finset.sum_add_distrib]

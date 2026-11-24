@@ -90,7 +90,7 @@ theorem mul_self_of_re_eq_zero {R : Type*} [CommRing R] {a b : R} (p : ℍ[R, a,
 
 theorem exists_completion_hom_of_real {K : Type} [Field K] (σ : K →+* ℝ) :
     ∃ (w : InfinitePlace K) (f : w.Completion →+* ℝ), ∀ x : K, f (algebraMap K w.Completion x) = σ x := by
-  apply _root_.GlobalTheory.QuadSymbol.exists_completion_hom_real <;> assumption
+  apply _root_.GlobalTheory.QuadSymbol.exists_completion_hom_real
 
 variable {F : Type} [Field F] [NumberField F]
 

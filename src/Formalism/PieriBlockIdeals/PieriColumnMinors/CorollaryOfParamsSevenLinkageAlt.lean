@@ -284,7 +284,7 @@ theorem gg_1024_nonneg : 0 ≤ gg 1024 := by
 theorem card_pr (y : ℝ) : (pr y).card = Nat.primeCounting ⌊y⌋₊ := by
   simp only [PI.pr, Nat.primeCounting, Nat.primeCounting',
     Nat.count_eq_card_filter_range]
-  try (congr 1; ext p)
+  try (congr 1)
 
 theorem log_131072_eq_seventeen_mul_log_two : log 131072 = 17 * log 2 := by
   rw [show (131072 : ℝ) = 2 ^ 17 by norm_num, Real.log_pow]; norm_num
@@ -565,7 +565,7 @@ theorem log_factorial_eq_sum_log (N : ℕ) : log ((N ! : ℕ) : ℝ) = ∑ m ∈
 
 theorem log_factorial_eq_sum (N : ℕ) :
     log ((N ! : ℕ) : ℝ) = ∑ d ∈ Ioc 0 N, Λ d * ((N / d : ℕ) : ℝ) := by
-  apply PI.PrimeLogOverPWork.log_factorial_eq <;> assumption
+  apply PI.PrimeLogOverPWork.log_factorial_eq
 
 theorem log_factorial_eq_sum_of_le {N M : ℕ} (h : N ≤ M) :
     log ((N ! : ℕ) : ℝ) = ∑ d ∈ Ioc 0 M, Λ d * ((N / d : ℕ) : ℝ) := by

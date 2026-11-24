@@ -65,7 +65,7 @@ open scoped TensorProduct Matrix
 namespace GlobalTheory.UnRep.NormOne
 
 lemma exists_split (N : ℕ) : ∀ M : ℕ, 0 < M → ∃ D₁ D₂ k : ℕ, M = D₁ * D₂ ∧ D₁ ∣ N ^ k ∧ D₂.Coprime N := by
-  apply GlobalTheory.TvAdjust.exists_split <;> assumption
+  apply GlobalTheory.TvAdjust.exists_split
 
 variable {E : Type} [Field E] [NumberField E]
 

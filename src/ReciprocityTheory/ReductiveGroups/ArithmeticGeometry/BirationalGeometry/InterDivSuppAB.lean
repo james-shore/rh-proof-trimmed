@@ -188,7 +188,6 @@ theorem height_int_of_isMaximal (M : Ideal ℤ) (hM : M.IsMaximal) : M.height = 
          rw [Order.height_eq_zero.mpr (hmin z hz)]
          simp)
   · first
-      | exact Order.one_le_height_iff.mpr hx
       | exact ENat.one_le_iff_ne_zero.mpr (fun h0 => hx (Order.height_eq_zero.mp h0))
 
 theorem height_mvPolynomial_int_fin_of_isMaximal :

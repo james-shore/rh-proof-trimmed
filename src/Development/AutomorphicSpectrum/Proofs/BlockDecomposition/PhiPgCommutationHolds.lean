@@ -509,7 +509,7 @@ theorem key {i t : ℕ} (m : Mir k ((i + 1) + t)) (v : Fin ((i + 1) + (t + 1)) �
 
 theorem det_unip (n : ℕ) (c : Fin n → k) :
     Matrix.GeneralLinearGroup.det (unip k n (Multiplicative.ofAdd c)) = 1 := by
-  apply PositivityTheory.RgUd.Form.U.Shell.det_unip <;> assumption
+  apply PositivityTheory.RgUd.Form.U.Shell.det_unip
 
 theorem dpowM_of_unip (n : ℕ) (s : ℝ) (g : Mir k n) (c : Fin n → k)
     (hg : (g : GL (Fin (n + 1)) k) = unip k n (Multiplicative.ofAdd c)) : dpowM n s g = 1 := by

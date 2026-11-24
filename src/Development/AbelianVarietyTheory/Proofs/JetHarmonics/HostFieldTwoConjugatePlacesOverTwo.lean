@@ -960,7 +960,7 @@ open UpperTheory.TraceSumEquivalence in
 theorem UpperTheory.trace_form_decomposition_CMDatum :
     ∀ (E : Type) [Field E] [NumberField E] (p : ℕ) [Fact p.Prime] (C : Type) [Field C] [IsAlgClosed C] [CharZero C] (v : Valuation C NNReal) (O : Type) [CommRing O] [Algebra O C], v.Integers O → ∀ [Algebra ℤ_[p] O] (e : ℤ_[p] ⊗[ℤ] 𝓞 E), e * e = e →
       Nonempty (Fin (Module.finrank ℤ_[p] (LinearMap.range (LinearMap.mulLeft ℤ_[p] e))) ≃ Emb (O := O) e) ∧ Nat.card (𝓞 E →+* O) = Module.finrank ℚ E := by
-  apply GlobalTheory.EmbCount.card_emb <;> assumption
+  apply GlobalTheory.EmbCount.card_emb
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AutomorphicArithmetic.CMTraceForms.TraceFormDecompositionCMDatum =====

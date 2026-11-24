@@ -173,6 +173,6 @@ theorem lieChart_of_smooth_chart : ∀ (S : Scheme.{0}) (G : Over S) [GrpObj G] 
   (hU : IsAffineOpen U) (hV : IsAffineOpen V) (hUV : U ≤ G.hom ⁻¹ᵁ V), RingHom.Smooth (G.hom.appLE V U hUV).hom →
   ∀ u : Γ(G.left, U) →+* Localization.Away f,
     (1 : Over.mk (spMap (algebraMap R (Localization.Away f)) ≫ x) ⟶ G).left = spMap u ≫ hU.fromSpec → LieChart G x f := by
-  apply GlobalTheory.CompanionTheory.Ar.ChartDer.lieChart_of_smooth_chart <;> assumption
+  apply GlobalTheory.CompanionTheory.Ar.ChartDer.lieChart_of_smooth_chart
 
 end PositivityTheory.HtPt.Htat.Lie

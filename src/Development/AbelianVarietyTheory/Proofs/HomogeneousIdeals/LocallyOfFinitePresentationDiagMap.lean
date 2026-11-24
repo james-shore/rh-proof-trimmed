@@ -559,7 +559,7 @@ theorem baseChangeIso_naturality (u : Y →+ X) :
 end BaseChange
 
 theorem chi_injective [Nonempty S] : Function.Injective (chi (S := S) X) := by
-  apply GlobalTheory.SplitTorus.chi_injective <;> assumption
+  apply GlobalTheory.SplitTorus.chi_injective
 
 theorem diagMap_injective [Nonempty S] :
     Function.Injective (diagMap S : (Y →+ X) → (splitTorus S X ⟶ splitTorus S Y)) := by

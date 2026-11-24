@@ -75,15 +75,15 @@ theorem filter_mem_eq_of_sublist {α : Type*} [DecidableEq α] {l m : List α} (
 
 theorem mem_sub {α : Type*} {h : ℕ} (W : List α) (c : Fin W.length → Fin h) (i : Fin h) (x : α) :
     x ∈ sub W c i ↔ ∃ p, c p = i ∧ W.get p = x := by
-  apply PositivityTheory.Groth.AltC.mem_sub <;> assumption
+  apply PositivityTheory.Groth.AltC.mem_sub
 
 theorem mem_sub_self {α : Type*} {h : ℕ} (W : List α) (c : Fin W.length → Fin h) (p : Fin W.length) :
     W.get p ∈ sub W c (c p) := by
-  apply PositivityTheory.Groth.AltC.mem_sub_self <;> assumption
+  apply PositivityTheory.Groth.AltC.mem_sub_self
 
 theorem sub_sublist {α : Type*} {h : ℕ} (W : List α) (c : Fin W.length → Fin h) (i : Fin h) :
     (sub W c i).Sublist W := by
-  apply PositivityTheory.Groth.AltC.sub_sublist <;> assumption
+  apply PositivityTheory.Groth.AltC.sub_sublist
 
 
 open Classical in
@@ -101,10 +101,10 @@ def wN (L : ℕ) (T : Finset ℕ) : List ℕ :=
   ((List.range L).filter (fun x => decide (x ∈ T))).reverse ++ (List.range L).filter (fun x => decide (x ∉ T))
 
 theorem mem_wN {L x : ℕ} {T : Finset ℕ} : x ∈ wN L T ↔ x < L := by
-  apply PositivityTheory.Groth.AltC.mem_wN <;> assumption
+  apply PositivityTheory.Groth.AltC.mem_wN
 
 theorem nodup_wN (L : ℕ) (T : Finset ℕ) : (wN L T).Nodup := by
-  apply PositivityTheory.Groth.AltC.nodup_wN <;> assumption
+  apply PositivityTheory.Groth.AltC.nodup_wN
 
 theorem sublist_of_lt {l m : List ℕ} (hl : l.Pairwise (· < ·)) (hm : m.Pairwise (· < ·))
     (hs : ∀ x ∈ l, x ∈ m) : l.Sublist m := by

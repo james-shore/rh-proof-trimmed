@@ -67,7 +67,6 @@ private theorem cc_subst_lemma {σ τ : Type} [Fintype σ] {L : σ → MvPowerSe
   classical
   have hL : MvPowerSeries.HasSubst L := by
     first
-      | exact MvPowerSeries.HasSubst.of_constantCoeff_zero hL0
       | exact MvPowerSeries.hasSubst_of_constantCoeff_zero hL0
   rw [MvPowerSeries.constantCoeff_subst hL, finsum_eq_single _ 0]
   · simp [MvPowerSeries.coeff_zero_eq_constantCoeff_apply]
@@ -210,7 +209,6 @@ theorem sw_y (h : PS k 1 d) :
   fin_cases j
   first
     | exact ev_X czSw 1 i
-    | (simp only [Matrix.cons_val_zero]; exact ev_X czSw 1 i)
 
 theorem sw_dF (j b : Fin d) :
     ev (n := 2) ![pt k d 1, pt k d 0] (pderiv (R := k) ((1 : Fin 2), b) (G.F j)) = pderiv (R := k) ((0 : Fin 2), b) (G.F j) := by

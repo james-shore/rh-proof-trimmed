@@ -156,7 +156,7 @@ alias coeff_single_subst' := _root_.UpperTheory.Reformulated.B.LinearTermOfSubst
 
 theorem law_coeff (G : Germ.FGLaw S d) (i j : Fin d) (k : Fin 2) :
     MvPowerSeries.coeff (Finsupp.single (k, j) 1) (G.F i) = if j = i then 1 else 0 := by
-  apply GlobalTheory.EigDir.law_coeff <;> assumption
+  apply GlobalTheory.EigDir.law_coeff
 
 end Law
 
@@ -330,7 +330,7 @@ theorem linEig_holds : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H
     (l : Level H) (Xo : Moduli Dw l) (c : Coeff l) [StarRing (𝓞 E)] (S : Type) [CommRing S] [Algebra c.F S]
     [Algebra ℚ S] (y : FrPt Xo c S) (C : ChartAt Xo c y) (a : 𝓞 E) (ℓ : Lt1 Dw) (i : Fin C.d),
     ∑ j, ReciprocityTheory.ChartRestriction.G.TB.dLin (C.B.A.act a) i j * C.uvec ℓ j = algebraMap c.F S (embK c ℓ.1 a) * C.uvec ℓ i := by
-  apply GlobalTheory.EigDir.linEig_holds <;> assumption
+  apply GlobalTheory.EigDir.linEig_holds
 
 end Main
 

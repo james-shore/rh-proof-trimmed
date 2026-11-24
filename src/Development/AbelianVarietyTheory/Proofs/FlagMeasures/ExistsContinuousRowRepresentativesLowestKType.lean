@@ -282,7 +282,7 @@ theorem hasDerivAt_exp_mul {n : ℕ} (Y M : Matrix (Fin n) (Fin n) ℂ) (i j : F
     exact L.hasFDerivAt.comp_hasDerivAt (0 : ℝ) h1
 
 theorem continuous_expU {n : ℕ} {ε : Fin n → Bool} (X : gLie ε) : Continuous fun t : ℝ => expU (t • X) := by
-  apply GlobalTheory.SobolevBound.continuous_expU <;> assumption
+  apply GlobalTheory.SobolevBound.continuous_expU
 
 private lemma uMat_expU_inv_mul {n : ℕ} {ε : Fin n → Bool} (X : gLie ε) (t : ℝ) (g : UJ ε) :
     uMat ((expU (t • X))⁻¹ * g) =

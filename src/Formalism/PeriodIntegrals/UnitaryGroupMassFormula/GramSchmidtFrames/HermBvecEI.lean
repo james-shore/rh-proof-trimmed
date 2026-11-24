@@ -98,7 +98,7 @@ lemma hm_sum_r {ι : Type*} (s : Finset ι) (c : ι → ℂ) (v : ι → Fin (2 
 
 lemma herm_bvec_eI (v : Fin (2 * r + k + 1) → ℂ) (a : Fin r) :
     herm (Hpk k r) v (bvec (eI k r a)) = v (esI k r a) := by
-  apply PI.StabPairsW.herm_e <;> assumption
+  apply PI.StabPairsW.herm_e
 
 lemma fvec_lt (z : Fin (2 * r + k + 1) → ℂ) (a : Fin r) :
     fvec k r z ⟨a.val, by omega⟩ = bvec (eI k r a) := by

@@ -94,7 +94,7 @@ theorem homog_C (n : ℤ) : IsMultiHomog (C n : MRing J) (0 : K → ℕ) := by
   simp [this]
 
 theorem homog_X [DecidableEq K] (p : Σ k, J k) : IsMultiHomog (X p : MRing J) (Pi.single p.1 1) := by
-  apply GroundTheory.Heights₂.Heights.HilbertSamuel.SectionBounded.homog_X <;> assumption
+  apply GroundTheory.Heights₂.Heights.HilbertSamuel.SectionBounded.homog_X
 
 def cMon (c : ∀ k, J k) (d : K → ℕ) : MRing J := ∏ k, X ⟨k, c k⟩ ^ d k
 

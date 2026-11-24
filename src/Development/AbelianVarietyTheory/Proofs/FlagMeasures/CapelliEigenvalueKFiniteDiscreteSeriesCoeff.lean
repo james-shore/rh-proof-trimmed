@@ -143,7 +143,7 @@ lemma foldr_congr (H : Matrix (Fin n) (Fin n) ℂ) (hKH : H⁻¹ * H = 1) (hHK :
       rdV_congr H H⁻¹ _ hKH hHK (hpart2_mem H _ hKH hHK hH) ih hx]
 
 theorem capelliH_local : PI.UnitaryGroupMassFormula.CapelliEig.Loc := by
-  apply CompanionTheory.CapEig.capelli_localization <;> assumption
+  apply CompanionTheory.CapEig.capelli_localization
 
 end GlobalTheory.CapelliLocality
 

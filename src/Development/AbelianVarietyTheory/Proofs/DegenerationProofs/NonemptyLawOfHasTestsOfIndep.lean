@@ -1555,7 +1555,7 @@ namespace GlobalTheory
 
 theorem isStandardSmoothOfRelativeDimension_mvPolynomial_fin (R : Type) [CommRing R] (n : ℕ) :
     Algebra.IsStandardSmoothOfRelativeDimension n R (MvPolynomial (Fin n) R) := by
-  apply GlobalTheory.CompanionTheory.Ar.LieInh.stdSmooth_mvPolynomial <;> assumption
+  apply GlobalTheory.CompanionTheory.Ar.LieInh.stdSmooth_mvPolynomial
 
 theorem smoothOfRelativeDimension_affineSpace_fin (S : Scheme.{0}) (n : ℕ) :
     SmoothOfRelativeDimension n (𝔸(Fin n; S) ↘ S) := by

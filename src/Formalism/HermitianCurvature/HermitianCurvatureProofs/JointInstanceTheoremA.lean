@@ -250,7 +250,7 @@ theorem t_ProductDomination : ProductDomination := by
 theorem t_ProductLemma' : ProductLemma := t_ProductLemma t_SchurProduct t_ProductDomination
 
 theorem t_DiagScale : DiagScale := by
-  apply Formalism.FourierDecayAlt.P.Jx8.t_DiagScale <;> assumption
+  apply Formalism.FourierDecayAlt.P.Jx8.t_DiagScale
 
 end kernels
 

@@ -129,7 +129,6 @@ private theorem eq_single_lemma_6 {κ : Type} (e : κ →₀ ℕ) (he : e.degree
   have h1 : ∑ i ∈ e.support, e i = 1 := by
     first
       | exact he
-      | simpa [Finsupp.degree] using he
   obtain ⟨q, hq⟩ : e.support.Nonempty := by
     rw [Finset.nonempty_iff_ne_empty]
     intro h
@@ -178,7 +177,6 @@ theorem formal_group_linear_second (G : FGLaw S d) (i j : Fin d) :
       · have he0 : e = 0 := by
           first
             | exact (Finsupp.degree_eq_zero_iff e).1 (by omega)
-            | exact Finsupp.degree_eq_zero_iff.1 (by omega)
         subst he0
         simp [MvPowerSeries.coeff_one]
       · obtain ⟨⟨q1, q2⟩, rfl⟩ := eq_single_lemma_6 e heq
@@ -226,7 +224,6 @@ theorem formal_group_linear_first (G : FGLaw S d) (i j : Fin d) :
       · have he0 : e = 0 := by
           first
             | exact (Finsupp.degree_eq_zero_iff e).1 (by omega)
-            | exact Finsupp.degree_eq_zero_iff.1 (by omega)
         subst he0
         simp [MvPowerSeries.coeff_one]
       · obtain ⟨⟨q1, q2⟩, rfl⟩ := eq_single_lemma_6 e heq
@@ -300,7 +297,6 @@ theorem psTrunc_law_sub_mem (G : FGLaw S d) {m : ℕ} (hm : 1 ≤ m) (j : Fin d)
   · have hx0 : x = 0 := by
       first
         | exact (Finsupp.degree_eq_zero_iff x).1 h0
-        | exact Finsupp.degree_eq_zero_iff.1 h0
     subst hx0
     simp [coeff_X', MvPowerSeries.coeff_zero_eq_constantCoeff_apply, G.const]
   · obtain ⟨⟨q1, q2⟩, rfl⟩ := _root_.Formalism.MainNotions.ModuliIntegralCharts.H1.CIndFrExp2.eq_single_lemma_6 x h0
@@ -399,7 +395,7 @@ open Formalism.MainNotions.ModuliIntegralCharts.H1.CIndFrExp1
 theorem eval_pair_bilinear {τ : Type} (M : Fin d → Fin d → S) (u v : Fin d → MvPolynomial τ S) :
     ev2 (bil M) u v = ∑ i, ∑ l, C (M i l) * (u i * v l) := by
 
-  simp [ev2, bil, map_sum, map_mul, aeval_C, aeval_X, algebraMap_eq]
+  simp [ev2, bil, map_sum, map_mul, aeval_X, algebraMap_eq]
 
 theorem lead_bil {P : MvPolynomial (Fin 2 × Fin d) S} {m : ℕ} (hm : 2 ≤ m)
     (fF : Fin d → MvPolynomial (Fin 3 × Fin d) S)
@@ -483,7 +479,6 @@ theorem psTrunc_act_sub_mem (φ : Fin d → PS S 1 d) (hφ : ∀ i, MvPowerSerie
   · have hx0 : x = 0 := by
       first
         | exact (Finsupp.degree_eq_zero_iff x).1 h0
-        | exact Finsupp.degree_eq_zero_iff.1 h0
     subst hx0
     simp [coeff_C_mul, coeff_X', MvPowerSeries.coeff_zero_eq_constantCoeff_apply, hφ]
   · obtain ⟨⟨q1, q2⟩, rfl⟩ := _root_.Formalism.MainNotions.ModuliIntegralCharts.H1.CIndFrExp2.eq_single_lemma_6 x h0

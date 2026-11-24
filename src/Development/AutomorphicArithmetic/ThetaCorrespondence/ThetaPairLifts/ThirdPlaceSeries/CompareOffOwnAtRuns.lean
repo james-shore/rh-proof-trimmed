@@ -301,7 +301,7 @@ theorem isBe_unique {𝔞 : Ideal (𝓞 E)} (h0 : 𝔞 ≠ ⊥) {β β' : c.F} (
 
 theorem mult_add_mult_conjugate (τ : E →+* ℂ) :
     Dw.mult τ + Dw.mult (ComplexEmbedding.conjugate τ) = Dw.p + Dw.q := by
-  apply GlobalTheory.PeriodTorus.mult_add_mult_conj <;> assumption
+  apply GlobalTheory.PeriodTorus.mult_add_mult_conj
 
 theorem norm_reflexNorm (γ : E) (s : c.F →+* ℂ) :
     ‖s (reflexNorm Dw c γ)‖ ^ 2 = |(Algebra.norm ℚ γ : ℝ)| ^ (Dw.p + Dw.q) := by

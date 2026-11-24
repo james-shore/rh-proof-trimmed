@@ -64,7 +64,7 @@ open scoped ComplexConjugate
 namespace Formalism.FourierDecayAlt.P
 
 theorem zhat_norm_bound : C2.ZhatBound := by
-  apply PI.PolynomialProperness.GN.zhat_norm_linear_bound <;> assumption
+  apply PI.PolynomialProperness.GN.zhat_norm_linear_bound
 
 end Formalism.FourierDecayAlt.P
 end -- clump:auto

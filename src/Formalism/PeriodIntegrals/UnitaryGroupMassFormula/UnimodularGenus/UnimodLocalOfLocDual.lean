@@ -97,9 +97,6 @@ theorem unimodLocal_of_locDual (hLD : Formalism.HermitianLatticesTheory.LocDual)
       | (refine ⟨fun x y => ?_⟩
 
          simp [hStd, map_sum, starRingEnd_apply, star_mul', mul_comm])
-      | (intro x y
-
-         simp [hStd, map_sum, starRingEnd_apply, star_mul', mul_comm])
   have hstar : ∀ r : 𝓞 E, star (algebraMap (𝓞 E) E r) ∈ Set.range (algebraMap (𝓞 E) E) := by
     intro r
     exact ⟨RingOfIntegers.mapRingHom (starRingEnd E) r, rfl⟩

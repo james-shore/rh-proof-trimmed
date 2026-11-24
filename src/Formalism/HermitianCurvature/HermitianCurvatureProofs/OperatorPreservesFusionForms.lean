@@ -1552,10 +1552,10 @@ lemma X1_eq (l : Fin r) : hpart1 (Hpk k r) (single (eI k r l) (eI k r l) 1) =
   · subst hpq
     by_cases h1 : p = eI k r l
     · subst h1
-      simp [hne.symm] <;> (try norm_num)
+      simp [hne.symm]
     · by_cases h2 : p = esI k r l
       · subst h2
-        simp [hne, hne.symm] <;> (try norm_num)
+        simp [hne, hne.symm]
       · simp [h1, h2, Ne.symm h1, Ne.symm h2]
   · have a1 : ¬ (eI k r l = p ∧ eI k r l = q) := fun h => hpq (h.1.symm.trans h.2)
     have a2 : ¬ (esI k r l = p ∧ esI k r l = q) := fun h => hpq (h.1.symm.trans h.2)
@@ -1594,10 +1594,10 @@ lemma first_hermitian_part_diagonal (l : Fin r) : hpart1 (Hpk k r) (single (esI 
   · subst hpq
     by_cases h1 : p = eI k r l
     · subst h1
-      simp [hne.symm] <;> (try norm_num)
+      simp [hne.symm]
     · by_cases h2 : p = esI k r l
       · subst h2
-        simp [hne, hne.symm] <;> (try norm_num)
+        simp [hne, hne.symm]
       · simp [h1, h2, Ne.symm h1, Ne.symm h2]
   · have a1 : ¬ (eI k r l = p ∧ eI k r l = q) := fun h => hpq (h.1.symm.trans h.2)
     have a2 : ¬ (esI k r l = p ∧ esI k r l = q) := fun h => hpq (h.1.symm.trans h.2)

@@ -577,7 +577,6 @@ theorem order_prod_sub_prod {R τ ι : Type} [CommRing R] (s : Finset ι)
     (∑ i ∈ s, (k i : ℕ∞)) + 1 ≤ (∏ i ∈ s, a i - ∏ i ∈ s, b i).order := by
   first
   | (apply _root_.GlobalTheory.OrderProductDifference.target <;> assumption)
-  | (intros; exact _root_.GlobalTheory.OrderProductDifference.target ..)
 
 theorem order_pow_sub_pow {R τ : Type} [CommRing R] (u l : MvPowerSeries τ R)
     (hu : constantCoeff u = 0) (hl : constantCoeff l = 0) (hul : (2 : ℕ∞) ≤ (u - l).order)
@@ -664,7 +663,7 @@ theorem coeff_subst_sub_mem :
         ∀ (w : τ →₀ ℕ), w.degree = m → ∃ r ∈ N,
           coeff w (MvPowerSeries.subst (QLog.up (Q := Q) u) c) -
             coeff w (MvPowerSeries.subst (QLog.up (Q := Q) ℓ) c) = algebraMap B Q r := by
-  apply GlobalTheory.SubstMod.subst_coeff_sub_mem <;> assumption
+  apply GlobalTheory.SubstMod.subst_coeff_sub_mem
 
 theorem coeff_op_of_degree_le_one : ∀ {B O : Type} [CommRing B] [CommRing O] (θ : B →+* O) {d : ℕ} {μ : Fin d → MvPowerSeries (Fin d ⊕ Fin d) B}, IsLift θ μ → ∀ {τ : Type} (u v : Fin d → MvPowerSeries τ B), (∀ j, constantCoeff (u j) = 0) → (∀ j, constantCoeff (v j) = 0) → ∀ (i : Fin d) (β : τ →₀ ℕ), β.degree ≤ 1 → coeff β (op μ u v i) = coeff β (u i + v i) := _root_.GlobalTheory.QLog.OpLin.coeff_op_of_degree_le_one
 

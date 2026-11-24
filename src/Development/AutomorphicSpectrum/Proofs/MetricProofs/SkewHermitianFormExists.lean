@@ -134,7 +134,7 @@ variable {E : Type} [Field E] [NumberField E] [IsCMField E]
 
 theorem quadConj_eq_complexConj (x : E) :
     conj (maximalRealSubfield E) E x = IsCMField.complexConj E x := by
-  apply GlobalTheory.CompanionTheory.Ar.Cusp.Dict.AdaptedLen.conj_eq_complexConj <;> assumption
+  apply GlobalTheory.CompanionTheory.Ar.Cusp.Dict.AdaptedLen.conj_eq_complexConj
 
 theorem complexConj_rt (H : Host E) : IsCMField.complexConj E (H.rt : E) = -(H.rt : E) := by
   have hd : (0 : ℝ) < H.d := by exact_mod_cast H.d_prime.pos

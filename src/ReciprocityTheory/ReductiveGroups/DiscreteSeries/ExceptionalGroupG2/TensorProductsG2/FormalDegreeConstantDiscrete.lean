@@ -781,7 +781,6 @@ theorem cns_zuck_cpt {ε : Fin n → Bool} (hpq : pOf ε = 0 ∨ qOf ε = 0) {μ
       ∑ s ∈ univ.filter (fun s => S7.IsHCParam (shiftF false μ s)), j s ((Ts s).op k (a s)) from
       Finset.sum_congr rfl fun s hs => (hjE s hs k (a s)).symm,
     cns_orth_sum _ j hjI hjO b (fun s => (Ts s).op k (a s)), ← Finset.sum_coe_sort]
-    all_goals rfl
   · intro s hs v w hv hw
     refine ⟨Fin n × Fin n, inferInstance, fun p => U0 ((j s v) p.2), fun p => U0 ((j s w) p.1),
       fun p => Pi.single p.2 1, fun p => Pi.single p.1 1, fun p => ⟨cns_kfin_fd _ _, cns_kfin_fd _ _⟩,
@@ -870,7 +869,6 @@ theorem cns_zuckd_cpt {ε : Fin n → Bool} (hpq : pOf ε = 0 ∨ qOf ε = 0) {�
       ∑ s ∈ univ.filter (fun s => S7.IsHCParam (shiftF true μ s)), j s ((Ts s).op k (a s)) from
       Finset.sum_congr rfl fun s hs => (hjE s hs k (a s)).symm,
     cns_orth_sum _ j hjI hjO b (fun s => (Ts s).op k (a s)), ← Finset.sum_coe_sort]
-    all_goals rfl
   · intro s hs v w hv hw
     refine ⟨Fin n × Fin n, inferInstance, fun p => U0 ((j s v) p.2), fun p => U0 ((j s w) p.1),
       fun p => Pi.single p.1 1, fun p => Pi.single p.2 1, fun p => ⟨cns_kfin_fd _ _, cns_kfin_fd _ _⟩,

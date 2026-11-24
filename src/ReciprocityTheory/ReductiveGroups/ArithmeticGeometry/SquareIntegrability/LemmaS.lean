@@ -134,7 +134,7 @@ lemma rsm_tail (N : ℕ) (hN : 1 ≤ N) :
   have hk : 2 * N - 1 + 2 = 2 * N + 1 := by omega
   have hI : ∫ y in Ioi (0 : ℝ), (1 / (2 * (N : ℝ))) * (y ^ (2 * N + 1) * Real.exp (-y ^ 2))
       = (1 / 2) * ∫ y in Ioi (0 : ℝ), y ^ (2 * N - 1) * Real.exp (-y ^ 2) := by
-    first | rw [integral_const_mul] | rw [integral_mul_left]
+    first | rw [integral_const_mul]
     rw [rsm_pow_gauss, rsm_pow_gauss]
     have e1 : ((↑(2 * N + 1) : ℝ) + 1) / 2 = (N : ℝ) + 1 := by push_cast; ring
     have e2 : ((↑(2 * N - 1) : ℝ) + 1) / 2 = (N : ℝ) := by
@@ -143,7 +143,6 @@ lemma rsm_tail (N : ℕ) (hN : 1 ≤ N) :
       ring
     rw [e1, e2, Real.Gamma_add_one hN1]
     field_simp
-    try ring
   rw [← hI]
   refine integral_mono_of_nonneg ?_ ?_ ?_
   · filter_upwards [ae_restrict_mem measurableSet_Ioi] with y hy
@@ -219,20 +218,19 @@ lemma rsm_ball_mass (N : ℕ) :
       · have h' : ¬ (Real.sqrt (2 * N) < ‖z‖) := not_lt.mpr h
         have hz1 : z ∉ (closedBall (0 : EuclideanSpace ℂ (Fin N)) (Real.sqrt (2 * N)))ᶜ := fun hc =>
           (Set.mem_compl_iff _ _).mp hc (mem_closedBall.mpr (by rwa [dist_zero_right]))
-        simp only [Set.indicator_apply, Set.mem_compl_iff, mem_closedBall, dist_zero_right, Set.mem_Ioi,
-          h, h', not_true_eq_false, not_false_eq_true, if_true, if_false]
+        simp only [Set.indicator_apply, Set.mem_Ioi,
+          h', if_false]
         first
-          | exact Set.indicator_of_not_mem hz1 _
           | exact Set.indicator_of_notMem hz1 _
       · have h' : Real.sqrt (2 * N) < ‖z‖ := not_le.mp h
         have hz1 : z ∈ (closedBall (0 : EuclideanSpace ℂ (Fin N)) (Real.sqrt (2 * N)))ᶜ :=
           (Set.mem_compl_iff _ _).mpr (fun hb => h (by rwa [mem_closedBall, dist_zero_right] at hb))
-        simp only [Set.indicator_apply, Set.mem_compl_iff, mem_closedBall, dist_zero_right, Set.mem_Ioi,
-          h, h', not_true_eq_false, not_false_eq_true, if_true, if_false]
+        simp only [Set.indicator_apply, Set.mem_Ioi,
+          h', if_true]
         exact Set.indicator_of_mem hz1 _
     rw [← rsm_gauss_total N]
     exact half_le_of_tail_le_half _ _ _ _ _ _ _ (by positivity)
-      (by first | positivity | exact measureReal_nonneg | exact ENNReal.toReal_nonneg)
+      (by first | positivity)
       (rsm_tail N (by omega)) htot (htail.trans htail0) hsum
 
 lemma rsm_mean (N : ℕ) (F : EuclideanSpace ℂ (Fin N) → ℂ) (hF : Differentiable ℂ F)
@@ -246,7 +244,7 @@ lemma rsm_mean (N : ℕ) (F : EuclideanSpace ℂ (Fin N) → ℂ) (hF : Differen
     (Metric.mem_ball_self one_pos)
   have hI : (∮ w in C(0, 1), (w - 0)⁻¹ • h w)
       = Complex.I * ∫ θ in (0 : ℝ)..2 * Real.pi, h (circleMap 0 1 θ) := by
-    first | rw [circleIntegral] | unfold circleIntegral
+    first | rw [circleIntegral]
     rw [← intervalIntegral.integral_const_mul]
     refine intervalIntegral.integral_congr (fun θ _ => ?_)
     have hc0 : circleMap 0 1 θ ≠ 0 := circleMap_ne_center one_ne_zero
@@ -293,7 +291,7 @@ lemma rsm_rot_int (N : ℕ) (F : EuclideanSpace ℂ (Fin N) → ℂ) (u : ℂ) (
       | exact (rsmRot N u hu).toHomeomorph.measurableEmbedding
   have hpre : (rsmRot N u hu) ⁻¹' closedBall 0 r = closedBall 0 r := by
     ext z
-    simp [hcoe, norm_smul, hu]
+    simp
   calc ∫ z in closedBall (0 : EuclideanSpace ℂ (Fin N)) r, Real.exp (-‖z‖ ^ 2) * ‖F (u • z)‖ ^ 2
       = ∫ z in closedBall (0 : EuclideanSpace ℂ (Fin N)) r,
           (fun w => Real.exp (-‖w‖ ^ 2) * ‖F w‖ ^ 2) (rsmRot N u hu z) := by

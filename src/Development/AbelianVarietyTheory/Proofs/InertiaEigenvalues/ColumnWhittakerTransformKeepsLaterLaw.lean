@@ -64,7 +64,7 @@ variable {R : Type} [CommRing R] {a : ℕ}
 theorem posM_blk_apply {r m : ℕ} (x : UnipotentBlockColumnIndex a r m → R) (i l : Fin a) :
     posM (Subtype.val : UnipotentBlockColumnIndex a r m → Fin a × Fin a) x i l =
       if h : (i : ℕ) < r ∧ r ≤ (l : ℕ) ∧ (l : ℕ) ≤ m then x ⟨(i, l), h⟩ else 0 := by
-  apply GlobalTheory.CuspGeneric.posM_apply_of_blkIx <;> assumption
+  apply GlobalTheory.CuspGeneric.posM_apply_of_blkIx
 
 theorem posM_mul_posM_eq_zero {ι κ : Type} [Fintype ι] [Fintype κ] {p : ι → Fin a × Fin a}
     {q : κ → Fin a × Fin a} (h : ∀ s t, (p s).2 ≠ (q t).1) (x : ι → R) (y : κ → R) :

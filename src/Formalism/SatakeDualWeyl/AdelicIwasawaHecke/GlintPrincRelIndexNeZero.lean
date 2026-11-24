@@ -207,7 +207,7 @@ theorem glint_exists_approx (x : v.adicCompletionIntegers F) :
 
 theorem glint_finite_residueField :
     Finite (IsLocalRing.ResidueField (v.adicCompletionIntegers F)) := by
-  apply GlobalTheory.SelfDualGenus.finite_residueField_adicCompletionIntegers <;> assumption
+  apply GlobalTheory.SelfDualGenus.finite_residueField_adicCompletionIntegers
 
 theorem glint_finite_quotient_of_dvr {R : Type*} [CommRing R] [IsDomain R] [IsDiscreteValuationRing R]
     (h : Finite (IsLocalRing.ResidueField R)) (I : Ideal R) (hI : I ≠ ⊥) : Finite (R ⧸ I) := by

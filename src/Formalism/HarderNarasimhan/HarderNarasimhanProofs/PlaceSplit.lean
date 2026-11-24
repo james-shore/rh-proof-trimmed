@@ -198,7 +198,6 @@ theorem psi_injective (v : P) : Function.Injective (psi (ι := ι) v) := by
 theorem mem_placePart (v : P) (w : EuclideanSpace ℝ (P × ι × Fin 2)) :
     w ∈ placePart v ↔ ∀ p : P × ι × Fin 2, p.1 ≠ v → w p = 0 := by
   first
-    | exact Iff.rfl
     | simp [placePart]
 
 theorem prj_mem (v : P) (w : EuclideanSpace ℝ (P × ι × Fin 2)) : prj v w ∈ placePart v := by

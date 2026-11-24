@@ -163,15 +163,6 @@ private theorem valued_algebraMap_ringOfIntegers_eq_intValuation (a : 𝓞 F) :
 private theorem denseRange_algebraMap_adicCompletion' : DenseRange (algebraMap F (v.adicCompletion F)) := by
   first
   | exact IsDedekindDomain.HeightOneSpectrum.denseRange_algebraMap F v
-  | (delta IsDedekindDomain.HeightOneSpectrum.adicCompletion
-     exact UniformSpace.Completion.denseRange_coe)
-  | (unfold IsDedekindDomain.HeightOneSpectrum.adicCompletion Valuation.Completion
-     refine Dense.mono ?_ UniformSpace.Completion.denseRange_coe
-     rintro _ ⟨y, rfl⟩
-     first
-     | exact ⟨WithVal.equiv _ y, rfl⟩
-     | exact ⟨WithVal.ofVal y, rfl⟩
-     | exact ⟨y, rfl⟩)
 
 private theorem exists_ringOfIntegers_valued_sub_lt_one_of_le_one (x : v.adicCompletion F) (hx : Valued.v x ≤ 1) :
     ∃ r : 𝓞 F, Valued.v (x - algebraMap (𝓞 F) (v.adicCompletion F) r) < 1 := by
@@ -237,7 +228,7 @@ private theorem mem_maximalIdeal_of_valued_lt_one (d : Valued.integer (v.adicCom
 
 theorem finite_residueField :
     Finite (IsLocalRing.ResidueField (Valued.integer (v.adicCompletion F))) := by
-  apply PI.WAU.finite_residue <;> assumption
+  apply PI.WAU.finite_residue
 
 instance compactSpace_integer : CompactSpace (Valued.integer (v.adicCompletion F)) := by
   haveI : IsDiscreteValuationRing (Valued.integer (v.adicCompletion F)) :=

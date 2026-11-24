@@ -181,7 +181,7 @@ theorem norm_word_le_number_pow : ∀ (T H κ : Type) [AddCommGroup T] [Module �
     intro j x
     rw [← inner_conj_symm, hadj, RCLike.conj_re, inner_self_eq_norm_sq]
   have hMx : ∀ x, M x = ∑ j, c j (a j x) + (r : ℂ) • x := by
-    intro x; subst hM; simp [Module.End.mul_apply]
+    intro x; subst hM; simp
   have hQeq : ∀ x, RCLike.re (inner ℂ (Φ x) (Φ (M x))) = ∑ j, ‖Φ (a j x)‖ ^ 2 + r * ‖Φ x‖ ^ 2 := by
     intro x
 

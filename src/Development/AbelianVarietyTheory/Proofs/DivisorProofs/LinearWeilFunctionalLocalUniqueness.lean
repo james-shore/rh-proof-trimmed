@@ -235,7 +235,7 @@ attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalDat
 theorem _root_.GlobalTheory.T.box_product_diagonal_functional_ne_zero : ∀ (F : Type) [Field F] [NumberField F] (κ : Type) [Fintype κ] (v : Pl (F := F)), ∃ φ₀ ∈ SB (κ → Fv F v), boxFun φ₀ φ₀ ∈ SB (κ ⊕ κ → Fv F v) ∧
     ∃ R R' : (κ → AF F) → ℂ, (∀ φ ∈ SB (κ → Fv F v), Rest (evFin F v) φ R ∧ Rest (evFin F v) φ R') ∧
       GlobalTheory.DiagForm.lDiag F κ (boxFun (tens (evFin F v) φ₀ R) (tens (evFin F v) φ₀ R')) ≠ 0 := by
-  first | exact @GlobalTheory.DiagTens.lDiag_box_tens_ne | exact GlobalTheory.DiagTens.lDiag_box_tens_ne | (intros; apply GlobalTheory.DiagTens.lDiag_box_tens_ne <;> assumption)
+  first | exact @GlobalTheory.DiagTens.lDiag_box_tens_ne
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.BoxProductDiagonalFunctionalNeZeroStatement =====
@@ -380,7 +380,7 @@ attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalDat
 theorem _root_.GlobalTheory.T.mixed_projection_preserves_schwartz_adm : ∀ (F : Type) [Field F] [NumberField F] (κ : Type) [Fintype κ] (v : Pl (F := F)) (φ₀ : (κ → Fv F v) → ℂ), φ₀ ∈ SB (κ → Fv F v) → ∀ l : ((κ → Fv F v) → ℂ) →ₗ[ℂ] ℂ,
     (∀ Φ ∈ schA F κ, GlobalTheory.MixedForm.proj v φ₀ l Φ ∈ schA F κ) ∧
       ∀ L ∈ (adeleClass F).adm κ, L ∘ₗ GlobalTheory.MixedForm.proj v φ₀ l ∈ (adeleClass F).adm κ := by
-  first | exact @GlobalTheory.MixedForm.proj_schA_adm | exact GlobalTheory.MixedForm.proj_schA_adm | (intros; apply GlobalTheory.MixedForm.proj_schA_adm <;> assumption)
+  first | exact @GlobalTheory.MixedForm.proj_schA_adm
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MixedProjectionPreservesSchwartzAdmStatement =====
@@ -469,7 +469,7 @@ attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalDat
 theorem _root_.GlobalTheory.T.schwartz_bruhat_partial_evaluation : ∀ (k : Type) [TopologicalSpace k] [T2Space k] (κ κ' : Type) [Fintype κ] [Fintype κ'], ∀ f ∈ SB (κ ⊕ κ' → k),
     (∀ x₁ : κ → k, (fun x₂ : κ' → k => f (Sum.elim x₁ x₂)) ∈ SB (κ' → k)) ∧
       ∀ l : ((κ' → k) → ℂ) →ₗ[ℂ] ℂ, (fun x₁ : κ → k => l fun x₂ => f (Sum.elim x₁ x₂)) ∈ SB (κ → k) := by
-  first | exact @GlobalTheory.SliceSB.slice_mem | exact GlobalTheory.SliceSB.slice_mem | (intros; apply GlobalTheory.SliceSB.slice_mem <;> assumption)
+  first | exact @GlobalTheory.SliceSB.slice_mem
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.SchwartzBruhatPartialEvaluationStatement =====
@@ -635,7 +635,7 @@ variable {R : Type} [CommRing R] [Invertible (2 : R)] {E : Type} [CommRing E] [A
 
 omit [Invertible (2 : R)] [Fintype β] in
 theorem smul_one_map (a : E) : (a • (1 : Matrix β β E)).map c = c a • 1 := by
-  ext i j; by_cases h : i = j <;> simp [Matrix.one_apply, h]
+  ext i j; by_cases h : i = j <;> simp [h]
 
 
 omit [Invertible (2 : R)] in
@@ -691,8 +691,8 @@ theorem siegel_mixed {C : TestClass R} {ψ : AddChar R ℂ} {ξ : E} {JA : Matri
       Matrix.fromRows ((1 - ε) • (1 : Matrix β β E)) ((1 - c ε) • (1 : Matrix β β E)) := by
     rw [hγ, diagCols, Matrix.fromBlocks_mul_fromRows]
     congr 1
-    · simp [sub_smul, sub_eq_add_neg, add_smul]
-    · simp [sub_smul, sub_eq_add_neg, add_smul, add_comm]
+    · simp [sub_eq_add_neg, add_smul]
+    · simp [sub_eq_add_neg, add_smul, add_comm]
   rw [← hres g gd hgd φ₁ hφ₁ φ₂ hφ₂]
   refine siegel_conj hs hS γ l hl (fun z Φ hΦ => ?_) gd t ?_ _ hb
   · rw [← hinv z Φ hΦ, hC, Matrix.transpose_fromRows, Matrix.mul_fromCols, Darboux.rho, hdd]
@@ -700,12 +700,12 @@ theorem siegel_mixed {C : TestClass R} {ψ : AddChar R ℂ} {ξ : E} {JA : Matri
   · rw [hC, hgd, ht, Matrix.fromBlocks_mul_fromRows, Matrix.fromRows_mul]
     set G : Matrix β β E := ((g : GL β E) : Matrix β β E)
     congr 1
-    · simp only [Matrix.mul_smul, Matrix.smul_mul, Matrix.mul_one, Matrix.one_mul, Matrix.zero_mul, smul_zero, add_zero,
+    · simp only [Matrix.mul_smul, Matrix.smul_mul, Matrix.mul_one, Matrix.one_mul, smul_zero, add_zero,
         smul_add, smul_smul]
       have e : (1 - ε) * c ε = c ε := by rw [sub_mul, one_mul, h2, sub_zero]
       rw [e, ← sub_eq_zero, ← hg]
       module
-    · simp only [Matrix.mul_smul, Matrix.smul_mul, Matrix.mul_one, Matrix.one_mul, Matrix.zero_mul, smul_zero, zero_add,
+    · simp only [Matrix.mul_smul, Matrix.smul_mul, Matrix.mul_one, Matrix.one_mul, smul_zero, zero_add,
         smul_add, smul_smul]
       have e : (1 - c ε) * c ε = 0 := by rw [sub_mul, one_mul, h4, sub_self]
       rw [e, zero_smul, add_zero]

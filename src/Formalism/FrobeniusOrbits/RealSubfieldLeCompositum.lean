@@ -65,7 +65,7 @@ variable {e : ℕ}
 
 theorem hcl_eq_hcl_iff (u v : (ZMod (2 ^ (e + 2)))ˣ) :
     hcl e u = hcl e v ↔ u = v ∨ u = -v := by
-  apply Formalism.FrobeniusOrbits.Galois.hcl_eq_iff <;> assumption
+  apply Formalism.FrobeniusOrbits.Galois.hcl_eq_iff
 
 theorem hcl_neg (u : (ZMod (2 ^ (e + 2)))ˣ) : hcl e (-u) = hcl e u := by
   unfold hcl

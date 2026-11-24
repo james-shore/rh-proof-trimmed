@@ -215,7 +215,6 @@ lemma zeta_eq_of_one_lt {s : ℂ} (hs : 1 < s.re) :
     riemannZeta s = s / (s - 1) - s * fractInt s := by
   first
   | (apply _root_.GlobalTheory.ZetaFractionalIntegral.zeta_eq_sub_integral_fract <;> assumption)
-  | (intros; exact _root_.GlobalTheory.ZetaFractionalIntegral.zeta_eq_sub_integral_fract ..)
 
 theorem zeta_eq {s : ℂ} (hs : 0 < s.re) (hs1 : s ≠ 1) :
     riemannZeta s = s / (s - 1) - s * fractInt s := by

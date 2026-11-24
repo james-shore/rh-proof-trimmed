@@ -495,7 +495,7 @@ variable (τ : Matrix (Fin (r' + 1)) (Fin (r' + 1)) ℂ)
 theorem tt_su (a b : Fin (r' + 1)) : tt τ (su b) (su a) = τ b a := by
   unfold tt
   rw [if_neg (by simp [su]), dite_eq_right (by simp [su])]
-  congr 1 <;> ext
+  congr 1
 
 theorem tt_00 : tt τ 0 0 = 1 := by
   simp [tt]

@@ -1645,7 +1645,6 @@ theorem strong_approx_stab : ∀ {F E : Type} [Field F] [NumberField F] [Field E
   have hclose := by
     first
     | exact _root_.GlobalTheory.HL.FrameClose.close_lattice A r k G Λ hΛ
-    | exact _root_.GlobalTheory.HL.FrameClose.close_lattice A r k G Λ hΛ.toIsLattice
   obtain ⟨d, hd0, hdfin, hd⟩ := hclose
   choose s hsP hsf hsI using fun p => _root_.GlobalTheory.HL.LocPattern.local_pattern A r k G p (n p) (hnSt p)
   let c' : ∀ p, ((A.loc p).Fp)ˣ := fun p => c p * Units.mk0 (d p) (hd0 p)

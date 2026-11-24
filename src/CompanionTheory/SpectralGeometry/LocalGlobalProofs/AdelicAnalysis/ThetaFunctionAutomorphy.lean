@@ -828,8 +828,7 @@ theorem rational_coset_param : ∀ (F : Type) [Field F] [NumberField F] (ι : Ty
 
     simp only [emb, gM, EM, Matrix.mulVec, dotProduct, Matrix.smul_apply, Matrix.kroneckerMap_apply,
     Matrix.one_apply, Pi.add_apply, map_add, map_mul, map_sum, map_natCast, map_intCast,
-    Fintype.sum_prod_type, ite_mul, one_mul, zero_mul, Finset.sum_ite_eq, Finset.mem_univ, if_true,
-    nsmul_eq_mul, Finset.mul_sum]
+    Fintype.sum_prod_type, ite_mul, one_mul, zero_mul, Finset.mul_sum]
     congr 1
     rw [Finset.sum_eq_single i (fun j _ hj => by simp [Ne.symm hj]) (by simp)]
     refine Finset.sum_congr rfl fun v _ => ?_
@@ -1094,7 +1093,7 @@ theorem _root_.GlobalTheory.T.poisson_summation_gaussian :
         ∑' n : κ → ℤ, fh ((g⁻¹)ᵀ *ᵥ fun i => (n i : ℝ)) *
           Complex.exp (-(2 * (Real.pi : ℂ) * Complex.I) *
             ((a ⬝ᵥ ((g⁻¹)ᵀ *ᵥ fun i => (n i : ℝ)) : ℝ) : ℂ)) := by
-  apply GlobalTheory.CompanionTheory.SW.Core.PoiLat.poisson_shifted_lattice <;> assumption
+  apply GlobalTheory.CompanionTheory.SW.Core.PoiLat.poisson_shifted_lattice
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: CompanionTheory.SpectralGeometry.LocalGlobalProofs.AdelicAnalysis.PoissonSummationGaussianStatement =====

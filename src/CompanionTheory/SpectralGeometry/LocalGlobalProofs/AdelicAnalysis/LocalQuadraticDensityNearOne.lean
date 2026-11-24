@@ -109,7 +109,7 @@ local notation "𝓴" => IsLocalRing.ResidueField 𝒪
 local notation "res" => IsLocalRing.residue 𝒪
 
 theorem res_eq_zero_iff (a : 𝒪) : res a = 0 ↔ Valued.v (a : Fv F v) < 1 := by
-  apply GlobalTheory.PlaceRed.mem_max_iff <;> assumption
+  apply GlobalTheory.PlaceRed.mem_max_iff
 
 theorem res_eq_iff (a b : 𝒪) : res a = res b ↔ Valued.v ((a : Fv F v) - b) < 1 := by
   rw [← sub_eq_zero, ← map_sub, res_eq_zero_iff]

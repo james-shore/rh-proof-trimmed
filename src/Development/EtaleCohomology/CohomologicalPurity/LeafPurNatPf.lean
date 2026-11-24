@@ -57,8 +57,7 @@ theorem fold_map {P' P : Arrow Spc} (ψ : P' ⟶ P) : dbl.map ψ ≫ dbl.fold P 
     apply pushout.hom_ext <;>
       simp only [dbl.map, dbl.fold, pushout.map] <;> (first
         | (erw [pushout.inl_desc_assoc, Category.assoc]; erw [pushout.inl_desc, pushout.inl_desc_assoc]; simp)
-        | (erw [pushout.inr_desc_assoc, Category.assoc]; erw [pushout.inr_desc, pushout.inr_desc_assoc]; simp)
-        | (erw [pushout.inl_desc_assoc, Category.assoc, Category.assoc]; erw [pushout.inl_desc, pushout.inl_desc]; simp))
+        | (erw [pushout.inr_desc_assoc, Category.assoc]; erw [pushout.inr_desc, pushout.inr_desc_assoc]; simp))
 
 theorem proj_pull (q : ℕ) {P' P : Arrow Spc} (ψ : P' ⟶ P) (n i : ℤ) (c : Ht q (dbl P) n i) :
     Hs.pull q ψ n i (Hs.proj q P n i c) = Hs.proj q P' n i (pull _ (dbl.map ψ) _ n c) := by

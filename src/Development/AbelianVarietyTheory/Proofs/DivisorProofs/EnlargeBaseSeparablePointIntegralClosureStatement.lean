@@ -112,7 +112,7 @@ theorem sub_C_coeff_mem {R : Type} [CommRing R] (p : Polynomial R) :
 
 theorem mem_originIdeal_iff {R : Type} [CommRing R] [IsLocalRing R] (f : Polynomial R) :
     f ∈ GlobalTheory.KeyOriginCut.originIdeal R ↔ f.coeff 0 ∈ maximalIdeal R := by
-  apply GlobalTheory.VertUnitsNoeth.mem_originIdeal_iff' <;> assumption
+  apply GlobalTheory.VertUnitsNoeth.mem_originIdeal_iff'
 
 theorem comap_maximalIdeal_eq_originIdeal {T O A₁ : Type} [CommRing T] [IsLocalRing T] [CommRing O]
     [IsLocalRing O] [Algebra T O] [Algebra (Polynomial T) O] [IsScalarTower T (Polynomial T) O]

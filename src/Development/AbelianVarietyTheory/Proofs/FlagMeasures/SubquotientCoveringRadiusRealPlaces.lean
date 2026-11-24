@@ -527,7 +527,7 @@ theorem _root_.GlobalTheory.T.lattice_pair_volume_bounds :
           Real.sqrt (∑ w, ∑ i, ∑ j, ‖(T w - (X' w)⁻¹ * φ.map w.embedding * X w) i j‖ ^ 2) ≤
             (a : ℝ) * b * Real.sqrt (Formalism.HN.nPl K) *
               |(discr K : ℝ)| ^ ((1 : ℝ) / (2 * (Formalism.HN.nPl K : ℝ))) * hi / (2 * lo) := by
-  apply _root_.GlobalTheory.HomCover.exists_hom_near <;> assumption
+  apply _root_.GlobalTheory.HomCover.exists_hom_near
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AbelianVarietyTheory.Proofs.FlagMeasures.LatticePairVolumeBoundsStatement =====

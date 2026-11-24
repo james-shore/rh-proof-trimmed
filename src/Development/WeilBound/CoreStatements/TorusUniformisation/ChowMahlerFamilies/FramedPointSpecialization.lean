@@ -63,7 +63,7 @@ namespace PositivityTheory.Xgn.FramedPointSpecialization
 
 theorem exists_embedding (K k : Type) [Field K] [Field k] [Countable K] [Countable k] (β : K →+* k) (s : K →+* ℂ) :
     ∃ j : k →+* ℂ, j.comp β = s := by
-  apply PositivityTheory.Xgp.c_bm_exists_period.exists_embedding <;> assumption
+  apply PositivityTheory.Xgp.c_bm_exists_period.exists_embedding
 
 theorem exists_countable_field {X : Scheme.{0}} {K F : Type} [CommRing K] [Countable K] [Field F] (s : X ⟶ Sp K)
     [LocallyOfFiniteType s] (y : Sp F ⟶ X) :

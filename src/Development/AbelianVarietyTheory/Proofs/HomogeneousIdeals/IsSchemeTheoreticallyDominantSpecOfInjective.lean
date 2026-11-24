@@ -72,7 +72,6 @@ theorem isSchemeTheoreticallyDominant_spec_of_injective {R A : CommRingCat.{u}} 
     (hφ : Function.Injective φ) : IsSchemeTheoreticallyDominant (Spec.map φ) := by
   first
   | (apply _root_.GlobalTheory.SchemeDominantSpecMap.isSchemeTheoreticallyDominant_specMap <;> assumption)
-  | (intros; exact _root_.GlobalTheory.SchemeDominantSpecMap.isSchemeTheoreticallyDominant_specMap ..)
 
 theorem spec_fractionRing (R K : Type u) [CommRing R] [CommRing K] [Algebra R K] [IsFractionRing R K] :
     QuasiCompact (Spec.map (CommRingCat.ofHom (algebraMap R K))) ∧

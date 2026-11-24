@@ -93,7 +93,7 @@ theorem vge_mul' {a b : ℝ} {x y : K} (hx : vge v a x) (hy : vge v b y) : vge v
 
 theorem vge_sum' {ι : Type} {a : ℝ} (s : Finset ι) (f : ι → K) (h : ∀ i ∈ s, vge v a (f i)) :
     vge v a (∑ i ∈ s, f i) := by
-  first | (apply UpperTheory.Reformulated.B.Qh31.vge_sum <;> assumption) | exact @UpperTheory.Reformulated.B.Qh31.vge_sum K ‹_› v ι a s f h | exact @UpperTheory.Reformulated.B.Qh31.vge_sum K ‹_› v ι a s f | exact @UpperTheory.Reformulated.B.Qh31.vge_sum K ‹_› v ι a s | exact @UpperTheory.Reformulated.B.Qh31.vge_sum K ‹_› v ι a | exact @UpperTheory.Reformulated.B.Qh31.vge_sum K ‹_› v ι | exact @UpperTheory.Reformulated.B.Qh31.vge_sum K ‹_› v | exact @UpperTheory.Reformulated.B.Qh31.vge_sum K ‹_› | exact @UpperTheory.Reformulated.B.Qh31.vge_sum K
+  first | (apply UpperTheory.Reformulated.B.Qh31.vge_sum <;> assumption)
 
 theorem fact_ne_zero' {σ : Type} (α : σ →₀ ℕ) : fact α ≠ 0 := by
   unfold fact Finsupp.prod

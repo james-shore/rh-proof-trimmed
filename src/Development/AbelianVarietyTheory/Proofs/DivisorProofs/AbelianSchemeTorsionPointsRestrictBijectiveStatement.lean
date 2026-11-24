@@ -319,7 +319,7 @@ theorem _root_.GlobalTheory.T.abelian_scheme_torsion_points_restrict_bijective :
         (Over.homMk (spMap φ) rfl : Over.mk (spMap φ ≫ t) ⟶ Over.mk t) ≫ h → g = h) ∧
     ∀ x : Over.mk (spMap φ ≫ t) ⟶ A, x ^ n = 1 → ∃ g : Over.mk t ⟶ A, g ^ n = 1 ∧
       (Over.homMk (spMap φ) rfl : Over.mk (spMap φ ≫ t) ⟶ Over.mk t) ≫ g = x := by
-  apply _root_.GlobalTheory.TorsLift.torsion_points_restrict_bijective <;> assumption
+  apply _root_.GlobalTheory.TorsLift.torsion_points_restrict_bijective
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.AbelianSchemeTorsionPointsRestrictBijectiveStatement =====

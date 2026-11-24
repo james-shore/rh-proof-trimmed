@@ -469,7 +469,6 @@ theorem norm_coeff_prod_X_sub_C_le_pow {K : Type} [NormedField K] [IsUltrametric
     ‖(∏ x ∈ S, (X - C x) : K[X]).coeff a‖ ≤ θ ^ (S.card - a) := by
   first
   | (apply _root_.GlobalTheory.RootProductCoeffBound.main <;> assumption)
-  | (intros; exact _root_.GlobalTheory.RootProductCoeffBound.main ..)
 
 theorem exists_pow_eq_interpolation {K : Type} [NormedField K] [IsUltrametricDist K]
     (θ : ℝ) (h0 : 0 ≤ θ) (h1 : θ ≤ 1) (S : Finset K) (hS : ∀ x ∈ S, ‖x‖ ≤ θ)

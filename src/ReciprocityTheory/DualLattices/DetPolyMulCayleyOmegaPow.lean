@@ -130,8 +130,7 @@ def linSub (g : Matrix (Fin n) (Fin n) R) :
 theorem pderiv_linSub_X (g : Matrix (Fin n) (Fin n) R) (a b : Fin n) (v : Fin n × Fin n) :
     pderiv (a, b) (linSub g (X v)) = if v.2 = b then C (g v.1 a) else 0 := by
 
-  simp only [linSub, aeval_X, map_sum, Derivation.leibniz, pderiv_C, pderiv_X, smul_zero,
-  add_zero, smul_eq_mul, Pi.single_apply, Prod.mk.injEq]
+  simp only [linSub, aeval_X, map_sum, Derivation.leibniz, pderiv_C, pderiv_X, smul_eq_mul, Pi.single_apply, Prod.mk.injEq]
   by_cases hb : v.2 = b
   · subst hb; simp
   · simp [hb]

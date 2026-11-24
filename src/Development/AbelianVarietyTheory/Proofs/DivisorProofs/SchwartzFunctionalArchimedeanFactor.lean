@@ -668,7 +668,7 @@ theorem summable_one_add_norm_inv_pow' {E : Type} [NormedAddCommGroup E] [Normed
     ((ZLattice.summable_norm_pow_inv L k hk).add (hasSum_ite_eq (0 : L) (1 : ℝ)).summable)
   by_cases hz : z = 0
   · subst hz
-    simp only [if_pos rfl, norm_zero, add_zero, inv_one, one_pow]
+    simp only [norm_zero, add_zero, inv_one, one_pow]
     exact le_add_of_nonneg_left (by positivity)
   · have h0 : 0 < ‖z‖ := norm_pos_iff.2 hz
     simp only [hz, if_false, add_zero]
@@ -1288,7 +1288,7 @@ theorem dirac_comb_unique : ∀ (n : ℕ) (T : SchwartzMap (Fin n → ℝ) ℂ �
       have hi : ∀ i, ∃ z : ℤ, μ i = z := by
         intro i
         obtain ⟨z, hz⟩ := hμ (Pi.single i 1) ((mem_intLat _).2 ⟨Pi.single i 1, by
-          funext j; by_cases h : j = i <;> simp [Pi.single_apply, h]⟩)
+          funext j; by_cases h : j = i <;> simp [h]⟩)
         refine ⟨z, ?_⟩
         rw [← hz, dotForm_apply]
         simp [Pi.single_apply]
@@ -1440,7 +1440,7 @@ theorem sum_realBasis (a : F) (ha : a ≠ 0) (k : Fin (nn κ F) → ℤ) :
     ∑ l, (k l : ℝ) • realBasis κ a ha l =
       fun i => mixedEmbedding F (a * (((∑ l, k l • intBasis κ F l) i : 𝓞 F) : F)) := by
   funext i
-  simp [Finset.sum_apply, realBasis_apply, Finset.mul_sum, mul_smul_comm, Int.cast_smul_eq_zsmul]
+  simp [Finset.sum_apply, realBasis_apply, Finset.mul_sum, Int.cast_smul_eq_zsmul]
   refine Finset.sum_congr rfl fun l _ => ?_
   exact mul_left_comm _ _ _
 

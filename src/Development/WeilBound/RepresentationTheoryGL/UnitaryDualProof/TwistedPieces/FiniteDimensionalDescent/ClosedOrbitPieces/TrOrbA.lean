@@ -239,8 +239,7 @@ theorem finrank_piece_rep (e : A) : finrank k (piece (Rep ρ) e) = (ρ e).rank :
   have hs : ((piece (Rep ρ) e).restrictScalars k : Submodule k (Fin N → k)) =
       LinearMap.range (ρ e).mulVecLin := by
     ext v
-    simp only [Submodule.restrictScalars_mem, piece, LinearMap.mem_range, LinearMap.lsmul_apply,
-      Matrix.mulVecLin_apply]
+    simp only [Submodule.restrictScalars_mem, piece, LinearMap.mem_range, LinearMap.lsmul_apply]
     rfl
   rw [← Matrix.finrank_range_mulVecLin, ← hs]
   rfl

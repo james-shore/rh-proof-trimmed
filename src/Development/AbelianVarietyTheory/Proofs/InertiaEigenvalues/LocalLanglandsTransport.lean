@@ -102,7 +102,7 @@ theorem map_corner {m : ℕ} (g : GL (Fin m) R) :
   obtain ⟨i, rfl⟩ := (stdSum (rfl : m + 1 = m + 1)).surjective i
   obtain ⟨j, rfl⟩ := (stdSum (rfl : m + 1 = m + 1)).surjective j
   rcases i with i | i <;> rcases j with j | j <;>
-    simp [Matrix.one_apply, GeneralLinearGroup.map] <;> split_ifs
+    simp [Matrix.one_apply, GeneralLinearGroup.map]
 
 theorem superDiag_map {n : ℕ} (g : GL (Fin n) R) :
     GlobalTheory.Whittaker.superDiag (GeneralLinearGroup.map f g) = f (GlobalTheory.Whittaker.superDiag g) := by

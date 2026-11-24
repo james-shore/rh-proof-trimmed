@@ -137,7 +137,7 @@ lemma bc_one_mid (c : Fin r → ℂ) (i j : Fin (2 * r + k + 1)) (hi : mid k r i
   · rw [if_neg (by omega), if_neg h]
 
 theorem bigCellFactor : BigCellFactor := by
-  apply Formalism.FourierDecayAlt.P.bruhat_big_cell_factorization <;> assumption
+  apply Formalism.FourierDecayAlt.P.bruhat_big_cell_factorization
 
 lemma mid_wI (a : Fin (k + 1)) : mid k r (wI k r a) := by
   have := a.isLt

@@ -64,7 +64,7 @@ theorem degenerateWhittakerDim_zero_eq_whittakerDim {F : Type} [Field F] {r : �
     funext fun g => by rw [h]]
 
 theorem numBlockSetsOfTotalSize_zero_eq_one {r : ℕ} (b : Fin r → ℕ) : splitDoublingNBlock b 0 = 1 := by
-  apply GlobalTheory.FinGL.numBlockSetsOfTotalSize_zero <;> assumption
+  apply GlobalTheory.FinGL.numBlockSetsOfTotalSize_zero
 
 theorem whDim_parInd_eq_one : ∀ (F : Type) [Field F] [Fintype F] (ψ : AddChar F ℂ), ψ ≠ 1 → ∀ (r : ℕ) (V : Type) [AddCommGroup V] [Module ℂ V] [FiniteDimensional ℂ V] (b : Fin r → ℕ) (σ : Representation ℂ (blockTri (κ := F) b) V), IsCuspDatum b σ → whDim ψ (parInd b σ) = 1 := by
   intro F _ _ ψ hψ r V _ _ _ b σ hσ

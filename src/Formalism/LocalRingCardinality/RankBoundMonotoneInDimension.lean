@@ -1168,7 +1168,7 @@ theorem factUnitNormalisation : FactUnitNormalisation := by
 
 theorem resChar_mem (D : D7) (w : D.what₂.places.Pl) :
     ((D.what₂.places.resChar w : ℕ) : 𝓞 D.what₂.LL) ∈ (D.plEq w).asIdeal := by
-  apply Formalism.MainNotions.J.resChar_mem <;> assumption
+  apply Formalism.MainNotions.J.resChar_mem
 
 theorem factEtaMean : FactEtaMean := by
   intro D _ l hl S hS

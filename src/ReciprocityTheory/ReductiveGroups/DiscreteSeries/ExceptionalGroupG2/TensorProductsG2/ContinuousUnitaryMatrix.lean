@@ -86,7 +86,7 @@ theorem smoothOnG_inner_rep (w : H) {v : H} (hv : IsSmoothVecU ε σ v) :
     fun g hgU hgJ => congrArg (inner ℂ w) (he g hgU hgJ)⟩
 
 theorem smoothOnG_tensor_phi (dual : Bool) (c d : Fin n) : Formalism.REAL.SmoothOnG ε (fun g => oa1Phi dual g c d) := by
-  apply ReciprocityTheory.ChartRestriction.DS.smoothOnG_tensor_phi <;> assumption
+  apply ReciprocityTheory.ChartRestriction.DS.smoothOnG_tensor_phi
 
 private theorem smoothOnG_mul' {F G : Matrix (Fin n) (Fin n) ℂ → ℂ} (hF : Formalism.REAL.SmoothOnG ε F)
     (hG : Formalism.REAL.SmoothOnG ε G) : Formalism.REAL.SmoothOnG ε (fun x => F x * G x) := by
@@ -111,7 +111,7 @@ theorem continuous_rep_orbit (hσ : IsURepOn (UJset ε) σ) (v : H) :
 
 theorem continuous_tensor_phi (dual : Bool) (c d : Fin n) :
     Continuous (fun g : Formalism.REAL.UJ ε => oa1Phi dual (Formalism.MainNotions.S.umat g) c d) := by
-  apply ReciprocityTheory.ChartRestriction.DS.continuous_tensor_phi <;> assumption
+  apply ReciprocityTheory.ChartRestriction.DS.continuous_tensor_phi
 
 theorem tensor_term_memLp (hσ : IsURepOn (UJset ε) σ) {S : Submodule ℂ D}
     (hW : ∀ v ∈ S, ∀ w ∈ S, MemLp (fun g : Formalism.REAL.UJ ε =>

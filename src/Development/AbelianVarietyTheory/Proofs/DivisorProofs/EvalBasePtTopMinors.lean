@@ -72,7 +72,7 @@ theorem eval_rowSub {d a : ℕ} (κ : ι → Matrix (Fin d) (Fin d) ℂ) (z : Va
   | C c => simp [rowSub]
   | add p q hp hq => simp only [map_add (f := _), hp, hq]
   | mul_X p y hp =>
-      simp [rowSub, hp] at *
+      simp [rowSub] at *
       exact Or.inl hp
 
 theorem eval_colSub {d a : ℕ} (g : ι → Matrix (Fin a) (Fin a) ℂ) (z : Var ι d a → ℂ) (P : Pol ι d a) :
@@ -81,7 +81,7 @@ theorem eval_colSub {d a : ℕ} (g : ι → Matrix (Fin a) (Fin a) ℂ) (z : Var
   | C c => simp [colSub]
   | add p q hp hq => simp only [map_add (f := _), hp, hq]
   | mul_X p y hp =>
-      simp [colSub, hp] at *
+      simp [colSub] at *
       exact Or.inl hp
 
 theorem rowSub_rowSub {d a : ℕ} (κ κ' : ι → Matrix (Fin d) (Fin d) ℂ) (P : Pol ι d a) :

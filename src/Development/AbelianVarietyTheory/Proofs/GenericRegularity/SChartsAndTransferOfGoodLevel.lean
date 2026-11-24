@@ -332,7 +332,7 @@ theorem vr_one (e : ℕ) : vr e (1 : V) = 0 := by
 theorem chval_fin_iff (φ : A →+* V) (e : ℕ) (f : FractionRing A) (u : ℝ) :
     ChV φ e f (u : EReal) ↔ ∃ x s : A, φ s ≠ 0 ∧ φ x ≠ 0 ∧
       f * algebraMap A (FractionRing A) s = algebraMap A (FractionRing A) x ∧ u = vr e (φ x) - vr e (φ s) := by
-  apply GlobalTheory.Reg.TrivBound.chval_fin_iff <;> assumption
+  apply GlobalTheory.Reg.TrivBound.chval_fin_iff
 
 theorem chval_fin_mul (φ : A →+* V) (e : ℕ) {f1 f2 : FractionRing A} {u1 u2 : ℝ}
     (h1 : ChV φ e f1 (u1 : EReal)) (h2 : ChV φ e f2 (u2 : EReal)) :

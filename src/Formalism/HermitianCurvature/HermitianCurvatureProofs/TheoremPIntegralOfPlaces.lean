@@ -289,11 +289,6 @@ private theorem psdOn_hadamard_mul_of_psdOn {α : Type} (F : Finset α) (A B : �
   show Matrix.PosSemidef (Matrix.of fun x y : F => A x y * B x y)
   first
   | exact hA'.hadamard hB'
-  | obtain ⟨C, hC⟩ : ∃ C : Matrix F F ℂ, (Matrix.of fun x y : F => A x y) = C.conjTranspose * C := by
-      first
-      | exact ⟨hA'.sqrt, by rw [hA'.posSemidef_sqrt.1.eq, hA'.sqrt_mul_self]⟩
-      | exact Matrix.posSemidef_iff_eq_conjTranspose_mul_self.1 hA'
-      | exact Matrix.posSemidef_iff_exists_eq_conjTranspose_mul_self.1 hA'
 
 theorem nst_diag_nonneg (hG : D.GramPSD) (hW : D.WordsPos) {ε : ℝ} (hε : 0 < ε) (i s : ℕ) (w : W)
     (Y : Finset (Pt E)) (T : Finset E) (κ : Pt E → Pt E → ℂ) (hκ : PSDOn (pts Y s T) κ) (t : E) (ht : t ∈ T) :

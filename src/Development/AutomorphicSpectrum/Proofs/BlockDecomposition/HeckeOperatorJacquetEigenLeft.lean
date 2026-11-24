@@ -100,7 +100,7 @@ theorem unif_pow_ne_zero (m : ℕ) : (((Zls.unif k ^ m : 𝒪[k])) : k) ≠ 0 :=
   simpa using this
 
 theorem isOpen_Km (N m : ℕ) : IsOpen (Zls.Km k N m : Set (GL (Fin N) k)) := by
-  apply GlobalTheory.CompanionTheory.KmTop.isOpen_Km <;> assumption
+  apply GlobalTheory.CompanionTheory.KmTop.isOpen_Km
 
 theorem isCompact_Km (N m : ℕ) : IsCompact (Zls.Km k N m : Set (GL (Fin N) k)) :=
   GlobalTheory.SplitFlip.isCompact_KO.of_isClosed_subset

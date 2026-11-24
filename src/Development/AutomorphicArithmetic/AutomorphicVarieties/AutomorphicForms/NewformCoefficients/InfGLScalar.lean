@@ -114,7 +114,7 @@ theorem casimir : ∀ {V : Type} [inst : AddCommGroup V]
   linear_combination (norm := skip) u • h1 + (1 / 4 : ℂ) • (z 0 0 + z 1 1 - (g 0 0 - g 1 1)
     - Complex.I • (g 0 1 + g 1 0) - (2 * Complex.I) • h2 + (w 0 1 - w 1 0) + (Complex.I * k) • h2
     + (2 : ℂ) • cad - Complex.I • (cab + cac - cdb - cdc) + (2 : ℂ) • cbc)
-  match_scalars <;> ring_nf <;> simp [Complex.I_sq] <;> ring
+  match_scalars <;> ring_nf <;> simp [Complex.I_sq]
 
 end UpperTheory.Reformulated.B.QuantumMinorsCasimir
 end -- clump:auto

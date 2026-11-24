@@ -250,13 +250,13 @@ theorem t_bigcellrec : BigCellRec := by
           by_cases hB : j.val ≤ 1 + r' + k
           · have hB' : j.val - 1 ≤ r' + k := by omega
             simp only [hA, hA', hB, hB', dite_true, dite_false]
-            split_ifs <;> first | rfl | (exfalso; omega) | (simp only [mul_one, mul_zero]; done) | (exact matrix_apply_congr_of_eq _ (by omega) (by omega)) | (congr 3 <;> (try dsimp only [Fin.val_mk, Fin.coe_natAdd] at *) <;> first | omega | (ext; simp only [Fin.coe_natAdd, Fin.val_mk]; omega))
+            split_ifs <;> first | rfl | (exfalso; omega) | (simp only [mul_one, mul_zero]; done) | (exact matrix_apply_congr_of_eq _ (by omega) (by omega))
           · have hB' : ¬ (j.val - 1 ≤ r' + k) := by omega
             simp only [hA, hA', hB, hB', dite_false]
             split_ifs <;> first | rfl | (exfalso; omega) | (simp only [mul_one, mul_zero]; done) | (exact matrix_apply_congr_of_eq _ (by omega) (by omega)) | (simp only [mul_one]; congr 3 <;> (try dsimp only [Fin.val_mk, Fin.coe_natAdd] at *) <;> first | omega | (ext; simp only [Fin.coe_natAdd, Fin.val_mk]; omega)) | (congr 3 <;> (try dsimp only [Fin.val_mk, Fin.coe_natAdd] at *) <;> first | omega | (ext; simp only [Fin.coe_natAdd]; omega))
       · rw [lev_mn k r' _ i j hmi hmj]
         simp only [bigCell, esI, Fin.ext_iff]
-        split_ifs <;> first | rfl | (exfalso; omega) | (congr 3 <;> (try dsimp only [Fin.val_mk, Fin.coe_natAdd] at *) <;> first | omega | (ext; simp only [Fin.coe_natAdd, Fin.val_mk]; omega))
+        split_ifs <;> first | rfl | (exfalso; omega)
 
 end PartW
 

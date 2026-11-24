@@ -646,7 +646,6 @@ theorem pfil_succ_le_theta_image_sup (j : ℕ) : pfil ε E u (j + 1) ≤
       rw [List.reverse_eq_iff]
       first
       | (apply List.ext_get (by simp [hl]); intro k h1 h2; rw [List.get_ofFn]; rfl)
-      | (apply List.ext_getElem (by simp [hl]); intro k h1 h2; rw [List.getElem_ofFn]; rfl)
     have hnc0 : ∀ i, ε (α0 i).1 ≠ ε (α0 i).2 := by
       intro i
       have hm : α0 i ∈ w.reverse := by

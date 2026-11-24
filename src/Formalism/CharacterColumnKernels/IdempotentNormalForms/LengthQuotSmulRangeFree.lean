@@ -185,8 +185,6 @@ lemma length_quot_smulRange_pi (n : ℕ) (l : O) :
       Module.length O (Fin n → (O ⧸ smulRange O l)) := by
     first
       | exact e.length_eq
-      | exact le_antisymm (Module.length_le_of_injective e.toLinearMap e.injective)
-          (Module.length_le_of_injective e.symm.toLinearMap e.symm.injective)
   rw [hlen, Module.length_pi_of_fintype, length_quot_smulRange_eq_addVal l]
   first
     | simp
@@ -244,7 +242,6 @@ lemma step1 (N : Submodule O V) (hN : N.FG) (W U : Submodule (FractionRing O) V)
   haveI : Module.Finite O (LinearMap.range g) := by
     first
       | exact Module.Finite.range g
-      | infer_instance
   haveI hQtf : IsTorsionFree O (LinearMap.range g) :=
     ⟨fun r hr x y hxy => Subtype.ext ((isTorsionFree_quot U).1 hr (congrArg Subtype.val hxy))⟩
   have hlenQ := length_quot_smulRange_free (LinearMap.range g) l
@@ -296,7 +293,6 @@ lemma step1 (N : Submodule O V) (hN : N.FG) (W U : Submodule (FractionRing O) V)
     haveI : Module.Free O (LinearMap.range g) := by
       first
         | exact Module.free_of_finite_type_torsion_free'
-        | infer_instance
     let b := Module.Free.chooseBasis O (LinearMap.range g)
     have hmem : ∀ i, ((b i : LinearMap.range g) : V ⧸ U) ∈ W.map U.mkQ := by
       intro i

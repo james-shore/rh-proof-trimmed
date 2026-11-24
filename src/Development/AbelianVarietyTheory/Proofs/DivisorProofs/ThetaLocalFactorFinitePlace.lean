@@ -215,7 +215,6 @@ theorem finite_bad {F E : Type} [Field F] [NumberField F] [Field E] [NumberField
   have hr : Set.Finite {w : Pl (F := F) | ¬ ∀ γ ∈ latAtV X Y w, γ * Matrix.transpose N ∈ latAtV X Y w} := by
     first
     | exact _root_.GlobalTheory.AdelMatLatRight.almost_all_stable_right F E n d X Y hY N
-    | exact _root_.GlobalTheory.AdelMatLatRight.almost_all_stable_right F E n d X Y hY.toIsLattice N
   refine (((_root_.GlobalTheory.AdelMatLat.almost_all_stable) F E n d X Y hX M).union hr).subset ?_
   intro w hw
   by_contra hc

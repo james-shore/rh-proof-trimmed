@@ -264,7 +264,7 @@ private theorem dividedPower_identities_D_and_e_eq_gb (Q : PDPoly B) : ∃ D : �
 
 theorem pre_aug (B : Type) [CommRing B] (Q : PDPoly B) : ∃ η : ℕ → Q.P → Q.P, IsPreDP Q.aug η ∧
     ∀ n k : ℕ, η n (Q.e (k + 1)) = (n.uniformBell (k + 1) : Q.P) * Q.e (n * (k + 1)) := by
-  apply GlobalTheory.PDA.exists_isPreDividedPowers_augmentation <;> assumption
+  apply GlobalTheory.PDA.exists_isPreDividedPowers_augmentation
 
 end FubiniStudyChowHeightFormula₂.Adr
 end -- clump:auto
@@ -336,7 +336,7 @@ theorem exists_lift_and_aug : ∀ (B : Type) [CommRing B] (Q : PDPoly B),
       (∀ m n, c m * c n = ((m + n).choose m : C) * c (m + n)) →
       ∃ F : Q.P →+* C, (∀ b, F (algebraMap B Q.P b) = f b) ∧ ∀ n, F (Q.e n) = c n) ∧
     ∃ ε : Q.P →ₐ[B] B, ∀ p, p ∈ Q.aug ↔ ε p = 0 := by
-  apply GlobalTheory.PDA.PDPoly.exists_lift_and_aug <;> assumption
+  apply GlobalTheory.PDA.PDPoly.exists_lift_and_aug
 
 end FubiniStudyChowHeightFormula₂.Adr
 end -- clump:auto
@@ -474,7 +474,7 @@ private theorem dpowSeries_sum_arg_eq_prod {R A : Type} [CommRing R] [CommRing A
 
 theorem flatExt (R A : Type) [CommRing R] [CommRing A] [Algebra R A] [Module.Flat R A] (I : Ideal R)
     (κ : DividedPowers I) : ∃ δ : DividedPowers (I.map (algebraMap R A)), IsDPMorphism κ δ (algebraMap R A) := by
-  apply GlobalTheory.DPFlat.exists_isDPMorphism_of_flat <;> assumption
+  apply GlobalTheory.DPFlat.exists_isDPMorphism_of_flat
 
 theorem exists_std (B : Type) [CommRing B] (J : Ideal B) (δ : DividedPowers J) (Q : PDPoly B) :
     ∃ η : DividedPowers (Q.ext J), Q.IsStd δ η := by

@@ -677,7 +677,6 @@ theorem derivAt0_monomial (α : σ →₀ ℕ) (a : C) (S : MvPowerSeries σ C) 
 private lemma hasSubst_lemma {ι τ : Type} [Finite ι] {a : ι → MvPowerSeries τ C}
     (ha : ∀ i, constantCoeff (a i) = 0) : HasSubst a := by
   first
-  | exact MvPowerSeries.HasSubst.of_constantCoeff_zero' ha
   | exact MvPowerSeries.hasSubst_of_constantCoeff_zero ha
 
 private lemma cc_subst_lemma_2 {σ τ : Type} [Finite σ] {a : σ → MvPowerSeries τ C}
@@ -779,7 +778,6 @@ theorem cc_lin (j : Fin n) (e : Fin d) : constantCoeff (lin β w j e) = 0 := by
 theorem cc_psi (q : Fin n × Fin d) : constantCoeff (psi L β w q) = 0 := by
   have hs : MvPowerSeries.HasSubst (lin β w q.1) := by
     first
-    | exact MvPowerSeries.HasSubst.of_constantCoeff_zero' (cc_lin β w q.1)
     | exact MvPowerSeries.hasSubst_of_constantCoeff_zero (cc_lin β w q.1)
   first
   | exact constantCoeff_subst_eq_zero hs (cc_lin β w q.1) ((isExp_expOf L).1 q.2)

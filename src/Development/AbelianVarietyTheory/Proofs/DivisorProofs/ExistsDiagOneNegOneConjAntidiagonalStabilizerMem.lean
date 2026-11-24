@@ -101,7 +101,7 @@ theorem flipM_antiCols (d : ℕ) : flipM (F := F) (E := E) d * antiCols d = diag
   simp [flipM, antiCols, diagCols, Matrix.fromBlocks_mul_fromRows]
 
 theorem flipM_map (σ : E →ₐ[F] E) (d : ℕ) : (flipM (F := F) (E := E) d).map (cA σ) = flipM d := by
-  ext (i | i) (j | j) <;> simp [flipM, Matrix.one_apply] <;> split_ifs
+  ext (i | i) (j | j) <;> simp [flipM, Matrix.one_apply]
 
 section Idem2
 

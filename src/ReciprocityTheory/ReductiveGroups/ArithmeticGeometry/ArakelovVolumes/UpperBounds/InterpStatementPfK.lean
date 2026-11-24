@@ -58,7 +58,7 @@ noncomputable section
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {r : ℕ} (X : Data E r)
 
 theorem cpt_diff (x0 : Frame X.Ψ r) : Differentiable ℂ (cpt X x0) := by
-  apply ReciprocityTheory.ChartRestriction.G.AR.Up.LUB.cpt_diff <;> assumption
+  apply ReciprocityTheory.ChartRestriction.G.AR.Up.LUB.cpt_diff
 
 theorem comp_cpt_diffOn {P : Frame X.Ψ r → ℂ} (hP : DifferentiableOn ℂ P X.dom) (x0 : Frame X.Ψ r) :
     DifferentiableOn ℂ (fun z => P (cpt X x0 z)) (OmF X x0) := hP.comp (cpt_diff X x0).differentiableOn (fun _ hz => hz)

@@ -125,7 +125,7 @@ theorem proj_local_extension_other_place (v w : HeightOneSpectrum (𝓞 F)) (h :
 
 theorem local_extension_tensor_mul (v : HeightOneSpectrum (𝓞 F)) (t t' : E ⊗[F] v.adicCompletion F) :
     localExtensionTensor v (t * t') = localExtensionTensor v t * localExtensionTensor v t' := by
-  apply Formalism.L2.GlobalTheoryTheory.LocalLatticeBases.local_extension_tensor_mul <;> assumption
+  apply Formalism.L2.GlobalTheoryTheory.LocalLatticeBases.local_extension_tensor_mul
 
 theorem local_extension_mul_incl (v : HeightOneSpectrum (𝓞 F)) (t : E ⊗[F] v.adicCompletion F) (j : E) :
     localExtensionTensor v (t * inclE (F := F) (v.adicCompletion F) j) = localExtensionTensor v t * inclE (F := F) (FiniteAdeleRing (𝓞 F) F) j := by

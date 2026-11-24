@@ -97,7 +97,7 @@ theorem eq_unip_glEmb' {n : ℕ} (p : Mir k n) :
     (p : GL (Fin (n + 1)) k) =
       unip k n (Multiplicative.ofAdd fun r => ((p : GL (Fin (n + 1)) k) : Matrix _ _ k) (Fin.castSucc r) (Fin.last n)) *
         glEmb k n (mirabolicProjection k n p) := by
-  apply _root_.GlobalTheory.CompanionTheory.BZPhiPG.Cells.eq_unip_glEmb <;> assumption
+  apply _root_.GlobalTheory.CompanionTheory.BZPhiPG.Cells.eq_unip_glEmb
 
 theorem mem_colFix_iff' (N n : ℕ) (g : GL (Fin N) k) :
     g ∈ colFix k N n ↔ ∀ i j : Fin N, (j : ℕ) < n → (g : Matrix (Fin N) (Fin N) k) i j = if i = j then 1 else 0 := by

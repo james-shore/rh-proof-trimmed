@@ -78,7 +78,7 @@ namespace Formalism.L2.SG.Pf.LocTr
 variable {F : Type} [Field F] [NumberField F] (v : HeightOneSpectrum (𝓞 F))
 
 theorem isDiffVal_dV : Formalism.L2.SG.LocVol.IsDiffVal v (Formalism.L2.SG.LocVol.dV v) := by
-  apply Formalism.L2.SG.Pf.NcVal.OmVSt.OmX.dV_isDiffVal <;> assumption
+  apply Formalism.L2.SG.Pf.NcVal.OmVSt.OmX.dV_isDiffVal
 
 open Classical in
 theorem single_at (y : Fv F v) : (singleV F v y) v = y := by

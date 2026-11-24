@@ -1245,7 +1245,7 @@ theorem embGL_apply {n N : ℕ} (h : n + 1 = N) (g : GL (Fin n) ℂ) (a b : Fin 
     ((embGL ℂ n N h g : GL (Fin N) ℂ) : Matrix (Fin N) (Fin N) ℂ) a b =
       if ha : a.1 < n then (if hb : b.1 < n then (g : Matrix (Fin n) (Fin n) ℂ) ⟨a.1, ha⟩ ⟨b.1, hb⟩ else 0)
       else (if b.1 < n then 0 else 1) := by
-  apply PI.WGB.embGL_apply_B <;> assumption
+  apply PI.WGB.embGL_apply_B
 
 theorem rowAct_initMinor {N s : ℕ} (G : Matrix (Fin N) (Fin N) ℂ) (I : Fin s → Fin N) (hI : StrictMono I)
     (hs : s ≤ N) (hG : ∀ a b : Fin N, a < b → G b a = 0)

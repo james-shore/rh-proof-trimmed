@@ -1479,7 +1479,7 @@ theorem integral_chernF_mul_grF : ∀ (F : Type) [Field F] (σ : F →+* ℂ) (X
   have key := _root_.GlobalTheory.ChernCalc.integral_evalF_of_dbarCoh (CxPts X.str σ) X.dim (atlas X σ) _ _ _ hc (rename Sum.inl R * rename Sum.inr Q)
   rw [evalF_rename_mul, evalF_rename_mul] at key
   rw [key, evalF_chernRoots (atlas X σ) m ld (grF E H) (fun τ j p => _root_.GlobalTheory.ChernCalc.chernFld_ldPart_eq_esymm_grF F σ X ι m E H hH τ j p) R]
-  simp only [evalF, LineForm.fld, map_mul]
+  simp only [evalF, map_mul]
   rfl
 
 end GlobalTheory.ChernCalc

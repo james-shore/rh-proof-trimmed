@@ -110,13 +110,11 @@ private theorem mvSubst_add_of_hasSubst {ι κ : Type} {φ : ι → MvPowerSerie
     (f g : MvPowerSeries ι K) : subst φ (f + g) = subst φ f + subst φ g := by
   first
   | exact MvPowerSeries.subst_add hφ f g
-  | (rw [← coe_substAlgHom hφ]; exact map_add _ f g)
 
 private theorem mvSubst_sub_of_hasSubst {ι κ : Type} {φ : ι → MvPowerSeries κ K} (hφ : HasSubst φ)
     (f g : MvPowerSeries ι K) : subst φ (f - g) = subst φ f - subst φ g := by
   first
   | exact MvPowerSeries.subst_sub hφ f g
-  | (rw [← coe_substAlgHom hφ]; exact map_sub _ f g)
 
 private theorem powerSeries_subst_add_of_constantCoeff_eq_zero {τ : Type} {a : MvPowerSeries τ K} (ha : constantCoeff a = 0)
     (f g : PowerSeries K) :
@@ -137,9 +135,7 @@ theorem constantCoeff_first_two_of_three {F : MvPowerSeries (Fin 2) K} (hF0 : co
   have hx : ∀ i : Fin 2, constantCoeff (![(X 0 : MvPowerSeries (Fin 3) K), X 1] i) = 0 := by
     intro i; fin_cases i <;> simp
   first
-  | exact constantCoeff_subst_eq_zero hx F hF0
   | exact constantCoeff_subst_eq_zero (hasSubst_finite_of_constantCoeff_eq_zero hx) hx hF0
-  | (apply constantCoeff_subst_eq_zero <;> first | assumption | exact hasSubst_finite_of_constantCoeff_eq_zero hx)
 
 theorem cob_add {F : MvPowerSeries (Fin 2) K} (hF0 : constantCoeff F = 0) (f g : PowerSeries K) :
     cob F (f + g) = cob F f + cob F g := by
@@ -397,7 +393,6 @@ theorem transport_first_level_holds : CoboundaryCocycleTransportAlongHom := by
     have h0 := hdivE 0 (Or.inl (by simp))
     first
     | exact h0
-    | rwa [coeff_zero_eq_constantCoeff_apply] at h0
   have hphE : PowerSeries.constantCoeff phE = 0 := cc_of_cob hFE0 hccE
   have hph : PowerSeries.constantCoeff ph = 0 := by
     have h1 := hsim.1

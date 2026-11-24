@@ -84,26 +84,15 @@ theorem exists_near (v : HeightOneSpectrum R) (y : v.adicCompletion K) :
     ∃ k : K, y - algebraMap K (v.adicCompletion K) k ∈ v.adicCompletionIntegers K := by
   have hd : ∀ y : v.adicCompletion K, y ∈ closure (Set.range (algebraMap K (v.adicCompletion K))) := by
     first
-    | exact fun y => UniformSpace.Completion.denseRange_coe y
-    | exact UniformSpace.Completion.denseRange_coe
     | (intro y; exact (IsDedekindDomain.HeightOneSpectrum.denseRange_algebraMap (R := R) K v) y)
-    | (intro y; exact (Valuation.Completion.denseRange_coe (v.valuation K)) y)
-    | (unfold IsDedekindDomain.HeightOneSpectrum.adicCompletion Valuation.Completion;
-        exact UniformSpace.Completion.denseRange_coe)
-    | (unfold IsDedekindDomain.HeightOneSpectrum.adicCompletion;
-        exact UniformSpace.Completion.denseRange_coe)
-    | (delta IsDedekindDomain.HeightOneSpectrum.adicCompletion;
-        exact UniformSpace.Completion.denseRange_coe)
   have hN : {z : v.adicCompletion K | Valued.v (z - y) < 1} ∈ nhds y := by
     first
     | exact Valued.mem_nhds.2 ⟨1, fun z hz => by simpa using hz⟩
-    | (rw [Valued.mem_nhds]; exact ⟨1, fun z hz => by simpa using hz⟩)
   obtain ⟨_, hz, k, rfl⟩ := mem_closure_iff_nhds.1 (hd y) _ hN
   have hz' : Valued.v (algebraMap K (v.adicCompletion K) k - y) < 1 := hz
   refine ⟨k, (memO_lemma v _).2 ?_⟩
   first
   | (rw [Valuation.map_sub_swap]; exact le_of_lt hz')
-  | (rw [← neg_sub, Valuation.map_neg]; exact le_of_lt hz')
 
 theorem exists_den_local (v : HeightOneSpectrum R) (y : v.adicCompletion K) :
     ∃ s : R, s ≠ 0 ∧
@@ -113,8 +102,6 @@ theorem exists_den_local (v : HeightOneSpectrum R) (y : v.adicCompletion K) :
       ∃ a b : R, b ∈ nonZeroDivisors R ∧ algebraMap R K a / algebraMap R K b = k := by
     first
     | exact IsFractionRing.div_surjective (A := R) k
-    | (obtain ⟨a, b, h⟩ := IsLocalization.mk'_surjective (nonZeroDivisors R) k;
-        exact ⟨a, b, b.2, by rw [← h, IsFractionRing.mk'_eq_div]⟩)
   subst hab
   have hb0 : b ≠ 0 := by
     first
@@ -126,8 +113,6 @@ theorem exists_den_local (v : HeightOneSpectrum R) (y : v.adicCompletion K) :
   have e1 : algebraMap R K b * (algebraMap R K a / algebraMap R K b) = algebraMap R K a := by
     first
     | (field_simp; done)
-    | (rw [← mul_div_assoc]; exact mul_div_cancel_left₀ _ hbK)
-    | (field_simp; ring)
   have e2 : algebraMap K (v.adicCompletion K) (algebraMap R K b) *
       (y - algebraMap K (v.adicCompletion K) (algebraMap R K a / algebraMap R K b)) +
       algebraMap K (v.adicCompletion K) (algebraMap R K a) =
@@ -140,7 +125,6 @@ private theorem fin_lemma_3 (b : FiniteAdeleRing R K) :
     {v : HeightOneSpectrum R | b v ∉ v.adicCompletionIntegers K}.Finite := by
   first
   | exact Filter.eventually_cofinite.1 b.2
-  | (have h := b.2; rw [Filter.eventually_cofinite] at h; exact h)
 
 private theorem mulApp_lemma_4 (a b : FiniteAdeleRing R K) (v : HeightOneSpectrum R) :
     (a * b) v = a v * b v := by
@@ -151,8 +135,6 @@ private theorem algApp_lemma_5 (r : R) (v : HeightOneSpectrum R) :
     (algebraMap R (FiniteAdeleRing R K) r) v = algebraMap K (v.adicCompletion K) (algebraMap R K r) := by
   first
   | rfl
-  | (rw [IsScalarTower.algebraMap_apply R K (FiniteAdeleRing R K)]; rfl)
-  | (simp; rfl)
 
 theorem exists_den (b : FiniteAdeleRing R K) :
     ∃ r : R, r ≠ 0 ∧ IsInt (algebraMap R (FiniteAdeleRing R K) r * b) := by
@@ -186,7 +168,6 @@ private theorem algKApp_lemma_6 (k : K) (v : HeightOneSpectrum R) :
     (algebraMap K (FiniteAdeleRing R K) k) v = algebraMap K (v.adicCompletion K) k := by
   first
   | rfl
-  | (simp; rfl)
 
 theorem exists_approx_adele (b : FiniteAdeleRing R K) :
     ∃ u : K, IsInt (b - algebraMap K (FiniteAdeleRing R K) u) := by
@@ -203,13 +184,10 @@ theorem exists_approx_adele (b : FiniteAdeleRing R K) :
       = b v - algebraMap K (v.adicCompletion K) (algebraMap R K a / algebraMap R K r) := by
     first
     | rfl
-    | (rw [← algKApp_lemma_6]; rfl)
   rw [hsub, memO_lemma]
   have e1 : algebraMap R K r * (algebraMap R K a / algebraMap R K r) = algebraMap R K a := by
     first
     | (field_simp; done)
-    | (rw [← mul_div_assoc]; exact mul_div_cancel_left₀ _ hrK)
-    | (field_simp; ring)
   have e2 : algebraMap K (v.adicCompletion K) (algebraMap R K r) *
       (b v - algebraMap K (v.adicCompletion K) (algebraMap R K a / algebraMap R K r)) =
       algebraMap K (v.adicCompletion K) (algebraMap R K r) * b v - algebraMap K (v.adicCompletion K) (algebraMap R K a) := by
@@ -223,7 +201,6 @@ theorem exists_approx_adele (b : FiniteAdeleRing R K) :
   have hne : v.intValuation r ≠ 0 := by
     first
     | exact v.intValuation_ne_zero r hr
-    | (rw [← valR_lemma_2 (K := K) v r, Valuation.ne_zero_iff, map_ne_zero]; exact hrK)
   calc Valued.v (b v - algebraMap K (v.adicCompletion K) (algebraMap R K a / algebraMap R K r))
       = (v.intValuation r)⁻¹ * (v.intValuation r *
           Valued.v (b v - algebraMap K (v.adicCompletion K) (algebraMap R K a / algebraMap R K r))) := by
@@ -240,7 +217,5 @@ theorem mem_of_isInt (k : K) (h : IsInt (algebraMap K (FiniteAdeleRing R K) k)) 
   rw [algKApp_lemma_6, memO_lemma] at h1
   first
   | exact (IsDedekindDomain.HeightOneSpectrum.valuedAdicCompletion_eq_valuation' v k).symm.le.trans h1
-  | (rwa [IsDedekindDomain.HeightOneSpectrum.valuedAdicCompletion_eq_valuation'] at h1)
-  | (erw [IsDedekindDomain.HeightOneSpectrum.valuedAdicCompletion_eq_valuation'] at h1; exact h1)
 
 end Formalism.L2.GlobalTheoryTheory.FiltrationBoundaryCriterion.CompactFixesLatticeTheory.AdeleIntA

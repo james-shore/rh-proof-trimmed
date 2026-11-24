@@ -306,7 +306,7 @@ theorem length_quot_prime_ne_top_iff (q : Ideal A) [q.IsPrime] :
   · intro hq
     have hs : IsSimpleModule A (A ⧸ q) := isSimpleModule_iff_isCoatom.2 hq.out
     rw [Module.length_eq_one_iff.2 hs]
-    first | exact ENat.one_ne_top | simp | decide
+    first | exact ENat.one_ne_top
 
 theorem length_ne_top_iff_support (N : Type v) [AddCommGroup N] [Module A N] [Module.Finite A N] :
     length A N ≠ ⊤ ↔ ∀ p ∈ support A N, p.asIdeal.IsMaximal := by
@@ -445,7 +445,7 @@ theorem dim_quot_eq_one_iff (hdim : ringKrullDim A = 1) (q : Ideal A) [q.IsPrime
     letI := Ideal.Quotient.field q
     have h0 : ringKrullDim (A ⧸ q) = 0 := ringKrullDim_eq_zero_of_field (A ⧸ q)
     rw [h0] at h
-    first | exact zero_ne_one h | simp at h | exact absurd h (by decide)
+    first | exact zero_ne_one h
   · intro hq
     apply withBot_eq_one
     · calc ringKrullDim (A ⧸ q) ≤ ringKrullDim A :=
@@ -501,13 +501,13 @@ theorem eq_of_not_max_of_le (hdim : ringKrullDim A = 1) {p q : Ideal A} [p.IsPri
       toFun := ![Q, P, M]
       step := fun i => by
         fin_cases i
-        · first | exact hQP | simpa using hQP
+        · first | exact hQP
         · first | exact hPM | simpa using hPM }
   have hs : (s.length : WithBot ℕ∞) ≤ Order.krullDim (PrimeSpectrum A) := by
     first
       | exact Order.LTSeries.length_le_krullDim s
   have hlen : s.length = 2 := by
-    first | rfl | simp [s, RelSeries.snoc_length, RelSeries.singleton_length]
+    first | rfl
   have hk : Order.krullDim (PrimeSpectrum A) = 1 := hdim
   rw [hlen, hk] at hs
   have h2 : (2 : ℕ) ≤ 1 := by exact_mod_cast hs

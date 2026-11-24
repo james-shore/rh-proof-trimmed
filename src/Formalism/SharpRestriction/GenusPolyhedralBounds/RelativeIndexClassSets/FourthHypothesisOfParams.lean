@@ -66,7 +66,7 @@ variable {D : D7} {L : SizeData₂ D} {P : ParameterChoice' D L}
 def q0N (T : ParamsT D L P) : ℕ := ⌈L.sc.b / (T.TO : ℝ)⌉₊
 
 theorem f_ge (D : D7) : 8 ≤ D.R.f := by
-  apply Formalism.BasicNotions.D7.eight_le_f <;> assumption
+  apply Formalism.BasicNotions.D7.eight_le_f
 
 theorem r_ge (D : D7) : 6 ≤ D.R.r := by
   unfold Ranks.r

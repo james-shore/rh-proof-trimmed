@@ -469,9 +469,6 @@ theorem KRep.kRel_units {ε : Fin n → Bool} (R : KRep ε) : Formalism.REAL.KRe
     by_cases hbc : b = c <;> by_cases hda : d = a <;> simp only [hbc, hda, if_true, if_false] <;>
       first
       | simp [Matrix.single_mul_single_same, Matrix.single_mul_single_of_ne, hbc, hda]
-      | (subst hbc; subst hda; simp [Matrix.single_mul_single_same])
-      | (subst hbc; simp [Matrix.single_mul_single_same, Matrix.single_mul_single_of_ne, hda, Ne.symm hda])
-      | (subst hda; simp [Matrix.single_mul_single_same, Matrix.single_mul_single_of_ne, hbc])
   have e : ∀ P Q : R.V →L[ℂ] R.V, ((P * Q - Q * P : R.V →L[ℂ] R.V) : Module.End ℂ R.V) =
       (P : Module.End ℂ R.V) * Q - (Q : Module.End ℂ R.V) * P := by
     intro P Q; ext x; simp

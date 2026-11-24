@@ -179,7 +179,7 @@ lemma hpart_cols (i : Fin (r + 1)) (p q : Fin (mdim k r i)) :
     (∀ a : Fin r, a.val < i.val → ∀ x,
       hpart2 (Hpk k r) (Matrix.single (posL k r i p) (posL k r i q) 1) x (eI k r a) = 0 ∧
       hpart2 (Hpk k r) (Matrix.single (posL k r i p) (posL k r i q) 1) x (esI k r a) = 0) := by
-  apply Formalism.FourierDecayAlt.Q.EabLie.hpart_cols <;> assumption
+  apply Formalism.FourierDecayAlt.Q.EabLie.hpart_cols
 
 theorem exp_hpart1_mem (i : Fin (r + 1)) (p q : Fin (mdim k r i)) (t : ℝ) :
     NormedSpace.exp ((t : ℂ) • hpart1 (Hpk k r) (Matrix.single (posL k r i p) (posL k r i q) 1))

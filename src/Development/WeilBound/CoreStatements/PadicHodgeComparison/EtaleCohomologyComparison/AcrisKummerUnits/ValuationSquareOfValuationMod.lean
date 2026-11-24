@@ -1051,7 +1051,7 @@ theorem CrystallineSemistableComparison.RL.dich_of_mod : ∀ {S : Type} [CommRin
 
 open Polynomial in
 theorem CrystallineSemistableComparison.RL.step_comp : ∀ {S : Type} [CommRing S] (ϖ : S), ϖ ∈ (⊥ : Ideal S).jacobson → ϖ ∈ nonZeroDivisors S → Dich ϖ → Aic (S := S ⧸ Ideal.span {ϖ ^ 2}) → Step ϖ := by
-  apply GlobalTheory.CompanionTheory.NewtonStep.step_comp <;> assumption
+  apply GlobalTheory.CompanionTheory.NewtonStep.step_comp
 
 alias CrystallineSemistableComparison.RL.step_glob := _root_.GlobalTheory.CompanionTheory.NewtonStep.step_of_forall_maximal
 

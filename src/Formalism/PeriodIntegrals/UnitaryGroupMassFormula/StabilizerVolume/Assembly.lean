@@ -579,7 +579,7 @@ theorem testEx_kernel (μ : Measure W) [μ.IsAddHaarMeasure] (χ : W → W → �
 
 theorem testEx_fourier (μ : Measure W) [μ.IsAddHaarMeasure] (A : W ≃L[ℝ] W) :
     SdUniqW.TestEx μ (fun x y => (Real.fourierChar ⟪x, A y⟫ : ℂ)) := by
-  apply PI.AprimeInfW.ST.testEx_fourier <;> assumption
+  apply PI.AprimeInfW.ST.testEx_fourier
 
 theorem testEx_bichar (μ : Measure W) [μ.IsAddHaarMeasure] {χ : W → W → ℂ} (h : IsBichar χ) :
     SdUniqW.TestEx μ χ := by

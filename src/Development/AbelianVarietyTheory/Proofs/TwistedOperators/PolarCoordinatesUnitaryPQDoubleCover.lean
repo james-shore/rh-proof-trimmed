@@ -353,7 +353,7 @@ namespace GlobalTheory.PolarU
 
 theorem polJ_aOf_eq_prod (p q : ℕ) (h : ℕ → ℝ) :
     polJ (aOf p q h) = ∏ ab : PIx p q, shc (rootP h ab.1) := by
-  apply GlobalTheory.CartanInt.polJ_aOf <;> assumption
+  apply GlobalTheory.CartanInt.polJ_aOf
 
 theorem shc_pos (x : ℝ) : 0 < shc x := by
   unfold shc

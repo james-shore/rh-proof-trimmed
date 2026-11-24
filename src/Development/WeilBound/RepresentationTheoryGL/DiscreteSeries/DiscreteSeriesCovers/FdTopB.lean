@@ -128,7 +128,7 @@ namespace PositivityTheory.RgDs.Hilb
 open ReciprocityTheory.ChartRestriction.DS
 
 theorem hilbert_cone_of_stable_mollifier : StepStable → StepMoll → StepWtSpan → StepCone := by
-  apply CompanionTheory.RgDs.Hilb.hilbert_cone_of_stable_mollifier <;> assumption
+  apply CompanionTheory.RgDs.Hilb.hilbert_cone_of_stable_mollifier
 
 end PositivityTheory.RgDs.Hilb
 end -- clump:auto
@@ -322,7 +322,7 @@ theorem hloweq_eq_of_cone {n : ℕ} {ε : Fin n → Bool} {ν Λ : Fin n → ℝ
   apply CompanionTheory.RgDs.Hilb.hloweq_eq_of_cone <;> assumption
 
 theorem hilbert_lowest_weight_of_inputs : StepStable → StepMoll → StepWtSpan → StepDatum → StepLowEq := by
-  apply CompanionTheory.RgDs.Hilb.hilbert_lowest_weight_of_inputs <;> assumption
+  apply CompanionTheory.RgDs.Hilb.hilbert_lowest_weight_of_inputs
 
 end PositivityTheory.RgDs.Hilb
 end -- clump:auto
@@ -344,7 +344,7 @@ namespace PositivityTheory.RgDs.Hilb
 open ReciprocityTheory.ChartRestriction.DS
 
 theorem hilbert_signature_holds : StepSig := by
-  apply CompanionTheory.RgDs.Hilb.hilbert_signature_holds <;> assumption
+  apply CompanionTheory.RgDs.Hilb.hilbert_signature_holds
 
 end PositivityTheory.RgDs.Hilb
 end -- clump:auto
@@ -537,7 +537,7 @@ open MeasureTheory
 namespace PositivityTheory.RgDs.K
 
 theorem equivariant_section_holds : EquivSection := by
-  apply CompanionTheory.RgDs.K.equivariant_section_holds <;> assumption
+  apply CompanionTheory.RgDs.K.equivariant_section_holds
 
 end PositivityTheory.RgDs.K
 end -- clump:auto
@@ -592,7 +592,7 @@ lemma rr_op_mul {ε : Fin n → Bool} {Λ : Fin n → ℝ} (T : KType ε Λ) (k 
   simp [KType.op]
 
 theorem rho_representation_holds : PositivityTheory.RgDs.K.RhoRep := by
-  apply CompanionTheory.RgDs.K.rho_representation_holds <;> assumption
+  apply CompanionTheory.RgDs.K.rho_representation_holds
 
 end PositivityTheory.RgDs.K
 end -- clump:auto

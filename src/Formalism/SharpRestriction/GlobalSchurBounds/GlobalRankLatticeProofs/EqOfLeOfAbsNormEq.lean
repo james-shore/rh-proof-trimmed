@@ -235,7 +235,6 @@ theorem gen_top (H : Host R) (x : H.K) (hx : (x : H.E) = H.sqd) :
   rw [IntermediateField.adjoin_map, Set.image_singleton]
   first
   | rw [IntermediateField.map_top]
-  | rw [← AlgHom.fieldRange_eq_map]
   ext z
   rw [AlgHom.mem_fieldRange,
     show IsScalarTower.toAlgHom ℚ H.K H.E x = H.sqd from hx]

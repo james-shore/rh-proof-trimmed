@@ -436,7 +436,7 @@ theorem not_dvd_choose_pow_iff (p : ℕ) [hp : Fact p.Prime] (j x : ℕ) :
 
 theorem not_dvd_choose_pow_mul_add (p : ℕ) [hp : Fact p.Prime] :
     ∀ (s A B : ℕ), B < p ^ s → ¬ p ∣ (p ^ s * A + B).choose B := by
-  apply GlobalTheory.LazardOne.not_dvd_choose_pow_mul_add <;> assumption
+  apply GlobalTheory.LazardOne.not_dvd_choose_pow_mul_add
 
 theorem prod_choose_single {d : ℕ} (y : Fin d →₀ ℕ) (i : Fin d) (q : ℕ) :
     ∏ k, (y k).choose (Finsupp.single i q k) = (y i).choose q := by

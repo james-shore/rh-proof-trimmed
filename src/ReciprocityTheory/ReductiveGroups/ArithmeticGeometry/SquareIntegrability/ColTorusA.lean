@@ -222,7 +222,6 @@ theorem ct_itD_perm {f : W → ℂ} (hf : ContDiff ℂ (⊤ : ℕ∞) f) {l₁ l
       try simp only [minSmoothness_of_isRCLikeNormedField]
       first
         | exact WithTop.coe_le_coe.2 le_top
-        | exact_mod_cast (le_top : (2 : ℕ∞) ≤ ⊤)
     exact hs y x
   | @trans l₁ l₂ l₃ _ _ ih1 ih2 => rw [ih1, ih2]
 

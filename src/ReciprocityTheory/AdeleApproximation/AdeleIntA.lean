@@ -155,6 +155,6 @@ theorem exists_approx (y : FiniteAdeleRing R K) (hy : ∀ v : HeightOneSpectrum 
     exact v.intValuation_le_one a
 
 theorem exists_approx_adele (α : FiniteAdeleRing R K) : ∃ u : K, IsInt (α - algebraMap K (FiniteAdeleRing R K) u) := by
-  apply ReciprocityTheory.ChartRestriction.G.Lib.AdeleIntA.exists_approx_adele <;> assumption
+  apply ReciprocityTheory.ChartRestriction.G.Lib.AdeleIntA.exists_approx_adele
 
 end ReciprocityTheory.UG.AdeleIntA

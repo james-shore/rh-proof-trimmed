@@ -117,7 +117,6 @@ theorem inBlock_eq_rename {K : Type} [Field K] {ι B : Type} (k : B) (f : MvPowe
   unfold inBlock
   first
     | exact (MvPowerSeries.rename_eq_subst (blockEmb B ι k) f).symm
-    | (rw [MvPowerSeries.rename_eq_subst]; rfl)
 
 theorem coeff_inBlock_embDomain {K : Type} [Field K] {ι B : Type} (k : B) (f : MvPowerSeries ι K)
     (κ : ι →₀ ℕ) :

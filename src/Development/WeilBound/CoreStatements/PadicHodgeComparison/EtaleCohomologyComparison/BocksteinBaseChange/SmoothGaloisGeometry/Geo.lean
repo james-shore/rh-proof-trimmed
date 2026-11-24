@@ -829,7 +829,7 @@ namespace CrystallineSemistableComparison.GeoC
 
 theorem isOpen_connectedComponent {X : Type*} [TopologicalSpace X] [NoetherianSpace X] (x : X) :
     IsOpen (connectedComponent x) := by
-  apply CrystallineSemistableComparison.isOpen_connectedComponent_of_noetherianSpace <;> assumption
+  apply CrystallineSemistableComparison.isOpen_connectedComponent_of_noetherianSpace
 
 theorem image_connectedComponent {X : Type*} [TopologicalSpace X] (h : X ≃ₜ X) (x : X) :
     h '' connectedComponent x = connectedComponent (h x) := by
@@ -991,7 +991,7 @@ namespace GeoD
 
 attribute [local instance] MvPolynomial.gradedAlgebra in
 theorem isProper_pspace (R : Type) [CommRing R] (N : ℕ) : IsProper (PSpace.str R N) := by
-  apply _root_.UpperTheory.Gal.Seam.Spec.isProper_pstr <;> assumption
+  apply _root_.UpperTheory.Gal.Seam.Spec.isProper_pstr
 
 theorem compactSpace_of_isProjOver {R : Type} [CommRing R] {X : Scheme.{0}} {f : X ⟶ Sp R}
     (h : IsProjOver f) : CompactSpace X := by

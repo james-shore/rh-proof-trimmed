@@ -355,7 +355,7 @@ theorem embOf_injective : Function.Injective (embOf : (𝓞 E →+* ℂ) → (E 
   simpa [embOf_coe] using this
 
 theorem plc_bijective (F : UnivFam E Ψ j j' n g Λ) : Function.Bijective (plc F) := by
-  apply GlobalTheory.CompanionTheory.Ar.Cusp.Dict.plc_bijective <;> assumption
+  apply GlobalTheory.CompanionTheory.Ar.Cusp.Dict.plc_bijective
 
 theorem emb_ne (F : UnivFam E Ψ j j' n g Λ) (τ : Ψ) (h : (plc F τ).embedding ≠ embOf (F.σ τ)) :
     (plc F τ).embedding = ComplexEmbedding.conjugate (embOf (F.σ τ)) :=

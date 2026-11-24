@@ -162,7 +162,7 @@ theorem psEntry : PhiPos → ∀ (n : ℕ) (ε : Fin n → Bool) (lam : Fin n �
     ← integral_inner (h4.apply_continuousLinearMap u)]
   congr 2
   funext k
-  simp [inner_smul_right, mul_comm]
+  simp [mul_comm]
 
 theorem muConj : ∀ (n : ℕ) (ε : Fin n → Bool) (F : Matrix (Fin n) (Fin n) ℂ → ℂ), ∫ k : KG ε, F ((toMK k).map star) ∂(muK ε) = ∫ k : KG ε, F (toMK k) ∂(muK ε) := by
   intro n ε F

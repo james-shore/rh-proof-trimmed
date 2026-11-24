@@ -1222,7 +1222,7 @@ theorem archRepD :
     have e1 : ⇑f₁ = schrF (trP F κ) (locV (d.e u).1, locV (d.e u).2) ⇑f := by
       funext y
       have := congrFun ((_root_.GlobalTheory.ArchRhoPure.rho_pureA_schrF F E σ α β κ ψ JA JB d hψ u hu f fun _ => 1).symm.trans (hf fun _ => 1)) (liftV y)
-      simp only [pureA, liftV, Prod.fst, RingEquiv.apply_symm_apply, mul_one] at this
+      simp only [pureA, liftV, RingEquiv.apply_symm_apply, mul_one] at this
       exact this.symm
     have e2 : ⇑(toE f₁) = rhoFun (φ c) ⇑(toE f) := by
       have := hS (locV (d.e u).1, locV (d.e u).2) ⇑(toE f)

@@ -266,7 +266,6 @@ theorem frame_facts : ∀ (D : D7) (k : Type) [Field k] [ValuativeRel k] [Topolo
   intro L Λ hL hΛ
   first
   | exact _root_.GlobalTheory.FrameGlob.main D k p S n β L Λ hL hΛ
-  | exact _root_.GlobalTheory.FrameGlob.main D k p S n β L Λ hL hΛ.toIsLattice
 
 end GlobalTheory.FrameAt
 end -- clump:auto

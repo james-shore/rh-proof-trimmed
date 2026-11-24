@@ -143,13 +143,11 @@ private theorem mvSubst_add {ι κ : Type} {φ : ι → MvPowerSeries κ K} (hφ
     (f g : MvPowerSeries ι K) : subst φ (f + g) = subst φ f + subst φ g := by
   first
   | exact MvPowerSeries.subst_add hφ f g
-  | (rw [← coe_substAlgHom hφ]; exact map_add _ f g)
 
 private theorem mvSubst_sub {ι κ : Type} {φ : ι → MvPowerSeries κ K} (hφ : HasSubst φ)
     (f g : MvPowerSeries ι K) : subst φ (f - g) = subst φ f - subst φ g := by
   first
   | exact MvPowerSeries.subst_sub hφ f g
-  | (rw [← coe_substAlgHom hφ]; exact map_sub _ f g)
 
 theorem log_law {l : ℕ} {F : MvPowerSeries (Fin 2) K} (hF0 : constantCoeff F = 0)
     (hF : cob F (lgF K l) = 0) {τ : Type} {a b : MvPowerSeries τ K}
@@ -216,8 +214,6 @@ private theorem powerSeries_subst_C_mul {τ : Type} {a : MvPowerSeries τ K} (ha
   have h := PowerSeries.HasSubst.of_constantCoeff_zero ha
   first
   | (simp only [← PowerSeries.smul_eq_C_mul, ← MvPowerSeries.smul_eq_C_mul]; exact PowerSeries.subst_smul h c f)
-  | (rw [PowerSeries.subst_mul h]; congr 1; simp [PowerSeries.subst_C h])
-  | (rw [← PowerSeries.coe_substAlgHom h, map_mul]; congr 1; exact (PowerSeries.substAlgHom h).commutes c)
 
 theorem log_mul {l : ℕ} {c : K} {e : PowerSeries K} (he : IsMul l c e) {τ : Type}
     {a : MvPowerSeries τ K} (ha : constantCoeff a = 0) :
@@ -229,7 +225,6 @@ theorem log_mul {l : ℕ} {c : K} {e : PowerSeries K} (he : IsMul l c e) {τ : T
 theorem subst_sum {ι κ α : Type} {φ : ι → MvPowerSeries κ K} (hφ : HasSubst φ) (s : Finset α)
     (f : α → MvPowerSeries ι K) : subst φ (∑ r ∈ s, f r) = ∑ r ∈ s, subst φ (f r) := by
   first
-  | exact MvPowerSeries.subst_sum hφ s f
   | (rw [← coe_substAlgHom hφ]; exact map_sum _ f s)
 
 theorem cc_linE {d : ℕ} [NeZero d] (σ : K →+* K) (c : K) :
@@ -245,7 +240,6 @@ theorem cc_linO {d : ℕ} [NeZero d] (σ : K →+* K) (c : K) :
 theorem subst_zero' {ι κ : Type} {φ : ι → MvPowerSeries κ K} (hφ : HasSubst φ) :
     subst φ (0 : MvPowerSeries ι K) = 0 := by
   first
-  | exact MvPowerSeries.subst_zero hφ
   | (rw [← coe_substAlgHom hφ]; exact map_zero _)
 
 end Alg
@@ -258,7 +252,6 @@ private theorem subst_C_mul_X_eq_C_mul {ι τ : Type} {L : ι → MvPowerSeries 
     (s : ι) : subst L (C x * X s) = C x * L s := by
   first
   | (simp only [← MvPowerSeries.smul_eq_C_mul]; rw [MvPowerSeries.subst_smul hL, subst_X hL])
-  | (rw [← coe_substAlgHom hL, map_mul, coe_substAlgHom hL, subst_X hL]; congr 1; simp)
 
 theorem subst_linE {d : ℕ} [NeZero d] (σ : K →+* K) (c : K) {τ : Type}
     {L : ZMod d → MvPowerSeries τ K} (hL : HasSubst L) :
@@ -309,11 +302,9 @@ private theorem constantCoeff_subst_vec_pair_eq_zero {K : Type} [Field K] {τ : 
     (ha : constantCoeff a = 0) (hb : constantCoeff b = 0) {F : MvPowerSeries (Fin 2) K}
     (hF0 : constantCoeff F = 0) : constantCoeff (subst ![a, b] F) = 0 := by
   have hx : ∀ i : Fin 2, constantCoeff (![a, b] i) = 0 := by
-    intro i; fin_cases i <;> first | exact ha | exact hb | simp [ha, hb]
+    intro i; fin_cases i <;> first | exact ha | exact hb
   first
-  | exact constantCoeff_subst_eq_zero hx F hF0
   | exact constantCoeff_subst_eq_zero (hasSubst_finite_of_constantCoeff_eq_zero hx) hx hF0
-  | (apply constantCoeff_subst_eq_zero <;> first | assumption | exact hasSubst_finite_of_constantCoeff_eq_zero hx)
 
 theorem PairRules_of (hE : ExpSpec) (hIP : IPLemma) : PairRules := by
   have hS : SimeqRules := by

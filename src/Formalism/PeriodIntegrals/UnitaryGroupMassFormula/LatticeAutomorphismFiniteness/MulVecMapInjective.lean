@@ -162,7 +162,7 @@ variable {E : Type} [Field E] [NumberField E] [StarRing E] (S : HSpace E)
 
 theorem hT_expand (x y : S.V) :
     S.hT x y = ∑ i, ∑ j, star (S.frame.repr x i) * S.gram i j * S.frame.repr y j := by
-  apply PI.CntNotPosW.hT_expand' <;> assumption
+  apply PI.CntNotPosW.hT_expand'
 
 theorem herm_swap (x y : S.V) : S.hT y x = star (S.hT x y) := by
   rw [← S.herm.eq x y]; rfl

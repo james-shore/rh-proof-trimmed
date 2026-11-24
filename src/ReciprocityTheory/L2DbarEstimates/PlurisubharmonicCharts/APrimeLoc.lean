@@ -351,18 +351,11 @@ private lemma exists_const_lintegral_comp_continuousLinearEquiv {n a b : ℕ} (A
     haveI : SigmaFinite (volume : Measure (V b)) := inferInstance
     first
       | infer_instance
-      | exact
-          { toIsFiniteMeasureOnCompacts := inferInstance
-            toIsAddLeftInvariant := inferInstance
-            toIsOpenPosMeasure := inferInstance }
   set ν : Measure (V n) := Measure.map (A.symm : V a × V b → V n) volume with hν
   haveI : ν.IsAddHaarMeasure := by
     rw [hν]
     first
       | infer_instance
-      | exact Measure.isAddHaarMeasure_map volume
-          (A.symm : V a × V b →+ V n) A.symm.continuous A.symm.surjective
-          (A.symm.toHomeomorph.toCocompactMap.cocompact_tendsto')
   refine ⟨Measure.addHaarScalarFactor ν volume,
     Measure.addHaarScalarFactor_pos_of_isAddHaarMeasure ν volume, ?_⟩
   intro B h
@@ -564,7 +557,6 @@ theorem ap_local_blowup (n d : ℕ) (hd : 1 ≤ d) (hMVd : ∀ k, MVStatement k)
   have htop : (K : ℝ≥0∞) * ENNReal.ofReal C ≠ ⊤ :=
     ENNReal.mul_ne_top ENNReal.coe_ne_top ENNReal.ofReal_ne_top
   first
-    | exact ENNReal.le_of_mul_le_mul_left hmain h0 htop
     | exact (ENNReal.mul_le_mul_iff_right h0 htop).1 hmain
 
 end

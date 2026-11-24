@@ -372,7 +372,7 @@ theorem op_inj {s : Sym m n} (h : ∀ f, op s f = 0) : s = 0 := by
       rw [Finsupp.comapDomain_apply, Nat.descFactorial_self]
       exact_mod_cast Nat.factorial_ne_zero _
     · ext k
-      simp [Finsupp.tsub_apply, Finsupp.finsetSum_apply, Finsupp.single_apply]
+      simp [Finsupp.single_apply]
   · intro b hb hbt
     split_ifs with hc
     · apply mul_eq_zero_of_right
@@ -393,7 +393,7 @@ theorem op_inj {s : Sym m n} (h : ∀ f, op s f = 0) : s = 0 := by
       | inr k => exact heq k (Finset.mem_univ _)
       | inl k =>
         have hck := DFunLike.congr_fun hc k
-        simp [Finsupp.tsub_apply, Finsupp.finsetSum_apply, Finsupp.single_apply, heq k (Finset.mem_univ _)] at hck
+        simp [Finsupp.single_apply, heq k (Finset.mem_univ _)] at hck
         exact hck
     · rw [mul_zero]
   · intro hn

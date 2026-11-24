@@ -1460,7 +1460,6 @@ theorem exists_fac_away {R T : Type} [CommRing R] [CommRing T] (x : Sp R ⟶ S) 
     refine ⟨r, ?_⟩
     first
     | simp [hr]
-    | (rw [hr]; simp)
   obtain ⟨y, hy⟩ := exists_spMap (IsOpenImmersion.lift x _ hsub)
   exact ⟨y, by rw [← hy]; exact IsOpenImmersion.lift_fac x _ hsub⟩
 

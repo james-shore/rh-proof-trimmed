@@ -643,7 +643,7 @@ namespace GlobalTheory.JR
 
 theorem Unram.mem_range_of_star_eq : ∀ (F E : Type) [NontriviallyNormedField F] [NontriviallyNormedField E]
     [NormedAlgebra F E] [StarRing E] [GlobalTheory.JR.Unram F E] (y : E), star y = y → ∃ x : F, algebraMap F E x = y := by
-  apply GlobalTheory.JR.Step.UNormal.exists_algebraMap_of_star_eq <;> assumption
+  apply GlobalTheory.JR.Step.UNormal.exists_algebraMap_of_star_eq
 
 end GlobalTheory.JR
 end -- clump:auto

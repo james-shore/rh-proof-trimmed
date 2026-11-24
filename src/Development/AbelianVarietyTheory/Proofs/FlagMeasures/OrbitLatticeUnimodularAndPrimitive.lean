@@ -190,8 +190,7 @@ theorem pr_mem (v : (VS D).V) : pr X v ∈ Wb X := by
     mul_ite, mul_one, Finset.sum_ite_eq, Finset.mem_univ, if_true, sub_self]
   · rw [pr_apply]
 
-    simp only [map_sub, map_sum, map_smul, X.ff, hT_fe, smul_eq_mul, mul_zero, Finset.sum_const_zero, sub_zero,
-    mul_ite, mul_one, Finset.sum_ite_eq', Finset.mem_univ, if_true, sub_self]
+    simp only [map_sub, map_sum, map_smul, X.ff, hT_fe, smul_eq_mul, mul_zero, Finset.sum_const_zero, mul_ite, mul_one, Finset.sum_ite_eq', Finset.mem_univ, if_true, sub_self]
 
 theorem pr_eX (c : Fin D.R.rS) : pr X (X.eX c) = 0 := by
   rw [pr_apply]

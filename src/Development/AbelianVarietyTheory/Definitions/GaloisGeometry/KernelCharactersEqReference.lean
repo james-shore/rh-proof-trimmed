@@ -56,7 +56,7 @@ variable {L : Type} [Field L] [NumberField L]
 
 theorem prod_inf_mul_finPart (a : Ideles L) :
     ∃ y : ∀ w : InfinitePlace L, (w.Completion)ˣ, (∏ w, infIdele L w (y w)) * finPartI L a = a := by
-  apply _root_.GlobalTheory.Mem.Chr.Determ.exists_prod_inf_mul_finPart <;> assumption
+  apply _root_.GlobalTheory.Mem.Chr.Determ.exists_prod_inf_mul_finPart
 
 theorem isFin_finPart (a : Ideles L) : IsFinIdele (finPartI L a) := fun _ => rfl
 

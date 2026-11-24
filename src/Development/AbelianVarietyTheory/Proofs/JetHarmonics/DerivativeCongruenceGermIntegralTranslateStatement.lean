@@ -310,7 +310,7 @@ theorem hasSubst_pt_zero (R : Type) [CommRing R] (d : ℕ) :
 
 theorem law_right_unit {R : Type} [CommRing R] {d : ℕ} (G : FGLaw R d) (i : Fin d) :
     ev (n := 1) ![pt R d 0, 0] (G.F i) = (X ((0 : Fin 1), i) : PS R 1 d) := by
-  apply GlobalTheory.HomChain.law_right_unit <;> assumption
+  apply GlobalTheory.HomChain.law_right_unit
 
 theorem map_ev_pt_zero {R S : Type} [CommRing R] [CommRing S] {d : ℕ} (φ : R →+* S)
     (g : PS R 2 d) :

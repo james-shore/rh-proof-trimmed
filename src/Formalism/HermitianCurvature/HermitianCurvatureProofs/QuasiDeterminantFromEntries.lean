@@ -183,7 +183,7 @@ theorem divided_difference_l : EtaLevel := by
       (Matrix.scalar (Ix S) (c • x) : SlopeTestRemainingChoices S A) = c • Matrix.scalar (Ix S) x := by
     intro c x
     ext i j
-    simp [Matrix.scalar_apply, Matrix.diagonal_apply, smul_ite] <;> split_ifs
+    simp [Matrix.scalar_apply, Matrix.diagonal_apply, smul_ite]
   have hl0 : L.l0 Y - L.l0 Ya = -((Y - Ya) • (L.ζb * L.GGi)) := by
     simp only [Formalism.FourierDecayAlt.R.LevelData.l0, ← Algebra.smul_def, sub_smul, add_smul]
     abel

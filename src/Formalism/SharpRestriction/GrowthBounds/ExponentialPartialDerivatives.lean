@@ -420,7 +420,7 @@ theorem constantCoeff_pderiv {σ : Type} (q : σ) (f : MvPowerSeries σ C) :
   simp
 
 theorem ev_zero_pt {n : ℕ} (f : PS C 1 dd) : ev (n := n) (![0] : Fin 1 → Pt C n dd) f = MvPowerSeries.C (constantCoeff f) := by
-  apply Formalism.L2.FormalSeriesBounds.OActLog.ev_zero_pt <;> assumption
+  apply Formalism.L2.FormalSeriesBounds.OActLog.ev_zero_pt
 
 theorem ex_lin (Y : FBChart C V O dd) (i m : Fin dd) :
     constantCoeff (pderiv (R := C) ((0 : Fin 1), i) (Y.ex m)) = if i = m then 1 else 0 := by

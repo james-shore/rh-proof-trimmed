@@ -1030,7 +1030,7 @@ theorem exists_overLattice (L : ColLevel R F E sp gp C A clsLat)
 end Level
 
 theorem T_ne_g (D : D7) (u : D.what₂.Word) (i : Fin 2) : (D.mem u).A.T ≠ D.host.g i := by
-  apply Formalism.BasicNotions.D7.T_ne_g <;> assumption
+  apply Formalism.BasicNotions.D7.T_ne_g
 
 theorem overLattice : GlobalTheory.IndefiniteRowSideFullHecke.OverPlaceIntegralForm.OverLattice :=
   overLattice_iff_selfDualOverBase.2 fun D Lv u =>

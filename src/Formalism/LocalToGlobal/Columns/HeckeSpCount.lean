@@ -76,7 +76,7 @@ theorem hcnt_prod_succ (q : ℤ) (a i : ℕ) :
 theorem gaussBin_mul_prod (q n i : ℕ) :
     (gaussBin q n i : ℤ) * ∏ j ∈ Finset.range i, ((q : ℤ) ^ i - (q : ℤ) ^ j) =
       ∏ j ∈ Finset.range i, ((q : ℤ) ^ n - (q : ℤ) ^ j) := by
-  apply GlobalTheory.KerRangeCount.gaussBin_mul_prod <;> assumption
+  apply GlobalTheory.KerRangeCount.gaussBin_mul_prod
 
 theorem hcnt_cast_prod (q n i : ℕ) (hq : 1 ≤ q) (hi : i ≤ n) :
     ((∏ j : Fin i, (q ^ n - q ^ (j : ℕ)) : ℕ) : ℤ) = ∏ j ∈ Finset.range i, ((q : ℤ) ^ n - (q : ℤ) ^ j) := by

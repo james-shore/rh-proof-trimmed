@@ -75,7 +75,6 @@ theorem ofCoords_apply' {X : Type*} [AddCommGroup X] [Module ℂ X] (k : ℕ)
 theorem wordContraction_apply (k : ℕ) (F : Big n k M) :
     phi E k F = ∑ κ, word E κ (F κ) := by
   first
-  | simp only [phi, LinearMap.coeFn_sum, Finset.sum_apply, LinearMap.comp_apply, coord_apply']
   | (rw [phi, LinearMap.sum_apply]; rfl)
 
 theorem mAct_apply' (k : ℕ) (a b : Fin n) (F : Big n k M) (κ : Fin k → Fin n × Fin n) :

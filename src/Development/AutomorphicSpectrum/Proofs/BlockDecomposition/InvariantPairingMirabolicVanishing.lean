@@ -76,7 +76,7 @@ namespace GlobalTheory.CompanionTheory.LinAlg
 
 theorem exists_GL_lastRow_eq : ∀ (K : Type) [Field K] (n : ℕ) (a : Fin (n + 1) → K), a ≠ 0 →
     ∃ m : GL (Fin (n + 1)) K, vecMul (Pi.single (Fin.last n) 1) (m : Matrix (Fin (n + 1)) (Fin (n + 1)) K) = a := by
-  apply GlobalTheory.CompanionTheory.RowSect.exists_GL_last_row <;> assumption
+  apply GlobalTheory.CompanionTheory.RowSect.exists_GL_last_row
 
 end GlobalTheory.CompanionTheory.LinAlg
 end -- clump:auto

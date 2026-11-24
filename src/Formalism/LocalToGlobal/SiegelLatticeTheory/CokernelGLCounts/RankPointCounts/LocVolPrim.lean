@@ -173,7 +173,7 @@ theorem corr_zpow_neg {A B} (h : CorrFI ι A B) (hA : A ≠ 0) (hB : B ≠ 0) (k
 theorem mem_dual_one_iff (t : K) :
     t ∈ FractionalIdeal.dual ℤ ℚ (1 : FractionalIdeal (𝓞 K)⁰ K) ↔
       ∀ s : 𝓞 K, ∃ z : ℤ, Algebra.trace ℚ K (t * (s : K)) = z := by
-  apply Formalism.MainNotions.BridgeLemma.mem_dual_iff <;> assumption
+  apply Formalism.MainNotions.BridgeLemma.mem_dual_iff
 
 theorem mem_diff_iff (x : 𝓞 K) : x ∈ differentIdeal ℤ (𝓞 K) ↔
     ∀ b : K, (∀ s : 𝓞 K, ∃ z : ℤ, Algebra.trace ℚ K (b * (s : K)) = z) →

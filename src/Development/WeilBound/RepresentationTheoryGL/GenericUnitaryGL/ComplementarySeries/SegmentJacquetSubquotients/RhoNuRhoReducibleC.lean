@@ -712,7 +712,7 @@ theorem cc_right (g y w : GL (Fin (d + d)) k) (hw : w ∈ K1 g) : cc g (y * w) =
   rw [e, hh_mul_right _ _ hw.2, hh_mul_right _ _ hw.1]
 
 theorem cc_finite (g : GL (Fin (d + d)) k) : (Set.range (cc (k := k) g)).Finite := by
-  apply CompanionTheory.RgGu.NR.Compact.cc_finite <;> assumption
+  apply CompanionTheory.RgGu.NR.Compact.cc_finite
 
 theorem ind_val_sum {σ : Representation ℂ (parab k (blk2 d)) W} {ι : Type} (s : Finset ι) (c : ι → ℂ)
     (u : ι → smoothPart (ind (parab k (blk2 d)) σ)) (y : GL (Fin (d + d)) k) :
@@ -751,7 +751,7 @@ def piece (g : GL (Fin (d + d)) k) (v : ℝ) (f : IndSp (blk2 d) τ) : IndSp (bl
 theorem expo (g : GL (Fin (d + d)) k) (f : IndSp (blk2 d) τ) :
     ∃ (m : ℕ) (r : Fin m → ℝ) (u : Fin m → IndSp (blk2 d) τ),
       ∀ s, F τ s g f = ∑ i, ((Real.exp (r i * s) : ℝ) : ℂ) • u i := by
-  apply CompanionTheory.RgGu.NR.Compact.expo <;> assumption
+  apply CompanionTheory.RgGu.NR.Compact.expo
 
 end PositivityTheory.RgGu.NR.Compact
 
@@ -1145,11 +1145,11 @@ end Model
 open Model in
 theorem prodModel (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] :
     ProdModel k := by
-  apply CompanionTheory.RgGu.NR.prodModel <;> assumption
+  apply CompanionTheory.RgGu.NR.prodModel
 
 theorem cuspUnit (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] :
     CuspUnit k := by
-  apply CompanionTheory.RgGu.NR.cuspUnit <;> assumption
+  apply CompanionTheory.RgGu.NR.cuspUnit
 
 end PositivityTheory.RgGu.NR
 
@@ -1353,7 +1353,7 @@ open Sig
 
 
 theorem signature : Signature := by
-  apply CompanionTheory.RgGu.NR.signature <;> assumption
+  apply CompanionTheory.RgGu.NR.signature
 
 end PositivityTheory.RgGu.NR
 end -- clump:auto

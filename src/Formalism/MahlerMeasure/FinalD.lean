@@ -119,7 +119,7 @@ variable [IsUltrametricDist K]
 
 lemma gaussR_mul_le (ρ : NNReal) (P Q : K[X]) :
     gaussR ρ (P * Q) ≤ gaussR ρ P * gaussR ρ Q := by
-  apply Formalism.GM.DetBound.gaussR_mul_le <;> assumption
+  apply Formalism.GM.DetBound.gaussR_mul_le
 
 lemma le_gaussR_mul (ρ : NNReal) (hρ : 0 < ρ) (P Q : K[X]) :
     gaussR ρ P * gaussR ρ Q ≤ gaussR ρ (P * Q) := by

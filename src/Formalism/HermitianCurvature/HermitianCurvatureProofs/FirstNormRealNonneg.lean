@@ -74,7 +74,7 @@ theorem idl_ne_zero (g : ℕ) (hg : 0 < g) (k ν : ℤ) : S6.idl E g k ν ≠ 0 
     exact zpow_ne_zero _ (Nat.cast_ne_zero.mpr hg.ne')
 
 theorem idl_two_le_one (g : ℕ) (ν : ℤ) : S6.idl E g 2 ν ≤ S6.idl E g 1 ν := by
-  apply Formalism.FourierDecayAlt.P.S6x2.idl_le <;> assumption
+  apply Formalism.FourierDecayAlt.P.S6x2.idl_le
 
 theorem frame_facts (g : ℕ) (hg : 0 < g) (ν : ℤ) :
     DiscreteTopology (S6.frameLat E (S6.perLat E g ν 1) 1) ∧

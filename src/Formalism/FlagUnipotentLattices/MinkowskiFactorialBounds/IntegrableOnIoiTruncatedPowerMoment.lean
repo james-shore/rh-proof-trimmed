@@ -145,7 +145,7 @@ lemma integrableOn_Ioi_truncated_power_moment {K L : ℝ} (hK : 2 < K) (hL : 0 <
   exact Integrable.const_mul (integrableOn_Ioi_rpow_of_lt (by linarith) hL) _
 
 lemma gl_e3Integral : Formalism.HermitianLatticeCounting.ExpansionTerms.CutoffIntegralFormula := by
-  apply Formalism.HermitianLatticeCounting.P.cutoff_integral_formula <;> assumption
+  apply Formalism.HermitianLatticeCounting.P.cutoff_integral_formula
 
 theorem sup_bound_of_truncated_integral : Formalism.HermitianLatticeCounting.ExpansionTerms.LemSSupBound := lemSSupBound_of gl_e3Integral
 

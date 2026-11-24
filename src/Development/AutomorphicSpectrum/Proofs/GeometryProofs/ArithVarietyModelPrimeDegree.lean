@@ -1300,7 +1300,7 @@ noncomputable section
 namespace GlobalTheory.CompanionTheory.Ar.Num.FamEx.Lab
 
 theorem exists_labelEmbedding : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (l : Level H) (Xo : Moduli D l) (c : Coeff l) (O₀ : Type) [CommRing O₀] (β : O₀ →+* c.F) (Y : Model Xo c β) (S : Finset ℕ) (Ω : Type) [Field Ω] (K : Type) [Fintype K] (J : K → Type) (y : (Σ k, J k) → Ω) (𝔐 : HodgeCpt Y S y) (t : CMType H ⊕ CMType H), ∃ σ : E →+* Ω, (∀ a : 𝓞 E, σ (a : E) = 𝔐.emb t a) ∧ (∀ a : 𝓞 E, (σ.comp (HT.cmConj E).toRingHom) (a : E) = 𝔐.emb t.swap a) ∧ ∀ σ' : E →+* Ω, (∀ a : 𝓞 E, σ' (a : E) = 𝔐.emb t a) → σ' = σ := by
-  apply PositivityTheory.Xgn.exists_cm_type_embedding <;> assumption
+  apply PositivityTheory.Xgn.exists_cm_type_embedding
 
 end GlobalTheory.CompanionTheory.Ar.Num.FamEx.Lab
 end -- clump:auto

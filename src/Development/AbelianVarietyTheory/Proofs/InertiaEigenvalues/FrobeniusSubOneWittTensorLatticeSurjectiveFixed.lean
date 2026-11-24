@@ -174,7 +174,7 @@ theorem baseChange_flat {R W O : Type} [CommRing R] [CommRing W] [Algebra R W] [
 
 theorem algebraMap_WCb_injective (l : ℕ) [Fact l.Prime] :
     Function.Injective (algebraMap ℤ_[l] (WCb l)) := by
-  apply Formalism.MainNotions.InvariantsGenerators.InvariantsFromGenerators.zl_WCb_injective <;> assumption
+  apply Formalism.MainNotions.InvariantsGenerators.InvariantsFromGenerators.zl_WCb_injective
 
 theorem flat_lattice {G : Type} [Group G] [TopologicalSpace G] {Qp LL O : Type} [Field Qp]
     [Field LL] [Algebra Qp LL] [CommRing O] [Algebra O LL] [TopologicalSpace LL] [IsDomain O]

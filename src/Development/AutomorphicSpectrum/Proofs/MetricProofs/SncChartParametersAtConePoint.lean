@@ -512,7 +512,7 @@ theorem map_mem_chartIdeal_of_aeval_eq_zero :
       ∀ G : MvPolynomial (Σ k, ι k) ℚ, aeval (fun q : Σ k, ι k => y q / y ⟨q.1, p q.1⟩) G = 0 →
         map (algebraMap ℚ ℂ) G ∈
           chartIdeal (ReciprocityTheory.ChartRestriction.G.Geo.pC (ReciprocityTheory.ChartRestriction.G.Geo.mCoordIdeal y)) p := by
-  apply GlobalTheory.CompanionTheory.Ar.Cmp.SncRes.Reg.ker_le_chart <;> assumption
+  apply GlobalTheory.CompanionTheory.Ar.Cmp.SncRes.Reg.ker_le_chart
 
 end GlobalTheory.CompanionTheory.Ar.Cmp.KerChart
 end -- clump:auto

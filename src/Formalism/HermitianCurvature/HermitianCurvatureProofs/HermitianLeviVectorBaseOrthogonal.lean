@@ -261,7 +261,7 @@ private lemma iotaLev_apply_of_first_index_outside (g : Mat k r') (p : Fin (2 * 
   rw [dif_neg hp]
 
 lemma lev_mul (g h : Mat k r') : ιLev k 1 r' (g * h) = ιLev k 1 r' g * ιLev k 1 r' h := by
-  apply ReciprocityTheory.ChartRestriction.DS.Xi.StepA.lev_mul <;> assumption
+  apply ReciprocityTheory.ChartRestriction.DS.Xi.StepA.lev_mul
 
 lemma lev_inv (g : Mat k r') (hg : IsUnit g.det) : (ιLev k 1 r' g)⁻¹ = ιLev k 1 r' g⁻¹ := by
   apply Matrix.inv_eq_right_inv

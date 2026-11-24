@@ -681,7 +681,7 @@ theorem charUpq : ∀ (R S : ℕ) (χ : Mat R S → ℂ),
 
 theorem jm_map_star : (Jm R S).map star = Jm R S := by
   ext a b; rcases a with i | i <;> rcases b with j | j <;>
-    simp [Jm, Formalism.UG.Jpq, Matrix.fromBlocks, Matrix.one_apply] <;> split_ifs
+    simp [Jm, Formalism.UG.Jpq, Matrix.fromBlocks, Matrix.one_apply]
 
 theorem form_iff (h : Mat R S) : hᴴ * Jm R S * h = Jm R S ↔ hᵀ * Jm R S * h.map star = Jm R S := by
   have e1 : (hᴴ).map star = hᵀ := by ext i j; simp [Matrix.conjTranspose_apply]

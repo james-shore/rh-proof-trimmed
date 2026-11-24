@@ -138,7 +138,6 @@ theorem hasDerivAt_det_of_one (A : ℝ → Matrix n n ℂ) (A' : Matrix n n ℂ)
     HasDerivAt (fun t => (A t).det) A'.trace 0 := by
   first
   | (apply _root_.GlobalTheory.DetDerivativeAtOne.hasDerivAt_det_of_one <;> assumption)
-  | (intros; exact _root_.GlobalTheory.DetDerivativeAtOne.hasDerivAt_det_of_one ..)
 
 end Gen
 

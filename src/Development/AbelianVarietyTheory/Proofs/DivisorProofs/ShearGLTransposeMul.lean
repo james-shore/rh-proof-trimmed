@@ -108,10 +108,10 @@ theorem shearGL_transpose_mul (c : Matrix T R k) (Y : Matrix (R ⊕ T) D k) :
 
 theorem dilGL_transpose_mul (t : kˣ) (Y : Matrix (R ⊕ T) D k) :
     (dilGL t : GL (R ⊕ T) k).valᵀ * Y = dil (t : k) Y := by
-  ext (i | i) j <;> simp [dilGL, dil, diagonal_transpose, Matrix.mul_apply, Fintype.sum_sum_type, diagonal_apply]
+  ext (i | i) j <;> simp [dilGL, dil, diagonal_transpose, Matrix.mul_apply, diagonal_apply]
 
 theorem gdet_shearGL (c : Matrix T R k) : gdet (shearGL c) = 1 := by
-  ext; simp [shearGL, gdet, det_fromBlocks_zero₂₁]
+  ext; simp [shearGL, gdet]
 
 theorem gdet_dilGL (t : kˣ) : gdet (dilGL t : GL (R ⊕ T) k) = t ^ Fintype.card T := by
   ext; simp [dilGL, gdet, det_diagonal, Fintype.prod_sum_type]

@@ -1141,7 +1141,7 @@ namespace GlobalTheory.HL.CommInt
 theorem stabL_relIndex_K0_ne_zero_of_four_mul_add_seven_le : ∀ {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] {sig : E →ₐ[F] E} (A : Places F E sig) (r k : ℕ) (G : GFrames A r k), 4 * r + 7 ≤ k → ∀ Λ : G.Lt, Submodule.IsFullLattice E Λ → (G.stabL Λ).relIndex G.K0 ≠ 0 ∧ G.K0.relIndex (G.stabL Λ) ≠ 0 := by
   intro F E _ _ _ _ _ sig A r k G hk Λ hΛ
   obtain ⟨-, hlat, -⟩ := _root_.GlobalTheory.HL.PlacesRec.lattice_local A (k + 2 * r + 1) Λ hΛ
-  obtain ⟨hfin, -⟩ := GlobalTheory.HL.MassProduct.mass_eq_finprod A r k G hk Λ (by first | exact hΛ | exact hΛ.toIsLattice)
+  obtain ⟨hfin, -⟩ := GlobalTheory.HL.MassProduct.mass_eq_finprod A r k G hk Λ (by first | exact hΛ)
   let U : ∀ p, Subgroup (G.S p).GLV :=
     fun p => (G.S p).St ⊓ MulAction.stabilizer (G.S p).GLV (A.lat p Λ)
   let K : ∀ p, Subgroup (G.S p).GLV := fun p => (G.S p).K0

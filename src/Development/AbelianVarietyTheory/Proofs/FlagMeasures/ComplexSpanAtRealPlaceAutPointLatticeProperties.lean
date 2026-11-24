@@ -66,7 +66,7 @@ theorem main {E : Type} [Field E] [NumberField E] {n : ℕ}
     (Λ : Submodule (NumberField.RingOfIntegers E) (Fin n → E)) :
     ∀ y ∈ Submodule.span E (↑Λ : Set (Fin n → E)),
       ∃ (c : NumberField.RingOfIntegers E), c ≠ (0 : NumberField.RingOfIntegers E) ∧ c • y ∈ Λ := by
-  apply ReciprocityTheory.MultiplicativeHeights.SemiPt.clear_denom <;> assumption
+  apply ReciprocityTheory.MultiplicativeHeights.SemiPt.clear_denom
 
 end GlobalTheory.IntegralBoundFlagMeasures
 end -- clump:auto

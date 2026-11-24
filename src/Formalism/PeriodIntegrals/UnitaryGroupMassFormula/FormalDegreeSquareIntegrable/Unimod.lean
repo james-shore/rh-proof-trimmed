@@ -174,7 +174,7 @@ lemma modChar_herm (h : UJ ε) (hh : (toM h)ᴴ = toM h) : Measure.modularCharac
     linarith
 
 lemma isCompact_Kset : IsCompact (Kset ε) := by
-  apply CompanionTheory.D.Upq.isCompact_Kset <;> assumption
+  apply CompanionTheory.D.Upq.isCompact_Kset
 
 lemma isCompact_KG : IsCompact ((KG ε : Set (UJ ε))) :=
   (isClosedEmbeddingMatrix n ε).1.isCompact_preimage (isCompact_Kset ε)

@@ -195,7 +195,7 @@ theorem matrix_eq_zero_of_im {g : ℕ} {La : Type} [AddCommGroup La] (P : La →
 
 theorem trace_mul_sesq (D : Datum H) (a : 𝓞 E) (x y : D.La) :
     Algebra.trace ℚ E ((a : E) * sesq D x y) = ((D.EF (a • x) y : ℤ) : ℚ) := by
-  apply GlobalTheory.CompanionTheory.Ar.Fl.trace_mul_sesq_eq_form <;> assumption
+  apply GlobalTheory.CompanionTheory.Ar.Fl.trace_mul_sesq_eq_form
 
 theorem sesq_smul_left (D : Datum H) (a : 𝓞 E) (x y : D.La) :
     sesq D (a • x) y = (a : E) * sesq D x y := by

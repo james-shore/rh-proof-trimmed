@@ -287,6 +287,6 @@ theorem psiIn (n : ℤ) (m : ℕ) (hm : m ≤ n.natAbs ^ 2) : tatePre.PsiIn n (I
       rfl
     have hv : ((tatePre.psi n).s j).val = ((TK R).left.presheaf.map (homOfLE le_top).op).hom
         ((pi0 ^ (n ^ 2) : Γ((TK R).left, ⊤)ˣ) : Γ((TK R).left, ⊤)) := rfl
-    rw [jK_toOpen, hv, map_map_lemma, ← e2] <;> rfl
+    rw [jK_toOpen, hv, map_map_lemma, ← e2]
 
 end ReciprocityTheory.ChartRestriction.G.Out.InhTate

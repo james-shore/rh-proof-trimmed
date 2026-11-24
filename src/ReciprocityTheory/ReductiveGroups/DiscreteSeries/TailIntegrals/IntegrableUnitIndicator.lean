@@ -108,8 +108,6 @@ lemma integrable_reim {p q : ℝ → ℝ} (hp : Integrable p) (hq : Integrable q
   have h2 := (e.integrable_comp_emb Complex.measurableEquivRealProd.measurableEmbedding).2 h
   first
   | exact h2
-  | (convert h2 using 1; funext z; rfl)
-  | (convert h2 using 1; funext z; simp [Complex.measurableEquivRealProd])
 
 lemma volume_axes : volume {z : ℂ | z.im = 0 ∨ z.re = 0} = 0 := by
   have e := Complex.volume_preserving_equiv_real_prod
@@ -154,13 +152,10 @@ lemma mp_unitary {ι : Type*} [Fintype ι] [DecidableEq ι] (h : Matrix ι ι �
       rw [Complex.normSq_eq_conj_mul_self]
       first
       | exact h1
-      | (rw [starRingEnd_apply]; exact h1)
     exact_mod_cast h2
   have hdet : LinearMap.det L = 1 := by
     first
     | (rw [LinearMap.det_restrictScalars, LinearMap.det_toLin', Algebra.norm_complex_apply, hdetC])
-    | (show LinearMap.det ((Matrix.toLin' h).restrictScalars ℝ) = 1
-       rw [LinearMap.det_restrictScalars, LinearMap.det_toLin', Algebra.norm_complex_apply, hdetC])
   have hmeas : Measurable (fun y : ι → ℂ => h.mulVec y) := by
     rw [hfun]
     exact L.continuous_of_finiteDimensional.measurable
@@ -168,7 +163,6 @@ lemma mp_unitary {ι : Type*} [Fintype ι] [DecidableEq ι] (h : Matrix ι ι �
   rw [hfun]
   first
   | (rw [Measure.map_linearMap_addHaar_eq_smul_addHaar volume (by rw [hdet]; norm_num), hdet]; simp)
-  | (rw [Measure.map_linearMap_addHaar_eq_smul_addHaar (μ := volume) (by rw [hdet]; norm_num), hdet]; simp)
 
 section Shell
 
@@ -248,8 +242,6 @@ lemma psi_le {p q : ι} (hpq : p ≠ q) {k : ℕ} (hk : Fintype.card ι = k + 1)
     intro z
     first
     | exact Complex.normSq_eq_norm_sq z
-    | (rw [Complex.sq_norm])
-    | (rw [Complex.normSq_eq_abs, Complex.norm_eq_abs])
   have hsmall : ∀ i, i ≠ q → Complex.normSq (x i) ≤ 1 := by
     intro i hi
     have h1 := normSq_le_tW q x i hi
@@ -277,7 +269,6 @@ lemma psi_le {p q : ι} (hpq : p ≠ q) {k : ℕ} (hk : Fintype.card ι = k + 1)
     have h2 : |(x p).im| ≤ |(x p).im| / tW q x := by
       first
       | (rw [le_div_iff₀ htpos]; nlinarith [abs_nonneg (x p).im])
-      | (rw [le_div_iff htpos]; nlinarith [abs_nonneg (x p).im])
     linarith
   have hB : ∀ i, i ≠ p → i ≠ q → |(x i).re| * |(x i).im| ≤ ‖1 - star (x p) / (tW q x : ℂ)‖ := by
     intro i hip hiq
@@ -293,8 +284,6 @@ lemma psi_le {p q : ι} (hpq : p ≠ q) {k : ℕ} (hk : Fintype.card ι = k + 1)
       rw [norm_div, norm_star]
       first
       | (rw [Complex.norm_real, Real.norm_of_nonneg htpos.le])
-      | (simp [abs_of_pos htpos]; done)
-      | (simp [Complex.abs_of_nonneg htpos.le]; done)
     have htri : ‖(1 : ℂ)‖ - ‖star (x p) / (tW q x : ℂ)‖ ≤ ‖1 - star (x p) / (tW q x : ℂ)‖ :=
       norm_sub_norm_le _ _
     rw [norm_one, hw] at htri
@@ -310,7 +299,6 @@ lemma psi_le {p q : ι} (hpq : p ≠ q) {k : ℕ} (hk : Fintype.card ι = k + 1)
     have hd : ‖x p‖ / tW q x ≤ 1 - tW q x + ‖x p‖ := by
       first
       | (rw [div_le_iff₀ htpos]; nlinarith [mul_nonneg (sub_nonneg.2 ht2) (sub_nonneg.2 hrt)])
-      | (rw [div_le_iff htpos]; nlinarith [mul_nonneg (sub_nonneg.2 ht2) (sub_nonneg.2 hrt)])
     linarith
   have hpim : 0 < |(x p).im| := abs_pos.2 (hg p).1
   have hu : 0 < ‖1 - star (x p) / (tW q x : ℂ)‖ := lt_of_lt_of_le hpim hA
@@ -319,9 +307,7 @@ lemma psi_le {p q : ι} (hpq : p ≠ q) {k : ℕ} (hk : Fintype.card ι = k + 1)
     rw [← ENNReal.ofReal_rpow_of_pos hu]
     congr 1
     first
-    | exact (ofReal_norm_eq_coe_nnnorm _).symm
     | (rw [ofReal_norm_eq_enorm, enorm_eq_nnnorm])
-    | (simp; rfl)
   rw [hP]
   apply ENNReal.ofReal_le_ofReal
   have hk0 : (0 : ℝ) < k := by
@@ -334,10 +320,6 @@ lemma psi_le {p q : ι} (hpq : p ≠ q) {k : ℕ} (hk : Fintype.card ι = k + 1)
     intro a ha hau
     first
     | exact Real.rpow_le_rpow_of_nonpos ha hau (by linarith)
-    | (rw [Real.rpow_neg hu.le, Real.rpow_neg ha.le]
-       exact inv_anti₀ (Real.rpow_pos_of_pos ha _) (Real.rpow_le_rpow ha.le hau hβ0))
-    | (rw [Real.rpow_neg hu.le, Real.rpow_neg ha.le]
-       exact inv_le_inv_of_le (Real.rpow_pos_of_pos ha _) (Real.rpow_le_rpow ha.le hau hβ0))
   have hfac : ∀ i, i ≠ q → ‖1 - star (x p) / (tW q x : ℂ)‖ ^ (-(s / k)) ≤ gF p q (s / k) i (x i) := by
     intro i hiq
     obtain ⟨hr1, hi1⟩ := hcoord (x i) (hsmall i hiq)
@@ -368,9 +350,6 @@ lemma psi_le {p q : ι} (hpq : p ≠ q) {k : ℕ} (hk : Fintype.card ι = k + 1)
         congr 1
         first
         | (rw [neg_mul, div_mul_cancel₀ _ hkne])
-        | (rw [neg_mul, div_mul_cancel₀ hkne])
-        | (field_simp; done)
-        | (field_simp; ring)
     _ ≤ ∏ i ∈ Finset.univ.erase q, gF p q (s / k) i (x i) := by
         apply Finset.prod_le_prod₀
         · intro i _
@@ -397,7 +376,6 @@ lemma integrable_gprod (p q : ι) {β : ℝ} (hβ : β < 1) :
     Integrable (fun x : ι → ℂ => ∏ i, gF p q β i (x i)) := by
   first
   | exact Integrable.fintype_prod (f := fun i => gF p q β i) (fun i => gF_integrable p q hβ i)
-  | (rw [volume_pi]; exact Integrable.fintype_prod (fun i => gF_integrable p q hβ i))
 
 lemma ae_good : ∀ᵐ x : ι → ℂ, ∀ i, (x i).im ≠ 0 ∧ (x i).re ≠ 0 := by
   rw [ae_iff]

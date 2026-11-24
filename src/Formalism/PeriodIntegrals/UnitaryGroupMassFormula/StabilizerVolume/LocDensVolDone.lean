@@ -204,8 +204,7 @@ theorem crd_sigR (σ : E →ₐ[F] E) (z : Fv F v ⊗[F] E) (l : Fin d) :
 
   rw [map_sum]
 
-  simp only [sigR_smul, hB, hs, crd, map_sum, map_smul, Finset.sum_apply,
-  Finsupp.smul_apply, smul_eq_mul, Algebra.TensorProduct.basis_repr_tmul,
+  simp only [sigR_smul, hB, hs, crd, map_sum, map_smul, Algebra.TensorProduct.basis_repr_tmul,
   one_smul]
   simp [Finsupp.mapRange_apply, hBdef]
 
@@ -525,7 +524,7 @@ def U0 (I : Finset (HeightOneSpectrum (𝓞 F))) (n : HeightOneSpectrum (𝓞 F)
 
 theorem isOpen_adelic_neighbourhood (I : Finset (HeightOneSpectrum (𝓞 F))) (n : HeightOneSpectrum (𝓞 F) → ℕ) :
     IsOpen (U0 I n : Set (Af F)) := by
-  apply PI.VolStabSW.VolAAW.isOpen_adelic_neighbourhood <;> assumption
+  apply PI.VolStabSW.VolAAW.isOpen_adelic_neighbourhood
 
 theorem adele_character_trivial_open (ψ : AddChar (AF F) ℂ) (hψ : IsCharAF F ψ) :
     ∃ (I : Finset (HeightOneSpectrum (𝓞 F))) (n : HeightOneSpectrum (𝓞 F) → ℕ),

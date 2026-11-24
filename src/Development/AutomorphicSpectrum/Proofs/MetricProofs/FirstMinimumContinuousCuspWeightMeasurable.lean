@@ -329,7 +329,7 @@ variable {E : Type} [Field E] [NumberField E] [IsCMField E] {g : ℕ} {Λ : Type
 
 theorem linearIndependent_periods (R : RiemLat E g Λ) {ι : Type} [Fintype ι] (b : Module.Basis ι ℤ Λ) :
     LinearIndependent ℝ fun i => R.P (b i) := by
-  apply LevelTowerAlt.basis_indep <;> assumption
+  apply LevelTowerAlt.basis_indep
 
 def comb (R : RiemLat E g Λ) {ι : Type} [Fintype ι] (b : ι → Λ) (a : ι → ℝ) : Fin g → ℂ :=
   ∑ i, ((a i : ℝ) : ℂ) • R.P (b i)

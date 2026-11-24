@@ -1526,7 +1526,6 @@ def TT (n : ℕ) : Poly n →ₐ[ℂ] MvPolynomial ((Fin n × Fin n) ⊕ (Fin n 
 theorem TT_deg {n : ℕ} (P : Poly n) : (TT n P).totalDegree ≤ P.totalDegree := by
   first
   | (apply _root_.GlobalTheory.TotalDegreeBounds.main <;> assumption)
-  | (intros; exact _root_.GlobalTheory.TotalDegreeBounds.main ..)
 
 theorem ev_conjT_mul {n : ℕ} (A M : Mat n) (P : Poly n) :
     ev (A.conjTranspose * M) P =

@@ -402,7 +402,7 @@ theorem AntisymDivisible.proof : AntisymDivisible.Statement := by
     simp only [map_smul, rename_X] at h
     rw [coeff_lin, coeff_lin] at h
     simp only [Equiv.swap_apply_eq_iff, Equiv.swap_apply_left, Finset.sum_ite_eq',
-      Finset.mem_univ, if_true, id] at h
+      Finset.mem_univ, if_true] at h
     exact h.symm
   refine ⟨l₁, ⟨?_, ?_⟩, hP1⟩
   · exact homogeneousComponent_isHomogeneous 1 l

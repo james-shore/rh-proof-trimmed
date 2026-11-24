@@ -150,7 +150,7 @@ theorem tensor_sq {F A E : Type} [Field F] [CommRing A] [Algebra F A] [Field E] 
 
 theorem field_decomp (D : D7) (x : D.host.E) :
     ∃ u w : D.host.F, x = u • (1 : D.host.E) + w • D.host.sqrtMinusD := by
-  apply GlobalTheory.FockCompare.RealChart.host_span <;> assumption
+  apply GlobalTheory.FockCompare.RealChart.host_span
 
 theorem exists_half_abstract {F T T' : Type} [Field F] [NumberField F] [CommRing T] [CommRing T']
     (j : AF F →+* T) (c : T →+* T) (p : T →+* T') (δ : T) (n : ℕ) (hn0 : n ≠ 0) (hinj : Function.Injective j)

@@ -830,7 +830,6 @@ theorem adj_stab (A : Set Letter) (f : Letter → Module.End E V) (W : Submodule
     ∀ x ∈ W, FreeAlgebra.lift E f Q x ∈ W ∧ ∀ s, g s (FreeAlgebra.lift E f Q x) = FreeAlgebra.lift E f Q (g s x) := by
   first
   | (apply _root_.GlobalTheory.AdjoinStableCommutes.adjoin_stable_and_commutes <;> assumption)
-  | (intros; exact _root_.GlobalTheory.AdjoinStableCommutes.adjoin_stable_and_commutes ..)
 
 end Gen
 

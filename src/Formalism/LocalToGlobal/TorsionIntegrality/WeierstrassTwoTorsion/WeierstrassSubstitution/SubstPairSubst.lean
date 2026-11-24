@@ -149,7 +149,7 @@ theorem FF_cc {a b : R⟦X⟧} (ha : constantCoeff a = 0) (hb : constantCoeff b 
       have hn : MvPowerSeries.constantCoeff (nu W) = 0 := by
         simp only [nu, map_sub, map_mul, hl, hw, zero_mul, sub_zero]
       have ht : MvPowerSeries.constantCoeff (cTwo W) = 0 := by
-        simp only [cTwo, map_add, map_mul, map_pow, hl, hn, pow_two, mul_zero, zero_mul, add_zero, zero_add]
+        simp only [cTwo, map_add, map_mul, hl, hn, pow_two, mul_zero, add_zero]
       have hu : MvPowerSeries.constantCoeff (uThird W) = 0 := by
         simp only [uThird, map_sub, map_neg, map_mul, MvPowerSeries.constantCoeff_X, ht,
           neg_zero, zero_mul, sub_zero]
@@ -249,7 +249,7 @@ theorem log_FF (hL : FglLog.{u}) {a b : K⟦X⟧} (ha : constantCoeff a = 0)
       have hn : MvPowerSeries.constantCoeff (nu W) = 0 := by
         simp only [nu, map_sub, map_mul, hl, hw, zero_mul, sub_zero]
       have ht : MvPowerSeries.constantCoeff (cTwo W) = 0 := by
-        simp only [cTwo, map_add, map_mul, map_pow, hl, hn, pow_two, mul_zero, zero_mul, add_zero, zero_add]
+        simp only [cTwo, map_add, map_mul, hl, hn, pow_two, mul_zero, add_zero]
       have hu : MvPowerSeries.constantCoeff (uThird W) = 0 := by
         simp only [uThird, map_sub, map_neg, map_mul, MvPowerSeries.constantCoeff_X, ht,
           neg_zero, zero_mul, sub_zero]

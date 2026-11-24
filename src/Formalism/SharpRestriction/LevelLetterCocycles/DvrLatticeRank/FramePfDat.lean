@@ -996,7 +996,7 @@ end Const
 theorem mul_comm_of_mul_eq_smul {R : Type*} [CommRing R] {n : ℕ} (P Q : Matrix (Fin n) (Fin n) R)
     (c : R) (hc : c ∈ nonZeroDivisors R) (h : Q * P = c • (1 : Matrix (Fin n) (Fin n) R)) :
     P * Q = c • (1 : Matrix (Fin n) (Fin n) R) := by
-  first | (apply Bl.FirstLemmaB.goal1 <;> assumption) | exact @Bl.FirstLemmaB.goal1 R ‹_› n P Q c hc h | exact @Bl.FirstLemmaB.goal1 R ‹_› n P Q c hc | exact @Bl.FirstLemmaB.goal1 R ‹_› n P Q c | exact @Bl.FirstLemmaB.goal1 R ‹_› n P Q | exact @Bl.FirstLemmaB.goal1 R ‹_› n P | exact @Bl.FirstLemmaB.goal1 R ‹_› n | exact @Bl.FirstLemmaB.goal1 R ‹_› | exact @Bl.FirstLemmaB.goal1 R
+  first | (apply Bl.FirstLemmaB.goal1 <;> assumption)
 
 theorem quot_sq_nzd {I : Ideal A} {c : A} (hc : ∀ a : A, c * a ∈ I → a ∈ I) :
     Ideal.Quotient.mk I (c ^ 2) ∈ nonZeroDivisors (A ⧸ I) := by

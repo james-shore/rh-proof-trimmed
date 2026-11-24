@@ -61,7 +61,7 @@ namespace GlobalTheory.NatMultipleInLattice
 
 theorem exists_nat_mul_integral {E : Type} [Field E] [NumberField E] (a : E) :
     ∃ m : ℕ, m ≠ 0 ∧ IsIntegral ℤ ((m : E) * a) := by
-  apply UpperTheory.V.Z.Sym.Glob.exists_nat_mul <;> assumption
+  apply UpperTheory.V.Z.Sym.Glob.exists_nat_mul
 
 theorem exists_nsmul_mem_lattice {E : Type} [Field E] [NumberField E] {n : ℕ}
     (L : Submodule (NumberField.RingOfIntegers E) (Fin n → E)) (hL : Submodule.IsFullLattice E L)

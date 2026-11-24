@@ -135,7 +135,7 @@ theorem expU_inv {n : ℕ} {ε : Fin n → Bool} (X : gLie ε) (t : ℝ) : (expU
   rw [← expU_add, add_neg_cancel, zero_smul, expU_zero]
 
 theorem continuous_expU {n : ℕ} {ε : Fin n → Bool} (X : gLie ε) : Continuous fun t : ℝ => expU (t • X) := by
-  apply GlobalTheory.SobolevBound.continuous_expU <;> assumption
+  apply GlobalTheory.SobolevBound.continuous_expU
 
 theorem hasDerivAt_exp_mul_entry {n : ℕ} (X Y : Matrix (Fin n) (Fin n) ℂ) (t : ℝ) (i j : Fin n) :
     HasDerivAt (fun s : ℝ => (NormedSpace.exp (s • X) * Y) i j) ((X * (NormedSpace.exp (t • X) * Y)) i j) t := by

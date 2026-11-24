@@ -58,9 +58,7 @@ open Formalism.MainNotions.G Formalism.MainNotions.CovariantDegrees
 private theorem mapRingHom_laurent_C' {A B : Type*} [CommRing A] [CommRing B] (f : A →+* B) (a : A) :
     AddMonoidAlgebra.mapRingHom ℤ f (LaurentPolynomial.C a) = LaurentPolynomial.C (f a) := by
   first
-  | simp [LaurentPolynomial.C_apply, AddMonoidAlgebra.mapRingHom_single]
-  | simp [LaurentPolynomial.C_apply, Finsupp.mapRange_single]
-  | (ext k; simp [LaurentPolynomial.C_apply, Finsupp.single_apply]; split_ifs <;> simp)
+  | (ext k; simp [LaurentPolynomial.C_apply]; split_ifs <;> simp)
 
 private theorem mapRingHom_laurent_T {A B : Type*} [CommRing A] [CommRing B] (f : A →+* B) (k : ℤ) :
     AddMonoidAlgebra.mapRingHom ℤ f (LaurentPolynomial.T k : LaurentPolynomial A) = LaurentPolynomial.T k := by

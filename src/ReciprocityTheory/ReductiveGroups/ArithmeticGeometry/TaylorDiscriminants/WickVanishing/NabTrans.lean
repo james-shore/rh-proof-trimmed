@@ -68,7 +68,7 @@ theorem nt_ev_smul {m n : ℕ} (a : Fin m → Pt k n d) (ha : ∀ j, GP (a j)) (
   | exact MvPowerSeries.subst_smul hs r f
 
 theorem nt_expS_zero [Algebra ℚ k] {n : ℕ} : FB.expS k (0 : PS k n d) = 1 := by
-  apply GlobalTheory.ChartCmp.GaugeDiff.expS_zero <;> assumption
+  apply GlobalTheory.ChartCmp.GaugeDiff.expS_zero
 
 theorem nt_const_smul {n : ℕ} (r : k) (f : PS k n d) : constantCoeff (r • f) = r * constantCoeff f := by
   rw [MvPowerSeries.smul_eq_C_mul, map_mul, MvPowerSeries.constantCoeff_C]

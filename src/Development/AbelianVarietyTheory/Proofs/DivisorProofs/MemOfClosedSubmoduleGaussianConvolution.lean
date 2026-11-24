@@ -636,7 +636,7 @@ theorem norm_iteratedFDeriv_id_le_one_add' (j : ℕ) (x : E) :
 
 theorem norm_iteratedFDeriv_diag_le' (B : E →L[ℝ] E →L[ℝ] ℝ) (n : ℕ) (x : E) :
     ‖iteratedFDeriv ℝ n (fun y => B y y) x‖ ≤ ‖B‖ * (2 ^ n * (1 + ‖x‖) ^ 2) := by
-  apply PositivityTheory.ThKF0.Lib.norm_iteratedFDeriv_diag_le <;> assumption
+  apply PositivityTheory.ThKF0.Lib.norm_iteratedFDeriv_diag_le
 
 theorem norm_iteratedFDeriv_rexp' (i : ℕ) (y : ℝ) : ‖iteratedFDeriv ℝ i Real.exp y‖ = Real.exp y := by
   rw [norm_iteratedFDeriv_eq_norm_iteratedDeriv]

@@ -1348,7 +1348,7 @@ theorem UpperTheory.V.GC.b1 :
         refine ⟨?_, ?_⟩
         · rw [Ne, Ideal.eq_top_iff_one]
           show ¬ A.valuation (algebraMap F Ω ((1 : 𝓞 F) : F)) < 1
-          simp only [OneMemClass.coe_one, map_one, lt_self_iff_false, not_false_eq_true]
+          simp only [map_one, lt_self_iff_false, not_false_eq_true]
         · intro x y hxy
           change A.valuation (algebraMap F Ω ((x * y : 𝓞 F) : F)) < 1 at hxy
           change A.valuation (algebraMap F Ω (x : F)) < 1 ∨ A.valuation (algebraMap F Ω (y : F)) < 1

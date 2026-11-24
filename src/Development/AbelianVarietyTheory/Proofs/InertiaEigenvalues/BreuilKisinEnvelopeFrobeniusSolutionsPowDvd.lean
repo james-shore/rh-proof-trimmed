@@ -634,7 +634,7 @@ theorem wittVector_eq_teichmuller_of_frobenius_eq_pow :
     ∀ (l : ℕ) [Fact l.Prime] (O : Type) [CommRing O] [CharP O l] [PerfectRing O l]
       (y : WittVector l O), WittVector.frobenius y = y ^ l →
       y = WittVector.teichmuller l (y.coeff 0) := by
-  apply GlobalTheory.HWL.IoLayer.eq_teichmuller_of_frobenius <;> assumption
+  apply GlobalTheory.HWL.IoLayer.eq_teichmuller_of_frobenius
 
 end GlobalTheory
 end -- clump:auto

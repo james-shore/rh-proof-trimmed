@@ -147,7 +147,7 @@ theorem mem_upq_of {R S : ℕ} (Y : Mat R S)
   exact h5
 
 theorem genEx : GlobalTheory.RealLift.GenEx := by
-  apply PositivityTheory.RL.genEx <;> assumption
+  apply PositivityTheory.RL.genEx
 
 end GlobalTheory.RealLiftGen
 end -- clump:auto

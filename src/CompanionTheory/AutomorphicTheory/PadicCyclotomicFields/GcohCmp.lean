@@ -80,11 +80,11 @@ theorem exists_coc (n : ℕ) (c : (Fin n → G) → A) (hc : IsLocallyConstant c
 theorem pi_succ_eq_zero_iff (n : ℕ) (x : cocycles A (n + 1)) :
     cohomologyπ A (n + 1) x = 0 ↔ ∃ w : (Fin n → G) → A, IsLocallyConstant w ∧
       (inhomogeneousCochains.d A n).hom w = cochainOf A (cocycleι A (n + 1) x) := by
-  apply PositivityTheory.LocalTateOrthogonality.Gcoh.pi_succ_eq_zero_iff <;> assumption
+  apply PositivityTheory.LocalTateOrthogonality.Gcoh.pi_succ_eq_zero_iff
 
 theorem pi_zero_eq_zero_iff (x : cocycles A 0) :
     cohomologyπ A 0 x = 0 ↔ cochainOf A (cocycleι A 0 x) = 0 := by
-  apply PositivityTheory.LocalTateOrthogonality.Gcoh.pi_zero_eq_zero_iff <;> assumption
+  apply PositivityTheory.LocalTateOrthogonality.Gcoh.pi_zero_eq_zero_iff
 
 theorem core_hom {Z : Type} [AddCommGroup Z] (n : ℕ) (φ : Z →+ ((Fin n → G) → A))
     (hex : ∀ z, ∃ x : cocycles A n, cochainOf A (cocycleι A n x) = φ z)
@@ -107,7 +107,7 @@ end Core
 
 theorem neg_one_pow_smul' {S V : Type} [Ring S] [AddCommGroup V] [Module S V] (j : ℕ) (v : V) :
     (-1 : S) ^ j • v = (-1 : ℤ) ^ j • v := by
-  apply PositivityTheory.LocalTateOrthogonality.Gcoh.neg_one_pow_smul' <;> assumption
+  apply PositivityTheory.LocalTateOrthogonality.Gcoh.neg_one_pow_smul'
 
 section Cmp
 
@@ -119,7 +119,7 @@ variable {k G : Type} [CommRing k] [Group G]
 theorem dn_app (n : ℕ) (f : (Fin n → G) → M) (g : Fin (n + 1) → G) :
     dn rho n f g = rho (g 0) (f fun i => g i.succ) + Finset.univ.sum fun j : Fin (n + 1) =>
       (-1 : R) ^ ((j : ℕ) + 1) • f (Fin.contractNth j (· * ·) g) := by
-  apply PositivityTheory.LocalTateOrthogonality.Gcoh.dn_app <;> assumption
+  apply PositivityTheory.LocalTateOrthogonality.Gcoh.dn_app
 
 include he in
 theorem d_comp (n : ℕ) (f : (Fin n → G) → M) :
@@ -128,16 +128,16 @@ theorem d_comp (n : ℕ) (f : (Fin n → G) → M) :
 
 theorem dn_zero (f : (Fin 0 → G) → M) (s : Fin 1 → G) :
     dn rho 0 f s = rho (s 0) (f default) - f default := by
-  apply PositivityTheory.LocalTateOrthogonality.Gcoh.dn_zero <;> assumption
+  apply PositivityTheory.LocalTateOrthogonality.Gcoh.dn_zero
 
 theorem dn_one (f : G → M) (s : Fin 2 → G) :
     dn rho 1 (fun t => f (t 0)) s = rho (s 0) (f (s 1)) - f (s 0 * s 1) + f (s 0) := by
-  apply PositivityTheory.LocalTateOrthogonality.Gcoh.dn_one <;> assumption
+  apply PositivityTheory.LocalTateOrthogonality.Gcoh.dn_one
 
 theorem dn_two (f : G × G → M) (s : Fin 3 → G) :
     dn rho 2 (fun t => f (t 0, t 1)) s =
       rho (s 0) (f (s 1, s 2)) - f (s 0 * s 1, s 2) + f (s 0, s 1 * s 2) - f (s 0, s 1) := by
-  apply PositivityTheory.LocalTateOrthogonality.Gcoh.dn_two <;> assumption
+  apply PositivityTheory.LocalTateOrthogonality.Gcoh.dn_two
 
 end Cmp
 

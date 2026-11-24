@@ -479,7 +479,7 @@ theorem rsPt_zero (k r : ℕ) (u : Fin k → ℝ) (b : Fin (2 * r + 2) → ℝ) 
   funext a
   have ha := a.isLt
   simp only [rsPt, rsF, rsG, raisePar, rsExt]
-  split_ifs <;> first | (exfalso; omega) | ring1 | (push_cast; ring1) | (subst_vars; push_cast; ring1) | (subst_vars; ring1)
+  split_ifs <;> first | (exfalso; omega) | ring1 | (push_cast; ring1) | (subst_vars; push_cast; ring1)
 
 theorem rsPt_top (k r : ℕ) (u : Fin k → ℝ) (b : Fin (2 * r + 2) → ℝ) (t j : ℕ) :
     rsPt k r u b t j (j * t) = raisePar k r u b t (j + 1) := by

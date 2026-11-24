@@ -120,7 +120,7 @@ theorem two_le_norm (v : HeightOneSpectrum (𝓞 F)) : 2 ≤ Ideal.absNorm v.asI
 
 theorem exists_nat_mul_mem (v : HeightOneSpectrum (𝓞 F)) (x : Fv F v) :
     ∃ n : ℕ, 0 < n ∧ (n : Fv F v) * x ∈ v.adicCompletionIntegers F := by
-  apply GlobalTheory.CompanionTheory.SW.BoxF.exists_nat_v <;> assumption
+  apply GlobalTheory.CompanionTheory.SW.BoxF.exists_nat_v
 
 theorem exists_exponents (a : ℕ) (ha : 0 < a) :
     ∃ e : HeightOneSpectrum (𝓞 F) → ℕ,

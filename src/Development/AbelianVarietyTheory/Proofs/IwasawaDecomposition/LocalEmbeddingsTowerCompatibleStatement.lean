@@ -227,7 +227,6 @@ theorem exists_extension_pow (K L : Type) [Field K] [NumberField K] [Field L] [N
       ∀ y, Valued.v (f y) = Valued.v y ^ e := by
   first
   | (apply _root_.GlobalTheory.CompletionHomContinuous.exists_completion_hom <;> assumption)
-  | (intros; exact _root_.GlobalTheory.CompletionHomContinuous.exists_completion_hom ..)
 
 end GlobalTheory.DenseCompl
 end -- clump:auto

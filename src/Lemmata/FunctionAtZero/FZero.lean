@@ -76,6 +76,6 @@ theorem goal1 :
         Exists.{1} fun (b : Real) ↦
           ∀ (s : Real),
             Eq.{1} (f s) (Complex.exp (HMul.hMul.{0, 0, 0} (Complex.ofReal (HMul.hMul.{0, 0, 0} b s)) Complex.I)) := by
-  apply Bl.general_b_fact_third_further.goal1 <;> assumption
+  apply Bl.general_b_fact_third_further.goal1
 
 end Bl.FunctionAtZero

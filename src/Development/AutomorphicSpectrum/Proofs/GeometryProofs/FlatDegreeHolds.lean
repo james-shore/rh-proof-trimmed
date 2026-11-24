@@ -1708,7 +1708,7 @@ theorem flatDegree : FlatDegree := by
   obtain ⟨hNinf, hNfin⟩ := hN
   have hsq : ∀ b : Bool, sgnRt H b ^ 2 = -(H.d : ℂ) := by
     intro b
-    cases b <;> simp [sgnRt, neg_sq, H.sqrt_neg_disc_sq]
+    cases b <;> simp [sgnRt, H.sqrt_neg_disc_sq]
   choose Z x hz hper hxv using fun b => _root_.GlobalTheory.CompanionTheory.Ar.Fl.exists_curve0_hasPeriod E H χ hχ (sgnRt H b) (hsq b)
   have hx : x false = x true := Complex.ofReal_injective ((hxv false).trans (hxv true).symm)
   haveI := (Z true).nf

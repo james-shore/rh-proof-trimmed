@@ -656,7 +656,7 @@ variable {G : Type} [Group G] [TopologicalSpace G] {Qp K₀ K : Type} [Field Qp]
     (W : LocWach PD LL O v n)
 
 theorem isUnit_Q : IsUnit (algebraMap (LetA O n) W.EE W.Q) := by
-  apply GlobalTheory.WachLettersCompare.isUnit_Q <;> assumption
+  apply GlobalTheory.WachLettersCompare.isUnit_Q
 
 variable {W}
 

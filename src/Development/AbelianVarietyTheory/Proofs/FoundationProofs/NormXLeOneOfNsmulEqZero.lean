@@ -434,7 +434,6 @@ lemma add_step [DecidableEq K] {A B : K} {M : ℝ} (hA : ‖A‖ ≤ 1) (hB : �
     (hQ : Near M Q) : Near M (P + Q) ∧ ‖param (P + Q) - param P - param Q‖ ≤ M⁻¹ := by
   first
   | (apply _root_.GlobalTheory.UltrametricLineBounds.large_add <;> assumption)
-  | (intros; exact _root_.GlobalTheory.UltrametricLineBounds.large_add ..)
 
 theorem norm_x_le_one_of_nsmul_eq_zero (K : Type) [NormedField K] [IsUltrametricDist K]
     [DecidableEq K] (A B : K) (N : ℕ) (x y : K)

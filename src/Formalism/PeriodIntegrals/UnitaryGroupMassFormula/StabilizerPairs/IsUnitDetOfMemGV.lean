@@ -85,7 +85,7 @@ lemma sgI_eq_iff (i : Fin (2 * r + k + 1)) : sgI k r i.val = r + k ↔ i.val = r
   split_ifs <;> constructor <;> intro <;> omega
 
 theorem hpk_mul_self : Hpk k r * Hpk k r = 1 := by
-  apply GlobalTheory.Amp.RConj.H_sq <;> assumption
+  apply GlobalTheory.Amp.RConj.H_sq
 
 theorem hpk_det_ne : (Hpk k r).det ≠ 0 := by
   exact Matrix.det_ne_zero_of_left_inverse (hpk_mul_self (k := k) (r := r))

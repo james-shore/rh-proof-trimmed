@@ -136,7 +136,7 @@ theorem nuOf_letterWt (m : ℕ) (hm : 1 ≤ m) (d : ℕ) (vec : Bool) : nuOf (le
 
 theorem nuL_smul (m d : ℕ) (vec : Bool) : nuL m d vec = d • nuL m 1 vec := by
   funext t
-  cases vec <;> simp [nuL] <;> split_ifs
+  cases vec <;> simp [nuL]
 
 def s0 (m : ℕ) (vec : Bool) : ℕ := if vec then 1 else m
 

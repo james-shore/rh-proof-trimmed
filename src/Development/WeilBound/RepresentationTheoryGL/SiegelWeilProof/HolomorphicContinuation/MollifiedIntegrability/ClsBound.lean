@@ -162,7 +162,7 @@ theorem hc_eq (w : Fin n → Fin n → ℂ) :
 
 theorem hc_vkl (k l : Fin n) :
     herm (fun a b => (vkl k l a b).re) + Complex.I • herm (fun a b => (vkl k l a b).im) = Matrix.single l k 1 := by
-  apply PositivityTheory.Rg.Sw.WR.K.GB.herm_re_im_vkl <;> assumption
+  apply PositivityTheory.Rg.Sw.WR.K.GB.herm_re_im_vkl
 
 theorem trace_mul_single (M : Matrix (Fin n) (Fin n) ℂ) (k l : Fin n) : (M * Matrix.single l k (1 : ℂ)).trace = M k l := by
   simp only [Matrix.trace, Matrix.diag, Matrix.mul_apply, Matrix.single_apply]

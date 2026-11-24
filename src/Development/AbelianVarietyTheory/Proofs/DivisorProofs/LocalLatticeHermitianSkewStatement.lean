@@ -114,11 +114,7 @@ theorem piW_inclR {v : GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.
 theorem sum_four_fintype_permute {R α β : Type} [AddCommMonoid R] [Fintype α] [Fintype β] (f : α → β → α → β → R) :
     ∑ a, ∑ b, ∑ c, ∑ e, f a b c e = ∑ c, ∑ e, ∑ b, ∑ a, f a b c e := by
   first
-  | exact @_root_.GlobalTheory.FourTermSumReorder.sum_four_reorder
-  | exact _root_.GlobalTheory.FourTermSumReorder.sum_four_reorder
   | (apply _root_.GlobalTheory.FourTermSumReorder.sum_four_reorder <;> assumption)
-  | (intros; apply _root_.GlobalTheory.FourTermSumReorder.sum_four_reorder <;> assumption)
-  | (intros; apply @_root_.GlobalTheory.FourTermSumReorder.sum_four_reorder <;> first | assumption | infer_instance)
   | (intros; exact _root_.GlobalTheory.FourTermSumReorder.sum_four_reorder ..)
 
 theorem splitTrace : ∀ {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] {σ : E →ₐ[F] E},
@@ -193,7 +189,7 @@ theorem _root_.GlobalTheory.T.local_lattice_hermitian_skew : ∀ {F E : Type} [F
     GlobalTheory.AdelicU.evFin F v (GlobalTheory.WeilM.symp (GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.cA σ) (-1) (GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.incM F J) (GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.incM F K) x u) =
       ∑ i, ∑ j, (x.map (GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.piW t)) i j * (-(J.map t * u.map (GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.piW (t.comp σ)) * (K.map t)ᵀ)) i j -
         ∑ i, ∑ j, (-(J.map t * x.map (GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.piW (t.comp σ)) * (K.map t)ᵀ)) i j * (u.map (GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.piW t)) i j := by
-  first | exact @GlobalTheory.SplitTraceForm.splitTrace | exact GlobalTheory.SplitTraceForm.splitTrace | (intros; apply GlobalTheory.SplitTraceForm.splitTrace <;> assumption)
+  first | exact @GlobalTheory.SplitTraceForm.splitTrace
 end -- clump:auto
 end -- clump:auto
 end -- clump:auto

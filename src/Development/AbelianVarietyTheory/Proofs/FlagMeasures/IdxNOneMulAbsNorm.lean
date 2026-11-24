@@ -71,7 +71,7 @@ open GlobalTheory.Mass GlobalTheory.Mass.DiscOrder Formalism.HermitianLatticesTh
 
 theorem relIndex_pi_pi {ι G : Type} [Fintype ι] [AddCommGroup G] (A B : ι → AddSubgroup G) :
     (AddSubgroup.pi Set.univ A).relIndex (AddSubgroup.pi Set.univ B) = ∏ i, (A i).relIndex (B i) := by
-  apply _root_.GlobalTheory.LowerHeckeCount.relIndex_pi_univ <;> assumption
+  apply _root_.GlobalTheory.LowerHeckeCount.relIndex_pi_univ
 
 section Pseudo
 

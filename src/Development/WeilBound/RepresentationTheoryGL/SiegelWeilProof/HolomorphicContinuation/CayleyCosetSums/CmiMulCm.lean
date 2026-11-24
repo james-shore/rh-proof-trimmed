@@ -68,7 +68,7 @@ theorem mul_cm₁₁ (x : M2 n) : (x * Cm n).toBlocks₁₁ = Complex.I • x.to
 theorem cmS : (Cm n)ᴴ * JJ n * Cm n = fromBlocks ((-2 * Complex.I) • (1 : Matrix (Fin n) (Fin n) ℂ)) 0 0
     ((2 * Complex.I) • (1 : Matrix (Fin n) (Fin n) ℂ)) := by
   simp only [Cm, JJ, fromBlocks_conjTranspose, fromBlocks_multiply]
-  congr 1 <;> ext i j <;> simp [Matrix.one_apply] <;> split_ifs <;> ring_nf <;> simp [Complex.I_sq]
+  congr 1 <;> ext i j <;> simp [Matrix.one_apply] <;> split_ifs <;> ring_nf
 
 theorem cmiH_cmi : (Cmi n)ᴴ * Cmi n = (1 / 2 : ℂ) • (1 : M2 n) := by
   rw [← fromBlocks_one, fromBlocks_smul]
@@ -170,7 +170,7 @@ theorem fib : Fib := by
   have hcm2 : (Cm n)ᴴ * Cm n = (2 : ℂ) • (1 : M2 n) := by
     rw [← fromBlocks_one, fromBlocks_smul]
     simp only [Cm, fromBlocks_conjTranspose, fromBlocks_multiply]
-    congr 1 <;> ext i j <;> simp [Matrix.one_apply] <;> split_ifs <;> ring_nf <;> simp [Complex.I_sq]
+    congr 1 <;> ext i j <;> simp [Matrix.one_apply] <;> split_ifs <;> ring_nf
   calc kᴴ * k = (Cmi n)ᴴ * (Dᴴ * ((Cm n)ᴴ * Cm n) * D) * Cmi n := by
         rw [hkD]; simp only [Matrix.conjTranspose_mul, Matrix.mul_assoc]
     _ = (2 : ℂ) • ((Cmi n)ᴴ * Cmi n) := by

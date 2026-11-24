@@ -135,7 +135,7 @@ theorem deepPacketP (large₂ : SizeData₂ D) (X : PJ D B P j)
   exact this
 
 theorem n_le_sizeW (ka : WeightFamilies.Wt D j) : (ka.n : ℝ) ≤ ka.size := by
-  apply GlobalTheory.RunIn.ScalSize.n_le_size <;> assumption
+  apply GlobalTheory.RunIn.ScalSize.n_le_size
 
 theorem vanishingOrder_le_weight_size (ka : WeightFamilies.Wt D j) (T nP nW : ℕ) (hk : ka.n = nP + T * nW) (hW : 0 < nW) :
     (a0 D j T : ℝ) ≤ ka.size := by

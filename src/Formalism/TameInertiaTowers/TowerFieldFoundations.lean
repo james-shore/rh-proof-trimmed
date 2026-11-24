@@ -342,7 +342,7 @@ private lemma exists_five_pow_two_pow_eq_one_add (m : ℕ) : ∃ t : ℕ, 5 ^ (2
     ring
 
 lemma orderOf_five_units_two_pow (k : ℕ) : orderOf (u5 (k + 2)) = 2 ^ k := by
-  apply Formalism.TwoAdicCyclotomicDecomposition.AdmissibleUnits.orderOf_five_units_two_pow <;> assumption
+  apply Formalism.TwoAdicCyclotomicDecomposition.AdmissibleUnits.orderOf_five_units_two_pow
 
 lemma unitsMap_five_mod_four (n : ℕ) (h : 4 ∣ 2 ^ n) : ZMod.unitsMap h (u5 n) = 1 := by
   apply Units.ext

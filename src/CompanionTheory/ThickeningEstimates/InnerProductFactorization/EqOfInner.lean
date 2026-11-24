@@ -80,7 +80,7 @@ theorem Impl.inner {s} {S : Sch l →ₗ[ℂ] Sch l} (h : Impl s S) (f g : Sch l
     ← map_smul, ← map_add, ← map_sub, h.norm, h.norm, h.norm, h.norm]
 
 theorem exists_rho (w : l ⊕ l → ℝ) (f : Sch l) : ∃ g : Sch l, ⇑g = rhoFun w f := by
-  apply PositivityTheory.ThKF.E.exists_rho <;> assumption
+  apply PositivityTheory.ThKF.E.exists_rho
 
 theorem toLp_rho {w : l ⊕ l → ℝ} {f g : Sch l} (h : ⇑g = rhoFun w f) : g.toLp 2 volume = rho w (f.toLp 2 volume) := by
   refine Lp.ext ((g.coeFn_toLp 2 volume).trans ?_)

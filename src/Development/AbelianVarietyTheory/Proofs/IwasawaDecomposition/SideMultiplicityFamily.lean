@@ -114,7 +114,7 @@ section Gen
 variable {D : D7} {M : MtFam D}
 
 theorem jMt_inj' (μ : D.what₂.Tup) (j : ℕ) : Function.Injective (D.what₂.jMt μ j) := by
-  apply _root_.Formalism.L2.jMt_injective <;> assumption
+  apply _root_.Formalism.L2.jMt_injective
 
 theorem hypOutside_transport' {μ μ' : D.what₂.Tup} {j j' : ℕ} (hμ : μ = μ') (hj : j = j')
     (a1 : 1 ≤ j) (a2 : j ≤ D.R.m) (b1 : 1 ≤ j') (b2 : j' ≤ D.R.m)

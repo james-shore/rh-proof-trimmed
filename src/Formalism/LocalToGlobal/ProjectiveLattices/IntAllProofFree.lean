@@ -209,8 +209,6 @@ theorem epsPt_zero {S : Type} [CommRing S] {Xo : Moduli Dw l} {x : Sp S ⟶ Xo.X
   have he : epsMul (0 : S) = (algebraMap S (DualNumber S)).comp (TrivSqZeroExt.fstHom S S S).toRingHom := by
     first
       | (ext d <;> simp [epsMul])
-      | (refine RingHom.ext fun d => TrivSqZeroExt.ext ?_ ?_ <;>
-          simp [epsMul, TrivSqZeroExt.algebraMap_eq_inl])
   apply Over.OverMorphism.ext
   rw [hm, Over.comp_left]
   show (epsPt hv 0).left = spMap (algebraMap S (DualNumber S)) ≫ (1 : Over.mk x ⟶ Xo.univ.t.G).left

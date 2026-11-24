@@ -790,7 +790,7 @@ theorem self_pow {A : Type} [CommRing A] (d w : A) (h : d = d ^ 2 * w) (k : ℕ)
       _ = _ := by ring
 
 theorem AlgPow_of : LateralTheory.EtaleFoundations.TwSecLocPf.AlgPow := by
-  apply LateralTheory.E.H2CurveOrder.TwLocGenPfSec.AlgPow_of <;> assumption
+  apply LateralTheory.E.H2CurveOrder.TwLocGenPfSec.AlgPow_of
 
 end LateralTheory.EtaleFoundations.AlgPowPf
 end -- clump:auto

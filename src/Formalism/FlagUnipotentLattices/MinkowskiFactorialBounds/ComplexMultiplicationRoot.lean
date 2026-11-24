@@ -148,7 +148,6 @@ lemma isInt_add {a b : E} (ha : IsInt a) (hb : IsInt b) : IsInt (a + b) := by
   | (obtain ⟨x, hx⟩ := ha; obtain ⟨y, hy⟩ := hb; exact ⟨x + y, by rw [← hx, ← hy]; push_cast; ring⟩)
 lemma isInt_coe (y : 𝓞 E) : IsInt (y : E) := by
   first
-  | exact y.2
   | exact ⟨y, rfl⟩
 lemma isInt_map (σ : E →+* E) {a : E} (ha : IsInt a) : IsInt (σ a) := by
   obtain ⟨x, rfl⟩ := ha
@@ -219,7 +218,6 @@ private theorem exists_not_mem_prime_mul_eq_of_locIn {E : Type} [Field E] [Numbe
     haveI := hP
     first
     | exact Ideal.comap_isPrime f P
-    | infer_instance
   have hMQ : (M : 𝓞 E) ∈ P.comap f := by
     rw [Ideal.mem_comap, map_natCast]; exact hMP
   obtain ⟨y1, z1, hy1, h1⟩ := hu P hP hMP
@@ -232,11 +230,10 @@ private theorem exists_not_mem_prime_mul_eq_of_locIn {E : Type} [Field E] [Numbe
     rw [he]
     first
     | rw [mul_div_assoc', div_mul_cancel₀ _ hM0]
-    | field_simp
   have c1 : ((y1 * f y2 : 𝓞 E) : E) = (y1 : E) * ((f y2 : 𝓞 E) : E) := by
-    first | rfl | (push_cast; rfl) | simp
+    first | rfl
   have c2 : ((z1 * f z2 : 𝓞 E) : E) = (z1 : E) * ((f z2 : 𝓞 E) : E) := by
-    first | rfl | (push_cast; rfl) | simp
+    first | rfl
   refine ⟨y1 * f y2, z1 * f z2, ?_, ?_⟩
   · intro hmem
     rcases hP.mem_or_mem hmem with h | h

@@ -155,7 +155,6 @@ theorem latV_eq_ae : ∀ (D : D7) (S : HSp D) (L M : Lat S), Submodule.IsFullLat
   intro D S L M hL hM
   first
   | exact _root_.GlobalTheory.FinPl.latV_eq_off_finite D S L M hL hM
-  | exact _root_.GlobalTheory.FinPl.latV_eq_off_finite D S L M hL.toIsLattice hM.toIsLattice
 
 end GlobalTheory.FinPl.PlacesAdeles
 

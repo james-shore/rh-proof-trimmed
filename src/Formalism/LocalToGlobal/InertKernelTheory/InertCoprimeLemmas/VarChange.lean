@@ -123,7 +123,7 @@ theorem D_C (a : R) : D W (PowerSeries.C a) = 0 := by
   rw [C_eq_algebraMap, Derivation.map_algebraMap]
 
 theorem D_phi : D W (phi W C) = PowerSeries.C (C.u : R) * (fw (C • W)).subst (phi W C) := by
-  apply Formalism.L2.KerInert.MC.D_phi <;> assumption
+  apply Formalism.L2.KerInert.MC.D_phi
 
 end Ring
 
@@ -188,7 +188,7 @@ theorem exp_eq : expSer (C • W) =
 
 theorem mulBy_eq (c : K) : Formalism.L2.Th1.C.mulBy (logSer (C • W)) (expSer (C • W)) c =
     (phi W C).subst ((Formalism.L2.Th1.C.mulBy (logSer W) (expSer W) c).subst (compInv (phi W C))) := by
-  apply Formalism.L2.KerInert.MC.mulBy_eq <;> assumption
+  apply Formalism.L2.KerInert.MC.mulBy_eq
 
 end Field
 

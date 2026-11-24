@@ -787,7 +787,7 @@ theorem UpperTheory.Gal.CertificateRingHomMap.pTracePow_holds :
     | succ n ih =>
       ext x
       rw [pow_succ' t, Module.End.mul_apply, ← ih]
-      simp [LinearMap.restrict_apply, pow_succ', Module.End.mul_apply, ht]
+      simp [LinearMap.restrict_apply, pow_succ', ht]
   have hproj : LinearMap.IsProj (LinearMap.range q) q := by
     refine ⟨fun x => ⟨x, rfl⟩, ?_⟩
     rintro _ ⟨y, rfl⟩
@@ -882,7 +882,7 @@ private theorem wop_apply_eq_wop_smul_of_apply_eq_smul {M J : Type} [AddCommGrou
     intro w
     induction w with
     | nil => simp
-    | cons j w ih => simp [Module.End.mul_apply, ih, h, smul_smul, mul_comm]
+    | cons j w ih => simp [ih, h, smul_smul, mul_comm]
   simp only [wop, Finsupp.sum, LinearMap.sum_apply, LinearMap.smul_apply, hw,
     Finset.sum_smul, smul_smul, smul_eq_mul]
 

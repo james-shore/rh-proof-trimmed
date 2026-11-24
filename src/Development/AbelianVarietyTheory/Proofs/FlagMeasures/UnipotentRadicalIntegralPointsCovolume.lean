@@ -1641,7 +1641,7 @@ theorem layer_covolume (E : Type) [Field E] [NumberField E] [StarRing E] (hE : I
         · rw [Matrix.smul_mulVec]; exact zsmul_mem (h1 y hy) k
         · have : (k • Z).map (φ v) = k • Z.map (φ v) := by ext p q; simp
           rw [this, Matrix.mul_smul, Matrix.smul_mul, ← h2]; rfl }
-  have hM := fun b : Fin m => _root_.GlobalTheory.HomCovolumeFamily.homCovolume_family E hE ι φ hX.1 _ _ (Λ b) (Λ (b + c + 1)) (by first | exact hΛ _ | exact (hΛ _).toIsLattice) (by first | exact hΛ _ | exact (hΛ _).toIsLattice)
+  have hM := fun b : Fin m => _root_.GlobalTheory.HomCovolumeFamily.homCovolume_family E hE ι φ hX.1 _ _ (Λ b) (Λ (b + c + 1)) (by first | exact hΛ _) (by first | exact hΛ _)
     (fun v => G v b) (fun v => G v (b + c + 1)) (fun v => hdet v _) (fun v => hdet v _) (M b)
     (fun z => Iff.rfl)
   obtain ⟨dL, lL, hcov⟩ := _root_.GlobalTheory.CovPi.covolume_pi_unitary ι {i : Fin d // deg i = c} (Fin m) (fun b => r b)
@@ -1667,7 +1667,7 @@ theorem layer_covolume (E : Type) [Field E] [NumberField E] [StarRing E] (hE : I
     have : 0 < |(discr E : ℝ)| := abs_pos.2 (by exact_mod_cast discr_ne_zero E)
     unfold Formalism.HermitianLatticesTheory.vInv
     positivity
-  have hp := _root_.GlobalTheory.PieceCov.main E hE ι n m φ P X hX hP F r T T' Λ hT (by intro b; first | exact hΛ b | exact (hΛ b).toIsLattice) hF U hU hW
+  have hp := _root_.GlobalTheory.PieceCov.main E hE ι n m φ P X hX hP F r T T' Λ hT (by intro b; first | exact hΛ b) hF U hU hW
   rw [h, hp, hp, div_mul_cancel_left₀ (pow_pos hv _).ne', mul_pow, ← pow_mul, inv_pow, mul_assoc,
     mul_assoc, div_eq_mul_inv]
 

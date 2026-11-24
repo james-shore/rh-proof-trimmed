@@ -105,7 +105,7 @@ attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalDat
 
 theorem _root_.GlobalTheory.T.exists_add_haar_matrix_space : ∀ {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] {a d : ℕ},
     ∃ ν : @Measure (Matrix (Fin a) (Fin d) k) (borel _), @Measure.IsAddHaarMeasure _ _ _ (borel _) ν := by
-  first | exact @GlobalTheory.haar_exists_matrix_local_field | exact GlobalTheory.haar_exists_matrix_local_field | (intros; apply GlobalTheory.haar_exists_matrix_local_field <;> assumption)
+  first | exact @GlobalTheory.haar_exists_matrix_local_field
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsAddHaarMatrixSpaceStatement =====
@@ -212,7 +212,7 @@ theorem _root_.GlobalTheory.T.lintegral_norm_sq_right_translate : ∀ {k : Type}
     ∀ ν : @Measure (Matrix (Fin a) (Fin d) k) (borel _), @Measure.IsAddHaarMeasure _ _ _ (borel _) ν →
       ∫⁻ Y, ‖Φ (Y * (GlobalTheory.SplitFlip.invT h).1)‖ₑ ^ 2 ∂ν =
         ‖GlobalTheory.SplitFlip.apow (GlobalTheory.SplitFlip.gdet h) (a : ℂ)‖ₑ * ∫⁻ Y, ‖Φ Y‖ₑ ^ 2 ∂ν := by
-  first | exact @GlobalTheory.SplitFlip.lintegral_mul_invT_sq | exact GlobalTheory.SplitFlip.lintegral_mul_invT_sq | (intros; apply GlobalTheory.SplitFlip.lintegral_mul_invT_sq <;> assumption)
+  first | exact @GlobalTheory.SplitFlip.lintegral_mul_invT_sq
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LintegralNormSqRightTranslateStatement =====
@@ -280,7 +280,7 @@ theorem _root_.GlobalTheory.T.lintegral_norm_sq_schwartz_pos_finite : ∀ {k : T
     (Φ : Matrix (Fin a) (Fin d) k → ℂ), Φ ∈ SB (Matrix (Fin a) (Fin d) k) → Φ ≠ 0 →
     ∀ ν : @Measure (Matrix (Fin a) (Fin d) k) (borel _), @Measure.IsAddHaarMeasure _ _ _ (borel _) ν →
       ∫⁻ Y, ‖Φ Y‖ₑ ^ 2 ∂ν ≠ 0 ∧ ∫⁻ Y, ‖Φ Y‖ₑ ^ 2 ∂ν ≠ ⊤ := by
-  first | exact @GlobalTheory.schwartzBruhat_matrix_lintegral_sq_ne_zero_ne_top | exact GlobalTheory.schwartzBruhat_matrix_lintegral_sq_ne_zero_ne_top | (intros; apply GlobalTheory.schwartzBruhat_matrix_lintegral_sq_ne_zero_ne_top <;> assumption)
+  first | exact @GlobalTheory.schwartzBruhat_matrix_lintegral_sq_ne_zero_ne_top
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LintegralNormSqSchwartzPosFiniteStatement =====
@@ -448,7 +448,7 @@ theorem _root_.GlobalTheory.T.unitary_determinant_open_image : ∀ (F E : Type) 
     (a a' : ℕ) (G : Geo σ a a') (X : Chars F E) (om : Rep σ G.V G.W) (om' : Rep σ G.V' G.W), IsTriple B G X om om' →
     ∀ v, X.Good v → ∀ (t : E →ₐ[F] Fv F v), ∀ U ∈ 𝓝 (1 : UA σ G.W.J), ∃ V ∈ 𝓝 (1 : (Fv F v)ˣ), ∀ x ∈ V,
       ∃ h ∈ UAt σ G.W (evFin F v), h ∈ U ∧ ((mat h).map (piW t)).det = (x : Fv F v) := by
-  first | exact @GlobalTheory.SkewLeviNear.near_one_det | exact GlobalTheory.SkewLeviNear.near_one_det | (intros; apply GlobalTheory.SkewLeviNear.near_one_det <;> assumption)
+  first | exact @GlobalTheory.SkewLeviNear.near_one_det
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.UnitaryDeterminantOpenImageStatement =====
@@ -499,7 +499,7 @@ attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalDat
 
 theorem _root_.GlobalTheory.T.valuation_one_units_nhds : ∀ {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k],
     {x : kˣ | ValuativeRel.valuation k (x : k) = 1} ∈ 𝓝 (1 : kˣ) := by
-  first | exact @GlobalTheory.units_valuation_eq_one_mem_nhds_one | exact GlobalTheory.units_valuation_eq_one_mem_nhds_one | (intros; apply GlobalTheory.units_valuation_eq_one_mem_nhds_one <;> assumption)
+  first | exact @GlobalTheory.units_valuation_eq_one_mem_nhds_one
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ValuationOneUnitsNhdsStatement =====

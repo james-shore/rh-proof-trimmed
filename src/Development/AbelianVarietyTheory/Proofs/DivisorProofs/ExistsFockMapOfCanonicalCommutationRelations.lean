@@ -71,7 +71,7 @@ namespace GlobalTheory.CCRFock
 theorem fockM_comm_sum {W : Type} [Fintype W] [DecidableEq W] {P Q R S : ℕ} (j k : W × (Ix P Q × Ix R S)) (z z' : ℂ) :
     (∑ w, ∑ a, ∑ b, lineSign a b * unitAt j z w a b * star (unitAt k z' w a b)) =
       if j = k then lineSign j.2.1 j.2.2 * z * star z' else 0 := by
-  apply GlobalTheory.CCRFock.CommDM.sum_unitAt <;> assumption
+  apply GlobalTheory.CCRFock.CommDM.sum_unitAt
 
 theorem fockM_comm : ∀ {V : Type} [AddCommGroup V] [Module ℂ V] {W : Type} [Fintype W] [DecidableEq W] {P Q R S : ℕ}
     (H : (W → Matrix (Ix P Q) (Ix R S) ℂ) → Module.End ℂ V),

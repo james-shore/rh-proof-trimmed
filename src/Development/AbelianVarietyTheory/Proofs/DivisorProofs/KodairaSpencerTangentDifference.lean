@@ -326,8 +326,6 @@ theorem eq_of_isKS_eq : GlobalTheory.CovTop.Hypotheses₂ → GlobalTheory.Publi
         GlobalTheory.FlagTan.IsKS (GlobalTheory.FlagTan.psiSet H) y (spMap (GlobalTheory.FlagTan.dir c M).toRingHom ≫ X) M := by
     first
     | exact _root_.GlobalTheory.FlagTan.KSUniv.ksUniv hP hG E H Dw l Xo c K y hpq
-    | exact _root_.GlobalTheory.FlagTan.KSUniv.ksUniv hP E H Dw l Xo c K y hpq
-    | exact (_root_.GlobalTheory.FlagTan.KSUniv.ksUniv hP hG E H Dw l Xo c K y hpq)
   have htan : ∀ N, GlobalTheory.FlagTan.IsTanX y (spMap (GlobalTheory.FlagTan.dir c N).toRingHom ≫ X) := fun N => by
     refine ⟨?_, ?_⟩
     · rw [Category.assoc, hX, sOf, sOf, ← Spec.map_comp]

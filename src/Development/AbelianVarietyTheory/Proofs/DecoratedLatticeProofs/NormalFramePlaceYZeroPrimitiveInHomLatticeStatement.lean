@@ -325,8 +325,7 @@ theorem pairing_mem_intAt (q : SplitPt D k) {ρ : ℕ} (B : BesLev D ρ) {n : Ty
     have h := (FrameLat.csec_mem_iff hM _).1 hx _ hz
     convert h using 1
 
-    simp only [FrameLat.pairing, FrameLat.row, map_sum, map_mul, FrameLat.cA_incA, star_sum, star_mul,
-    Pi.star_apply, star_star]
+    simp only [FrameLat.pairing, FrameLat.row, map_sum, map_mul, FrameLat.cA_incA, star_star]
     rw [Finset.sum_comm]
     refine Finset.sum_congr rfl fun i _ => ?_
     rw [Finset.sum_mul]

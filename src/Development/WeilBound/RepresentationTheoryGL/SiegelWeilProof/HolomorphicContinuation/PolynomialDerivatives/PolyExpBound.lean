@@ -113,7 +113,7 @@ theorem continuous_evX (P : PX m n) : Continuous fun x : Fin m → Fin n → ℂ
   continuous_iff_continuousAt.2 fun x => (hasFDerivAt_evX P x).continuousAt
 
 theorem evX_bound (P : PX m n) : ∃ K : ℝ, ∃ d : ℕ, 0 ≤ K ∧ ∀ x, ‖evX P x‖ ≤ K * (1 + ‖x‖) ^ d := by
-  apply PositivityTheory.Rg.Sw.AbsSt.DF.poly_bound <;> assumption
+  apply PositivityTheory.Rg.Sw.AbsSt.DF.poly_bound
 
 theorem norm_gs_le (c : ℝ) (hc : 0 < c) (x : Fin m → Fin n → ℂ) : ‖gs c x‖ ≤ Real.exp (-(c * ‖x‖ ^ 2)) := by
   unfold gs

@@ -214,7 +214,7 @@ lemma gauss_entries (Fs dd ls l p t F : SlopeTestRemainingChoices S A) :
       !![Fs * (dd * p + ls * (dd * t) * l) * F, Fs * (ls * (dd * t)) * F;
         Fs * (dd * t * l) * F, Fs * (dd * t) * F] := by
   first
-  | (simp only [d0_eq_diagonal, Matrix.mul_fin_two, mul_one, one_mul, mul_zero, zero_mul, add_zero, zero_add,
+  | (simp only [d0_eq_diagonal, Matrix.mul_fin_two, mul_one, mul_zero, zero_mul, add_zero, zero_add,
       mul_add, add_mul, mul_assoc]; done)
 
 lemma lam_conj (l : SlopeTestRemainingChoices S A) : (!![1, 0; l, 1] : M2 (SlopeTestRemainingChoices S A))ᴴ = !![1, star l; 0, 1] := by
@@ -426,7 +426,7 @@ lemma diag_entries (p1 p2 w c1 c2 e1 e2 : SlopeTestRemainingChoices S A) :
     !![p1, 0; 0, p2] * d0 w * !![c1, 0; 0, c2] * !![e1, 0; 0, e2] =
       !![p1 * w * c1 * e1, 0; 0, p2 * w * c2 * e2] := by
   first
-  | (simp only [d0_eq_diagonal, Matrix.mul_fin_two, mul_one, one_mul, mul_zero, zero_mul, add_zero, zero_add,
+  | (simp only [d0_eq_diagonal, Matrix.mul_fin_two, mul_zero, zero_mul, add_zero, zero_add,
       mul_assoc]; done)
 
 theorem plusForm (L : LevelData A r) (f : FrameData S A) (a : S) (Ya : ℂ) (H : PlusHyp L f a Ya) :
@@ -1108,7 +1108,7 @@ section Gen
 variable {B : Type} [Ring B]
 
 lemma comm_inv {x xi y : B} (h1 : x * xi = 1) (h2 : xi * x = 1) (h : Commute x y) : Commute xi y := by
-  first | (apply GlobalTheory.CommuteInvLeft.commute_inv_left <;> assumption) | exact @GlobalTheory.CommuteInvLeft.commute_inv_left B ‹_› x xi y h1 h2 h | exact @GlobalTheory.CommuteInvLeft.commute_inv_left B ‹_› x xi y h1 h2 | exact @GlobalTheory.CommuteInvLeft.commute_inv_left B ‹_› x xi y h1 | exact @GlobalTheory.CommuteInvLeft.commute_inv_left B ‹_› x xi y | exact @GlobalTheory.CommuteInvLeft.commute_inv_left B ‹_› x xi | exact @GlobalTheory.CommuteInvLeft.commute_inv_left B ‹_› x | exact @GlobalTheory.CommuteInvLeft.commute_inv_left B ‹_› | exact @GlobalTheory.CommuteInvLeft.commute_inv_left B
+  first | (apply GlobalTheory.CommuteInvLeft.commute_inv_left <;> assumption)
 
 lemma star_inv [StarRing B] {x xi : B} (h1 : x * xi = 1) (h : star x = x) : star xi = xi := by
   have h3 : star xi * x = 1 := by

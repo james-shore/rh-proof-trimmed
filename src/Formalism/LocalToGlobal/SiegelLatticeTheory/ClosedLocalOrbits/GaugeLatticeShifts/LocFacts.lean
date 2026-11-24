@@ -1063,7 +1063,7 @@ theorem lf_form_int {Λ : Submodule (𝓞 D.host.E) (VS D).V} (hU : Formalism.He
     exact mul_mem o.2 h
 
 theorem lf_riesz (φ : (VS D).V →ₗ[D.host.E] D.host.E) : ∃ μ : (VS D).V, ∀ v, (VS D).hT μ v = φ v := by
-  apply GlobalTheory.St.Lat.lat_riesz <;> assumption
+  apply GlobalTheory.St.Lat.lat_riesz
 
 private theorem lf_span_eq_top_of_unimodular {Λ : Submodule (𝓞 D.host.E) (VS D).V}
     (hL : Λ.FG) (hU : Formalism.HermitianLatticesTheory.IsUnimodular (VS D).hT Λ) :

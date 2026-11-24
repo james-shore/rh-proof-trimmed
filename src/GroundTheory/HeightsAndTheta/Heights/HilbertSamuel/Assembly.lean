@@ -291,7 +291,6 @@ theorem eval_fwd (h : IsBlockImage y k₀ M N x) {f : MRing ι} {n : ℕ} (hf : 
       congr 1
       first
         | (simp [blockForms, blockMapC]; done)
-        | (simp [blockForms, blockMapC, mul_comm]; done)
   rw [e]
   have h0 := hz.2 _ (back_fwd_sub_mem h hf)
   rw [map_sub, map_sub, sub_eq_zero] at h0

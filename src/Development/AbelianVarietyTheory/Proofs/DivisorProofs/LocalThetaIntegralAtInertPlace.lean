@@ -218,7 +218,6 @@ theorem exists_bound {n : ℕ} (W : Spc F E n) (hL : W.L.FG) (v : Pl (F := F)) :
     ∃ C : ℝ, ∀ z ∈ GlobalTheory.InertSph.latAt W v, ∀ x, ‖evFin F v ((bas F E n).repr z x)‖ ≤ C := by
   first
   | (apply _root_.GlobalTheory.CoordinateEmbeddingMaps.main <;> assumption)
-  | (intros; exact _root_.GlobalTheory.CoordinateEmbeddingMaps.main ..)
 
 theorem exists_entry_bound {n : ℕ} (W : Spc F E n) (hL : W.L.IsFullLattice E) (v : Pl (F := F)) :
     ∃ C : ℝ, ∀ t : Matrix (Fin n) (Fin n) (_root_.GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.AE (F := F) (E := E)),

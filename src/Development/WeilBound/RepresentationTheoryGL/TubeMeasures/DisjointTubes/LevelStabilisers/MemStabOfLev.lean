@@ -72,7 +72,7 @@ theorem stab_hatL_mapsTo {F E : Type} [Field F] [NumberField F] [Field E] [Numbe
     (β : GL (Fin n) (E ⊗[F] Formalism.L2.Herm.Af F)) (Λ : Submodule (𝓞 E) (Fin n → E)) :
     Formalism.L2.DIV.IsFrame β Λ → ∀ x ∈ Formalism.L2.DIV.St β, ∀ v ∈ Formalism.L2.Herm.hatL (F := F) Λ,
       x.1 *ᵥ v ∈ Formalism.L2.Herm.hatL (F := F) Λ := by
-  apply GlobalTheory.IndefiniteRowSideFullHecke.SplitSumStabLattice.mulVec_mem_hatL <;> assumption
+  apply GlobalTheory.IndefiniteRowSideFullHecke.SplitSumStabLattice.mulVec_mem_hatL
 
 end GlobalTheory
 end -- clump:auto

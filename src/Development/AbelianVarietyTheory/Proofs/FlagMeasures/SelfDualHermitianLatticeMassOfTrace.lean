@@ -1255,7 +1255,7 @@ variable {E : Type} [CommRing E] [Algebra F E] [TopologicalSpace E]
 theorem exists_basis [IsNonarchimedeanLocalField F] [CharZero F] (L : LocE F E) :
     ∃ b : Module.Basis (Fin 2) F E, (∀ x, x ∈ L.O ↔ ∀ i, b.repr x i ∈ 𝒪[F]) ∧
       ∀ x, algebraMap F E (Algebra.norm F x) = x * L.cj x := by
-  apply GlobalTheory.HL.TupleJac.exists_int_basis <;> assumption
+  apply GlobalTheory.HL.TupleJac.exists_int_basis
 
 theorem span_eq_map (L : LocE F E) {n m : ℕ} (y : Fin m → Fin n → E) :
     (Submodule.span L.O (Set.range y)).toAddSubgroup =

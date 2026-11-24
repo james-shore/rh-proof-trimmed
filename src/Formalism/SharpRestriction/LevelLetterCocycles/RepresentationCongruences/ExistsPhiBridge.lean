@@ -144,7 +144,6 @@ private theorem powerSeries_algHom_injective_of_X_ne_zero {R : Type*} [CommRing 
     first
     | rw [PowerSeries.coeff_X_pow_mul', if_pos le_rfl, Nat.sub_self,
         PowerSeries.coeff_zero_eq_constantCoeff_apply, h]
-    | (rw [mul_comm]; simpa [h] using PowerSeries.coeff_mul_X_pow U n 0)
   have hψU : ψ U ≠ 0 := by
     intro h
     apply hU0
@@ -156,8 +155,6 @@ private theorem substAlgHom_X_eq {R S : Type*} [CommRing R] [CommRing S] [Algebr
     {a : S⟦X⟧} (ha : HasSubst a) : (substAlgHom ha : R⟦X⟧ →ₐ[R] S⟦X⟧) X = a := by
   first
   | exact substAlgHom_X ha
-  | (rw [coe_substAlgHom]; exact subst_X ha)
-  | (rw [substAlgHom_apply]; exact subst_X ha)
 
 theorem subst_injective {a : R⟦X⟧} (ha0 : constantCoeff a = 0) (hane : a ≠ 0) :
     Function.Injective (substAlgHom (HasSubst.of_constantCoeff_zero' ha0) : R⟦X⟧ →ₐ[R] R⟦X⟧) := by
@@ -194,7 +191,6 @@ theorem smod_iff {a : ℕ} {x y : O} :
     x ≡ y [SMOD ((IsLocalRing.maximalIdeal O) ^ a • ⊤ : Submodule O O)] ↔ mkk a x = mkk a y := by
   first
   | (rw [SModEq.sub_mem, Ideal.smul_eq_mul, Ideal.mul_top]; exact Ideal.Quotient.eq.symm)
-  | (rw [SModEq.sub_mem, Ideal.smul_top_eq_map]; simp [Ideal.Quotient.eq])
 
 theorem ext_k {G G' : O⟦X⟧} (h : ∀ k, map (mkk k) G = map (mkk k) G') : G = G' := by
   refine PowerSeries.ext fun m => ?_
@@ -218,7 +214,6 @@ omit [IsAdicComplete (IsLocalRing.maximalIdeal O) O] in
 theorem hasSubst_k (k : ℕ) : HasSubst ((X : (Qk O k)⟦X⟧) + C (mkk k t)) := by
   first
   | exact nil_k t ht k
-  | (unfold HasSubst; exact nil_k t ht k)
 
 def τk (k : ℕ) : O⟦X⟧ →ₐ[O] (Qk O k)⟦X⟧ := substAlgHom (hasSubst_k t ht k)
 

@@ -67,7 +67,7 @@ theorem term_one {P Q R S : ℕ} (c : Matrix (Ix P Q) (Ix R S) ℂ) (l : Ln P Q 
       - (lineSign l.1 l.2 * star (Complex.I * lineSign l.1 l.2 * c l.1 l.2)) • lowB l 1
       = Complex.I • (c l.1 l.2 • raiB l (1 : Pol P Q R S) - (lineSign l.1 l.2 * star (c l.1 l.2)) • lowB l 1) := by
   rcases l with ⟨a | a, b | b⟩ <;>
-    simp [raiB, lowB, linePos, lineSign, smul_smul] <;> ring_nf <;> simp [Complex.conj_I]
+    simp [raiB, lowB, linePos, lineSign, smul_smul] <;> ring_nf
 
 end GlobalTheory.HeisTwist
 

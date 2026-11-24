@@ -91,11 +91,11 @@ theorem tform_sum_right {ι : Type*} (t : Finset ι) (f : ι → TensorProduct �
 
 theorem tform_neg_left (y y' : TensorProduct ℂ M (Fock n)) : tform (-y) y' = -tform y y' := by
   unfold tform
-  simp [inner_neg_left]
+  simp
 
 theorem tform_neg_right (y y' : TensorProduct ℂ M (Fock n)) : tform y (-y') = -tform y y' := by
   unfold tform
-  simp [inner_neg_right]
+  simp
 
 theorem tform_add_left (y z y' : TensorProduct ℂ M (Fock n)) :
     tform (y + z) y' = tform y y' + tform z y' := by

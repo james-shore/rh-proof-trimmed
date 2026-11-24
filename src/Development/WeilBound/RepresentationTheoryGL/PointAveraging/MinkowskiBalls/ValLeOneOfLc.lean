@@ -218,7 +218,7 @@ theorem exists_strictHenselian_absolutely_closed_local_ring (hjn : j ≤ n) (hjr
     rintro _ ⟨a, rfl⟩
     refine ⟨Pi.single (Fin.castLE hjr a) 1, ?_⟩
     funext i
-    simp [Matrix.mulVecLin_apply, Matrix.mulVec, dotProduct, Pi.single_apply, v]
+    simp [Matrix.mulVec, dotProduct, Pi.single_apply, v]
   have heq : Submodule.span k (Set.range v) = LinearMap.range x.mulVecLin := by
     apply Submodule.eq_of_le_of_finrank_le hsub
     rw [finrank_span_eq_card hli, Fintype.card_fin]
@@ -228,7 +228,7 @@ theorem exists_strictHenselian_absolutely_closed_local_ring (hjn : j ≤ n) (hjr
     rw [heq]
     refine ⟨Pi.single l 1, ?_⟩
     funext i
-    simp [Matrix.mulVecLin_apply, Matrix.mulVec, dotProduct, Pi.single_apply]
+    simp [Matrix.mulVec, dotProduct, Pi.single_apply]
   choose T hT using fun l => (Submodule.mem_span_range_iff_exists_fun k).1 (hmem l)
   refine ⟨fun a l => T l a, fun i l => ?_⟩
   have := congrFun (hT l) i

@@ -73,7 +73,7 @@ theorem exists_isCartan : ∀ (n : ℕ) (M : Matrix (Fin n) (Fin n) ℂ) (r s : 
   have hDT : Dᵀ = D := by simp [hD, Matrix.fromBlocks_transpose]
   have hDs : D.map star = D := by
     simp only [hD, Matrix.fromBlocks_map]
-    congr 1 <;> ext i j <;> simp [Matrix.one_apply] <;> split_ifs
+    congr 1 <;> ext i j <;> simp [Matrix.one_apply]
   clear_value D
   set L := D * Aᵀ * M with hLdef
   clear_value L

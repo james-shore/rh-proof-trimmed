@@ -262,7 +262,7 @@ private lemma matrix_of_pow_succ_apply_eq_sum_prod {A : Type} [Ring A] (E : Fin 
 
 lemma sum_cycWord {A : Type} [Ring A] (E : Fin n → Fin n → A) (m : ℕ) :
     ∑ a : Fin (m + 1) → Fin n, ((cycWord a).map fun p => E p.1 p.2).prod = ∑ c, (Matrix.of E ^ (m + 1)) c c := by
-  apply GlobalTheory.PhiEigenfun.sum_cycWord <;> assumption
+  apply GlobalTheory.PhiEigenfun.sum_cycWord
 
 
 open GlobalTheory.CapelliCentral in

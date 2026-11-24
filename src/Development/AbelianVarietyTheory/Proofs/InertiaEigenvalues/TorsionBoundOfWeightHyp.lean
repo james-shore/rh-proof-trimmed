@@ -448,7 +448,7 @@ namespace GlobalTheory.MemLoc
 
 theorem finiteDimensional_Ks_of_finExt {l : ℕ} [Fact l.Prime] (K : FinExt l) (s : ℕ) :
     FiniteDimensional ℚ_[l] ↥(Ks K s) := by
-  apply Formalism.MainNotions.WachCoordinates.Br.fd_Ks <;> assumption
+  apply Formalism.MainNotions.WachCoordinates.Br.fd_Ks
 
 end GlobalTheory.MemLoc
 end -- clump:auto

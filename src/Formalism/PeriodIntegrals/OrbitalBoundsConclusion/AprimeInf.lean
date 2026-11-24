@@ -113,7 +113,7 @@ theorem phi_notReal (v : InfinitePlace X.B.I.F) : ¬ ∀ e : X.B.I.E, conj (X.B.
 
 theorem emb_trace (v : InfinitePlace X.B.I.F) (e : X.B.I.E) :
     v.embedding (Algebra.trace X.B.I.F X.B.I.E e) = X.B.I.φ v e + conj (X.B.I.φ v e) := by
-  apply PI.AprimeInfW.MuB.emb_trace <;> assumption
+  apply PI.AprimeInfW.MuB.emb_trace
 
 theorem evInf_conj (v : InfinitePlace X.B.I.F) (a : Ainf X.B.I.F) :
     conj (PI.AprimeInfU.evInf X v a) = PI.AprimeInfU.evInf X v a := by
@@ -136,7 +136,7 @@ theorem trace_one_tmul (e : X.B.I.E) :
 theorem evInf_trace (v : InfinitePlace X.B.I.F) (z : Ainf X.B.I.F ⊗[X.B.I.F] X.B.I.E) :
     PI.AprimeInfU.evInf X v (Algebra.trace (Ainf X.B.I.F) (Ainf X.B.I.F ⊗[X.B.I.F] X.B.I.E) z) =
       PI.AprimeInfU.thetaInf X v z + conj (PI.AprimeInfU.thetaInf X v z) := by
-  apply PI.AprimeInfW.MuB.evInf_trace <;> assumption
+  apply PI.AprimeInfW.MuB.evInf_trace
 
 theorem theta_sigR (v : InfinitePlace X.B.I.F) (t : Ainf X.B.I.F ⊗[X.B.I.F] X.B.I.E) :
     PI.AprimeInfU.thetaInf X v (sigR (Ainf X.B.I.F) X.B.I.cm.sig t) = conj (PI.AprimeInfU.thetaInf X v t) := by

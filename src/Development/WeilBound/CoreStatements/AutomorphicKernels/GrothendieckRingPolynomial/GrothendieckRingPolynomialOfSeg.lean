@@ -187,7 +187,7 @@ open AltS
 
 theorem altSum (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] :
     AltSum k := by
-  apply CompanionTheory.Groth.altSum <;> assumption
+  apply CompanionTheory.Groth.altSum
 
 end PositivityTheory.Groth
 
@@ -1279,7 +1279,7 @@ theorem assoc (h : MulCls k) : Assoc k := by
   apply CompanionTheory.Groth.assoc <;> assumption
 
 theorem one : One k := by
-  apply CompanionTheory.Groth.one <;> assumption
+  apply CompanionTheory.Groth.one
 
 end PositivityTheory.Groth
 end -- clump:auto

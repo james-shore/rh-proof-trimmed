@@ -895,10 +895,10 @@ theorem continuous_expM : Continuous (fun X : Mx k r => NormedSpace.exp X) := No
 
 theorem continuous_expLie (S : Set (Mx k r)) :
     Continuous (fun x : lieE S => (fun i j => NormedSpace.exp (unrealify (x : EuclideanSpace ℝ _)) i j : Mt k r)) := by
-  apply PI.WUN.continuous_expLie <;> assumption
+  apply PI.WUN.continuous_expLie
 
 theorem muN_conc (κ : ENNReal) : (haarLie (Nset k r) κ) {x : Mt k r | Matrix.of x ∉ Nset k r} = 0 := by
-  apply PI.WUN.muN_conc <;> assumption
+  apply PI.WUN.muN_conc
 
 end Formalism.MainNotions.LowestKTypeMultiplicity
 

@@ -568,7 +568,6 @@ theorem indexTwo_finite (F : Type) [Field F] [NumberField F] (v : HeightOneSpect
     [FiniteDimensional (v.adicCompletion F) B] : IndexTwo B := by
   first
   | (rename_i h_1 h_2 h_5 h_6 h_7; revert F h_1 h_2 v B h_5 h_6 h_7; exact @_root_.GlobalTheory.QuadraticValuationIndexTwo.norm_index_two)
-  | (intros; exact _root_.GlobalTheory.QuadraticValuationIndexTwo.norm_index_two ..)
 
 end Finite
 

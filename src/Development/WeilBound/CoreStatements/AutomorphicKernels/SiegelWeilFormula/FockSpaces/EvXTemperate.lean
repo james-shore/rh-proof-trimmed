@@ -77,7 +77,7 @@ private theorem hasTemperateGrowth_evX' {m n : ℕ} (k : Fin m × Fin n × Bool)
 
 theorem evX_temperate {m n : ℕ} (P : PX m n) :
     Function.HasTemperateGrowth (fun x : Fin m → Fin n → ℂ => evX P x) := by
-  apply PositivityTheory.SiegelWeilFormula.KMain.evX_temperate <;> assumption
+  apply PositivityTheory.SiegelWeilFormula.KMain.evX_temperate
 
 def eucl (m n : ℕ) (s : ℝ) (hs : s ≠ 0) : (Fin m → Fin n → ℂ) ≃L[ℝ] EuclideanSpace ℂ (Fin m × Fin n) :=
   ((LinearEquiv.smulOfNeZero ℝ (Fin m → Fin n → ℂ) s hs).trans

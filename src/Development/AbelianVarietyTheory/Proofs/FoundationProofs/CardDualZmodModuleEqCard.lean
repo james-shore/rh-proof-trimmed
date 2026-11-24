@@ -107,7 +107,6 @@ theorem stdAddChar_comp_bijective (n : ℕ) [NeZero n] (A : Type) [AddCommGroup 
       ((ZMod.stdAddChar (N := n)).compAddMonoidHom φ.toAddMonoidHom : AddChar A ℂ) := by
   first
   | (apply _root_.GlobalTheory.StandardAdditiveCharacter.bijective_dual_addChar <;> assumption)
-  | (intros; exact _root_.GlobalTheory.StandardAdditiveCharacter.bijective_dual_addChar ..)
 
 theorem card_dual_eq (n : ℕ) [NeZero n] (A : Type) [AddCommGroup A] [Module (ZMod n) A]
     [Finite A] : Nat.card (Module.Dual (ZMod n) A) = Nat.card A := by

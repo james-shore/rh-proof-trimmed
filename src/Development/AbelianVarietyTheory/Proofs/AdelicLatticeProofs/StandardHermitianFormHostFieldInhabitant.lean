@@ -68,7 +68,7 @@ theorem bar_bar (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (a : ð
   rw [H.bar_eq, H.bar_eq, IsCMField.complexConj_apply_apply]
 
 theorem bar_rt (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) : H.bar H.rt = -H.rt := by
-  apply GlobalTheory.QuadTrace.bar_rt <;> assumption
+  apply GlobalTheory.QuadTrace.bar_rt
 
 theorem bar_w (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) : H.bar H.w0 = 1 - H.w0 := by
   have h2 : 2 * H.bar H.w0 = 1 + H.bar H.rt := by

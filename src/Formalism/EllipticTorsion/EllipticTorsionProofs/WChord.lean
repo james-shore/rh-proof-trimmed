@@ -651,13 +651,11 @@ lemma chord (hU : WSubstUnique.{u}) (hw : WFixed W w) :
     ChordAt W w (MvPowerSeries.X 0) (MvPowerSeries.X 1) (F2 W w) := by
   haveI hdom : IsDomain (MvPowerSeries (Fin 2) K) := by
     first
-      | infer_instance
       | exact NoZeroDivisors.to_isDomain _
   have hι : Function.Injective (algebraMap (MvPowerSeries (Fin 2) K) (FractionRing (MvPowerSeries (Fin 2) K))) := IsFractionRing.injective _ _
   have hCa : ∀ a : K, (algebraMap (MvPowerSeries (Fin 2) K) (FractionRing (MvPowerSeries (Fin 2) K))) (MvPowerSeries.C a) = algebraMap K (FractionRing (MvPowerSeries (Fin 2) K)) a := fun a => by
     first
       | rfl
-      | (rw [IsScalarTower.algebraMap_apply K (MvPowerSeries (Fin 2) K) (FractionRing (MvPowerSeries (Fin 2) K))]; rfl)
   have hE : ∀ s : MvPowerSeries (Fin 2) K, MvPowerSeries.constantCoeff s = 0 →
       G (ca W.a₁) (ca W.a₂) (ca W.a₃) (ca W.a₄)
         (ca W.a₆) s (w.subst s) = 0 :=
@@ -740,12 +738,6 @@ lemma chord (hU : WSubstUnique.{u}) (hw : WFixed W w) :
   rw [← hsub]
   first
     | exact ⟨hx, hy⟩
-    | (refine ⟨?_, ?_⟩
-       · convert hx using 1
-       · convert hy using 1
-         simp only [WeierstrassCurve.Affine.addY, WeierstrassCurve.Affine.negY,
-           WeierstrassCurve.Affine.negAddY, WeierstrassCurve.map_a₁, WeierstrassCurve.map_a₃]
-         rfl)
 
 end Mser
 

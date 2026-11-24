@@ -897,7 +897,7 @@ lemma xn_rowsB_inj {n : ℕ} (i : Fin n) : Function.Injective (rowsB i) := by
   all_goals first
     | (simpa using h)
     | (have h' := congrArg Fin.val h
-       simp only [Fin.val_last, Fin.val_mk] at h'
+       simp only [Fin.val_last] at h'
        omega)
 
 lemma xn_interlace {n : ℕ} (lam sg : Fin n → ℕ) (hI : Interlace (lamZ lam) (fun i => (sg i : ℤ)))

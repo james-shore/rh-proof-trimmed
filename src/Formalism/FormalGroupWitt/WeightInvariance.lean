@@ -311,7 +311,7 @@ lemma bd_prod_sub {τ : Type w} {ι : Type v} {C : ℝ} (hC : 0 ≤ C) (X Y : ι
     (s : Finset ι) (hX : ∀ i ∈ s, IntegralMv (X i)) (hY : ∀ i ∈ s, IntegralMv (Y i))
     (hXY : ∀ i ∈ s, Bd C (X i - Y i)) :
     Bd C (∏ i ∈ s, X i - ∏ i ∈ s, Y i) := by
-  first | (apply Bl.ProductIntegralBounds.goal1 <;> assumption) | exact @Bl.ProductIntegralBounds.goal1 K ‹_› ‹_› τ ι C hC X Y s hX hY hXY | exact @Bl.ProductIntegralBounds.goal1 K ‹_› ‹_› τ ι C hC X Y s hX hY | exact @Bl.ProductIntegralBounds.goal1 K ‹_› ‹_› τ ι C hC X Y s hX | exact @Bl.ProductIntegralBounds.goal1 K ‹_› ‹_› τ ι C hC X Y s | exact @Bl.ProductIntegralBounds.goal1 K ‹_› ‹_› τ ι C hC X Y | exact @Bl.ProductIntegralBounds.goal1 K ‹_› ‹_› τ ι C hC X | exact @Bl.ProductIntegralBounds.goal1 K ‹_› ‹_› τ ι C hC | exact @Bl.ProductIntegralBounds.goal1 K ‹_› ‹_› τ ι C | exact @Bl.ProductIntegralBounds.goal1 K ‹_› ‹_› τ ι | exact @Bl.ProductIntegralBounds.goal1 K ‹_› ‹_› τ | exact @Bl.ProductIntegralBounds.goal1 K ‹_› ‹_› | exact @Bl.ProductIntegralBounds.goal1 K ‹_› | exact @Bl.ProductIntegralBounds.goal1 K
+  first | (apply Bl.ProductIntegralBounds.goal1 <;> assumption)
 
 lemma bd_subst_sub {ι : Type v} {τ : Type w} (φ : MvPowerSeries ι K)
     (A B : ι → MvPowerSeries τ K) (hA : MvPowerSeries.HasSubst A) (hB : MvPowerSeries.HasSubst B)

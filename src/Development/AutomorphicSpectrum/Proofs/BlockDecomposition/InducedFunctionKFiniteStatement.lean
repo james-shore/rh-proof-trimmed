@@ -67,7 +67,7 @@ namespace GlobalTheory.LowStable
 
 theorem X_mul_pderiv_totalDegree_le {σ : Type} (u v : σ) (g : MvPolynomial σ ℂ) :
     (X u * pderiv v g).totalDegree ≤ g.totalDegree := by
-  apply GlobalTheory.KFixIrr.LowStable.deg_X_pderiv <;> assumption
+  apply GlobalTheory.KFixIrr.LowStable.deg_X_pderiv
 
 theorem omE_mem_restrictTotalDegree {P Q R S : ℕ} (D : ℕ) (u v : Ln P Q R S) (h : linePos u = linePos v)
     (g : Pol P Q R S) (hg : g ∈ restrictTotalDegree (Ln P Q R S) ℂ D) :

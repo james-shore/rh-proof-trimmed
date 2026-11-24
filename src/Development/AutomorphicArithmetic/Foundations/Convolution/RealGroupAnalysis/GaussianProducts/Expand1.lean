@@ -344,8 +344,8 @@ private theorem co_mkE (u t : A F) : D.co (D.mkE u t) = ![u, t] := by
   change (BB).repr _ i = _
   rw [Module.Basis.repr_sum_self]
 
-private theorem coordinate_embedNorm_zero (u t : A F) : D.co (D.mkE u t) 0 = u := by simp [co_mkE]
-private theorem coordinate_embedNorm_one (u t : A F) : D.co (D.mkE u t) 1 = t := by simp [co_mkE]
+private theorem coordinate_embedNorm_zero (u t : A F) : D.co (D.mkE u t) 0 = u := by simp
+private theorem coordinate_embedNorm_one (u t : A F) : D.co (D.mkE u t) 1 = t := by simp
 
 private theorem mkE_co (z : A E) : D.mkE (D.co z 0) (D.co z 1) = z := by
   rw [mkE_eq]

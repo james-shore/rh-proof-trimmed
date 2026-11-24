@@ -292,7 +292,7 @@ lemma base_pt (m : ℕ) (v : ℝ) (hv : 0 < v) (x : Xp 0 m) :
 
 lemma volume_univ_fin_zero : (volume : Measure (Fin 0 → ℂ)) Set.univ = 1 := by
   first
-  | simp [MeasureTheory.volume_pi, MeasureTheory.Measure.pi_univ]
+  | simp [MeasureTheory.volume_pi]
 
 lemma ch_base (m : ℕ) (ν : Fin 1 → ℝ) (hν : 0 < ν 0) : CHInt 0 m ν < ∞ := by
   have hv := hν

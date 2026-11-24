@@ -358,7 +358,7 @@ theorem relIndexFormula : RelIndexFormula := by
     refine ⟨z, hz.trans ?_⟩
     first
     | (simp only [movHom, AddMonoidHom.coe_mk, ZeroHom.coe_mk, inv_inv, Matrix.mul_apply, Matrix.of_apply,
-        mul_ite, mul_one, mul_zero, ite_mul, zero_mul, Finset.sum_ite_eq', Finset.sum_ite_eq, Finset.mem_univ,
+        mul_ite, mul_one, mul_zero, ite_mul, zero_mul, Finset.sum_ite_eq', Finset.mem_univ,
         ite_true]; done)
   choose D hD using hent
   obtain ⟨Mat, hMat⟩ : ∃ Mat : Matrix (Fin N' × Fin N) (Fin N' × Fin N) O, ∀ i j p q,
@@ -431,7 +431,6 @@ theorem relIndexFormula : RelIndexFormula := by
   have hrc : (matLat O K N N').relIndex ((matLat O K N N').map (movHom K k k')) =
       ((matLat O K N N').comap (movHom K k k')).relIndex (matLat O K N N') := by
     first
-    | exact (AddSubgroup.relIndex_comap _ _).symm
     | rw [AddSubgroup.relIndex_comap]
   have hmapMat : (algebraMap O K).mapMatrix Mat = Matrix.kroneckerMap (· * ·)
       ((k'⁻¹ : GL (Fin N') K) : Matrix (Fin N') (Fin N') K) (k : Matrix (Fin N) (Fin N) K).transpose := by

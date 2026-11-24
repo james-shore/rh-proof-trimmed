@@ -279,7 +279,7 @@ theorem rt_sq_field : (H.rt : E) ^ 2 = -(H.d : E) := by
   simpa using this
 
 theorem inPsi_conj_iff (τ : E →+* ℂ) : InPsi H (ComplexEmbedding.conjugate τ) ↔ ¬ InPsi H τ := by
-  apply GlobalTheory.InertLabelling.inPsi_conj_iff <;> assumption
+  apply GlobalTheory.InertLabelling.inPsi_conj_iff
 
 theorem not_MM_neg_sub_pow {C : Type} [Field C] (V : VF C) (d : ℕ) (r : C) (hr : r ^ 2 = -(d : C)) (hi : V.Ge 0 r)
     (h2 : V.l ≠ 2) (hj : jacobiSym (-(d : ℤ)) V.l = 1) : ¬ V.MM (-r - r ^ V.l) := by

@@ -665,7 +665,7 @@ theorem GlobalTheory.Corev.kappa_mem_latO_iff : ∀ (D : D7) (k : Type) [Field k
     refine Finset.sum_congr rfl fun i _ => ?_
     rw [Finset.mul_sum, Finset.mul_sum]
     refine Finset.sum_congr rfl fun j _ => ?_
-    simp only [Pi.smul_apply, smul_eq_mul, ratV, Pi.neg_apply, map_mul, map_neg, hcA, star_neg]
+    simp only [Pi.smul_apply, smul_eq_mul, ratV, Pi.neg_apply, map_mul, map_neg, hcA]
     ring
   rw [_root_.GlobalTheory.FinPl.LatMem.mem_latO_iff D B.V₀ S M LS hM hLS P, GlobalTheory.T.latticeCompletionAAScaled_eq_at_unitSplitPlaces D k ι p I P hP S LS]
   constructor

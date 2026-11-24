@@ -131,7 +131,7 @@ lemma string_bound (hF : KRel ε E) (hU : KUnit ε E) {a b : Fin n} (hab : a ≠
       rw [pow_succ', Module.End.mul_apply]
     have hE1 : (E a b ^ (k + 1)) z = E a b ((E a b ^ k) z) := by rw [pow_succ', Module.End.mul_apply]
     have hsh : shift μ a b (k + 1) b - shift μ a b (k + 1) a = μ b - μ a - 2 * ((k : ℝ) + 1) := by
-      simp only [shift, if_neg hab, if_neg (Ne.symm hab), if_pos rfl, ↓reduceIte]; push_cast; ring
+      simp only [shift, if_neg hab, if_neg (Ne.symm hab), ↓reduceIte]; push_cast; ring
     have hcs : ‖(E a b ^ (k + 1)) z‖ ^ 2 ≤ ‖E b a ((E a b ^ (k + 1)) z)‖ * ‖(E a b ^ k) z‖ := by
       have h1 : inner ℂ (E b a ((E a b ^ (k + 1)) z)) ((E a b ^ k) z) =
           inner ℂ ((E a b ^ (k + 1)) z) ((E a b ^ (k + 1)) z) := by

@@ -690,7 +690,7 @@ namespace GlobalTheory.LTChar
 variable {l : ℕ} [Fact l.Prime]
 
 theorem orbit_cont (y : ℂ_[l]) : Continuous fun g : GQ l => Formalism.Per.σC g y := by
-  apply GlobalTheory.PMon.FrameChange.cont_σC <;> assumption
+  apply GlobalTheory.PMon.FrameChange.cont_σC
 
 end GlobalTheory.LTChar
 end -- clump:auto

@@ -2771,7 +2771,7 @@ theorem jd_fmem (G : GAtP p) (Hv : G.P.Tup → Submodule G.O G.P.Xsp) (F : G.Fn)
       (∀ L, G.P.IsLatTup L → F i L ∈ Hv L) ∧ (∀ L, ¬ G.P.IsLatTup L → F i L = 0) ∧
       ∀ (γ : (G.lev i).Γ) (L : G.P.Tup),
         F i ((G.lev i).smul γ L) = ((G.lev i).χ γ : G.O) • (G.lev i).actX γ (F i L) := by
-  apply Formalism.L2.G.Cmp.mem_funMod_iff <;> assumption
+  apply Formalism.L2.G.Cmp.mem_funMod_iff
 
 theorem jd_mem (G : GAtP p) (h1 : G.TrivStab) (Hv : G.P.Tup → Submodule G.O G.P.Xsp) (hE : EquivSys G Hv)
     (i : G.comp) (L0 : G.P.Tup) (hL0 : G.P.IsLatTup L0) (ξ : G.P.Xsp) (hξ : ξ ∈ Hv L0) :

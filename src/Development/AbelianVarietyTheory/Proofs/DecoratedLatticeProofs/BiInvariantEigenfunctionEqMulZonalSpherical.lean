@@ -527,7 +527,6 @@ theorem pos_iff_lt {N : ℕ} {e : Fin N → ℤ} (ha : Antitone e) (i : Fin N) :
     0 < e i ↔ (i : ℕ) < (Finset.univ.filter fun j => 0 < e j).card := by
   first
   | (apply _root_.GlobalTheory.PositiveIffLtCard.pos_iff_lt_card <;> assumption)
-  | (intros; exact _root_.GlobalTheory.PositiveIffLtCard.pos_iff_lt_card ..)
 
 theorem nonneg_of_dom {N : ℕ} {ν e : Fin N → ℤ} (hν : Antitone ν) (he : ∀ i, 0 ≤ e i)
     (hle : ∀ j, psum ν j ≤ psum e j) (hsum : ∑ i, ν i = ∑ i, e i) (i : Fin N) : 0 ≤ ν i := by

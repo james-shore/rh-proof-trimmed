@@ -82,7 +82,7 @@ theorem hTens_dbl {R E : Type} [CommRing R] [CommRing E] [Algebra R E] (c : E �
     (x y : Matrix α (β ⊕ β) E) :
     hTens c JA (dbl JB) x y = hTens c JA JB x.toCols₁ y.toCols₁ + hTens c JA (-JB) x.toCols₂ y.toCols₂ := by
   simp only [hTens, dbl, Fintype.sum_sum_type, fromBlocks_apply₁₁, fromBlocks_apply₁₂, fromBlocks_apply₂₁,
-    fromBlocks_apply₂₂, Matrix.zero_apply, mul_zero, zero_mul, Finset.sum_const_zero, add_zero, zero_add, toCols₁, toCols₂,
+    fromBlocks_apply₂₂, Matrix.zero_apply, mul_zero, zero_mul, add_zero, zero_add, toCols₁, toCols₂,
     of_apply, ← Finset.sum_add_distrib]
 
 theorem rhs_dbl {K : Type} [CommRing K] {m n : Type} [Fintype m] [Fintype n] (A : Matrix m m K)
@@ -145,7 +145,7 @@ theorem _root_.GlobalTheory.T.hermitian_tensor_local_vanish : ∀ {F E : Type} [
     ∀ (x u : Matrix (Fin m) (Fin n ⊕ Fin n) (_root_.GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.AE (F := F) (E := E))), x.map (piW τ) = 0 → u.map (piW (τ.comp σ)) = 0 →
     piW τ (hTens (cA σ) (incM F JA) (dbl (incM F JB)) x u) + piW (τ.comp σ) (hTens (cA σ) (incM F JA) (dbl (incM F JB)) x u) =
       ∑ k, ∑ l, (-(JA.map τ * x.map (piW (τ.comp σ)) * ((dbl JB).map τ)ᵀ)) k l * u.map (piW τ) k l := by
-  first | exact @GlobalTheory.DblTrace.trace_pairing_dbl | exact GlobalTheory.DblTrace.trace_pairing_dbl | (intros; apply GlobalTheory.DblTrace.trace_pairing_dbl <;> assumption)
+  first | exact @GlobalTheory.DblTrace.trace_pairing_dbl
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HermitianTensorLocalVanishStatement =====
@@ -171,7 +171,7 @@ theorem eL_apply (C : Matrix (Fin n) (Fin (Fintype.card β)) k) (i : Fin n) (b :
 
 theorem eL_symm_apply (D : Matrix (Fin n) β k) (i : Fin n) (j : Fin (Fintype.card β)) :
     (eL k n β).symm D i j = D i ((Fintype.equivFin β).symm j) := by
-  simp [eL, reindexLinearEquiv_symm, reindexLinearEquiv_apply, reindex_apply, submatrix_apply]
+  simp [eL, reindexLinearEquiv_apply, reindex_apply, submatrix_apply]
 
 theorem continuous_eL : Continuous (eL k n β) := by
   refine continuous_pi fun i => continuous_pi fun b => ?_

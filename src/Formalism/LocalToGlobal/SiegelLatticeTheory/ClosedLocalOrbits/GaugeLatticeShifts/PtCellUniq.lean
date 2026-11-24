@@ -84,7 +84,7 @@ theorem loU_mul {A B : Matrix (Fin N) (Fin N) K} (hA : LoU A) (hB : LoU B) : LoU
   · simp
 
 theorem upU_mul {A B : Matrix (Fin N) (Fin N) K} (hA : UpU A) (hB : UpU B) : UpU (A * B) := by
-  first | (apply UpperTheory.Reformulated.B.Qh21.upU_mul <;> assumption) | exact @UpperTheory.Reformulated.B.Qh21.upU_mul K ‹_› N A B hA hB | exact @UpperTheory.Reformulated.B.Qh21.upU_mul K ‹_› N A B hA | exact @UpperTheory.Reformulated.B.Qh21.upU_mul K ‹_› N A B | exact @UpperTheory.Reformulated.B.Qh21.upU_mul K ‹_› N A | exact @UpperTheory.Reformulated.B.Qh21.upU_mul K ‹_› N | exact @UpperTheory.Reformulated.B.Qh21.upU_mul K ‹_› | exact @UpperTheory.Reformulated.B.Qh21.upU_mul K
+  first | (apply UpperTheory.Reformulated.B.Qh21.upU_mul <;> assumption)
 
 theorem loU_inv {L : Matrix (Fin N) (Fin N) K} (h : LoU L) : LoU L⁻¹ := by
   have hu : IsUnit L.det := by rw [loU_det h]; exact isUnit_one

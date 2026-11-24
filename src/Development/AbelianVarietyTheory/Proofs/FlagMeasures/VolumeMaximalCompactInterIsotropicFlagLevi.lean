@@ -97,7 +97,7 @@ namespace GlobalTheory
 theorem hermitian_idempotent_eq_isometry_mul_conjTranspose :
     ∀ (n : ℕ) (R : Matrix (Fin n) (Fin n) ℂ), Rᴴ = R → R * R = R →
       ∃ (r : ℕ) (P : Matrix (Fin n) (Fin r) ℂ), Pᴴ * P = 1 ∧ P * Pᴴ = R := by
-  apply GlobalTheory.IsoTorus.proj_frame <;> assumption
+  apply GlobalTheory.IsoTorus.proj_frame
 
 end GlobalTheory
 end -- clump:auto
@@ -1379,7 +1379,7 @@ theorem continuous_hs_uMat {n : ℕ} (ε : Fin n → Bool) :
   exact ((continuous_apply k).comp ((continuous_apply i).comp (hc.sub continuous_const))).norm.pow 2
 
 theorem compactSpace_allPos (N : ℕ) : CompactSpace (Formalism.REAL.UJ (allPos N)) := by
-  apply Formalism.MainNotions.S.Inh.aut_compact_allPos <;> assumption
+  apply Formalism.MainNotions.S.Inh.aut_compact_allPos
 
 theorem exists_eq_mul_preimage {G H : Type} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [CompactSpace G]
     [SecondCountableTopology G] [MeasurableSpace G] [BorelSpace G] [Group H] [TopologicalSpace H]

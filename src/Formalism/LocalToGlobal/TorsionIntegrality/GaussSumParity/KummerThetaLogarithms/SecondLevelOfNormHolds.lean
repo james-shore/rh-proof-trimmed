@@ -260,7 +260,7 @@ theorem all {l : ℕ} {σ : K →+* K} (hU : UnrOK K l σ) {F : MvPowerSeries (F
     show ‖(2 : K)⁻¹‖ ≤ 1
     rw [norm_inv, norm_two hU, inv_one]
   have hu2 : IsUnit (2 : Osub σ) :=
-    ⟨unitO (a := 2) (norm_two hU) (by simp [map_ofNat]), Subtype.ext (by show (2 : K) = _; first | rfl | push_cast)⟩
+    ⟨unitO (a := 2) (norm_two hU) (by simp [map_ofNat]), Subtype.ext (by show (2 : K) = _; first | rfl)⟩
   have hDn : ∀ a ∈ Set.range (fun u : (Osub σ)ˣ => (u : Osub σ)),
       C.EndInt (Formalism.G.unitBall K) (lgF K l) (expF K l) ((Osub σ).subtype a) ∧
       C.PhNormAt (Formalism.G.unitBall K) (lgF K l) (expF K l) ph ((Osub σ).subtype a) ((Osub σ).subtype (star a)) := by

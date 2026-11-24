@@ -744,8 +744,8 @@ theorem colFlat_expansion : Big fun {D} _ _ _ _ {T} _ _ _ _ _ _ ch => ∀ (t : T
         exact (Good.locPl_cases w.2).elim (fun h => .inl h.1) fun h => .inr ⟨_, h.2.2, rfl⟩) eL heL with
       fn := cosLoc {w.1} eL (ch.S.βp (j + 1)) (ch.S.βp j) (N : ℤ) (κ j).1
       sb := _root_.GlobalTheory.FunObj.CosSB.isSBHalf_cosLoc (ch.G.V (.top j)) (ch.G.V (.top (j + 1))) (ch.G.Λ (.top j)) (ch.G.Λ (.top (j + 1))) (ch.S.βp j)
-        (ch.S.βp (j + 1)) {w.1} eL N (κ j).1 (by first | exact GlobalTheory.ProjXCols.selfDual_isFullLattice _ _ (sdT j j.2.le) | exact (sdT j j.2.le).1)
-        (by first | exact GlobalTheory.ProjXCols.selfDual_isFullLattice _ _ (sdT (j + 1) j.2) | exact (sdT (j + 1) j.2).1) (ch.S.βp_is j j.2.le)
+        (ch.S.βp (j + 1)) {w.1} eL N (κ j).1 (by first | exact GlobalTheory.ProjXCols.selfDual_isFullLattice _ _ (sdT j j.2.le))
+        (by first | exact GlobalTheory.ProjXCols.selfDual_isFullLattice _ _ (sdT (j + 1) j.2)) (ch.S.βp_is j j.2.le)
         (ch.S.βp_is (j + 1) j.2) heL (hR1 j _ (κ j).2).1 }
   choose c₁ hc₁ using fun (κ : ∀ j : Fin D.R.m, Rp j) (j : Fin D.R.m) =>
     GlobalTheory.CombsExist.exists_isCombOf ch.W (p := .top t j) (sdT j j.2.le) (sdT (j + 1) j.2) (d κ j)

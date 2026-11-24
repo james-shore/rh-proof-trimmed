@@ -360,7 +360,6 @@ theorem exists_frame {ι : Type} [Fintype ι] [DecidableEq ι] {G : Matrix ι ι
     ∃ B : Matrix ι ι ℂ, IsUnit B.det ∧ B.conjTranspose * B = G := by
   have hex : ∃ B : Matrix ι ι ℂ, G = B.conjTranspose * B := by
     first
-    | exact Matrix.posSemidef_iff_eq_conjTranspose_mul_self.1 hG.posSemidef
     | (obtain ⟨B, hB⟩ := Matrix.posSemidef_iff_eq_conjTranspose_mul_self.1 hG.posSemidef
        exact ⟨B, hB⟩)
     | (have h0 : (0 : Matrix ι ι ℂ) ≤ G := Matrix.nonneg_iff_posSemidef.2 hG.posSemidef

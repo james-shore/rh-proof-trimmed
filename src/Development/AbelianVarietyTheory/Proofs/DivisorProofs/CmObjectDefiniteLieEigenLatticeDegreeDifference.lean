@@ -1245,7 +1245,7 @@ namespace GlobalTheory.SumIndex
 
 theorem relIndex_pi_pi_of {ι G : Type} [Fintype ι] [AddCommGroup G] (A B : ι → AddSubgroup G) :
     (AddSubgroup.pi Set.univ A).relIndex (AddSubgroup.pi Set.univ B) = ∏ i, (A i).relIndex (B i) := by
-  apply _root_.GlobalTheory.LowerHeckeCount.relIndex_pi_univ <;> assumption
+  apply _root_.GlobalTheory.LowerHeckeCount.relIndex_pi_univ
 
 theorem eq_zero_of_sum_eq_zero {ι R V : Type} [Fintype ι] [DecidableEq ι] [Ring R] [AddCommGroup V]
     [Module R V] (S : ι → Submodule R V) (hS : iSupIndep S) (y : ι → V) (hy : ∀ a, y a ∈ S a)

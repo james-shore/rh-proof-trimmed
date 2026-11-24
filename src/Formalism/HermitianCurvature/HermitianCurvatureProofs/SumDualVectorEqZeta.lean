@@ -108,7 +108,7 @@ section Lie
 variable {k r : ℕ}
 
 theorem hpk_sq' : Hpk k r * Hpk k r = 1 := by
-  apply ReciprocityTheory.ChartRestriction.DS.Mult1.InvChr.Hpk_sq <;> assumption
+  apply ReciprocityTheory.ChartRestriction.DS.Mult1.InvChr.Hpk_sq
 
 theorem hpk_h : (Hpk k r)ᴴ = Hpk k r := by
   ext a b

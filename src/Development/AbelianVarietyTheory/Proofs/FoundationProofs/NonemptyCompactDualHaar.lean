@@ -660,7 +660,7 @@ theorem image_expU {P Q : ℕ} (S : Set (lieU P Q)) :
 attribute [local instance] sumNormedAddCommGroup sumNormedSpace in
 theorem exists_omegaDensity {P Q : ℕ} (μ : Measure (UpqT P Q)) [μ.IsHaarMeasure] :
     ∃ c : ℝ≥0∞, c ≠ 0 ∧ c ≠ ⊤ ∧ OmegaDensity μ c := by
-  apply Formalism.BasicNotions.Examples₂.CD.omegaDensity_haar <;> assumption
+  apply Formalism.BasicNotions.Examples₂.CD.omegaDensity_haar
 
 theorem exists_haar_of_density (P Q : ℕ) (c : ℝ≥0∞) (h0 : c ≠ 0) (ht : c ≠ ⊤) :
     ∃ μ : Measure (UpqT P Q), μ.IsHaarMeasure ∧ OmegaDensity μ c := by

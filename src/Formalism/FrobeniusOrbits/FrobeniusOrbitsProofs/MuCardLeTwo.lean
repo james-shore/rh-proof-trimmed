@@ -180,7 +180,6 @@ theorem mu_ram_bound (hqd : HypOdd q d) (h : IsLayer (e + 2) q d ζ a b) (p : �
       subst e2
       rfl
     first
-      | exact Nat.card_le_one_iff_subsingleton.mpr hsub
       | exact Finite.card_le_one_iff_subsingleton.mpr hsub
   have tame := Formalism.TwoAdicCyclotomicDecomposition.layerInertiaTame (e + 2) q d (by omega) hqd L ζ a b h
   have two_of : ∀ t : GalL (e + 2), t ^ 2 = 1 →
@@ -245,7 +244,6 @@ theorem mu_no_four (hqd : HypOdd q d) (h : IsLayer (e + 2) q d ζ a b) (y : L)
       simp
     have hv : 2 ^ (e + 2) ∣ v + 1 := by
       first
-        | exact (ZMod.natCast_zmod_eq_zero_iff_dvd _ _).mp hz
         | exact (ZMod.natCast_eq_zero_iff _ _).mp hz
     have h1 := (hζ.pow_eq_one_iff_dvd _).mpr hv
     rw [pow_succ] at h1

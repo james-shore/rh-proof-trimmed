@@ -1374,7 +1374,7 @@ theorem mr_add (F G : MvPolynomial σ A) : mr L (F + G) = mr L F + mr L G := by
   ext m; simp [coeff_mr]
 
 theorem mr_smul (c : k) (F : MvPolynomial σ A) : mr L (c • F) = c • mr L F := by
-  ext m; simp [coeff_mr, MvPolynomial.coeff_smul]
+  ext m; simp [coeff_mr]
 
 theorem mr_monomial (m : σ →₀ ℕ) (a : A) : mr L (monomial m a) = monomial m (L a) := by
   classical

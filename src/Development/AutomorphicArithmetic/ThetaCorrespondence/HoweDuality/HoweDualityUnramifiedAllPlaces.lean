@@ -1065,7 +1065,7 @@ namespace GlobalTheory.HoweGlobalPair
 theorem decomp {M₀ : Type} [AddCommGroup M₀] [Module ℂ M₀] {ι : Type} [Fintype ι] {M : ι → Type}
     [∀ i, AddCommGroup (M i)] [∀ i, Module ℂ (M i)] (t : M₀ ⊗[ℂ] (⨂[ℂ] i, M i)) :
     ∃ (m : ℕ) (f : Fin m → M₀) (φ : Fin m → ∀ i, M i), t = ∑ j, f j ⊗ₜ[ℂ] PiTensorProduct.tprod ℂ (φ j) := by
-  apply GlobalTheory.HoweGlobal.decomp <;> assumption
+  apply GlobalTheory.HoweGlobal.decomp
 
 theorem det_ne_sig_map {E : Type} [Field E] {n r s : ℕ} {J : Matrix (Fin n) (Fin n) E} (τ : E →+* ℂ) (c : ℂ)
     (h : HasSig (c • J.map τ) r s) : J.det ≠ 0 := by

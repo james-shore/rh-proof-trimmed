@@ -177,7 +177,6 @@ theorem norm_of_inverse : C2.NormInv := by
   have hright : g * g⁻¹ = 1 := by
     rw [hinv]
     first
-    | exact Matrix.mul_eq_one_comm.mp hleft
     | exact mul_eq_one_comm.mp hleft
   have hsum : ∑ i, ∑ j, Complex.normSq (g⁻¹ i j) = ∑ i, ∑ j, Complex.normSq (g i j) := by
     have he : ∀ i j, Complex.normSq (g⁻¹ i j) =

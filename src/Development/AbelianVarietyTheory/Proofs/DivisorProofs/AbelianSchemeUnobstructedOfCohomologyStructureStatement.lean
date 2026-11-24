@@ -1176,7 +1176,7 @@ attribute [local instance] Over.cartesianMonoidalCategory
 namespace GlobalTheory.SqZeroBC
 
 theorem preimage_surj : ∀ (R₀ R₁ : Type) [CommRing R₀] [CommRing R₁] [Algebra R₀ R₁] (q : R₁ →ₐ[R₀] R₀), (∀ y y', q y = 0 → q y' = 0 → y * y' = 0) → ∀ (X₀ X₁ : Scheme.{0}) (s₀ : X₀ ⟶ Sp R₀) (s₁ : X₁ ⟶ Sp R₁) (pr : X₁ ⟶ X₀), IsPullback pr s₁ s₀ (spMap (algebraMap R₀ R₁)) → ∀ U : X₁.Opens, ∃ V : X₀.Opens, pr ⁻¹ᵁ V = U := by
-  apply GlobalTheory.LiftSys.exists_opens_preimage_eq_of_sqZero_aug <;> assumption
+  apply GlobalTheory.LiftSys.exists_opens_preimage_eq_of_sqZero_aug
 
 end GlobalTheory.SqZeroBC
 end -- clump:auto

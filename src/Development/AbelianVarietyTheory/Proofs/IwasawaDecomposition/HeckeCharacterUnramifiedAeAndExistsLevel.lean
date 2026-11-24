@@ -60,7 +60,7 @@ namespace GlobalTheory.Mem.UnrAe
 variable {L : Type} [Field L] [NumberField L]
 
 theorem continuous_finSingle (v : HeightOneSpectrum (𝓞 L)) : Continuous (Neutral.B1.finiteSingle L v) := by
-  apply GlobalTheory.CompanionTheory.InertOpen.continuous_finiteSingle <;> assumption
+  apply GlobalTheory.CompanionTheory.InertOpen.continuous_finiteSingle
 
 theorem continuous_localIdele (v : HeightOneSpectrum (𝓞 L)) : Continuous (localIdele L v) := by
   apply Continuous.units_map

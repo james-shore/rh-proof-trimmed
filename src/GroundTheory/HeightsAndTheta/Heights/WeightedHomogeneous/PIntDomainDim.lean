@@ -194,7 +194,7 @@ open scoped TensorProduct
 noncomputable section
 
 theorem isJacobsonRing_int : IsJacobsonRing ℤ := by
-  apply GroundTheory.Heights₂.Heights.int_isJacobsonRing <;> assumption
+  apply GroundTheory.Heights₂.Heights.int_isJacobsonRing
 
 theorem ringKrullDim_le_add_one_of_quotient_le {B : Type} [CommRing B] [IsDomain B] (n : ℕ∞)
     (h : ∀ Q : Ideal B, Q.IsPrime → Q ≠ ⊥ → ringKrullDim (B ⧸ Q) ≤ n) :

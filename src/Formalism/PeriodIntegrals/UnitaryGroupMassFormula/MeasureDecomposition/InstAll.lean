@@ -201,14 +201,6 @@ private theorem exists_unitary_diagonal_of_isHermitian {n : ℕ} (X : Matrix (Fi
   first
     | (conv_lhs => rw [hX.spectral_theorem]); simp [Function.comp_def]
     | (conv_lhs => rw [hX.spectral_theorem]); simp [Function.comp_def, Unitary.conjStarAlgAut_apply]
-    | (have h3 := hX.star_mul_self_mul_eq_diagonal
-       calc X = (hX.eigenvectorUnitary : Matrix (Fin n) (Fin n) ℂ) *
-              (star (hX.eigenvectorUnitary : Matrix (Fin n) (Fin n) ℂ) * X *
-                (hX.eigenvectorUnitary : Matrix (Fin n) (Fin n) ℂ)) *
-              star (hX.eigenvectorUnitary : Matrix (Fin n) (Fin n) ℂ) := by
-             simp only [← Matrix.mul_assoc, h2, Matrix.one_mul]
-             rw [Matrix.mul_assoc, h2, Matrix.mul_one]
-         _ = _ := by rw [h3]; simp [Function.comp_def])
 
 theorem exponent_fixed_instance : InstExpFix := by
   intro n X hX w
@@ -223,8 +215,7 @@ theorem exponent_fixed_instance : InstExpFix := by
       congr 1
       funext i
       first
-        | exact Pi.exp_apply _ _
-        | simp [Pi.exp_def]
+        | simp
     first
       | rw [Matrix.exp_conj _ _ hunit, hd]
   have inj : ∀ a b : Fin n → ℂ, U *ᵥ a = U *ᵥ b → a = b := by

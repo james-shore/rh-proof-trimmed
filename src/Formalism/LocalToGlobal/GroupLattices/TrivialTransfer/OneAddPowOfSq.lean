@@ -182,7 +182,7 @@ theorem unip_coprime (I : Ideal R) (hinf : (⨅ m : ℕ, I ^ m) = ⊥) (g : ℕ)
 
 theorem closure_upperUni (A : Type) [CommRing A] (x : GL (Fin k) A) (hx : x ∈ Subgroup.closure (upperUni k A)) :
     x ∈ upperUni k A := by
-  first | (apply UpperTheory.Reformulated.B.Qe27.closure_upperUni <;> assumption) | exact @UpperTheory.Reformulated.B.Qe27.closure_upperUni k A ‹_› x hx | exact @UpperTheory.Reformulated.B.Qe27.closure_upperUni k A ‹_› x | exact @UpperTheory.Reformulated.B.Qe27.closure_upperUni k A ‹_› | exact @UpperTheory.Reformulated.B.Qe27.closure_upperUni k A | exact @UpperTheory.Reformulated.B.Qe27.closure_upperUni k
+  first | (apply UpperTheory.Reformulated.B.Qe27.closure_upperUni <;> assumption)
 
 end Ring
 

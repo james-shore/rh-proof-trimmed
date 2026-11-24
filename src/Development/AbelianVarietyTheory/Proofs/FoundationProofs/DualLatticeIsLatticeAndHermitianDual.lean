@@ -69,7 +69,7 @@ theorem main {K : Type} [inst : Field K] [NumberField K] {n : ℕ}
     {M : Submodule (NumberField.RingOfIntegers K) (Fin n → K)} {x : Fin n → K} :
     x ∈ Submodule.span K (↑M : Set (Fin n → K)) →
       ∃ (d : NumberField.RingOfIntegers K), d ≠ (0 : NumberField.RingOfIntegers K) ∧ d • x ∈ M := by
-  apply ReciprocityTheory.MultiplicativeHeights.SemiPt.clear_denom <;> assumption
+  apply ReciprocityTheory.MultiplicativeHeights.SemiPt.clear_denom
 
 end GlobalTheory.DeterminantSimpLemma
 end -- clump:auto

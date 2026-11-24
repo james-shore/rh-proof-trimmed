@@ -91,7 +91,7 @@ namespace GlobalTheory.CompanionTheory.Ar.RT.Inj.Rank
 
 theorem countable_compactOpen (X : Type) [TopologicalSpace X] [SecondCountableTopology X] :
     {U : Set X | IsOpen U ∧ IsCompact U}.Countable := by
-  apply GlobalTheory.ThK.Dbl.Prs.countable_compactOpen <;> assumption
+  apply GlobalTheory.ThK.Dbl.Prs.countable_compactOpen
 
 theorem mem_span_indicator {X : Type} [TopologicalSpace X] {f : X → ℂ}
     (hf : f ∈ GlobalTheory.WeilM.SB X) :

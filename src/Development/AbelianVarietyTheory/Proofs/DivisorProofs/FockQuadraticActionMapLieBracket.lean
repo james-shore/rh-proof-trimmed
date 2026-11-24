@@ -57,7 +57,7 @@ namespace GlobalTheory
 
 theorem pderiv_pderiv_comm_fock {σ : Type} (i j : σ) (P : MvPolynomial σ ℂ) :
     pderiv i (pderiv j P) = pderiv j (pderiv i P) := by
-  apply GlobalTheory.FockCasimir.pderiv_pderiv_comm <;> assumption
+  apply GlobalTheory.FockCasimir.pderiv_pderiv_comm
 
 theorem fock_letters_ccr (p q r s : ℕ) (l m : Ln p q r s) :
     (lowB l * raiB m - raiB m * lowB l = if l = m then (1 : Module.End ℂ (Pol p q r s)) else 0) ∧

@@ -72,7 +72,7 @@ theorem algebraMap_eq_pairA (x : F) :
   rfl
 
 theorem denseRange_fin : DenseRange (algebraMap F (Af F)) := by
-  apply GlobalTheory.CompanionTheory.AdeleCharLocal.denseRange_fin <;> assumption
+  apply GlobalTheory.CompanionTheory.AdeleCharLocal.denseRange_fin
 
 theorem ext_of_inf {ψ ψ' : AF F → ℂ} (hc : Continuous ψ) (hc' : Continuous ψ')
     (ha : ∀ x y, ψ (x + y) = ψ x * ψ y) (ha' : ∀ x y, ψ' (x + y) = ψ' x * ψ' y)

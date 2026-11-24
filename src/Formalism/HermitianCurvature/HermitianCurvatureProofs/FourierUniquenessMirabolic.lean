@@ -113,7 +113,7 @@ theorem wM_redOf (m : ℕ) (t ρ₁ : ℂ) (p : XY m) :
     wMat (m + 2) * Mcoord t (strictUpper (redOf m p).2.2.1) (redOf m p).2.2.2
         (Fin.cons ρ₁ (redOf m p).2.1) (redOf m p).1 =
       t • subShift (m + 2) + Matrix.diagonal (Fin.cons ρ₁ p.1 : Fin (m + 2) → ℂ) + strictUpper p.2 := by
-  apply Formalism.FourierDecayAlt.P.WeakApproximationGL.matrix_redOf <;> assumption
+  apply Formalism.FourierDecayAlt.P.WeakApproximationGL.matrix_redOf
 
 end Formalism.FourierDecayAlt.P.FourierUniquenessMirabolic
 

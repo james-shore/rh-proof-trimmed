@@ -142,7 +142,6 @@ theorem tri_exists {q : ℕ} (hp : q.Prime) (δ : Matrix (Fin 2) (Fin 2) ℤ) (h
     ∃ (γ : SL(2, ℤ)) (y : Option (Fin q)), δ = γ.1 * tri q y := by
   first
   | (apply _root_.GlobalTheory.DetZeroFactorization.main <;> assumption)
-  | (intros; exact _root_.GlobalTheory.DetZeroFactorization.main ..)
 
 def rep (q : ℕ) (w : SL(2, ℤ)) : Option (Fin q) → Matrix (Fin 2) (Fin 2) ℤ
   | none => w.1 * tri q none

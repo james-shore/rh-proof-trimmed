@@ -921,9 +921,6 @@ theorem fix_tuple {V : Type*} [AddCommGroup V] [Module K V] [FiniteDimensional K
   have hfsurj : Function.Surjective f := by
     first
     | exact (LinearMap.injective_iff_surjective_of_finrank_eq_finrank hTdim).mp hfinj
-    | exact LinearMap.range_eq_top.mp
-        ((LinearMap.ker_eq_bot_iff_range_eq_top_of_finrank_eq_finrank hTdim).mp
-          (LinearMap.ker_eq_bot.mpr hfinj))
   let eT : T ≃ₗ[K] (Fin a → K) := LinearEquiv.ofBijective f ⟨hfinj, hfsurj⟩
   let s : (Fin a → K) →ₗ[K] V := T.subtype ∘ₗ eT.symm.toLinearMap
   have hs : ∀ t, Ψ (s t) = t := by

@@ -223,8 +223,7 @@ theorem gram_independent_signature' : C2.GramIndependentSignature := by
     rw [← hgram, hGB]
     have e : star c ⬝ᵥ (Matrix.fromBlocks (C2.Adiag k r z) (Zhat k r z z' γ) (Zhat k r z z' γ)ᴴ (C2.Adiag k r z') *ᵥ c) =
         ∑ a, star (c (Sum.inl a)) * (((if a = Fin.last r then -(Tz k r z) else 0 : ℝ) : ℂ) * c (Sum.inl a)) := by
-      simp only [dotProduct, Matrix.mulVec, Fintype.sum_sum_type, Matrix.fromBlocks_apply₁₁, Matrix.fromBlocks_apply₁₂,
-        Matrix.fromBlocks_apply₂₁, Matrix.fromBlocks_apply₂₂, hc', mul_zero, Finset.sum_const_zero, add_zero,
+      simp only [dotProduct, Matrix.mulVec, Fintype.sum_sum_type, Matrix.fromBlocks_apply₁₁, Matrix.fromBlocks_apply₂₁, hc', mul_zero, Finset.sum_const_zero, add_zero,
         Pi.star_apply, star_zero, zero_mul, C2.Adiag, Matrix.diagonal_apply]
       apply Finset.sum_congr rfl
       intro a _
@@ -277,7 +276,7 @@ theorem gram_independent_signature' : C2.GramIndependentSignature := by
     set x := (V * Q) *ᵥ ct + t • v with hxd
     have hx : L w = phiL k r x := by
       simp only [L, x, ct, c, t, emb, LinearMap.comp_apply, LinearMap.add_apply, Matrix.mulVecLin_apply,
-        LinearMap.funLeft_apply, LinearMap.coe_mk, AddHom.coe_mk, LinearMap.smulRight_apply, LinearMap.proj_apply]
+        LinearMap.coe_mk, AddHom.coe_mk, LinearMap.smulRight_apply, LinearMap.proj_apply]
       rfl
     have hLx : phiL k r x = 0 := by rw [← hx]; exact hw
     have hfix := Hpk_fix_of_phi x hLx

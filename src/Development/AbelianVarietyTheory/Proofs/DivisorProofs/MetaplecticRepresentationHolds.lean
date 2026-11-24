@@ -134,7 +134,7 @@ theorem IsSiegel.neg_mul_inv_of_symplectic (l : Type) [Fintype l] [DecidableEq l
     have e : Pᴴ * (τ - τᴴ) * P = (2 * I) • (1 : Matrix l l ℂ) := by
       rw [Matrix.mul_sub, Matrix.sub_mul, Matrix.mul_assoc, hτP, hQP]
       rw [Matrix.mul_neg, Matrix.neg_mul]
-      linear_combination (norm := (match_scalars <;> ring_nf <;> (try simp only [I_sq]))) -key
+      linear_combination (norm := (match_scalars <;> ring_nf)) -key
     rw [hdiff, Matrix.mul_smul, Matrix.smul_mul] at e
     exact smul_right_injective _ (by simp [I_ne_zero] : (2 * I) ≠ 0) e
   have e1 : (P⁻¹)ᴴ * Pᴴ = 1 := by rw [← conjTranspose_mul, mul_nonsing_inv _ hu, conjTranspose_one]

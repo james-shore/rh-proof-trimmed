@@ -78,7 +78,7 @@ theorem cokPO_transfer {A' B' Q' A B Q : C} (f' : A' ⟶ B') (l' r' : B' ⟶ Q')
   have e : cokernel.map f' r' f' l' h'.w.symm ≫ cokernel.map r' r b m wr.symm =
       cokernel.map f' f a b w.symm ≫ cokernel.map f r f l h.w.symm := by
     ext
-    simp [Category.assoc, wl]
+    simp [Category.assoc]
     simpa only [Category.assoc] using congrArg (fun k => k ≫ cokernel.π r) wl
   have : cokernel.map r' r b m wr.symm = inv (cokernel.map f' r' f' l' h'.w.symm) ≫
       (cokernel.map f' f a b w.symm ≫ cokernel.map f r f l h.w.symm) := by rw [← e]; simp

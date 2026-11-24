@@ -978,7 +978,7 @@ theorem exists_type_surj : ∀ (E : Type) [Field E] [NumberField E] (w : HeightO
       ((hu.unit⁻¹ : (w.adicCompletionIntegers E)ˣ) : w.adicCompletionIntegers E) • vecMulVec wv f
     have hxx : x * x = 0 := by
       simp only [x, Matrix.smul_mul, Matrix.mul_smul, vecMulVec_mul_vecMulVec, hfw, zero_smul]
-      ext i j; simp [vecMulVec_apply]
+      ext i j; simp
     have hyy : (((l : w.adicCompletionIntegers E) ^ m) • x) * (((l : w.adicCompletionIntegers E) ^ m) • x) = 0 := by
       rw [Matrix.smul_mul, Matrix.mul_smul, hxx, smul_zero, smul_zero]
     let h₀ : GL (Fin a) (w.adicCompletionIntegers E) :=
@@ -1039,7 +1039,7 @@ theorem exists_type_surj : ∀ (E : Type) [Field E] [NumberField E] (w : HeightO
       ((hu.unit⁻¹ : (w.adicCompletionIntegers E)ˣ) : w.adicCompletionIntegers E) • vecMulVec wv f
     have hxx : x * x = 0 := by
       simp only [x, Matrix.smul_mul, Matrix.mul_smul, vecMulVec_mul_vecMulVec, hfw, zero_smul]
-      ext i j; simp [vecMulVec_apply]
+      ext i j; simp
     have hyy : (((l : w.adicCompletionIntegers E) ^ m) • x) * (((l : w.adicCompletionIntegers E) ^ m) • x) = 0 := by
       rw [Matrix.smul_mul, Matrix.mul_smul, hxx, smul_zero, smul_zero]
     let h₀ : GL (Fin a) (w.adicCompletionIntegers E) :=

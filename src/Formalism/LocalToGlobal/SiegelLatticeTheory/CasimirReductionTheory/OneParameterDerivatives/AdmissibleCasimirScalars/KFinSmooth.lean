@@ -920,7 +920,7 @@ theorem wt_le (p : Fin n × Fin n) : wt p ≤ 1 := by
   split_ifs <;> norm_num
 
 theorem gen_mem (ε : Fin n → Bool) (p : Fin n × Fin n) : inG ε (gen ε p) := by
-  apply Formalism.L2.SG.Pf.admitted.AdmissibleVectors.inG_gen <;> assumption
+  apply Formalism.L2.SG.Pf.admitted.AdmissibleVectors.inG_gen
 
 variable {ε : Fin n → Bool} {H : Type} [NormedAddCommGroup H] [InnerProductSpace ℂ H]
   {σ : Matrix (Fin n) (Fin n) ℂ → (H →L[ℂ] H)} {D : Submodule ℂ H}

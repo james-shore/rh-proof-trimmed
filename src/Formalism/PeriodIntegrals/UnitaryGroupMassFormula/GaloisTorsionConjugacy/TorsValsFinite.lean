@@ -545,7 +545,7 @@ namespace PI.GalTorsConj.W
 open PI.GalTorsConj Filter Topology
 
 theorem wp_onto (L : PeriodPair) (x : ℂ) : ∃ z, z ∉ L.lattice ∧ L.weierstrassP z = x := by
-  apply GlobalTheory.exists_weierstrassP_eq <;> assumption
+  apply GlobalTheory.exists_weierstrassP_eq
 
 theorem pOnto : POnto := by
   intro L x y hxy

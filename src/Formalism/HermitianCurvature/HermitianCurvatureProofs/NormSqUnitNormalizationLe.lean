@@ -406,7 +406,6 @@ theorem coefficient_growth_le_power (n r : ℕ) (b H CH C₃ : ℝ) (hb : 2 ≤ 
   have hpow : (2 * (n : ℝ) ^ (3 / 2 : ℝ) * H) ^ (r + 1) ≤ (b ^ ((5 / 2 : ℝ) + CH * (2 * (r : ℝ) + 2))) ^ (r + 1) := by
     first
       | exact pow_le_pow_left₀ hX0 hX (r + 1)
-      | exact pow_le_pow_left hX0 hX (r + 1)
   refine hpow.trans ?_
   rw [← Real.rpow_natCast, ← Real.rpow_mul hb0.le]
   apply Real.rpow_le_rpow_of_exponent_le hb1

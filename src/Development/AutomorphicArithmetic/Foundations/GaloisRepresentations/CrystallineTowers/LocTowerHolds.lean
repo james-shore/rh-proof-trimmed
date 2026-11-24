@@ -524,8 +524,7 @@ private theorem core {Q L : Type*} [Field Q] [Field L] [Algebra Q L] {V : ℤ �
         have := congrFun hcz ⟨n, i⟩
         simp only [Matrix.mulVec, dotProduct, Pi.zero_apply] at this
 
-        simp only [map_sum, map_smul, map_zero, Finset.sum_apply', Finsupp.smul_apply, Finsupp.coe_smul,
-        Pi.smul_apply, smul_eq_mul, Finsupp.coe_zero, Pi.zero_apply]
+        simp only [map_sum, map_smul, map_zero, Finset.sum_apply', Finsupp.smul_apply, smul_eq_mul, Finsupp.coe_zero, Pi.zero_apply]
         rw [← this]
         exact Finset.sum_congr rfl fun j _ => mul_comm _ _
       · simp [hbig _ m hN]
@@ -550,8 +549,7 @@ private theorem core {Q L : Type*} [Field Q] [Field L] [Algebra Q L] {V : ℤ �
       simp only [map_smul]
     rw [h2] at h1
 
-    simp only [map_sum, map_smul, Finset.sum_apply', Finsupp.smul_apply, Finsupp.coe_smul,
-    Pi.smul_apply, smul_eq_mul] at h1
+    simp only [map_sum, map_smul, Finset.sum_apply', Finsupp.smul_apply, smul_eq_mul] at h1
     rw [Matrix.mul_apply, Matrix.mul_apply, Fintype.sum_sigma, Finset.sum_eq_single n]
     · simp only [Matrix.map_apply, Matrix.blockDiagonal'_apply_eq]
       rw [← h1]

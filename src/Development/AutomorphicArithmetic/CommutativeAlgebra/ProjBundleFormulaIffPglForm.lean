@@ -60,7 +60,7 @@ open CategoryTheory Limits AlgebraicGeometry Opposite CochainComplex CochainComp
 theorem UpperTheory.simplices_pullback_existsUnique_of_map_eq :
     ∀ {A B C : Spc} (r : A ⟶ C) (u : B ⟶ C) (k : ℕ) (T : Scheme.{0}) (x : Sx A k T) (y : Sx B k T), x.map r = y.map u →
         ∃! z : Sx (pullback r u) k T, z.map (pullback.fst r u) = x ∧ z.map (pullback.snd r u) = y := by
-  apply UpperTheory.existsUnique_simplex_pullback_of_map_eq <;> assumption
+  apply UpperTheory.existsUnique_simplex_pullback_of_map_eq
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AutomorphicArithmetic.CommutativeAlgebra.SimplicesPullbackExistsUniqueOfMapEq =====

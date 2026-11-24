@@ -1429,7 +1429,7 @@ theorem lone_K_mem (c : K) (a : ℤ) (ha : a ≤ 0) : algebraMap K BdR c ∈ PD.
 
 include PD in
 theorem lone_one_notMem : (1 : BdR) ∉ PD.Fil 1 := by
-  apply PI.HodgeOfFon.W.Triv.one_not_mem_fil_one <;> assumption
+  apply PI.HodgeOfFon.W.Triv.one_not_mem_fil_one
 
 
 include PD in

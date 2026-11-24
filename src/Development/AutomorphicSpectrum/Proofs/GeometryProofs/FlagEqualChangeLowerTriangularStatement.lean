@@ -74,7 +74,7 @@ noncomputable section
 namespace GlobalTheory.CompanionTheory.Ar.Rec.FinRd.Roots.FlagTri
 
 theorem independent_and_triangular : ∀ (Ω : Type) [Field Ω] (L : Type) [AddCommGroup L] [Module Ω L] (r : ℕ) (b b₀ : Fin r → L) (Tm : Matrix (Fin r) (Fin r) Ω), LinearIndependent Ω b → (∀ i : ℕ, flagStep Ω b i = flagStep Ω b₀ i) → (∀ i, b i = ∑ j, Tm i j • b₀ j) → LinearIndependent Ω b₀ ∧ ∀ i j, i < j → Tm i j = 0 := by
-  apply GlobalTheory.CompanionTheory.Ar.Rec.FinRd.Roots.RootUnit.flag_change <;> assumption
+  apply GlobalTheory.CompanionTheory.Ar.Rec.FinRd.Roots.RootUnit.flag_change
 
 end GlobalTheory.CompanionTheory.Ar.Rec.FinRd.Roots.FlagTri
 end -- clump:auto

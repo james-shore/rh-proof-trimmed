@@ -77,7 +77,7 @@ lemma length_quot_eq_addVal_det {ι : Type} [Fintype ι] [DecidableEq ι]
     (N : Submodule O (ι → O)) (e : (ι → O) ≃ₗ[O] N) :
     Module.length O ((ι → O) ⧸ N) =
       addVal O (LinearMap.det (N.subtype ∘ₗ (e : (ι → O) →ₗ[O] N))) := by
-  first | exact Bl.AddValuationProducts.goal1 .. | exact @Bl.AddValuationProducts.goal1 O ‹_› ‹_› ‹_› ι ‹_› ‹_› N e | exact @Bl.AddValuationProducts.goal1 O ‹_› ‹_› ‹_› ι ‹_› ‹_› N | exact @Bl.AddValuationProducts.goal1 O ‹_› ‹_› ‹_› ι ‹_› ‹_› | exact @Bl.AddValuationProducts.goal1 O ‹_› ‹_› ‹_› ι ‹_› | exact @Bl.AddValuationProducts.goal1 O ‹_› ‹_› ‹_› ι | exact @Bl.AddValuationProducts.goal1 O ‹_› ‹_› ‹_› | exact @Bl.AddValuationProducts.goal1 O ‹_› ‹_› | exact @Bl.AddValuationProducts.goal1 O ‹_› | exact @Bl.AddValuationProducts.goal1 O
+  first | exact Bl.AddValuationProducts.goal1 ..
 
 lemma mk_eq_zero_iff (y : FractionRing O) :
     (Submodule.Quotient.mk y : KO O) = 0 ↔ ∃ x : O, algebraMap O (FractionRing O) x = y := by

@@ -1079,7 +1079,7 @@ namespace GlobalTheory.PrimeDvdNatCastMem
 
 theorem exists_prime_dvd_natCast_mem {O : Type} [CommRing O] (P : Ideal O) [hP : Ideal.IsPrime P]
     (m : ℕ) : m ≠ (0 : ℕ) → (↑m : O) ∈ P → ∃ (p : ℕ), Nat.Prime p ∧ p ∣ m ∧ (↑p : O) ∈ P := by
-  apply LevelTowerAlt.LocalPrimeBound.exists_prime_mem <;> assumption
+  apply LevelTowerAlt.LocalPrimeBound.exists_prime_mem
 
 end GlobalTheory.PrimeDvdNatCastMem
 end -- clump:auto

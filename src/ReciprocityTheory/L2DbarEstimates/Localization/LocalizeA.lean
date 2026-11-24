@@ -85,8 +85,6 @@ theorem loc_d_congr {M : Type*} [TopologicalSpace M] (n : ℕ) (z : M → V n)
     have ht : Tendsto e.symm (𝓝 (e x)) (𝓝 x) := by
       first
       | exact e.tendsto_symm he.2
-      | (have hc' : Tendsto e.symm (𝓝 (e x)) (𝓝 (e.symm (e x))) := e.continuousAt_symm (e.map_source he.2)
-         rwa [e.left_inv he.2] at hc')
     have hfg : f ∘ e.symm =ᶠ[𝓝 (z x)] g ∘ e.symm := by
       rw [hzx]
       exact ht.eventually h
@@ -105,8 +103,6 @@ theorem loc_db_congr {M : Type*} [TopologicalSpace M] (n : ℕ) (z : M → V n)
     have ht : Tendsto e.symm (𝓝 (e x)) (𝓝 x) := by
       first
       | exact e.tendsto_symm he.2
-      | (have hc' : Tendsto e.symm (𝓝 (e x)) (𝓝 (e.symm (e x))) := e.continuousAt_symm (e.map_source he.2)
-         rwa [e.left_inv he.2] at hc')
     have hfg : f ∘ e.symm =ᶠ[𝓝 (z x)] g ∘ e.symm := by
       rw [hzx]
       exact ht.eventually h

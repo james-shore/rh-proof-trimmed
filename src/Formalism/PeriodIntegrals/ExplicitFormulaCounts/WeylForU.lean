@@ -83,7 +83,7 @@ open Finset PI.UpqRep Formalism.BasicNotions
 theorem denom_range (n : ℕ) :
     ∏ i ∈ range n, ∏ j ∈ Ico (i + 1) n, ((j : ℝ) - (i : ℝ)) =
       ∏ i ∈ range n, ((i.factorial : ℕ) : ℝ) := by
-  apply PI.WeylProdWork.denom_eq <;> assumption
+  apply PI.WeylProdWork.denom_eq
 
 theorem row_fin (n : ℕ) (a : Fin n) :
     ∏ b ∈ univ.filter (fun b : Fin n => a < b), (((b : ℕ) : ℝ) - ((a : ℕ) : ℝ)) =

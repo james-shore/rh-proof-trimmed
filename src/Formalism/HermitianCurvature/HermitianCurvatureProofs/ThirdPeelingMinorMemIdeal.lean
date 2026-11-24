@@ -210,11 +210,11 @@ theorem second_peeling_identity : PeelingCovector := by
       · simp only [dpsi_e_w k (m + 1) z' l.val (by omega), last_iff]
         by_cases hl : l.val = m
         · have e : l.val + 1 = m + 1 := by omega
-          simp only [e, if_true, hl]
+          simp only [if_true, hl]
           rw [herm_wsum k (m + 1) z' yb hz']
           congr 1; ext w; ring
         · have e : ¬ (l.val + 1 = m + 1) := by omega
-          simp [e, hl])
+          simp [hl])
   have hc : ((fun l : Fin (m + 1) => pe k (m + 1) l.val) ∘ Fin.castSucc) = fun l : Fin m => pe k (m + 1) l.val := by
     funext l; simp
   rw [hc] at step

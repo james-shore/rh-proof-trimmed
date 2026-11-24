@@ -104,14 +104,14 @@ theorem gf_smul_left (r : ℂ) (p q : MvPolynomial τ ℂ) : gf w (r • p) q = 
   rw [gf_eq w (p.support ∪ q.support) ((MvPolynomial.support_smul).trans Finset.subset_union_left) Finset.subset_union_right,
     gf_eq w (p.support ∪ q.support) Finset.subset_union_left Finset.subset_union_right, Finset.mul_sum]
   refine Finset.sum_congr rfl fun s _ => ?_
-  simp [MvPolynomial.coeff_smul, star_mul]; ring
+  simp [star_mul]; ring
 
 theorem gf_smul_right (r : ℂ) (p q : MvPolynomial τ ℂ) : gf w p (r • q) = r * gf w p q := by
   classical
   rw [gf_eq w (p.support ∪ q.support) Finset.subset_union_left ((MvPolynomial.support_smul).trans Finset.subset_union_right),
     gf_eq w (p.support ∪ q.support) Finset.subset_union_left Finset.subset_union_right, Finset.mul_sum]
   refine Finset.sum_congr rfl fun s _ => ?_
-  simp [MvPolynomial.coeff_smul]; ring
+  simp; ring
 
 theorem gf_neg_left (p q : MvPolynomial τ ℂ) : gf w (-p) q = -gf w p q := by
   rw [show -p = (-1 : ℂ) • p by simp, gf_smul_left]; simp

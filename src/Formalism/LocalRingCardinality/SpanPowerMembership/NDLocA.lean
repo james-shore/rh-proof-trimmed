@@ -64,7 +64,7 @@ variable (l : ℕ) [hl : Fact l.Prime]
 
 theorem denseRange_emb {Ω : Type} [Field Ω] [IsAlgClosed Ω] (j : Ω →+* PadicAlgCl l) :
     DenseRange j := by
-  apply GlobalTheory.denseRange_of_isAlgClosed_padicAlgCl <;> assumption
+  apply GlobalTheory.denseRange_of_isAlgClosed_padicAlgCl
 
 def ball : ValuationSubring (PadicAlgCl l) :=
   (Valued.v : Valuation (PadicAlgCl l) NNReal).valuationSubring

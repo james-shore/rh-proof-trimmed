@@ -314,7 +314,6 @@ lemma span_fixed_integral_real_parts : Submodule.span ℝ {p : X.Ψ → ℝ | �
   have hcc : ∀ φ : E →+* ℂ, ComplexEmbedding.conjugate (ComplexEmbedding.conjugate φ) = φ := by
     intro φ
     first
-    | exact ComplexEmbedding.conjugate_conjugate φ
     | exact star_star φ
   have hFinj : Function.Injective
       (Sum.elim (fun τ : X.Ψ => τ.1) (fun τ : X.Ψ => ComplexEmbedding.conjugate τ.1)) := by

@@ -57,7 +57,7 @@ namespace GlobalTheory.LocalStage
 
 theorem mem_originIdeal_iff {T : Type} [CommRing T] [IsLocalRing T] (f : Polynomial T) :
     f ∈ GlobalTheory.KeyOriginCut.originIdeal T ↔ f.coeff 0 ∈ maximalIdeal T := by
-  apply GlobalTheory.VertUnitsNoeth.mem_originIdeal_iff' <;> assumption
+  apply GlobalTheory.VertUnitsNoeth.mem_originIdeal_iff'
 
 theorem comap_originIdeal {R S : Type} [CommRing R] [IsLocalRing R] [CommRing S] [IsLocalRing S]
     (φ : R →+* S) [IsLocalHom φ] :

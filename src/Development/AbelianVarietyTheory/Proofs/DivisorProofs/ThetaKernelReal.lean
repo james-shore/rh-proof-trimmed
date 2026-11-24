@@ -111,7 +111,7 @@ theorem at_algebraMap_sgnAd_sub_one (w : InfinitePlace F) :
 end SignAdele
 
 theorem even_im_hermitian_sub : Parity := by
-  apply PositivityTheory.RL.even_im_hermitian_sub <;> assumption
+  apply PositivityTheory.RL.even_im_hermitian_sub
 end GlobalTheory.RealLift
 end -- clump:auto
 end -- clump:auto

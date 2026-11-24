@@ -85,7 +85,7 @@ theorem exists_dual (R : RiemLat E g Λ) (i : Fin (2 * g)) :
   simp [Module.Basis.coord_apply, Finsupp.single_apply]
 
 theorem perExt_injective (R : RiemLat E g Λ) : Function.Injective (C.perExt R) := by
-  apply GlobalTheory.CompanionTheory.Ar.Cusp.Dict.Change.perExt_injective <;> assumption
+  apply GlobalTheory.CompanionTheory.Ar.Cusp.Dict.Change.perExt_injective
 
 theorem perExt_bijective (R : RiemLat E g Λ) : Function.Bijective (C.perExt R) := by
   have hd : Module.finrank ℝ (Ψ → Fin (j + j') → ℂ) = Module.finrank ℝ (Fin g → ℂ) := by

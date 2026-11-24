@@ -83,7 +83,7 @@ attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem fderiv_star_star_zero {g : ℕ} (F : (Fin g → ℂ) → ℂ) (w : Fin g → ℂ) :
     fderiv ℂ (star ∘ F ∘ star) 0 (star w) = star (fderiv ℂ F 0 w) := by
-  apply _root_.GlobalTheory.CompanionTheory.Ar.Flat.ConjExp.fderiv_conj_zero <;> assumption
+  apply _root_.GlobalTheory.CompanionTheory.Ar.Flat.ConjExp.fderiv_conj_zero
 
 variable {A A' : Over (Sp ℂ)} [GrpObj A] [GrpObj A'] {ψ : A'.left ⟶ A.left} (h : IsGrpPullback A' A cj ψ)
 variable {X : Scheme.{0}} {L : LB X} {φ : A.left ⟶ X} {g : ℕ} (u : HolUnif A (L.pull φ) g)

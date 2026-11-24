@@ -169,7 +169,7 @@ theorem _root_.GlobalTheory.T.local_matrix_map_injective : ∀ (F E : Type) [Fie
     IsCMExt F E σ → ∀ (d : ℕ) (J : Matrix (Fin d) (Fin d) E), J.det ≠ 0 →
     ∀ (v : Pl (F := F)) (t : E →ₐ[F] Fv F v) (c : GL (Fin d) (Fv F v)),
     Set.InjOn (locMatD (σ := σ) (J := J) t c) (UDAt σ J (evFin F v)) := by
-  first | exact @GlobalTheory.DblScal.locMatD_injOn | exact GlobalTheory.DblScal.locMatD_injOn | (intros; apply GlobalTheory.DblScal.locMatD_injOn <;> assumption)
+  first | exact @GlobalTheory.DblScal.locMatD_injOn
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LocalMatrixMapInjectiveStatement =====
@@ -189,7 +189,7 @@ theorem _root_.GlobalTheory.T.local_matrix_map_surjective : ∀ (F E : Type) [Fi
     IsCMExt F E σ → ∀ (d : ℕ) (J : Matrix (Fin d) (Fin d) E), J.det ≠ 0 → (∀ i j, σ (J j i) = -J i j) →
     ∀ (v : Pl (F := F)) (t : E →ₐ[F] Fv F v) (c : GL (Fin d) (Fv F v)),
     Set.SurjOn (locMatD (σ := σ) (J := J) t c) (UDAt σ J (evFin F v)) Set.univ := by
-  first | exact @GlobalTheory.DblScal.locMatD_surjOn | exact GlobalTheory.DblScal.locMatD_surjOn | (intros; apply GlobalTheory.DblScal.locMatD_surjOn <;> assumption)
+  first | exact @GlobalTheory.DblScal.locMatD_surjOn
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.LocalMatrixMapSurjectiveStatement =====

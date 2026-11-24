@@ -125,8 +125,6 @@ theorem hC_self_im (v : Fin r → ℂ) : (hermC τ G v v).im = 0 := by
     intro a b
     rw [← hG a b]
     first
-    | exact (NumberField.IsCMField.complexEmbedding_complexConj τ (G a b)).symm
-    | exact (IsCMField.complexEmbedding_complexConj τ (G a b)).symm
     | (simp only [cc]; exact (NumberField.IsCMField.complexEmbedding_complexConj τ (G a b)).symm)
     | (simp [cc])
   have hc : conj (hermC τ G v v) = hermC τ G v v := by

@@ -194,7 +194,7 @@ theorem finrank_tensor (Kf : Type) [Field Kf] (S : Type) [Fintype S] [DecidableE
     (ν : S → Fin n → ℕ) :
     Module.finrank Kf (Formalism.GradedWeylDivisibility.tensorLat Kf Kf fun s => Formalism.GradedWeylDivisibility.dualWeyl Kf k n (ν s)) =
       ∏ s, Module.finrank Kf (Formalism.GradedWeylDivisibility.dualWeyl Kf k n (ν s)) := by
-  apply Formalism.MainNotions.ColumnSystems.Pf.finrank_tensor <;> assumption
+  apply Formalism.MainNotions.ColumnSystems.Pf.finrank_tensor
 
 theorem RS.charZeroO {p n' : ℕ} (R : RS p n') : CharZero R.O := by
   obtain ⟨c, hc⟩ := CharP.exists R.O

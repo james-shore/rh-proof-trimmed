@@ -1047,7 +1047,7 @@ variable {l : ℕ} [Fact l.Prime]
 def cZero (l : ℕ) (m : ℕ) (U : Finset ℤ) : ℕ := 2 + ∑ u ∈ U, (m + padicValInt l u)
 
 theorem finiteDimensional_Ks (K : FinExt l) (s : ℕ) : FiniteDimensional ℚ_[l] ↥(Ks K s) := by
-  apply Formalism.MainNotions.WachCoordinates.Br.fd_Ks <;> assumption
+  apply Formalism.MainNotions.WachCoordinates.Br.fd_Ks
 
 def KsFin (K : FinExt l) (s : ℕ) : FinExt l := ⟨Ks K s, finiteDimensional_Ks K s⟩
 

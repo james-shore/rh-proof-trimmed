@@ -177,7 +177,7 @@ theorem leviProj_Zt (d : ℕ) (t : kˣ) :
   simp only [Zt_val, diagonal_apply, (blk2 d).injective.eq_iff, Sigma.mk.inj_iff, heq_eq_eq, true_and, zd,
     blk_apply]
   fin_cases a
-  · simp [Matrix.GeneralLinearGroup.scalar, Matrix.one_apply, Matrix.diagonal_apply]
+  · simp [Matrix.GeneralLinearGroup.scalar, Matrix.diagonal_apply]
   · simp [Matrix.one_apply]
 
 theorem conj_mem (d : ℕ) (t : kˣ) (ht : valuation k (t : k) ≤ 1) {m : ℕ} {z : GL (Fin (d + d)) k}
@@ -385,7 +385,7 @@ theorem modulus_scalar_block (d : ℕ) (t : kˣ) :
   have hn : ∀ (x : kˣ) (j : ℕ), nabs k (x ^ j) = nabs k x ^ j := by
     intro x j; simp [nabs, map_pow]
   have h1 : nabs k (1 : kˣ) = 1 := by simp [nabs]
-  simp only [Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.head_cons, map_one, h1, _root_.one_zpow, mul_one,
+  simp only [Matrix.cons_val_zero, Matrix.cons_val_one, map_one, h1, _root_.one_zpow, mul_one,
     Matrix.GeneralLinearGroup.det_scalar, Fintype.card_fin, hn, h0, zpow_natCast, ← pow_mul]
 
 
@@ -1371,7 +1371,7 @@ def jacTheta {h N : ℕ} (d : Fin h → ℕ) (hd : ∑ a, d a = N) (hd' : ∑ a,
     refine Submodule.linearMap_qext _ (LinearMap.ext fun v => ?_)
     obtain ⟨u, hu, hm⟩ := leviProj_thetaW_leviEmb (k := k) d hd hd' m
     simp only [LinearMap.comp_apply, Submodule.mkQ_apply, LinearEquiv.coe_coe, MonoidHom.comp_apply, jac, jacU,
-      twist_apply, LinearMap.smul_apply, jacquet_mk, LinearEquiv.map_smul, Submodule.quotEquivOfEq_mk,
+      twist_apply, jacquet_mk, LinearEquiv.map_smul, Submodule.quotEquivOfEq_mk,
       deltaHalf_thetaL, MonoidHom.inv_apply]
     congr 1
     rw [hm, map_mul, Module.End.mul_apply]

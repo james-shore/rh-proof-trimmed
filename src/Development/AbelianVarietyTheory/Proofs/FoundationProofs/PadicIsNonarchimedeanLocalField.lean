@@ -279,7 +279,7 @@ theorem ratCircle_eq_zero {x : AddCircle (1 : ℚ)} (h : ratCircle x = 0) : x = 
 
 variable (k) in
 theorem exists_hasConductor_one : ∃ ψ : AddChar k Circle, HasConductor ψ 1 := by
-  apply GlobalTheory.SplitWeil.Model.exists_hasConductor <;> assumption
+  apply GlobalTheory.SplitWeil.Model.exists_hasConductor
 
 variable {ψ : AddChar k Circle} {c : kˣ}
 

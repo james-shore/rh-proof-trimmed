@@ -82,7 +82,7 @@ theorem theta_lint : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [Numbe
   simp only [lintegral_map hΦ (hm _)]
 
 theorem theta_int : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] (σ : E →ₐ[F] E), IsCMExt F E σ → ∀ (M : ℕ) (J : Matrix (Fin M) (Fin M) E), IsHermND σ J → ∀ (μ : Measure (HA (AF F) σ J)) (𝓕 : Set (HA (AF F) σ J)), IsHaarH F E σ M J μ → IsFDH F E σ M J μ 𝓕 → ∀ (n : ℕ) (S : Set (Fin n → Fin M → E)) (Φ : (Fin n → Fin M → AF F ⊗[F] E) → ℂ), Measurable Φ → Integrable Φ (thetaMeas σ J μ 𝓕 S) → meanC μ 𝓕 (thetaS F E σ M J Φ S) = ∫ X, Φ X ∂(thetaMeas σ J μ 𝓕 S) := by
-  apply CompanionTheory.PlacePermOperatorBicommutantSpan.theta_int <;> assumption
+  apply CompanionTheory.PlacePermOperatorBicommutantSpan.theta_int
 
 theorem act_rat {F E : Type} [Field F] [NumberField F] [Field E] [Algebra F E] {σ : E →ₐ[F] E} {M n : ℕ}
     {J : Matrix (Fin M) (Fin M) E} (γ : HFinIn (AF F) σ J) (X : Fin n → Fin M → E) :
@@ -94,6 +94,6 @@ theorem act_rat {F E : Type} [Field F] [NumberField F] [Field E] [Algebra F E] {
   simp only [actW, actTup, e', ratTup, Matrix.mulVec, dotProduct, Matrix.map_apply, map_sum, map_mul]
 
 theorem theta_inv : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] (σ : E →ₐ[F] E), IsCMExt F E σ → ∀ (M : ℕ) (J : Matrix (Fin M) (Fin M) E), IsHermND σ J → ∀ (μ : Measure (HA (AF F) σ J)) (𝓕 : Set (HA (AF F) σ J)), IsHaarH F E σ M J μ → IsFDH F E σ M J μ 𝓕 → ∀ (n : ℕ) (T : Matrix (Fin n) (Fin n) E), (∀ h : HA (AF F) σ J, (thetaMeas σ J μ 𝓕 {X | gramE σ J X = T}).map (actW (AF F) σ J h) = thetaMeas σ J μ 𝓕 {X | gramE σ J X = T}) ∧ thetaMeas σ J μ 𝓕 {X | gramE σ J X = T} {X | gramR (AF F) σ J X = T.map (inclR (AF F))}ᶜ = 0 := by
-  apply CompanionTheory.PlacePermOperatorBicommutantSpan.theta_inv <;> assumption
+  apply CompanionTheory.PlacePermOperatorBicommutantSpan.theta_inv
 
 end PositivityTheory.PlacePermOperatorBicommutantSpan

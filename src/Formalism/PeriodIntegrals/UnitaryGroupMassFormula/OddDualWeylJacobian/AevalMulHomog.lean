@@ -148,9 +148,6 @@ private theorem sum_support_eq_degree_of_isHomogeneous' {σ : Type*} {p : MvPoly
   have h1 := hp (MvPolynomial.mem_support_iff.mp hm)
   first
   | simpa [Finsupp.weight_apply, Finsupp.sum] using h1
-  | (rw [← h1]; simp [Finsupp.weight_apply, Finsupp.sum])
-  | (rw [← h1]; simp [Finsupp.degree, Finsupp.weight_apply, Finsupp.sum])
-  | (simp only [Finsupp.weight_apply, Finsupp.sum, Pi.one_apply, smul_eq_mul, mul_one] at h1; exact h1)
 
 lemma aeval_mul_homog {σ S : Type*} [CommRing S] [Algebra R S] (b : σ → S) (c : S)
     {p : MvPolynomial σ R} {D : ℕ} (hp : p.IsHomogeneous D) :
@@ -273,7 +270,6 @@ lemma key_mat (g : Matrix (Fin k) (Fin k) K) (hd : g.det ≠ 0) :
   rw [sbs_adj]
   first
   | (rw [← h]; exact Finset.sum_congr rfl fun l _ => mul_comm _ _)
-  | (refine Eq.trans (Finset.sum_congr rfl fun l _ => mul_comm _ _) ?_; exact h)
 
 lemma dualSub_rowAct (g : Matrix (Fin k) (Fin k) K) (hd : g.det ≠ 0)
     {p p' : MvPolynomial (Fin k × Fin k) K} {M D : ℕ} (hrel : Rel K k M p p') (hp' : p'.IsHomogeneous D) :
@@ -337,8 +333,6 @@ private theorem mem_twisted_weyl_det_iff {O K : Type*} [CommRing O] [Field K] [A
   simp only [Submodule.mem_map, Submodule.mem_comap]
   first
   | rfl
-  | (simp only [LinearMap.coe_restrictScalars, AlgHom.toLinearMap_apply, LinearMap.lsmul_apply,
-      MvPolynomial.mapAlgHom_apply]; rfl)
 
 theorem twistedWeylStep : GStep := by
   unfold GStep

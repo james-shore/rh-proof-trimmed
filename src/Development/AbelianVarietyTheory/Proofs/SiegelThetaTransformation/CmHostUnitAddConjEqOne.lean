@@ -170,7 +170,7 @@ theorem datum_move {l : Geo.Tor.Level H} {Xo : Moduli Dw l} {c : Coeff l} (d : D
   ring
 
 theorem cmHostUnit_add_conj_eq_one (H : Host E) : H.w0 + H.bar H.w0 = 1 := by
-  apply GlobalTheory.TorusSign.cmHostUnit_add_conj_eq_one <;> assumption
+  apply GlobalTheory.TorusSign.cmHostUnit_add_conj_eq_one
 
 theorem cSep_spec (l : Geo.Tor.Level H) : cSep l ∈ Mfr l ∧ cSep l - 1 ∈ l.Mb := by
   have h : ∃ c, c ∈ Mfr l ∧ c - 1 ∈ l.Mb := by

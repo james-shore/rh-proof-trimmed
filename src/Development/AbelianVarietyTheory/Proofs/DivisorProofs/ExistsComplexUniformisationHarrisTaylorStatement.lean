@@ -467,7 +467,6 @@ theorem lieEigen_rank_cover : ∀ (p : ℕ) [Fact p.Prime] (D : Datum p) (R : Ty
       u ∈ ⨆ i, eigSp (ρ.comp (algebraMap (𝓞 D.F) D.O)) (τ i) := by
   first
   | exact @_root_.GlobalTheory.LieEigenspaceFinrank.lie_type_of_unif
-  | (intros; exact _root_.GlobalTheory.LieEigenspaceFinrank.lie_type_of_unif ..)
 
 end GlobalTheory.UPel.HT.LieType
 end -- clump:auto

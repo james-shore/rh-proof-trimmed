@@ -172,7 +172,7 @@ end Tor
 
 theorem exists_unif (L : Type) [NontriviallyNormedField L] [IsUltrametricDist L] [ProperSpace L] :
     ∃ p : L, p ≠ 0 ∧ ‖p‖ < 1 ∧ ∀ a : L, ‖a‖ < 1 → ‖a‖ ≤ ‖p‖ := by
-  apply GlobalTheory.StdChar.exists_unif <;> assumption
+  apply GlobalTheory.StdChar.exists_unif
 
 theorem exists_cover {G : Type} [Group G] [TopologicalSpace G] [ContinuousMul G] (K K₀ : Subgroup G)
     (hK : IsOpen (K : Set G)) (hc : IsCompact (K₀ : Set G)) :

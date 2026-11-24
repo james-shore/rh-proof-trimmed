@@ -425,7 +425,6 @@ private theorem nuG_isOpenPosMeasure {μ : Measure (Mt k r)} (hμ : IsHaarOn (GV
   haveI hHaar : (Formalism.REAL.muG (epsG k r)).IsHaarMeasure := by
     first
       | infer_instance
-      | (unfold Formalism.REAL.muG; infer_instance)
   constructor
   intro U hU hne
   rw [he, Measure.smul_apply]
@@ -471,8 +470,6 @@ theorem nuG_inv {μ : Measure (Mt k r)} (hμ : IsHaarOn (GV k r) μ) : (nuG μ).
     rw [hc, Measure.smul_apply] at h1
     first
       | exact h1.symm
-      | (rw [ENNReal.smul_def] at h1; exact h1.symm)
-      | (simp only [ENNReal.smul_def, smul_eq_mul] at h1; exact h1.symm)
   have hc1 : (c : ℝ≥0∞) = 1 := by
     have h3 : (c : ℝ≥0∞) * nuG μ (K ∪ K⁻¹) = 1 * nuG μ (K ∪ K⁻¹) := by
       rw [one_mul]

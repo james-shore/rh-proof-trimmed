@@ -239,7 +239,7 @@ theorem hpk_mid {i : Fin (2 * r + k + 1)} (h : ¬(i.val < r ∨ r + k < i.val)) 
 theorem hpk_mulVec (v : Fin (2 * r + k + 1) → ℂ) (i : Fin (2 * r + k + 1)) :
     (Hpk k r *ᵥ v) i = if i.val < r ∨ r + k < i.val then v ⟨2 * r + k - i.val, by omega⟩
       else if i.val = r + k then -v i else v i := by
-  apply ReciprocityTheory.ChartRestriction.DS.Mult1.TopH.hpk_mulVec <;> assumption
+  apply ReciprocityTheory.ChartRestriction.DS.Mult1.TopH.hpk_mulVec
 
 theorem hpk_mulVec_mulVec (v : Fin (2 * r + k + 1) → ℂ) : Hpk k r *ᵥ (Hpk k r *ᵥ v) = v := by
   funext i

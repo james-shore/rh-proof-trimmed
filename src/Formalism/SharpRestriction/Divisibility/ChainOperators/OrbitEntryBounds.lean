@@ -872,7 +872,6 @@ theorem Gxz_eq {R : Finset (Pl D)} (hR : IsReps D p R) {N0 N1 : ℕ} (nu : Pl D 
 
   simp [AlgHom.mapMatrix_apply, Matrix.map_apply, map_sum, MvPolynomial.rename_X, xzMap, orbE, pEmb,
   Function.Embedding.coeFn_mk]
-  all_goals rfl
 
 theorem Gxz_supported {N0 N1 : ℕ} (r : Pl D) (nu : ZMod (nP D p) → YoungDiagram) (I : ColChoice N1 nu) :
     MvPolynomial.rename (xzMap (N0 := N0) (N1 := N1) (orbE D p r)) (Gxz N0 N1 nu I) ∈

@@ -729,7 +729,7 @@ variable {k : Type} [Field k] [ValuativeRel k]
 theorem coe_leviEmb_zj {h N : ℕ} (d : Fin h → ℕ) (hd : ∑ a, d a = N) (t : kˣ) (j : Fin h) :
     (leviEmb k (stdBlocks d hd) (Zl.JC.zj d t j) : Matrix (Fin N) (Fin N) k) =
       diagonal fun i => if Zl.JC.blockIdx d hd i ≤ j then (t : k) else 1 := by
-  apply GlobalTheory.CompanionTheory.ContractingCosets.coe_leviEmb_zj <;> assumption
+  apply GlobalTheory.CompanionTheory.ContractingCosets.coe_leviEmb_zj
 
 variable [TopologicalSpace k] [IsNonarchimedeanLocalField k]
 

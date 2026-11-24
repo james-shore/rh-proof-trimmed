@@ -340,7 +340,7 @@ theorem had_onb {E : Type} [NormedAddCommGroup E] [InnerProductSpace ℂ E] (ρ 
 
 theorem had_inner' {E : Type} [NormedAddCommGroup E] [InnerProductSpace ℂ E] (ρ : ℕ) (a x : Fin ρ → E) :
     ‖(Matrix.of fun i k => inner ℂ (a i) (x k)).det‖ ≤ (∏ i, ‖a i‖) * ∏ k, ‖x k‖ := by
-  apply GlobalTheory.PlueckerBound.norm_det_inner_le <;> assumption
+  apply GlobalTheory.PlueckerBound.norm_det_inner_le
 
 theorem had_inner (d ρ : ℕ) (a x : Fin ρ → EuclideanSpace ℂ (Fin d)) :
     ‖(Matrix.of fun i k => inner ℂ (a i) (x k)).det‖ ≤ (∏ i, ‖a i‖) * ∏ k, ‖x k‖ :=

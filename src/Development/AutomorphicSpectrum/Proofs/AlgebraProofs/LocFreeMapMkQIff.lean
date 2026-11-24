@@ -104,7 +104,7 @@ theorem mem_stdLat (R : Subalgebra o Ω) {ι : Type} {v : ι → Ω} :
   simp [stdLat, AddSubgroup.mem_pi]
 
 theorem locFree_stdLat (R : Subalgebra o Ω) (m : ℕ) : LocFree R m (stdLat R (Fin m)) := by
-  apply PositivityTheory.Xgn.LocallyFreeLatticeSpans.locFree_std <;> assumption
+  apply PositivityTheory.Xgn.LocallyFreeLatticeSpans.locFree_std
 
 theorem locFree_divLat (R : Subalgebra o Ω) {E : Type} [AddCommGroup E] [Module Ω E] {c : Ω}
     (hc : c ≠ 0) {r : ℕ} {L : AddSubgroup E} (h : LocFree R r L) : LocFree R r (divLat c L) := by

@@ -196,7 +196,6 @@ theorem glue_span :
     Submodule.span ℂ (Set.range (glue : (D.what₂.Tau → LPol b a) → PolF D b a)) = ⊤ := by
   first
   | exact _root_.GlobalTheory.MonomialRangeMembership.span_range_glue
-  | (intros; exact _root_.GlobalTheory.MonomialRangeMembership.span_range_glue ..)
 
 theorem glueLaw : ∀ (D : D7) (a b : ℕ), GlueLaw D a b := by
   intro D a b

@@ -206,7 +206,7 @@ theorem chi_adele (F : Type) [Field F] [NumberField F] {κ : Type} [Fintype κ] 
     (M : Matrix κ κ (AF F)) (hM : IsUnit M.det) :
     (addEquivAddHaarChar (mulVecCE M hM) : ℝ) =
       (modu (Ainf F) (fstA F M.det) : ℝ) * ∏ᶠ v, ‖evalV F v (sndA F M.det)‖ := by
-  apply GlobalTheory.JacSubst.chi_AF_split <;> assumption
+  apply GlobalTheory.JacSubst.chi_AF_split
 
 theorem addEquivAddHaarChar_mulVecCE_adele (F : Type) [Field F] [NumberField F] {κ : Type} [Fintype κ]
     [DecidableEq κ] (M : Matrix κ κ (AF F)) (hM : IsUnit M.det) :

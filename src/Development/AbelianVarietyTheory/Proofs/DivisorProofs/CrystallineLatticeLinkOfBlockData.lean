@@ -587,7 +587,7 @@ theorem adapted_bases_of_redFilt : ∀ (ι : Type) (σ : Equiv.Perm ι) (l n t :
     · rintro rfl
       rw [zero_smul, add_zero] at hyz
       have h0 := _root_.GlobalTheory.adapted_coords_vanish_stmt F n (V i (rs s).castSucc) (g i) (fun j' hj' => hg i _ j' hj') _ (hyz ▸ hy) (pos s)
-        (by rw [hdi] <;> exact Nat.le_of_not_lt (hpos_nlt s))
+        (by rw [hdi])
       have h1 : (((g i)⁻¹ : (Matrix (Fin n) (Fin n) F⟦X⟧)ˣ) : Matrix (Fin n) (Fin n) F⟦X⟧).mulVec
           (fun a => (g i : Matrix (Fin n) (Fin n) F⟦X⟧) a (pos s)) (pos s) = 1 := by
         have := congrFun (congrFun (Units.inv_mul (g i)) (pos s)) (pos s)

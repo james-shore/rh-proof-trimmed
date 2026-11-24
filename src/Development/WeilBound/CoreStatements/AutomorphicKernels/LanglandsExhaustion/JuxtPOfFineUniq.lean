@@ -300,7 +300,7 @@ namespace PositivityTheory.Exh
 variable {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
 
 theorem decW_up (Δ : Segment k) : decW (up Δ) = nxt Δ :: decW Δ := by
-  apply CompanionTheory.Exh.decW_up <;> assumption
+  apply CompanionTheory.Exh.decW_up
 
 theorem nxt_not_mem (hA : GlobalTheory.Published.IrreducibleAdmissibleGL) (Δ : Segment k) : nxt Δ ∉ decW Δ := by
   intro h

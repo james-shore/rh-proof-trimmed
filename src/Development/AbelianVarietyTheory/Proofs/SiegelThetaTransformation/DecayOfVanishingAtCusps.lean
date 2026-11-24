@@ -388,7 +388,7 @@ theorem norm_entry_le_trace {N : ℕ} {A : Matrix (Fin N) (Fin N) ℂ} (hA : A.P
 theorem exists_repr_le (E : Type) [Field E] [NumberField E] :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ (x : 𝓞 E) (j : Module.Free.ChooseBasisIndex ℤ (𝓞 E)),
       |(((RingOfIntegers.basis E).repr x j : ℤ) : ℝ)| ≤ C * house (x : E) := by
-  apply _root_.GlobalTheory.IntCount.exists_abs_repr_le_mul_house <;> assumption
+  apply _root_.GlobalTheory.IntCount.exists_abs_repr_le_mul_house
 
 theorem house_le_of_isType {E : Type} [Field E] [NumberField E] [IsCMField E]
     {Ψ : Finset (E →+* ℂ)} (hΨ : IsType Ψ) {x : E} {B : ℝ} (hB : 0 ≤ B)

@@ -287,7 +287,7 @@ theorem Fdig_der_lt (h : rho ((j0, m0), a0) + 1 < Dt.P j0 m0) (H : MvPolynomial 
   · have e1 : ∀ w : TL J Dt.nL r × Fin r, w ≠ ((⟨j0, Sum.inr m0⟩, a0) : TL J Dt.nL r × Fin r) →
         (mo - Finsupp.single ((⟨j0, Sum.inr m0⟩, a0) : TL J Dt.nL r × Fin r) 1 : TL J Dt.nL r × Fin r →₀ ℕ) w = mo w := by
       intro w hw
-      simp [Finsupp.single_apply, Ne.symm hw]
+      simp [Ne.symm hw]
     have hv1 : (mo - Finsupp.single ((⟨j0, Sum.inr m0⟩, a0) : TL J Dt.nL r × Fin r) 1 : TL J Dt.nL r × Fin r →₀ ℕ) ((⟨j0, Sum.inr m0⟩, a0) : TL J Dt.nL r × Fin r) = mo ((⟨j0, Sum.inr m0⟩, a0) : TL J Dt.nL r × Fin r) - 1 := by simp
     rw [pderiv_monomial, Fdig_mono, Fdig_mono]
     rcases Nat.eq_zero_or_pos (mo ((⟨j0, Sum.inr m0⟩, a0) : TL J Dt.nL r × Fin r)) with ha | ha
@@ -353,7 +353,7 @@ theorem Fdig_der_eq (h : rho ((j0, m0), a0) + 1 = Dt.P j0 m0) (H : MvPolynomial 
   · have e1 : ∀ w : TL J Dt.nL r × Fin r, w ≠ ((⟨j0, Sum.inr m0⟩, a0) : TL J Dt.nL r × Fin r) →
         (mo - Finsupp.single ((⟨j0, Sum.inr m0⟩, a0) : TL J Dt.nL r × Fin r) 1 : TL J Dt.nL r × Fin r →₀ ℕ) w = mo w := by
       intro w hw
-      simp [Finsupp.single_apply, Ne.symm hw]
+      simp [Ne.symm hw]
     have hv1 : (mo - Finsupp.single ((⟨j0, Sum.inr m0⟩, a0) : TL J Dt.nL r × Fin r) 1 : TL J Dt.nL r × Fin r →₀ ℕ) ((⟨j0, Sum.inr m0⟩, a0) : TL J Dt.nL r × Fin r) = mo ((⟨j0, Sum.inr m0⟩, a0) : TL J Dt.nL r × Fin r) - 1 := by simp
     rw [pderiv_monomial, Fdig_mono, Fdig_mono]
     rcases Nat.eq_zero_or_pos (mo ((⟨j0, Sum.inr m0⟩, a0) : TL J Dt.nL r × Fin r)) with ha | ha

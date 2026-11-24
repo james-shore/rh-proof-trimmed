@@ -124,7 +124,7 @@ namespace GlobalTheory
 theorem card_dual_zmod_le_card :
     ∀ (n : ℕ) [NeZero n] (A : Type) [AddCommGroup A] [Module (ZMod n) A] [Finite A],
       Nat.card (Module.Dual (ZMod n) A) ≤ Nat.card A := by
-  apply GlobalTheory.TateTop.card_dual_le <;> assumption
+  apply GlobalTheory.TateTop.card_dual_le
 
 end GlobalTheory
 end -- clump:auto

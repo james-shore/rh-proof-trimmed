@@ -410,7 +410,7 @@ theorem _root_.GlobalTheory.T.residue_linear_disjointness_coeff_lt_one :
       (∀ t, IsInt (p := p) (e t) ∧ IsAlgZp (p := p) (e t)) →
       v (∑ t, e t * ψ (algebraMap (Lau p) (O0 p) (a t))) < 1 →
       ∀ r : ℤ, v (∑ t, e t * zp Ω ((a t).coeff r)) < 1 := by
-  apply _root_.GlobalTheory.K5.ResDisj.coeff_lt_one <;> assumption
+  apply _root_.GlobalTheory.K5.ResDisj.coeff_lt_one
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AbelianVarietyTheory.Proofs.FoundationProofs.ResidueLinearDisjointnessCoeffLtOneStatement =====

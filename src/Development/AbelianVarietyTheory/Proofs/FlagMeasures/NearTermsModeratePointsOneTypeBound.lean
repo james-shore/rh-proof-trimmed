@@ -1222,7 +1222,6 @@ theorem span_inner {n : ℕ} (L M : Hn n →L[ℂ] Hn n) (s t : Set (Hn n))
   first
   | (run_tac Lean.Elab.Tactic.liftMetaTactic (fun g => do pure [← g.revertAll])); exact @_root_.GlobalTheory.InnerSumZeroSpan.main
   | (run_tac Lean.Elab.Tactic.liftMetaTactic (fun g => do pure [← g.revertAll])); exact _root_.GlobalTheory.InnerSumZeroSpan.main
-  | (intros; exact _root_.GlobalTheory.InnerSumZeroSpan.main ..)
 
 theorem sp_orth (w : InfinitePlace I.E) {A B : Submodule (𝓞 I.E) (Fin I.n → I.E)}
     (h : ∀ s ∈ A, ∀ y ∈ B, hf I s y = 0) :

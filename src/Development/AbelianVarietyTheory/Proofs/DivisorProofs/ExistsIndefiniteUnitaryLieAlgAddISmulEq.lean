@@ -55,6 +55,6 @@ open GlobalTheory.HoweD
 namespace GlobalTheory.HoweD
 
 theorem upq_span (p q : ℕ) (Z : Mat p q) : ∃ X ∈ upq p q, ∃ Y ∈ upq p q, Z = X + Complex.I • Y := by
-  apply GlobalTheory.FockTensor.exists_upq_add <;> assumption
+  apply GlobalTheory.FockTensor.exists_upq_add
 
 end GlobalTheory.HoweD

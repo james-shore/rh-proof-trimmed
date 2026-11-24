@@ -116,7 +116,7 @@ theorem exists_lift {A : Type} [CommRing A] {n ι : Type} [Fintype n] [Decidable
 
 theorem gram_det_ne_zero {E : Type} [Field E] [NumberField E] [StarRing E] (S : Formalism.BasicNotions.HSpace E) :
     S.gram.det ≠ 0 := by
-  apply GlobalTheory.RecDict.det_gram_ne_zero <;> assumption
+  apply GlobalTheory.RecDict.det_gram_ne_zero
 
 theorem continuous_inf (F E : Type) [Field F] [NumberField F] [Field E] [Algebra F E] :
     Continuous (Algebra.TensorProduct.map (fstA F) (AlgHom.id F E) : AF F ⊗[F] E → Ainf F ⊗[F] E) := by

@@ -73,7 +73,7 @@ theorem cnorm_nonneg {n : ℕ} (u : Fin n → ℂ) : 0 ≤ Formalism.HermitianLa
 
 theorem cnorm_star {n : ℕ} (u : Fin n → ℂ) : Formalism.HermitianLatticesTheory.cnorm (star u) = Formalism.HermitianLatticesTheory.cnorm u := by
   first
-    | simp [Formalism.HermitianLatticesTheory.cnorm, norm_star]
+    | simp [Formalism.HermitianLatticesTheory.cnorm]
 
 theorem norm_dot_le {n : ℕ} (y w : Fin n → ℂ) :
     ‖y ⬝ᵥ w‖ ≤ Formalism.HermitianLatticesTheory.cnorm y * Formalism.HermitianLatticesTheory.cnorm w := by
@@ -93,7 +93,6 @@ theorem star_dot_self {n : ℕ} (w : Fin n → ℂ) :
   refine Finset.sum_congr rfl fun i _ => ?_
   first
     | exact Complex.conj_mul' (w i)
-    | exact_mod_cast Complex.conj_mul' (w i)
 
 theorem opNorm_le_iff {a D : ℕ} (A : Matrix (Fin D) (Fin a) ℂ) (c : ℝ) (hc : 0 ≤ c) :
     ‖LinearMap.toContinuousLinearMap (Matrix.toEuclideanLin A)‖ ≤ c ↔
@@ -602,7 +601,7 @@ theorem place_bound {K : Type} [Field K] [NumberField K] [StarRing K] {n D a b :
     by_cases h : i = j
     · subst h
       simp
-    · simp [Pi.single_apply, h]
+    · simp [h]
   have heig : ∀ q, ∀ x ∈ Qp q, A *ᵥ (fun i => v.embedding (x i)) =
       ((s q : ℝ) : ℂ) • (GQ *ᵥ (fun i => v.embedding (x i))) := by
     intro q x hx
@@ -665,7 +664,7 @@ theorem place_bound {K : Type} [Field K] [NumberField K] [StarRing K] {n D a b :
       by_cases h : j = i
       · subst h
         simp
-      · simp [Pi.single_apply, h]
+      · simp [h]
     obtain ⟨W, hW⟩ : ∃ W : Ix → Fin D → ℂ,
         ∀ q, W q = ∑ i, w i • fun j => v.embedding (f i q j) := ⟨_, fun q => rfl⟩
     have hWsum : ∑ q, W q = w := by
@@ -854,7 +853,6 @@ theorem height_constant_first : HeightBoundConstant := by
     have hprod : 0 < ∏ j, kU j v := by
       first
         | exact pos_of_mul_pos_right hnum hpUnn
-        | nlinarith [Finset.prod_nonneg fun j (_ : j ∈ Finset.univ) => hkUnn j]
     have hpUpos : 0 < pU v := by
       rcases lt_or_eq_of_le hpUnn with h | h
       · exact h

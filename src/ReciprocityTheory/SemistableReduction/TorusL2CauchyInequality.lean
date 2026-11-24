@@ -1344,7 +1344,7 @@ open MeasureTheory ComplexConjugate
 theorem torusProb_isProb (ι : Type) [Fintype ι] : IsProbabilityMeasure (torusProb ι) := by
   constructor
   rw [torusProb, Measure.pi_univ]
-  simp [Real.volume_Ioc]
+  simp
 
 noncomputable def torusFactor (a b : ℕ) (x : ℝ) : ℂ :=
   Complex.exp (2 * Real.pi * Complex.I * (x : ℂ)) ^ a *

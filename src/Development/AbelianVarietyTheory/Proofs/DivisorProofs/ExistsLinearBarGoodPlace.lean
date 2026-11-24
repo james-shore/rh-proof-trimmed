@@ -85,7 +85,7 @@ theorem _root_.GlobalTheory.T.exists_local_unipotent_additive : ∀ (F E : Type)
         evFin F v (symp (_root_.Algebra.TensorProduct.map (_root_.AlgHom.id (AF F) (AF F)) σ) (-1) ((_root_.Matrix.map · (_root_.Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.inclR (F := F) (AF F))) G.V'.J) ((_root_.Matrix.map · (_root_.Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.inclR (F := F) (AF F))) G.W.J) x u) =
           ∑ i, ∑ j, (x.map (piW t)) i j * GlobalTheory.LinBarAt.coAt G t u i j -
             ∑ i, ∑ j, GlobalTheory.LinBarAt.coAt G t x i j * (u.map (piW t)) i j) := by
-  first | exact @GlobalTheory.LinBarCoords.exists_split_coords | exact GlobalTheory.LinBarCoords.exists_split_coords | (intros; apply GlobalTheory.LinBarCoords.exists_split_coords <;> assumption)
+  first | exact @GlobalTheory.LinBarCoords.exists_split_coords
 end -- clump:auto
 end -- clump:auto
 end -- clump:auto
@@ -114,7 +114,7 @@ noncomputable section
 
 theorem _root_.GlobalTheory.T.psi_unramified_away_different : ∀ (F : Type) [Field F] [NumberField F] (ψ : AddChar (AF F) ℂ), IsStd ψ →
     ∀ v : GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.Pl (F := F), ¬ differentIdeal ℤ (𝓞 F) ≤ v.asIdeal → PsiUnr ψ v := by
-  first | exact @GlobalTheory.StdCharUnrF.psiUnr_of_not_le | exact GlobalTheory.StdCharUnrF.psiUnr_of_not_le | (intros; apply GlobalTheory.StdCharUnrF.psiUnr_of_not_le <;> assumption)
+  first | exact @GlobalTheory.StdCharUnrF.psiUnr_of_not_le
 end -- clump:auto
 end -- clump:auto
 end -- clump:auto

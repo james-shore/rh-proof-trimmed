@@ -389,11 +389,10 @@ theorem lint_eq {A B : Set G} (hA : MeasurableSet A) (hB : MeasurableSet B) (c :
       rw [← hcB x]
       first
       | exact lintegral_indicator_one (hB.preimage (measurable_mul_const x))
-      | (rw [ind_mul_right x]; exact lintegral_indicator_one (hB.preimage (measurable_mul_const x)))
     calc c * A.indicator g x
         = (A.indicator (1 : G → ℝ≥0∞) x * g x) * ∫⁻ r, B.indicator (1 : G → ℝ≥0∞) (r * x) ∂ν := by
           rw [h2]
-          by_cases hx : x ∈ A <;> simp [Set.indicator_apply, hx] <;> ring
+          by_cases hx : x ∈ A <;> simp [hx] <;> ring
       _ = ∫⁻ r, A.indicator (1 : G → ℝ≥0∞) x * B.indicator (1 : G → ℝ≥0∞) (r * x) * g x ∂ν := by
           rw [← lintegral_const_mul _ hm]
           refine lintegral_congr fun r => ?_
@@ -409,11 +408,10 @@ theorem lint_eq {A B : Set G} (hA : MeasurableSet A) (hB : MeasurableSet B) (c :
       rw [← hcA y]
       first
       | exact lintegral_indicator_one (hA.preimage (measurable_inv.mul_const y))
-      | (rw [ind_inv_mul y]; exact lintegral_indicator_one (hA.preimage (measurable_inv.mul_const y)))
     calc c * B.indicator g y
         = (B.indicator (1 : G → ℝ≥0∞) y * g y) * ∫⁻ r, A.indicator (1 : G → ℝ≥0∞) (r⁻¹ * y) ∂ν := by
           rw [h2]
-          by_cases hy : y ∈ B <;> simp [Set.indicator_apply, hy] <;> ring
+          by_cases hy : y ∈ B <;> simp [hy] <;> ring
       _ = ∫⁻ r, A.indicator (1 : G → ℝ≥0∞) (r⁻¹ * y) * B.indicator (1 : G → ℝ≥0∞) y * g y ∂ν := by
           rw [← lintegral_const_mul _ hm]
           refine lintegral_congr fun r => ?_
@@ -490,7 +488,6 @@ theorem int_eq {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteS
     refine ⟨hf.restrict, ?_⟩
     first
     | (show ∫⁻ x in B, ‖f x‖ₑ ∂μ < ⊤; rw [← e']; exact hA')
-    | (rw [hasFiniteIntegral_iff_enorm, ← e']; exact hA')
   have key : ∀ L : E →L[ℝ] ℝ, L (∫ x in A, f x ∂μ) = L (∫ x in B, f x ∂μ) := by
     intro L
     rw [← L.integral_comp_comm hfA, ← L.integral_comp_comm hfB]
@@ -598,7 +595,7 @@ theorem shift_general (μ : Measure G) [SigmaFinite μ] [μ.IsMulLeftInvariant]
           simp
       _ = ν Ω := measure_SF_eq Γ ν hνΓ (SF_mul_right hΩ y) hΩ
   have hinvf : ∀ᵐ r ∂ν, ∀ x, f (r⁻¹ * x) = f x := by
-    have hR : ∀ᵐ r ∂ν, r ∈ (R : Set G) := ae_iff.2 (by first | exact hcon | simpa using hcon)
+    have hR : ∀ᵐ r ∂ν, r ∈ (R : Set G) := ae_iff.2 (by first | exact hcon)
     filter_upwards [hR] with r hr x
     exact hf r⁻¹ (R.inv_mem hr) x
   have hfm : AEStronglyMeasurable f μ := by

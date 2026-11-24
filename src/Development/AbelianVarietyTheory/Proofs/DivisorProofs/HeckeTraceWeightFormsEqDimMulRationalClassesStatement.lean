@@ -119,8 +119,7 @@ theorem aeval_mulVec_krylov {R : Type} [CommRing R] {r : ℕ} (A : Matrix (Fin r
     aeval A (∑ j : Fin r, monomial (j : ℕ) (c j)) *ᵥ v = GlobalTheory.ClassParam.krylov A v *ᵥ c := by
   ext i
 
-  simp [GlobalTheory.ClassParam.krylov, map_sum, aeval_monomial, Matrix.sum_mulVec,
-  Algebra.algebraMap_eq_smul_one, Matrix.mulVec, dotProduct, Matrix.sum_apply,
+  simp [GlobalTheory.ClassParam.krylov, map_sum, aeval_monomial, Algebra.algebraMap_eq_smul_one, Matrix.mulVec, dotProduct, Matrix.sum_apply,
   Finset.sum_mul]
   rw [Finset.sum_comm]
   refine Finset.sum_congr rfl fun _ _ => Finset.sum_congr rfl fun _ _ => by ring

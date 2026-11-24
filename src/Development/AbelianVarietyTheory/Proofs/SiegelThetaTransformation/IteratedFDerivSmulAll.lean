@@ -567,7 +567,7 @@ namespace GlobalTheory.Dict.Poisson
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} (l : Geo.Tor.Level H)
 
 theorem conjI_Mfr : conjI (Mfr l) = l.Mb := by
-  apply GlobalTheory.LevelTied.conjI_Mfr <;> assumption
+  apply GlobalTheory.LevelTied.conjI_Mfr
 
 theorem M_mem : (l.M : 𝓞 E) ∈ Mfr l ∧ (l.M : 𝓞 E) ∈ l.Mb := by
   have h : (l.M : 𝓞 E) ∈ l.Mb * Mfr l := by

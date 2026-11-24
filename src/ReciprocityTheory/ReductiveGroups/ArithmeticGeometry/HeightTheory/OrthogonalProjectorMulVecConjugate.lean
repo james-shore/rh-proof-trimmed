@@ -226,8 +226,7 @@ theorem orthogonalProjector_mulVec_conjugate (σ : K →+* ℂ) {b : Fin k → F
   rw [orthogonalProjector_conjugate σ hb]
   ext i
 
-  simp [Matrix.mulVec, dotProduct, NumberField.ComplexEmbedding.conjugate_coe_eq, map_sum,
-  mul_comm]
+  simp [Matrix.mulVec, dotProduct, NumberField.ComplexEmbedding.conjugate_coe_eq]
 
 theorem conj_sum_projected_inner (b : Fin k → Fin r → K) (hb : LinearIndependent K b) (a a' : K)
     (x y : Fin r → K) :

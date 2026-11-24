@@ -170,7 +170,6 @@ theorem aeval_surjective_of_span_cotangent {R A : Type*} [CommRing R] [CommRing 
     Function.Surjective (MvPolynomial.aeval (R := R) x) := by
   first
   | (apply _root_.GlobalTheory.NilpotentKernelSurjective.aeval_surjective_of_isNilpotent_ker <;> assumption)
-  | (intros; exact _root_.GlobalTheory.NilpotentKernelSurjective.aeval_surjective_of_isNilpotent_ker ..)
 
 theorem exists_isPtDer_dual {k H : Type*} [Field k] [CommRing H] [Bialgebra k H] {d : ℕ}
     (x : Fin d → H) (hx : ∀ i, x i ∈ RingHom.ker (Bialgebra.counitAlgHom k H))

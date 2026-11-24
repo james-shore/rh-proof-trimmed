@@ -257,7 +257,6 @@ theorem isOpenImmersion_toNormalization {V P X : Scheme.{0}} (c : V ⟶ P) (p : 
     IsOpenImmersion c.toNormalization := by
   first
   | (rename_i h_5 h_7 h_8 h_9; revert V P X c p h_5 j h_7 h_8 h_9 h; exact @_root_.GlobalTheory.NormalizationOpenImmersion.main)
-  | (intros; exact _root_.GlobalTheory.NormalizationOpenImmersion.main ..)
 
 theorem isQProjOver_of_isProjOver' {R : Type} [CommRing R] {X : Scheme.{0}} {f : X ⟶ Sp R}
     (h : IsProjOver f) : IsQProjOver f := by

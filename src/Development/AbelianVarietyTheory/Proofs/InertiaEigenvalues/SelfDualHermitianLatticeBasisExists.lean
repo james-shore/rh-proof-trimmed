@@ -405,7 +405,6 @@ theorem exists_orthonormal_family (K : UQ)
         Submodule.span K.O (Set.range v) = L := by
   first
   | (apply _root_.GlobalTheory.UnitPairNorm.main <;> assumption)
-  | (intros; exact _root_.GlobalTheory.UnitPairNorm.main ..)
 
 end GlobalTheory.SelfDualLattice
 

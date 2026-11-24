@@ -106,7 +106,7 @@ private theorem hpk_apply_lemma (k r : ℕ) (i l : Fin (2 * r + k + 1)) :
       (if (i : ℕ) = r + k then -1 else 1) else 0 := by
   have hi := i.2
   simp only [Formalism.QuantumDeterminants.Hpk]
-  split_ifs <;> (try simp only [Fin.ext_iff] at *) <;> first | rfl | omega | norm_num
+  split_ifs <;> (try simp only [Fin.ext_iff] at *) <;> first | rfl | omega
 
 private theorem hpk_mul_self_lemma_2 (k r : ℕ) : Formalism.QuantumDeterminants.Hpk k r * Formalism.QuantumDeterminants.Hpk k r = 1 := by
   ext i j

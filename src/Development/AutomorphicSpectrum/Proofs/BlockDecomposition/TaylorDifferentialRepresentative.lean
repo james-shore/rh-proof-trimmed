@@ -144,7 +144,7 @@ theorem alt_sum_form {j : ℕ} (I : Fin j → Fin d) (x : Φ.A.obj E.D) (s : Com
       · rw [hu, hv]
         dsimp only
         rw [← ga_add]
-        refine ga_congr E σ _ s _ _ ?_ ?_ <;> simp <;> (try split_ifs) <;> simp_all
+        refine ga_congr E σ _ s _ _ ?_ ?_ <;> simp <;> (try split_ifs)
       · refine Finset.prod_congr rfl fun k hk => ?_
         have hki : (k : ℕ) ≠ i := fun h => Finset.ne_of_mem_erase hk (Fin.ext h)
         split_ifs with h

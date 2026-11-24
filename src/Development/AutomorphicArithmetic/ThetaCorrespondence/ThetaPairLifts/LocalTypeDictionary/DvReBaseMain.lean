@@ -122,7 +122,7 @@ namespace GlobalTheory.RealLift
 theorem exists_atInf_piInf_eq : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] (σ : E →ₐ[F] E),
     IsCMExt F E σ → ∀ (emb : ∀ w : InfinitePlace F, EmbOver E w) (f : InfinitePlace F → ℂ),
     ∃ z : _root_.GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.AE (F := F) (E := E), At (evI F) z ∧ ∀ w, piInf (emb w) z = f w := by
-  apply PositivityTheory.ThKG.CayleyTransformDarboux.exists_inf <;> assumption
+  apply PositivityTheory.ThKG.CayleyTransformDarboux.exists_inf
 
 end GlobalTheory.RealLift
 end -- clump:auto

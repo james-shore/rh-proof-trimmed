@@ -206,7 +206,7 @@ lemma H_lev_iL (k r' : ℕ) (i : Fin (2 * r' + k + 1)) : Hpk k (1 + r') (levPos 
 
 lemma H_lev_lev (k r' : ℕ) (i j : Fin (2 * r' + k + 1)) :
     Hpk k (1 + r') (levPos k 1 r' i) (levPos k 1 r' j) = Hpk k r' i j := by
-  apply Formalism.FourierDecayAlt.P.B2x4.Hpk_levPos <;> assumption
+  apply Formalism.FourierDecayAlt.P.B2x4.Hpk_levPos
 
 lemma hermitian_matrix_mul_first (k r' : ℕ) (u : Fin (2 * (1 + r') + k + 1) → ℂ) : (Hpk k (1 + r') *ᵥ u) (i0 k r') = u (iL k r') := by
   simp [mulVec, dotProduct, hermitian_form_first_basis]
@@ -524,7 +524,7 @@ lemma lev_row_iL (k r' : ℕ) (g : Mat k r') (q : Fin (2 * (1 + r') + k + 1)) :
     ιLev k 1 r' g (iL k r') q = if iL k r' = q then 1 else 0 := by
   simp only [ιLev]
   rw [dif_neg]
-  all_goals first | rfl | omega | (simp only [iL_val]; omega) | (rw [lev_val]; constructor <;> omega) | (simp_all [Fin.ext_iff] <;> omega)
+  all_goals first | rfl | omega | (simp only [iL_val]; omega)
 
 lemma levi_entry_first_zero (k r' : ℕ) (g : Mat k r') (i : Fin (2 * r' + k + 1)) :
     ιLev k 1 r' g (levPos k 1 r' i) (i0 k r') = 0 := by
@@ -538,7 +538,7 @@ lemma lev_lev_iL (k r' : ℕ) (g : Mat k r') (i : Fin (2 * r' + k + 1)) :
   have hi := i.isLt
   simp only [ιLev]
   rw [dif_pos, dif_neg]
-  all_goals first | omega | (simp only [iL_val, lev_val]; omega) | (rw [lev_val]; constructor <;> omega) | (simp_all [Fin.ext_iff] <;> omega)
+  all_goals first | omega | (simp only [iL_val, lev_val]; omega)
 
 lemma lev_lev_lev (k r' : ℕ) (g : Mat k r') (i j : Fin (2 * r' + k + 1)) :
     ιLev k 1 r' g (levPos k 1 r' i) (levPos k 1 r' j) = g i j := by
@@ -546,7 +546,7 @@ lemma lev_lev_lev (k r' : ℕ) (g : Mat k r') (i j : Fin (2 * r' + k + 1)) :
   have hj := j.isLt
   simp only [ιLev]
   rw [dif_pos, dif_pos]
-  all_goals first | rfl | omega | (simp only [lev_val]; omega) | (rw [lev_val]; constructor <;> omega) | (simp_all [Fin.ext_iff] <;> omega)
+  all_goals first | rfl | omega | (simp only [lev_val]; omega)
 
 lemma levi_action_first_coordinate (k r' : ℕ) (g : Mat k r') (u : Fin (2 * (1 + r') + k + 1) → ℂ) :
     (ιLev k 1 r' g *ᵥ u) (i0 k r') = u (i0 k r') := by

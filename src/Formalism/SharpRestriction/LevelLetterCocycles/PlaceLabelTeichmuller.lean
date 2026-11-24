@@ -119,7 +119,7 @@ theorem tens_coeff (a : ∀ i, MonoidAlgebra ℂ (G i)) (g : ∀ i, G i) :
 
 theorem conv_coeff {H : Type} [Group H] [Fintype H] (x y : MonoidAlgebra ℂ H) (g : H) :
     (x * y).coeff g = ∑ h, x.coeff h * y.coeff (h⁻¹ * g) := by
-  apply Formalism.MainNotions.PrimeDegreeVariant.Ten.conv_coeff <;> assumption
+  apply Formalism.MainNotions.PrimeDegreeVariant.Ten.conv_coeff
 
 theorem tens_mul (a b : ∀ i, MonoidAlgebra ℂ (G i)) :
     tens a * tens b = tens (fun i => a i * b i) := by

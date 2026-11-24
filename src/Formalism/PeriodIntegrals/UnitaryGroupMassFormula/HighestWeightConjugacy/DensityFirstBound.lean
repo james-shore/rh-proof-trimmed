@@ -188,7 +188,7 @@ theorem repPt_eq_cpt (Y : InfinitePlace L → Matrix (Fin n) (Fin n) ℂ) (hY : 
 
 theorem denseRange_emb [IsCMField L] :
     DenseRange (fun x : L => fun w : InfinitePlace L => w.embedding x) := by
-  apply GlobalTheory.CMTypeImPos.denseRange_embeddings <;> assumption
+  apply GlobalTheory.CMTypeImPos.denseRange_embeddings
 
 theorem denseRange_matEmb [IsCMField L] :
     DenseRange (fun b : Matrix (Fin n) (Fin n) L => fun (i j : Fin n) (w : InfinitePlace L) => w.embedding (b i j)) := by

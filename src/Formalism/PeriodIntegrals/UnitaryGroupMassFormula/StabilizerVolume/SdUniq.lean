@@ -305,7 +305,7 @@ theorem psiInf_add (ψ : AddChar (AF F) ℂ) (r s : Ainf F) :
   rw [e, AddChar.map_add_eq_mul]
 
 theorem continuous_singleV (v : HeightOneSpectrum (𝓞 F)) : Continuous (singleV F v) := by
-  apply PI.VolStabSW.SdUniqW.continuous_singleV <;> assumption
+  apply PI.VolStabSW.SdUniqW.continuous_singleV
 
 theorem continuous_psiV (ψ : AddChar (AF F) ℂ) (hψ : Continuous ψ) (v : HeightOneSpectrum (𝓞 F)) :
     Continuous (psiV F ψ v) := by

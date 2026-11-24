@@ -1387,7 +1387,6 @@ theorem sum_tail_le_sum_of_antitone {N : ℕ} (f : Fin N → ℤ) (hf : Antitone
     have split : ∀ S U : Finset (Fin N), ∑ x ∈ S \ U, f x + ∑ x ∈ S ∩ U, f x = ∑ x ∈ S, f x := by
       intro S U
       first
-      | exact Finset.sum_sdiff_add_sum_inter S U f
       | (rw [add_comm]; exact Finset.sum_inter_add_sum_diff S U f)
       | (rw [← Finset.sum_union (Finset.disjoint_sdiff_inter S U), Finset.sdiff_union_inter])
     have e3 := split T J

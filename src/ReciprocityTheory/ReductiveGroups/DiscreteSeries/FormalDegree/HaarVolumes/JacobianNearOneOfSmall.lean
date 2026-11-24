@@ -328,7 +328,7 @@ lemma kdD_injective (ε : Fin n → Bool) : Function.Injective (kdD ε) := by
 
 lemma kd_commJ_iff (ε : Fin n → Bool) (M : Matrix (Fin n) (Fin n) ℂ) :
     M * Jm ε = Jm ε * M ↔ ∀ a b, ε a ≠ ε b → M a b = 0 := by
-  apply ReciprocityTheory.ChartRestriction.DS.HW.commJ_iff <;> assumption
+  apply ReciprocityTheory.ChartRestriction.DS.HW.commJ_iff
 
 lemma kdD_commJ (ε : Fin n → Bool) (v : ∀ s : Bool, Matrix (Fin (kdC ε s)) (Fin (kdC ε s)) ℂ) :
     kdD ε v * Jm ε = Jm ε * kdD ε v := by

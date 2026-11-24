@@ -111,7 +111,7 @@ lemma re_gt {w : ℂ} (hw : ‖w‖ = 1) (h : ‖w - 1‖ < 1 / 2) : 7 / 8 < w.r
   nlinarith
 
 theorem main : ∀ {z : ℂ}, (∀ (n : ℕ), ‖z ^ n - (1 : ℂ)‖ < (1 / 2 : ℝ)) → z = (1 : ℂ) := by
-  apply Bl.SecondBlockLemmaN.goal1 <;> assumption
+  apply Bl.SecondBlockLemmaN.goal1
 
 end GlobalTheory.UnitNormRealPartBound
 end -- clump:auto

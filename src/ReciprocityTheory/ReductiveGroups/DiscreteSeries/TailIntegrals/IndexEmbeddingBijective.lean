@@ -660,7 +660,7 @@ theorem hc1 (k r' : ℕ) (hk : 1 ≤ k) (x : HPar k r') (j : Fin (1 + r')) : (hc
   unfold AN herm
   rw [dif_pos hj]
   unfold phiV aF
-  try simp only [Fin.coe_cast, Fin.val_mk]
+  try simp only [Fin.coe_cast]
   split_ifs with h
   · rw [star_bvec, bvec_dotProduct, Hpk_mulVec_apply_of_outer]
     · refine congrArg x.1 (Fin.ext ?_)

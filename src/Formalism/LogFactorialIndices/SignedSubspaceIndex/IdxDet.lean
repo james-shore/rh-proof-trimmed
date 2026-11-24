@@ -291,7 +291,7 @@ theorem idxScale_of (hB : LatBasis) : IdxScale := by
     simp
 
 theorem LatticeIndexDeterminant.lattice_span_of_basis : LatBasis := by
-  apply Formalism.LatticeIndexTer.lattice_has_basis <;> assumption
+  apply Formalism.LatticeIndexTer.lattice_has_basis
 
 theorem lattice_index_scale : IdxScale := idxScale_of LatticeIndexDeterminant.lattice_span_of_basis
 

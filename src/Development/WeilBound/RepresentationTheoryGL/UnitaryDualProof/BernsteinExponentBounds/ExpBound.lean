@@ -574,7 +574,7 @@ theorem pair_irr (hF : FactorIrr k) {h N : ℕ} (y : Fin h → IrrGL (k := k)) (
         fin_cases c
         · simp only [Function.comp_apply]
           show y i = _
-          congr 1 <;> ext
+          congr 1
         · simp only [Function.comp_apply]
           show y j = _
           congr 1 <;> ext <;> simp [hij]
@@ -1401,7 +1401,7 @@ theorem blkAt_apply (n N : ℕ) (h : n ≤ N) (g : GL (Fin n) k) (i j : Fin N) :
     (blkAt k n N h g).val i j =
       if hi : (i : ℕ) < n then (if hj : (j : ℕ) < n then g.val ⟨i, hi⟩ ⟨j, hj⟩ else 0)
       else if i = j then 1 else 0 := by
-  apply PositivityTheory.RgUd.Form.U.Lift2.TrM.blkAt_val <;> assumption
+  apply PositivityTheory.RgUd.Form.U.Lift2.TrM.blkAt_val
 
 
 omit [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] in
